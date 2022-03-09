@@ -16,6 +16,9 @@ class AuthAppBar extends StatelessWidget implements PreferredSize {
       centerTitle: false,
       leading: IconButton(
         onPressed: () {},
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         icon: const Padding(
           padding: EdgeInsets.only(left: 10),
           child: Icon(
@@ -32,6 +35,9 @@ class AuthAppBar extends StatelessWidget implements PreferredSize {
       actions: <Widget>[
         IconButton(
           onPressed: () => Navigator.pop(context),
+          splashColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           icon: const Icon(
             Icons.close,
             size: AppSize.navBarIconSize + 12,
