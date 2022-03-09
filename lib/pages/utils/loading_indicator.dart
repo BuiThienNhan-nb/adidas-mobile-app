@@ -25,6 +25,7 @@ class LoadingIndicator extends StatelessWidget {
               valueColor:
                   AlwaysStoppedAnimation<Color>(AppColor.kIconBackgroundColor),
               backgroundColor: AppColor.kBackgroundColor,
+              minHeight: 1.5,
             ),
           ],
         ),

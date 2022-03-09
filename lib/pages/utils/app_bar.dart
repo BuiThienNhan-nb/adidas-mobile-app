@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/config/palette.dart';
 import 'package:flutter_adidas_clone/config/size.dart';
 import 'package:flutter_adidas_clone/config/style.dart';
-import 'package:flutter_adidas_clone/pages/profile_screen/auth_screen.dart';
+import 'package:flutter_adidas_clone/pages/profile_screen/auth_screen/auth_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -36,12 +36,8 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
               : Container(),
         ),
         IconButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AuthScreen(),
-            ),
-          ),
+          onPressed: () => Navigator.of(context, rootNavigator: true)
+              .pushNamed(AuthScreen.id),
           icon: const FaIcon(
             FontAwesomeIcons.user,
             color: AppColor.kIconBackgroundColor,

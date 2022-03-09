@@ -9,4 +9,9 @@ class AppStyle {
     fontWeight: FontWeight.bold,
     fontSize: AppSize.appBarIconSize,
   );
+  static final TextStyle whiteTitleTextStyle = GoogleFonts.cantarell(
+    color: AppColor.kBackgroundColor,
+    fontWeight: FontWeight.bold,
+    fontSize: AppSize.appBarIconSize,
+  );
 }
