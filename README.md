@@ -1,4 +1,4 @@
-# flutter_adidas_clone
+# flutter_adidas_mobile_app
 
 A new Flutter project.
 
