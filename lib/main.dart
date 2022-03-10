@@ -3,7 +3,12 @@ import 'package:flutter_adidas_clone/config/routes.dart';
 import 'package:flutter_adidas_clone/pages/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(const AdidasApp());
+// void main() => runApp(const AdidasApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(const AdidasApp());
+}
 
 class AdidasApp extends StatelessWidget {
   const AdidasApp({Key? key}) : super(key: key);

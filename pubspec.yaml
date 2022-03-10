@@ -38,6 +38,12 @@ dependencies:
   provider: ^6.0.2
   font_awesome_flutter: ^9.2.0
   google_fonts: 2.2.0
+  flutter_native_splash: ^1.3.2
+  animations: ^2.0.2
+
+flutter_native_splash:
+  color: "#000000"
+  image: "assets/images/adidas-logo.png"
 
 dev_dependencies:
   flutter_test:
