@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/palette.dart';
-import 'package:flutter_adidas_clone/config/size.dart';
-import 'package:flutter_adidas_clone/pages/cart_screen/cart_screen.dart';
-import 'package:flutter_adidas_clone/pages/popular_screen/popular_product_screen.dart';
-import 'package:flutter_adidas_clone/pages/wishlist_screen/wishlist_screen.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/size.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
+import 'package:flutter_adidas_clone/views/popular_screen/popular_product_screen.dart';
+import 'package:flutter_adidas_clone/views/wishlist_screen/wishlist_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/palette.dart';
-import 'package:flutter_adidas_clone/pages/profile_screen/auth_screen/auth_app_bar.dart';
-import 'package:flutter_adidas_clone/pages/profile_screen/auth_screen/login_screen/login_screen.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth_screen/auth_app_bar.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth_screen/login_screen/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthScreen extends StatelessWidget {

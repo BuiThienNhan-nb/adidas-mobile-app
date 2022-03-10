@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/pages/utils/app_bar.dart';
-import 'package:flutter_adidas_clone/pages/utils/loading_indicator.dart';
+import 'package:flutter_adidas_clone/views/utils/app_bar.dart';
+import 'package:flutter_adidas_clone/views/utils/loading_indicator.dart';
 
 class PopularProductScreen extends StatelessWidget {
   const PopularProductScreen({Key? key}) : super(key: key);

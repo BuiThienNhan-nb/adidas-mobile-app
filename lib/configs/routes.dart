@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/pages/home_screen.dart';
-import 'package:flutter_adidas_clone/pages/profile_screen/auth_screen/auth_screen.dart';
+import 'package:flutter_adidas_clone/views/home_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth_screen/auth_screen.dart';
 
 class AppRoutes {
   static final AppRoutes _singleton = AppRoutes._internal();

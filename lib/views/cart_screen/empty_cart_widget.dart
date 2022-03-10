@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/style.dart';
-import 'package:flutter_adidas_clone/pages/utils/empty_item_button.dart';
+import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/views/utils/empty_item_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class EmptyListWidget extends StatelessWidget {
-  const EmptyListWidget({Key? key}) : super(key: key);
+class EmptyCartWidget extends StatelessWidget {
+  const EmptyCartWidget({Key? key}) : super(key: key);
   void onButtonClick() {}
 
   @override
@@ -15,19 +15,19 @@ class EmptyListWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "NOTHING SAVED YET",
+            "YOUR BAG IS EMPTY",
             style: AppStyle.titleTextStyle,
           ),
           SizedBox(
             height: 10.h,
           ),
-          const Text("Tap the heart icon to save items here for later."),
+          const Text("Why is that? Let's get creative!"),
           SizedBox(
             height: 20.h,
           ),
           EmptyItemsButton(
             function: onButtonClick,
-            content: "START SHOPPING",
+            content: "BROWSE TRENDS",
           ),
         ],
       ),

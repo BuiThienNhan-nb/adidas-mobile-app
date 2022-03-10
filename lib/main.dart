@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/routes.dart';
-import 'package:flutter_adidas_clone/pages/home_screen.dart';
+import 'package:flutter_adidas_clone/configs/routes.dart';
+import 'package:flutter_adidas_clone/views/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // void main() => runApp(const AdidasApp());

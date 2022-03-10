@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/palette.dart';
-import 'package:flutter_adidas_clone/config/size.dart';
-import 'package:flutter_adidas_clone/config/style.dart';
-import 'package:flutter_adidas_clone/pages/utils/empty_item_button.dart';
+import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/views/utils/empty_item_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class EmptyCartWidget extends StatelessWidget {
-  const EmptyCartWidget({Key? key}) : super(key: key);
+class EmptyListWidget extends StatelessWidget {
+  const EmptyListWidget({Key? key}) : super(key: key);
   void onButtonClick() {}
 
   @override
@@ -19,19 +15,19 @@ class EmptyCartWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "YOUR BAG IS EMPTY",
+            "NOTHING SAVED YET",
             style: AppStyle.titleTextStyle,
           ),
           SizedBox(
             height: 10.h,
           ),
-          const Text("Why is that? Let's get creative!"),
+          const Text("Tap the heart icon to save items here for later."),
           SizedBox(
             height: 20.h,
           ),
           EmptyItemsButton(
             function: onButtonClick,
-            content: "BROWSE TRENDS",
+            content: "START SHOPPING",
           ),
         ],
       ),

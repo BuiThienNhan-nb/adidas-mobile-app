@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/palette.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoadingIndicator extends StatelessWidget {

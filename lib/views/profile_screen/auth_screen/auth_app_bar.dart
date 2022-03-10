@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/palette.dart';
-import 'package:flutter_adidas_clone/config/size.dart';
-import 'package:flutter_adidas_clone/config/style.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/size.dart';
+import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthAppBar extends StatelessWidget implements PreferredSize {

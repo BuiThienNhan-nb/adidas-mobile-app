@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/pages/utils/app_bar.dart';
-import 'package:flutter_adidas_clone/pages/utils/loading_indicator.dart';
-import 'package:flutter_adidas_clone/pages/wishlist_screen/empty_list_widget.dart';
+import 'package:flutter_adidas_clone/views/utils/app_bar.dart';
+import 'package:flutter_adidas_clone/views/wishlist_screen/empty_list_widget.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({Key? key}) : super(key: key);

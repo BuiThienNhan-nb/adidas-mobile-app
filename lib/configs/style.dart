@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/config/palette.dart';
-import 'package:flutter_adidas_clone/config/size.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppStyle {
