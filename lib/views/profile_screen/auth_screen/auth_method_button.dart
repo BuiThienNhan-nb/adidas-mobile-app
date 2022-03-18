@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginMethodButton extends StatelessWidget {
-  const LoginMethodButton({
+class AuthMethodButton extends StatelessWidget {
+  const AuthMethodButton({
     Key? key,
     required FaIcon icon,
     required String title,

@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/routes.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
+import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
 import 'package:flutter_adidas_clone/views/popular_screen/popular_product_screen.dart';
 import 'package:flutter_adidas_clone/views/wishlist_screen/wishlist_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/src/provider.dart';
 import 'search_screen/news_feed_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,6 +33,9 @@ class HomeScreen extends StatelessWidget {
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
+      routeAndNavigatorSettings: RouteAndNavigatorSettings(
+        onGenerateRoute: AppRoutes().onGenerateRoute,
+      ),
     ),
     PersistentBottomNavBarItem(
       icon: const FaIcon(
@@ -38,6 +44,9 @@ class HomeScreen extends StatelessWidget {
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
+      routeAndNavigatorSettings: RouteAndNavigatorSettings(
+        onGenerateRoute: AppRoutes().onGenerateRoute,
+      ),
     ),
     PersistentBottomNavBarItem(
       icon: const FaIcon(
@@ -46,6 +55,9 @@ class HomeScreen extends StatelessWidget {
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
+      routeAndNavigatorSettings: RouteAndNavigatorSettings(
+        onGenerateRoute: AppRoutes().onGenerateRoute,
+      ),
     ),
     PersistentBottomNavBarItem(
       icon: const FaIcon(
@@ -54,6 +66,9 @@ class HomeScreen extends StatelessWidget {
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
+      routeAndNavigatorSettings: RouteAndNavigatorSettings(
+        onGenerateRoute: AppRoutes().onGenerateRoute,
+      ),
     ),
   ];
 
@@ -63,6 +78,7 @@ class HomeScreen extends StatelessWidget {
       context,
       screens: _screens,
       items: _navBarItems,
+      controller: context.read<NavBarProvider>().controller,
       confineInSafeArea: true,
       popActionScreens: PopActionScreensType.all,
       backgroundColor: AppColor.kBackgroundColor,
