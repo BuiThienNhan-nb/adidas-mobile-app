@@ -4,17 +4,22 @@ import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/views/utils/button/login_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginWithEmail extends StatelessWidget {
+class LoginWithEmail extends StatefulWidget {
   const LoginWithEmail({Key? key}) : super(key: key);
 
+  @override
+  State<LoginWithEmail> createState() => _LoginWithEmailState();
+}
+
+class _LoginWithEmailState extends State<LoginWithEmail> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _txtEmailController = TextEditingController();
     final TextEditingController _txtPasswordController =
         TextEditingController();
-    bool _inputHasText = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,14 +54,25 @@ class LoginWithEmail extends StatelessWidget {
               onTextChanged: (str) {},
               textController: _txtEmailController,
               textinputType: TextInputType.emailAddress,
-              validator: (str) {},
+              validator: MultiValidator(
+                [
+                  EmailValidator(errorText: "Please enter a valid email!"),
+                  RequiredValidator(errorText: "Email is required"),
+                ],
+              ),
               lableText: "EMAIL",
             ),
             TextFieldInput(
               onTextChanged: (str) {},
               textController: _txtPasswordController,
               textinputType: TextInputType.emailAddress,
-              validator: (str) {},
+              validator: MultiValidator(
+                [
+                  RequiredValidator(errorText: "Password is required"),
+                  MinLengthValidator(8,
+                      errorText: "Password must be at least 8 digits long"),
+                ],
+              ),
               lableText: "PASSWORD",
               obcureText: true,
             ),
