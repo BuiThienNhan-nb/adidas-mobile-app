@@ -12,6 +12,7 @@ class TextFieldInput extends StatelessWidget {
   // ignore: non_constant_identifier_names
   Color TextColor = AppColor.kIconBackgroundColor;
   final Function(String) onTextChanged;
+  Function()? onTap;
   final TextInputType textinputType;
   bool obcureText = false;
   String? Function(String?)? validator;
@@ -24,6 +25,7 @@ class TextFieldInput extends StatelessWidget {
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
     this.TextColor = AppColor.kIconBackgroundColor,
+    this.onTap,
     required this.onTextChanged,
     required this.textController,
     required this.textinputType,
@@ -38,6 +40,7 @@ class TextFieldInput extends StatelessWidget {
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
           obscureText: obcureText,
+          onTap: onTap,
           keyboardType: textinputType,
           validator: validator,
           onChanged: (value) {

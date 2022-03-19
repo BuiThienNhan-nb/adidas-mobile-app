@@ -1,22 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
 import 'package:flutter_adidas_clone/views/utils/button/login_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
+// ignore: implementation_imports
+import 'package:provider/src/provider.dart';
 
-class RegisterWithEmail extends StatelessWidget {
-  const RegisterWithEmail({Key? key}) : super(key: key);
+class LoginWithEmail extends StatefulWidget {
+  const LoginWithEmail({Key? key}) : super(key: key);
 
+  @override
+  State<LoginWithEmail> createState() => _LoginWithEmailState();
+}
+
+class _LoginWithEmailState extends State<LoginWithEmail> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _txtEmailController = TextEditingController();
     final TextEditingController _txtPasswordController =
         TextEditingController();
-    final TextEditingController _txtConfirmPasswordController =
-        TextEditingController();
+
+    showFailDialog() => showAnimatedDialog(
+          context: context,
+          builder: (context) => const AuthDialog(
+            title: "Login Failed",
+            subTitle:
+                "We didn't recognize the username or password you entered. Please try again.",
+            btnTitle: "OK",
+          ),
+          barrierDismissible: true,
+          animationType: DialogTransitionType.size,
+          duration: const Duration(milliseconds: 300),
+        ).then(
+          (value) =>
+              setState(() => context.read<AuthProvider>().isLoading = false),
+        );
+    showForgotPasswordDialog() => showAnimatedDialog(
+          context: context,
+          builder: (context) => const AuthDialog(
+            title: "We've sent your reset password link to:",
+            subTitle: "buithiennhan250901@gmail.com",
+            btnTitle: "TRY LOGGING IN AGAIN",
+          ),
+          barrierDismissible: true,
+          animationType: DialogTransitionType.size,
+          duration: const Duration(milliseconds: 300),
+        );
+    login() {
+      setState(() => context.read<AuthProvider>().isLoading = true);
+      showFailDialog();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +66,7 @@ class RegisterWithEmail extends StatelessWidget {
         ),
         centerTitle: false,
         title: Text(
-          "REGISTER",
+          "LOGIN",
           style: AppStyle.titleTextStyle,
         ),
       ),
@@ -39,7 +78,7 @@ class RegisterWithEmail extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 72.w),
               child: Text(
-                "No account, so let's get you once",
+                "Looks like we already know you",
                 style: GoogleFonts.cantarell(
                   color: AppColor.kIconBackgroundColor,
                   fontSize: 14,
@@ -73,21 +112,29 @@ class RegisterWithEmail extends StatelessWidget {
               lableText: "PASSWORD",
               obcureText: true,
             ),
-            TextFieldInput(
-              onTextChanged: (str) {},
-              textController: _txtConfirmPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: (str) =>
-                  MatchValidator(errorText: "Password do not match")
-                      .validateMatch(str!, _txtPasswordController.text.trim()),
-              lableText: "CONFIRM PASSWORD",
-              obcureText: true,
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: TextButton(
+                onPressed: showForgotPasswordDialog,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  padding: EdgeInsets.zero,
+                  primary: AppColor.kButtonOnClick,
+                ),
+                child: const Text(
+                  "Forgot your password?",
+                  style: TextStyle(
+                    color: AppColor.kIconBackgroundColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             const Expanded(child: SizedBox()),
-            LoginButton(
-              function: () {},
-              content: "REGISTER",
-              isValid: true,
+            AuthButton(
+              function: login,
+              content: "SIGN IN",
+              isLoading: context.read<AuthProvider>().isLoading,
             ),
             SizedBox(height: 30.h),
           ],

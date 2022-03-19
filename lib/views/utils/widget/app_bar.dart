@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth_screen/auth_screen.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/auth_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/src/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSize {
   const MyAppBar(
@@ -36,8 +39,11 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
               : Container(),
         ),
         IconButton(
-          onPressed: () => Navigator.of(context, rootNavigator: true)
-              .pushNamed(AuthScreen.id),
+          onPressed: () => context.read<AuthProvider>().isLogin
+              ? Navigator.of(context, rootNavigator: true)
+                  .pushNamed(ProfileScreen.id)
+              : Navigator.of(context, rootNavigator: true)
+                  .pushNamed(AuthScreen.id),
           icon: const FaIcon(
             FontAwesomeIcons.user,
             color: AppColor.kIconBackgroundColor,

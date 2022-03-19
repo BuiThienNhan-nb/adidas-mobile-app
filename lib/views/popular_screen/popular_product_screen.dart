@@ -7,7 +7,7 @@ class PopularProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _content = "Loading products...";
+    String _content = "Loading...";
     return Scaffold(
       appBar: const MyAppBar(
         isPopularScreen: true,

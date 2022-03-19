@@ -30,7 +30,7 @@ class PrivacyTermDialog extends StatelessWidget {
               data: snapshot.data.toString(),
             );
           }
-          return const Center(
+          return Center(
             child: LoadingIndicator(content: "Loading..."),
           );
         },

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth_screen/auth_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/auth_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/profile_screen.dart';
 
 class AppRoutes {
   static final AppRoutes _singleton = AppRoutes._internal();
@@ -21,6 +22,10 @@ class AppRoutes {
       case AuthScreen.id:
         return CupertinoPageRoute(
           builder: (_) => const AuthScreen(),
+        );
+      case ProfileScreen.id:
+        return CupertinoPageRoute(
+          builder: (_) => const ProfileScreen(),
         );
       default:
         return _errorRoute();

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
-  bool _isLoginWithEmailScreen = false;
-  bool get isLoginWithEmailScreen => _isLoginWithEmailScreen;
+  bool _isLogin = false;
+  bool get isLogin => _isLogin;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  setIsLoginWithEmailScreen(bool flag) {
-    _isLoginWithEmailScreen = flag;
+  set isLogin(bool val) {
+    _isLogin = val;
+    notifyListeners();
+  }
+
+  set isLoading(bool val) {
+    _isLoading = val;
     notifyListeners();
   }
 }

@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({
+class AuthButton extends StatelessWidget {
+  const AuthButton({
     Key? key,
     required Function() function,
     required String content,
-    required bool isValid,
+    required bool isLoading,
   })  : _function = function,
         _content = content,
-        _isValid = isValid,
+        _isLoading = isLoading,
         super(key: key);
 
   final Function() _function;
   final String _content;
-  final bool _isValid;
+  final bool _isLoading;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: _isValid ? _function : () {},
+      onPressed: _isLoading ? () {} : _function,
       style: TextButton.styleFrom(
-        backgroundColor: _isValid ? Colors.black : AppColor.kButtonOnClick,
+        backgroundColor: _isLoading ? AppColor.kButtonOnClick : Colors.black,
         padding: EdgeInsets.zero,
         primary: AppColor.kButtonOnClick,
       ),
@@ -35,19 +36,25 @@ class LoginButton extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
           border: Border.all(
-              color: _isValid ? Colors.black : AppColor.kButtonOnClick),
+              color: _isLoading ? AppColor.kButtonOnClick : Colors.black),
         ),
         child: Row(
           children: [
             SizedBox(width: 10.w),
-            Text(
-              _content,
-              style: GoogleFonts.cantarell(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: AppSize.titleFontSize - 5,
-              ),
-            ),
+            _isLoading
+                ? LoadingIndicator(
+                    content: "Loading...",
+                    valueColor: AppColor.kBackgroundColor,
+                    backgroundColor: AppColor.kButtonOnClick,
+                  )
+                : Text(
+                    _content,
+                    style: GoogleFonts.cantarell(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: AppSize.titleFontSize - 5,
+                    ),
+                  ),
             const Spacer(),
             const FaIcon(
               FontAwesomeIcons.arrowRight,
