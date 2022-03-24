@@ -43,7 +43,7 @@ dependencies:
   flutter_markdown: ^0.6.9
   form_field_validator: ^1.1.0
   flutter_animated_dialog: ^2.0.1
-
+  dio: ^4.0.4
 flutter_native_splash:
   color: "#000000"
   image: "assets/images/adidas-logo.png"

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/routes.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
 import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
@@ -16,6 +17,9 @@ class AdidasApp extends StatelessWidget {
       designSize: const Size(414, 736),
       builder: () => MultiProvider(
         providers: [
+          ChangeNotifierProvider(
+            create: (BuildContext context) => UserProvider(),
+          ),
           ChangeNotifierProvider(
             create: (BuildContext context) => AuthProvider(),
           ),

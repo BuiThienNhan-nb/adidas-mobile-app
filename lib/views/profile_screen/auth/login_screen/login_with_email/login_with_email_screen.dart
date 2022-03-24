@@ -1,7 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
+import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
 import 'package:flutter_adidas_clone/views/utils/button/login_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
@@ -9,6 +13,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
@@ -22,6 +27,8 @@ class LoginWithEmail extends StatefulWidget {
 class _LoginWithEmailState extends State<LoginWithEmail> {
   @override
   Widget build(BuildContext context) {
+    var auth = context.read<AuthProvider>();
+    late User user;
     final TextEditingController _txtEmailController = TextEditingController();
     final TextEditingController _txtPasswordController =
         TextEditingController();
@@ -37,10 +44,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
           barrierDismissible: true,
           animationType: DialogTransitionType.size,
           duration: const Duration(milliseconds: 300),
-        ).then(
-          (value) =>
-              setState(() => context.read<AuthProvider>().isLoading = false),
-        );
+        ).then((value) => context.read<AuthProvider>().isLoading = false);
     showForgotPasswordDialog() => showAnimatedDialog(
           context: context,
           builder: (context) => const AuthDialog(
@@ -52,9 +56,26 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
           animationType: DialogTransitionType.size,
           duration: const Duration(milliseconds: 300),
         );
-    login() {
-      setState(() => context.read<AuthProvider>().isLoading = true);
-      showFailDialog();
+
+    login() async {
+      context.read<AuthProvider>().isLoading = true;
+      Map<String, dynamic> response = await auth.fetchLogin(
+          _txtEmailController.text, _txtPasswordController.text);
+      if (response['status']) {
+        user = User.fromJson(response['data']['user']);
+        context.read<UserProvider>().setUser(user);
+        print(context.read<UserProvider>().user.toJson());
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const AlertDialog(
+                  title: Text("Success!!"),
+                  content: Text("Navigate to another screen"));
+            });
+        context.read<AuthProvider>().isLoading = false;
+      } else {
+        showFailDialog();
+      }
     }
 
     return Scaffold(
@@ -113,7 +134,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               obcureText: true,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 20.w),
               child: TextButton(
                 onPressed: showForgotPasswordDialog,
                 style: TextButton.styleFrom(
@@ -131,10 +152,14 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               ),
             ),
             const Expanded(child: SizedBox()),
-            AuthButton(
-              function: login,
-              content: "SIGN IN",
-              isLoading: context.read<AuthProvider>().isLoading,
+            Consumer<AuthProvider>(
+              builder: (_, value, __) {
+                return AuthButton(
+                  function: login,
+                  content: "SIGN IN",
+                  isLoading: value.isLoading,
+                );
+              },
             ),
             SizedBox(height: 30.h),
           ],
