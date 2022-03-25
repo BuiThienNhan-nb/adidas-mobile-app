@@ -19,16 +19,6 @@ class AuthScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Container(
-            //   constraints: const BoxConstraints.expand(),
-            //   height: 300.h,
-            //   decoration: const BoxDecoration(
-            //     image: DecorationImage(
-            //       image: AssetImage("assets/images/auth-background.jpg"),
-            //       fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
             Expanded(
               child: FittedBox(
                 fit: BoxFit.contain,

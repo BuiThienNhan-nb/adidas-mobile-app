@@ -4,7 +4,7 @@ import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
-import 'package:flutter_adidas_clone/views/utils/button/login_button.dart';
+import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -75,7 +75,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
             ),
             SizedBox(height: 20.h),
             TextFieldInput(
-              onTextChanged: (str) {},
+              onTextSubmitted: (str) {},
               textController: _txtEmailController,
               textinputType: TextInputType.emailAddress,
               validator: MultiValidator(
@@ -87,7 +87,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               lableText: "EMAIL",
             ),
             TextFieldInput(
-              onTextChanged: (str) {},
+              onTextSubmitted: (str) {},
               textController: _txtPasswordController,
               textinputType: TextInputType.emailAddress,
               validator: MultiValidator(
@@ -101,7 +101,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               obcureText: true,
             ),
             TextFieldInput(
-              onTextChanged: (str) {},
+              onTextSubmitted: (str) {},
               textController: _txtConfirmPasswordController,
               textinputType: TextInputType.emailAddress,
               validator: (str) =>
@@ -111,7 +111,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               obcureText: true,
             ),
             const Expanded(child: SizedBox()),
-            AuthButton(
+            MyTextButton(
               function: () {
                 // Fake function create account
                 setState(() => context.read<AuthProvider>().isLoading = true);

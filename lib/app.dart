@@ -28,6 +28,11 @@ class AdidasApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
+          theme: ThemeData().copyWith(
+            colorScheme: ThemeData()
+                .colorScheme
+                .copyWith(secondary: Colors.grey.shade500),
+          ),
           onGenerateRoute: AppRoutes().onGenerateRoute,
           initialRoute: HomeScreen.id,
         ),

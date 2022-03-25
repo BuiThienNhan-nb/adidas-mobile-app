@@ -7,6 +7,7 @@ import 'package:flutter_adidas_clone/views/profile_screen/auth/auth_screen.dart'
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSize {
