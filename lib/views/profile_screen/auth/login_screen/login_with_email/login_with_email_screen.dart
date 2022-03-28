@@ -64,7 +64,6 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       if (response['status']) {
         user = User.fromJson(response['data']['user']);
         context.read<UserProvider>().setUser(user);
-        print(context.read<UserProvider>().user.toJson());
         showDialog(
             context: context,
             builder: (context) {
