@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
@@ -114,22 +116,31 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
             MyTextButton(
               function: () {
                 // Fake function create account
-                setState(() => context.read<AuthProvider>().isLoading = true);
-                Future.delayed(
-                  const Duration(seconds: 3),
-                ).then((value) {
-                  setState(
-                      () => context.read<AuthProvider>().isLoading = false);
+                // setState(() => context.read<AuthProvider>().isLoading = true);
+                // Future.delayed(
+                //   const Duration(seconds: 3),
+                // ).then((value) {
+                //   setState(
+                //       () => context.read<AuthProvider>().isLoading = false);
 
-                  // Push to screen complete user info
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const RegisterWithEmailPage2(),
-                    ),
-                  );
-                  showSnackBar();
-                });
+                //   // Push to screen complete user info
+                //   Navigator.push(
+                //     context,
+                //     CupertinoPageRoute(
+                //       builder: (context) => const RegisterWithEmailPage2(),
+                //     ),
+                //   );
+                //   showSnackBar();
+                // });
+                DataRepository()
+                    .register(
+                        _txtEmailController.text, _txtPasswordController.text)
+                    .then((response) => {
+                          if (response.data)
+                            {
+                              // show dialog for register success
+                            }
+                        });
               },
               content: "REGISTER",
               isLoading: context.read<AuthProvider>().isLoading,
