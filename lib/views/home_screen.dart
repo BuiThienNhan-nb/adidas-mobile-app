@@ -10,6 +10,7 @@ import 'package:flutter_adidas_clone/views/wishlist_screen/wishlist_screen.dart'
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 import 'search_screen/news_feed_screen.dart';
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: must_be_immutable
-class TextFieldInput extends StatelessWidget {
+class PasswordFieldInput extends StatefulWidget {
   final TextEditingController textController;
   bool readOnly = false;
   // ignore: prefer_typing_uninitialized_variables
@@ -14,27 +15,33 @@ class TextFieldInput extends StatelessWidget {
   final Function(String) onTextSubmitted;
   Function()? onTap;
   final TextInputType textinputType;
-  Widget suffixIcon = const Icon(null);
-  bool obcureText = false;
+  bool obcureText = true;
   Function()? onSuffixIconTap;
   String? Function(String?)? validator;
 
-  TextFieldInput({
+  PasswordFieldInput({
     Key? key,
     this.lableText,
-    this.obcureText = false,
+    this.obcureText = true,
     this.readOnly = false,
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
     this.TextColor = AppColor.kIconBackgroundColor,
     this.onTap,
     this.onSuffixIconTap,
-    this.suffixIcon = const Icon(null),
     required this.onTextSubmitted,
     required this.textController,
     required this.textinputType,
     required this.validator,
   }) : super(key: key);
+
+  @override
+  State<PasswordFieldInput> createState() => _PasswordFieldInputState();
+}
+
+class _PasswordFieldInputState extends State<PasswordFieldInput> {
+  void togglePasswordVisibity() =>
+      setState(() => widget.obcureText = !widget.obcureText);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,15 +51,15 @@ class TextFieldInput extends StatelessWidget {
       child: Form(
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
-          obscureText: obcureText,
-          onTap: onTap,
-          keyboardType: textinputType,
-          validator: validator,
+          obscureText: widget.obcureText,
+          onTap: widget.onTap,
+          keyboardType: widget.textinputType,
+          validator: widget.validator,
           onFieldSubmitted: (value) {
-            onTextSubmitted(value);
+            widget.onTextSubmitted(value);
           },
-          controller: textController,
-          readOnly: readOnly,
+          controller: widget.textController,
+          readOnly: widget.readOnly,
           cursorColor: AppColor.kIconBackgroundColor,
           decoration: InputDecoration(
             border: OutlineInputBorder(
@@ -64,14 +71,22 @@ class TextFieldInput extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(0.r),
             ),
-            labelText: lableText,
+            labelText: widget.lableText,
             labelStyle:
-                TextStyle(color: TextColor, fontWeight: FontWeight.bold),
+                TextStyle(color: widget.TextColor, fontWeight: FontWeight.bold),
             suffixIcon: Padding(
               padding: const EdgeInsetsDirectional.only(end: 12.0, bottom: 4.0),
               child: IconButton(
-                onPressed: onSuffixIconTap,
-                icon: suffixIcon,
+                onPressed: togglePasswordVisibity,
+                icon: widget.obcureText
+                    ? const FaIcon(
+                        FontAwesomeIcons.eye,
+                        color: AppColor.kIconBackgroundColor,
+                      )
+                    : const FaIcon(
+                        FontAwesomeIcons.eyeSlash,
+                        color: AppColor.kIconBackgroundColor,
+                      ),
               ),
             ),
           ),

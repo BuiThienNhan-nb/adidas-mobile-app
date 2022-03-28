@@ -5,7 +5,7 @@ import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
-import 'package:flutter_adidas_clone/views/utils/button/login_button.dart';
+import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -57,7 +57,6 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
       );
       if (pickDate == null) return;
       _txtBirthdateController.text = AppFormat.formatDay.format(pickDate);
-      _txtNameController.text = "picked a date";
     }
 
     register() {
@@ -112,7 +111,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
               ),
               SizedBox(height: 20.h),
               TextFieldInput(
-                onTextChanged: (str) {},
+                onTextSubmitted: (str) {},
                 textController: _txtNameController,
                 textinputType: TextInputType.emailAddress,
                 validator: MultiValidator(
@@ -125,7 +124,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 lableText: "NAME",
               ),
               TextFieldInput(
-                onTextChanged: (str) {},
+                onTextSubmitted: (str) {},
                 textController: _txtBirthdateController,
                 textinputType: TextInputType.emailAddress,
                 validator:
@@ -135,8 +134,8 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 readOnly: true,
               ),
               const Expanded(child: SizedBox()),
-              AuthButton(
-                function: () => register(),
+              MyTextButton(
+                function: register,
                 content: "JOIN US",
                 isLoading: context.read<AuthProvider>().isLoading,
               ),

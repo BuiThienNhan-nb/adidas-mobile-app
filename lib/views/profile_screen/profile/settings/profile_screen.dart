@@ -3,7 +3,7 @@ import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/orders_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/setting_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);

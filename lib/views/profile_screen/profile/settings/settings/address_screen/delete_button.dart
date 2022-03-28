@@ -6,12 +6,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AuthButton extends StatelessWidget {
-  const AuthButton({
+// ignore: must_be_immutable
+class DeleteAddressButton extends StatelessWidget {
+  DeleteAddressButton({
     Key? key,
     required Function() function,
     required String content,
     required bool isLoading,
+    this.icon = const FaIcon(
+      FontAwesomeIcons.arrowRight,
+      color: AppColor.kIconBackgroundColor,
+      size: AppSize.appBarIconSize,
+    ),
   })  : _function = function,
         _content = content,
         _isLoading = isLoading,
@@ -20,13 +26,13 @@ class AuthButton extends StatelessWidget {
   final Function() _function;
   final String _content;
   final bool _isLoading;
-
+  Widget icon;
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: _isLoading ? () {} : _function,
       style: TextButton.styleFrom(
-        backgroundColor: _isLoading ? AppColor.kButtonOnClick : Colors.black,
+        backgroundColor: AppColor.kBackgroundColor,
         padding: EdgeInsets.zero,
         primary: AppColor.kButtonOnClick,
       ),
@@ -44,23 +50,19 @@ class AuthButton extends StatelessWidget {
             _isLoading
                 ? LoadingIndicator(
                     content: "Loading...",
-                    valueColor: AppColor.kBackgroundColor,
+                    valueColor: AppColor.kIconBackgroundColor,
                     backgroundColor: AppColor.kButtonOnClick,
                   )
                 : Text(
                     _content,
                     style: GoogleFonts.cantarell(
-                      color: Colors.white,
+                      color: AppColor.kIconBackgroundColor,
                       fontWeight: FontWeight.bold,
                       fontSize: AppSize.titleFontSize - 5,
                     ),
                   ),
             const Spacer(),
-            const FaIcon(
-              FontAwesomeIcons.arrowRight,
-              color: AppColor.kBackgroundColor,
-              size: AppSize.appBarIconSize,
-            ),
+            icon,
             SizedBox(width: 20.w),
           ],
         ),
