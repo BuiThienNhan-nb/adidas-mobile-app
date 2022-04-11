@@ -16,73 +16,79 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _oCcy = NumberFormat("#,##0", "en_US");
-    return Container(
-      color: AppColors.kSneakerItemBackground,
-      height: 191.h,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.asset(
-            _product.image,
-            height: 190.h,
-            width: 170.w,
-          ),
-          Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          color: AppColors.kSneakerItemBackground,
+          height: 191.h,
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 15.h),
-              Container(
-                color: AppColors.kItemTagBackground,
-                child: Padding(
-                  padding: EdgeInsets.all(6.w),
-                  child: Text(
-                    _product.tag,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: AppColors.kBackgroundColor,
-                      fontSize: AppSizes.extraSmallText,
+              Image.asset(
+                _product.image,
+                height: 190.h,
+                width: 170.w,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 15.h),
+                  Container(
+                    color: AppColors.kItemTagBackground,
+                    child: Padding(
+                      padding: EdgeInsets.all(6.w),
+                      child: Text(
+                        _product.tag,
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          color: AppColors.kBackgroundColor,
+                          fontSize: AppSizes.extraSmallText,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Container(
-                color: AppColors.kBackgroundColor,
-                child: Padding(
-                  padding: EdgeInsets.all(6.w),
-                  child: Text(
-                    "đ\t\t\t\t${_oCcy.format(_product.price)}",
+                  SizedBox(height: 8.h),
+                  Container(
+                    color: AppColors.kBackgroundColor,
+                    child: Padding(
+                      padding: EdgeInsets.all(6.w),
+                      child: Text(
+                        "đ\t\t\t\t${_oCcy.format(_product.price)}",
+                        style: TextStyle(
+                          fontSize: AppSizes.smallText,
+                          letterSpacing: 2.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  SizedBox(
+                    width: 230.w,
+                    child: Text(
+                      _product.name,
+                      style: AppStyles.regularTextStyle,
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    "Size: 9 UK - Qty: 1",
                     style: TextStyle(
                       fontSize: AppSizes.smallText,
-                      letterSpacing: 2.0,
+                      color: AppColors.kSubTitleText,
                     ),
                   ),
-                ),
+                  SizedBox(height: 10.h),
+                  CartItemSaveButton(function: () {}),
+                  SizedBox(height: 14.h),
+                ],
               ),
-              SizedBox(height: 8.h),
-              SizedBox(
-                width: 230.w,
-                child: Text(
-                  _product.name,
-                  style: AppStyles.regularTextStyle,
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                "Size: 9 UK - Qty: 1",
-                style: TextStyle(
-                  fontSize: AppSizes.smallText,
-                  color: AppColors.kSubTitleText,
-                ),
-              ),
-              SizedBox(height: 10.h),
-              CartItemSaveButton(function: () {}),
-              SizedBox(height: 14.h),
             ],
           ),
-        ],
-      ),
+        ),
+        SizedBox(height: 3.h),
+      ],
     );
   }
 }
