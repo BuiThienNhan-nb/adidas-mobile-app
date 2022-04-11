@@ -22,20 +22,20 @@ class AuthDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
-      backgroundColor: AppColor.kIconBackgroundColor,
+      backgroundColor: AppColors.kIconBackgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            color: AppColor.kBackgroundColor,
+            color: AppColors.kBackgroundColor,
             padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
                   _title,
-                  style: AppStyle.titleTextStyle,
+                  style: AppStyles.titleTextStyle,
                 ),
                 SizedBox(height: 10.h),
                 Text(_subTitle),

@@ -41,13 +41,13 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
                 primary:
-                    AppColor.kIconBackgroundColor, // header background color
-                onPrimary: AppColor.kBackgroundColor, // header text color
-                onSurface: AppColor.kIconBackgroundColor, // body text color
+                    AppColors.kIconBackgroundColor, // header background color
+                onPrimary: AppColors.kBackgroundColor, // header text color
+                onSurface: AppColors.kIconBackgroundColor, // body text color
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: AppColor.kIconBackgroundColor, // button text color
+                  primary: AppColors.kIconBackgroundColor, // button text color
                 ),
               ),
             ),
@@ -81,16 +81,18 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.kBackgroundColor,
+          backgroundColor: AppColors.kBackgroundColor,
           shadowColor: Colors.transparent,
           iconTheme: const IconThemeData(
-            color: AppColor.kIconBackgroundColor,
+            color: AppColors.kIconBackgroundColor,
           ),
+          bottomOpacity: 0.0,
+          elevation: 0.0,
           centerTitle: false,
           leading: Container(),
           title: Text(
             "REGISTER",
-            style: AppStyle.titleTextStyle,
+            style: AppStyles.titleTextStyle,
           ),
         ),
         body: Padding(
@@ -104,7 +106,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 child: Text(
                   "Complete your information to join with us",
                   style: GoogleFonts.cantarell(
-                    color: AppColor.kIconBackgroundColor,
+                    color: AppColors.kIconBackgroundColor,
                     fontSize: 14,
                   ),
                 ),

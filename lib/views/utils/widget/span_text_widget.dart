@@ -30,14 +30,14 @@ class TermSpanText extends StatelessWidget {
     const TextStyle linkStyle = TextStyle(
       decoration: TextDecoration.underline,
       decorationThickness: 1.3,
-      color: AppColor.kIconBackgroundColor,
+      color: AppColors.kIconBackgroundColor,
       fontWeight: FontWeight.bold,
     );
 
     return RichText(
       text: TextSpan(
         style: const TextStyle(
-          color: AppColor.kIconBackgroundColor,
+          color: AppColors.kIconBackgroundColor,
         ),
         children: <TextSpan>[
           TextSpan(text: _contentText1),

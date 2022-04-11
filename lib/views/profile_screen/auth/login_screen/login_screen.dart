@@ -6,7 +6,6 @@ import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_method_button.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_with_email/login_with_email_screen.dart';
 import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,24 +14,25 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.kBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         centerTitle: false,
-        shadowColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         automaticallyImplyLeading: false,
         title: Text(
           "LOGIN",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 5.h),
           AuthMethodButton(
             icon: FaIcon(
               FontAwesomeIcons.facebookSquare,
-              size: AppSize.navBarIconSize + 3,
+              size: AppSizes.navBarIconSize + 3,
               color: Colors.indigo.shade800,
             ),
             title: "Facebook",
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
           AuthMethodButton(
             icon: FaIcon(
               FontAwesomeIcons.google,
-              size: AppSize.navBarIconSize + 3,
+              size: AppSizes.navBarIconSize + 3,
               color: Colors.red.shade900,
             ),
             title: "Google",
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
           AuthMethodButton(
             icon: const FaIcon(
               FontAwesomeIcons.envelope,
-              size: AppSize.navBarIconSize + 3,
+              size: AppSizes.navBarIconSize + 3,
             ),
             title: "Email",
             onPress: () => Navigator.push(
@@ -77,13 +77,13 @@ class LoginScreen extends StatelessWidget {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
                     padding: EdgeInsets.zero,
-                    primary: AppColor.kButtonOnClick,
+                    primary: AppColors.kButtonOnClick,
                   ),
                   child: const Text(
                     "Terms and Conditions",
                     style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: AppColor.kIconBackgroundColor,
+                      color: AppColors.kIconBackgroundColor,
                     ),
                   ),
                 ),

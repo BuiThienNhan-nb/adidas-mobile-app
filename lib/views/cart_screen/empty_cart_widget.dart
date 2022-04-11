@@ -19,7 +19,7 @@ class EmptyCartWidget extends StatelessWidget {
         children: [
           Text(
             "YOUR BAG IS EMPTY",
-            style: AppStyle.titleTextStyle,
+            style: AppStyles.titleTextStyle,
           ),
           SizedBox(
             height: 10.h,

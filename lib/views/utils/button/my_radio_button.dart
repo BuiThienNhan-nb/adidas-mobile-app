@@ -29,7 +29,7 @@ class MyRadioButton extends StatelessWidget {
               (e) => Expanded(
                 child: RadioListTile<String>(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  activeColor: AppColor.kIconBackgroundColor,
+                  activeColor: AppColors.kIconBackgroundColor,
                   value: e,
                   groupValue: _selectedValue,
                   title: Text(e),

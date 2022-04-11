@@ -23,14 +23,14 @@ class AuthAppBar extends StatelessWidget implements PreferredSize {
           padding: EdgeInsets.only(left: 10),
           child: Icon(
             Icons.settings_outlined,
-            color: AppColor.kBackgroundColor,
-            size: AppSize.appBarIconSize + 12,
+            color: AppColors.kBackgroundColor,
+            size: AppSizes.appBarIconSize + 12,
           ),
         ),
       ),
       title: Text(
         "SETTINGS",
-        style: AppStyle.whiteTitleTextStyle,
+        style: AppStyles.whiteTitleTextStyle,
       ),
       actions: <Widget>[
         IconButton(
@@ -40,7 +40,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSize {
           highlightColor: Colors.transparent,
           icon: const Icon(
             Icons.close,
-            size: AppSize.navBarIconSize + 12,
+            size: AppSizes.navBarIconSize + 12,
           ),
         ),
       ],

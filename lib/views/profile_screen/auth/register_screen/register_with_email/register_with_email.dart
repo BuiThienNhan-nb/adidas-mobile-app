@@ -37,7 +37,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         ),
         action: SnackBarAction(
           label: "Dismiss",
-          textColor: AppColor.kBackgroundColor,
+          textColor: AppColors.kBackgroundColor,
           onPressed: () {},
         ),
       );
@@ -46,15 +46,17 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         shadowColor: Colors.transparent,
         iconTheme: const IconThemeData(
-          color: AppColor.kIconBackgroundColor,
+          color: AppColors.kIconBackgroundColor,
         ),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         centerTitle: false,
         title: Text(
           "REGISTER",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
       ),
       body: Padding(
@@ -68,7 +70,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               child: Text(
                 "No account, so let's get you once",
                 style: GoogleFonts.cantarell(
-                  color: AppColor.kIconBackgroundColor,
+                  color: AppColors.kIconBackgroundColor,
                   fontSize: 14,
                 ),
               ),

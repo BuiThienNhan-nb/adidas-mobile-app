@@ -59,15 +59,17 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         shadowColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         iconTheme: const IconThemeData(
-          color: AppColor.kIconBackgroundColor,
+          color: AppColors.kIconBackgroundColor,
         ),
         centerTitle: false,
         title: Text(
           "LOGIN",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
       ),
       body: Padding(
@@ -80,7 +82,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               child: Text(
                 "Looks like we already know you",
                 style: GoogleFonts.cantarell(
-                  color: AppColor.kIconBackgroundColor,
+                  color: AppColors.kIconBackgroundColor,
                   fontSize: 14,
                 ),
               ),
@@ -119,12 +121,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColor.kButtonOnClick,
+                  primary: AppColors.kButtonOnClick,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColor.kIconBackgroundColor,
+                    color: AppColors.kIconBackgroundColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

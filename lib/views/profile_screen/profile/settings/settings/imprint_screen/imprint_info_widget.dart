@@ -35,7 +35,7 @@ class ImprintInfoPage extends StatelessWidget {
           RichText(
             text: TextSpan(
               style: const TextStyle(
-                color: AppColor.kIconBackgroundColor,
+                color: AppColors.kIconBackgroundColor,
               ),
               children: <TextSpan>[
                 const TextSpan(

@@ -11,15 +11,17 @@ class SettingAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColor.kBackgroundColor,
+      backgroundColor: AppColors.kBackgroundColor,
       centerTitle: false,
+      bottomOpacity: 0.0,
+      elevation: 0.0,
       shadowColor: Colors.transparent,
       iconTheme: const IconThemeData(
-        color: AppColor.kIconBackgroundColor,
+        color: AppColors.kIconBackgroundColor,
       ),
       title: Text(
         _title,
-        style: AppStyle.titleTextStyle,
+        style: AppStyles.titleTextStyle,
       ),
     );
   }

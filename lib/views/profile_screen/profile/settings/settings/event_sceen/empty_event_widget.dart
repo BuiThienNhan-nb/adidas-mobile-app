@@ -24,12 +24,12 @@ class EmptyEventWidget extends StatelessWidget {
             SizedBox(height: 10.h),
             Text(
               "NO EVENTS TO SHOW",
-              style: AppStyle.titleTextStyle,
+              style: AppStyles.titleTextStyle,
             ),
             SizedBox(height: 10.h),
             const Text(
               "You haven't signed up to any events yet.",
-              style: TextStyle(color: AppColor.kButtonOnClick),
+              style: TextStyle(color: AppColors.kButtonOnClick),
             ),
             SizedBox(height: 20.h),
             const Text(
