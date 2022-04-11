@@ -22,11 +22,13 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColor.kBackgroundColor,
+      backgroundColor: AppColors.kBackgroundColor,
       centerTitle: false,
+      bottomOpacity: 0.0,
+      elevation: 1,
       title: Text(
         _title,
-        style: AppStyle.titleTextStyle,
+        style: AppStyles.titleTextStyle,
       ),
       actions: <Widget>[
         IconButton(
@@ -34,8 +36,8 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
           icon: _isPopularScreen
               ? const FaIcon(
                   FontAwesomeIcons.search,
-                  color: AppColor.kIconBackgroundColor,
-                  size: AppSize.appBarIconSize,
+                  color: AppColors.kIconBackgroundColor,
+                  size: AppSizes.appBarIconSize,
                 )
               : Container(),
         ),
@@ -47,8 +49,8 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
                   .pushNamed(AuthScreen.id),
           icon: const FaIcon(
             FontAwesomeIcons.user,
-            color: AppColor.kIconBackgroundColor,
-            size: AppSize.appBarIconSize + 2,
+            color: AppColors.kIconBackgroundColor,
+            size: AppSizes.appBarIconSize + 2,
           ),
         ),
       ],

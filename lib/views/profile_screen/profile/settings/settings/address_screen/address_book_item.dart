@@ -28,7 +28,7 @@ class AddressBookItem extends StatelessWidget {
         height: 100.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: AppColor.kGreyBackground),
+          border: Border.all(color: AppColors.kGreyBackground),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +48,7 @@ class AddressBookItem extends StatelessWidget {
               ),
             ),
             Container(
-              color: AppColor.kGreyBackground,
+              color: AppColors.kGreyBackground,
               height: 100.h,
               width: 1.w,
             ),
@@ -64,8 +64,8 @@ class AddressBookItem extends StatelessWidget {
                 ),
                 icon: const FaIcon(
                   FontAwesomeIcons.pen,
-                  color: AppColor.kIconBackgroundColor,
-                  size: AppSize.appBarIconSize,
+                  color: AppColors.kIconBackgroundColor,
+                  size: AppSizes.appBarIconSize,
                 ),
               ),
             )

@@ -40,13 +40,14 @@ class _PersonalScreenState extends State<PersonalScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: AppColor.kIconBackgroundColor, // header background color
-              onPrimary: AppColor.kBackgroundColor, // header text color
-              onSurface: AppColor.kIconBackgroundColor, // body text color
+              primary:
+                  AppColors.kIconBackgroundColor, // header background color
+              onPrimary: AppColors.kBackgroundColor, // header text color
+              onSurface: AppColors.kIconBackgroundColor, // body text color
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                primary: AppColor.kIconBackgroundColor, // button text color
+                primary: AppColors.kIconBackgroundColor, // button text color
               ),
             ),
           ),
@@ -106,7 +107,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                 lableText: "EMAIL",
                 readOnly: true,
                 suffixIcon: const Icon(Icons.lock,
-                    color: AppColor.kIconBackgroundColor),
+                    color: AppColors.kIconBackgroundColor),
               ),
               TextFieldInput(
                 onTextSubmitted: (str) {},
@@ -117,7 +118,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                 obcureText: true,
                 suffixIcon: const FaIcon(
                   FontAwesomeIcons.pen,
-                  color: AppColor.kIconBackgroundColor,
+                  color: AppColors.kIconBackgroundColor,
                 ),
                 // ignore: avoid_print
                 onSuffixIconTap: () =>

@@ -33,13 +33,13 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
         title: Text(
           "BÙI THIỆN NHÂN",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
         actions: <Widget>[
           IconButton(
@@ -49,14 +49,14 @@ class _ProfileScreenState extends State<ProfileScreen>
             highlightColor: Colors.transparent,
             icon: const Icon(
               Icons.close,
-              size: AppSize.navBarIconSize + 12,
-              color: AppColor.kIconBackgroundColor,
+              size: AppSizes.navBarIconSize + 12,
+              color: AppColors.kIconBackgroundColor,
             ),
           ),
         ],
         bottom: TabBar(
-          labelColor: AppColor.kIconBackgroundColor,
-          indicatorColor: AppColor.kIconBackgroundColor,
+          labelColor: AppColors.kIconBackgroundColor,
+          indicatorColor: AppColors.kIconBackgroundColor,
           indicatorWeight: 1.3,
           controller: _tabController,
           tabs: const [

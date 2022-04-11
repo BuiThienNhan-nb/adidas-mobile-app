@@ -18,7 +18,7 @@ class EmptyListWidget extends StatelessWidget {
         children: [
           Text(
             "NOTHING SAVED YET",
-            style: AppStyle.titleTextStyle,
+            style: AppStyles.titleTextStyle,
           ),
           SizedBox(
             height: 10.h,

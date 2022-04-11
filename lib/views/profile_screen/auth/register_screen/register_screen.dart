@@ -26,13 +26,15 @@ class RegisterScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         title: Text(
           "REGISTER",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
       ),
       body: Column(
@@ -42,7 +44,7 @@ class RegisterScreen extends StatelessWidget {
           AuthMethodButton(
             icon: FaIcon(
               FontAwesomeIcons.facebookSquare,
-              size: AppSize.navBarIconSize + 3,
+              size: AppSizes.navBarIconSize + 3,
               color: Colors.indigo.shade800,
             ),
             title: "Facebook",
@@ -52,7 +54,7 @@ class RegisterScreen extends StatelessWidget {
           AuthMethodButton(
             icon: FaIcon(
               FontAwesomeIcons.google,
-              size: AppSize.navBarIconSize + 3,
+              size: AppSizes.navBarIconSize + 3,
               color: Colors.red.shade900,
             ),
             title: "Google",
@@ -62,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
           AuthMethodButton(
             icon: const FaIcon(
               FontAwesomeIcons.envelope,
-              size: AppSize.navBarIconSize + 3,
+              size: AppSizes.navBarIconSize + 3,
             ),
             title: "Email",
             onPress: () => Navigator.push(

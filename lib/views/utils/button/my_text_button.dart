@@ -15,8 +15,8 @@ class MyTextButton extends StatelessWidget {
     required bool isLoading,
     this.icon = const FaIcon(
       FontAwesomeIcons.arrowRight,
-      color: AppColor.kBackgroundColor,
-      size: AppSize.appBarIconSize,
+      color: AppColors.kBackgroundColor,
+      size: AppSizes.appBarIconSize,
     ),
   })  : _function = function,
         _content = content,
@@ -32,9 +32,9 @@ class MyTextButton extends StatelessWidget {
     return TextButton(
       onPressed: _isLoading ? () {} : _function,
       style: TextButton.styleFrom(
-        backgroundColor: _isLoading ? AppColor.kButtonOnClick : Colors.black,
+        backgroundColor: _isLoading ? AppColors.kButtonOnClick : Colors.black,
         padding: EdgeInsets.zero,
-        primary: AppColor.kButtonOnClick,
+        primary: AppColors.kButtonOnClick,
       ),
       child: Container(
         height: 40.h,
@@ -42,7 +42,7 @@ class MyTextButton extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
           border: Border.all(
-              color: _isLoading ? AppColor.kButtonOnClick : Colors.black),
+              color: _isLoading ? AppColors.kButtonOnClick : Colors.black),
         ),
         child: Row(
           children: [
@@ -50,15 +50,15 @@ class MyTextButton extends StatelessWidget {
             _isLoading
                 ? LoadingIndicator(
                     content: "Loading...",
-                    valueColor: AppColor.kBackgroundColor,
-                    backgroundColor: AppColor.kButtonOnClick,
+                    valueColor: AppColors.kBackgroundColor,
+                    backgroundColor: AppColors.kButtonOnClick,
                   )
                 : Text(
                     _content,
                     style: GoogleFonts.cantarell(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: AppSize.titleFontSize - 5,
+                      fontSize: AppSizes.titleFontSize - 5,
                     ),
                   ),
             const Spacer(),

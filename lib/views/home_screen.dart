@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
     PersistentBottomNavBarItem(
       icon: const FaIcon(
         FontAwesomeIcons.fire,
-        size: AppSize.navBarIconSize,
+        size: AppSizes.navBarIconSize,
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
     PersistentBottomNavBarItem(
       icon: const FaIcon(
         FontAwesomeIcons.search,
-        size: AppSize.navBarIconSize,
+        size: AppSizes.navBarIconSize,
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
     PersistentBottomNavBarItem(
       icon: const FaIcon(
         FontAwesomeIcons.solidHeart,
-        size: AppSize.navBarIconSize,
+        size: AppSizes.navBarIconSize,
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
     PersistentBottomNavBarItem(
       icon: const FaIcon(
         FontAwesomeIcons.shoppingCart,
-        size: AppSize.navBarIconSize,
+        size: AppSizes.navBarIconSize,
       ),
       activeColorPrimary: Colors.black,
       inactiveColorPrimary: CupertinoColors.systemGrey2,
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
       controller: context.read<NavBarProvider>().controller,
       confineInSafeArea: true,
       popActionScreens: PopActionScreensType.all,
-      backgroundColor: AppColor.kBackgroundColor,
+      backgroundColor: AppColors.kBackgroundColor,
       navBarHeight: 49.h,
       itemAnimationProperties: const ItemAnimationProperties(
         duration: Duration(milliseconds: 400),

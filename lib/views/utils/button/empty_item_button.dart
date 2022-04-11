@@ -23,14 +23,14 @@ class EmptyItemsButton extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: Colors.black,
         padding: EdgeInsets.zero,
-        primary: AppColor.kButtonOnClick,
+        primary: AppColors.kButtonOnClick,
       ),
       child: Container(
         height: 40.h,
         width: 350.w,
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColor.kIconBackgroundColor),
+          border: Border.all(color: AppColors.kIconBackgroundColor),
         ),
         child: Row(
           children: [
@@ -40,14 +40,14 @@ class EmptyItemsButton extends StatelessWidget {
               style: GoogleFonts.cantarell(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: AppSize.titleFontSize - 5,
+                fontSize: AppSizes.titleFontSize - 5,
               ),
             ),
             const Spacer(),
             const FaIcon(
               FontAwesomeIcons.arrowRight,
-              color: AppColor.kBackgroundColor,
-              size: AppSize.appBarIconSize,
+              color: AppColors.kBackgroundColor,
+              size: AppSizes.appBarIconSize,
             ),
             SizedBox(width: 20.w),
           ],

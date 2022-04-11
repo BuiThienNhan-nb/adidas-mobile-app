@@ -52,21 +52,21 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
         title: Text(
           "CHANGE PASSWORD",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
               Icons.close,
-              size: AppSize.navBarIconSize + 8,
-              color: AppColor.kIconBackgroundColor,
+              size: AppSizes.navBarIconSize + 8,
+              color: AppColors.kIconBackgroundColor,
             ),
           )
         ],
@@ -81,7 +81,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Text(
                 "Enter your password to continue",
                 style: GoogleFonts.cantarell(
-                  color: AppColor.kIconBackgroundColor,
+                  color: AppColors.kIconBackgroundColor,
                   fontSize: 14,
                 ),
               ),
@@ -112,12 +112,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColor.kButtonOnClick,
+                  primary: AppColors.kButtonOnClick,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColor.kIconBackgroundColor,
+                    color: AppColors.kIconBackgroundColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

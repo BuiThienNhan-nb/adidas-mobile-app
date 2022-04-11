@@ -3,15 +3,22 @@ import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppStyle {
+class AppStyles {
   static final TextStyle titleTextStyle = GoogleFonts.cantarell(
-    color: AppColor.kIconBackgroundColor,
+    color: AppColors.kIconBackgroundColor,
     fontWeight: FontWeight.bold,
-    fontSize: AppSize.appBarIconSize,
+    fontSize: AppSizes.appBarIconSize,
   );
-  static final TextStyle whiteTitleTextStyle = GoogleFonts.cantarell(
-    color: AppColor.kBackgroundColor,
+
+  static final TextStyle regularTextStyle = GoogleFonts.cantarell(
+    color: AppColors.kIconBackgroundColor,
     fontWeight: FontWeight.bold,
-    fontSize: AppSize.appBarIconSize,
+    fontSize: AppSizes.smallText,
+  );
+
+  static final TextStyle whiteTitleTextStyle = GoogleFonts.cantarell(
+    color: AppColors.kBackgroundColor,
+    fontWeight: FontWeight.bold,
+    fontSize: AppSizes.appBarIconSize,
   );
 }

@@ -23,21 +23,21 @@ class AddNewAddressScreen extends StatelessWidget {
         TextEditingController(text: "0");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
         title: Text(
           _isEdit ? "EDIT ADDRESS" : "ADD NEW ADDRESS",
-          style: AppStyle.titleTextStyle,
+          style: AppStyles.titleTextStyle,
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
               Icons.close,
-              size: AppSize.navBarIconSize + 8,
-              color: AppColor.kIconBackgroundColor,
+              size: AppSizes.navBarIconSize + 8,
+              color: AppColors.kIconBackgroundColor,
             ),
           )
         ],

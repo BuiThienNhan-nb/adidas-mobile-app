@@ -25,9 +25,9 @@ class AuthMethodButton extends StatelessWidget {
     return TextButton(
       onPressed: _onPress,
       style: TextButton.styleFrom(
-        backgroundColor: AppColor.kBackgroundColor,
+        backgroundColor: AppColors.kBackgroundColor,
         padding: EdgeInsets.zero,
-        primary: AppColor.kButtonOnClick,
+        primary: AppColors.kButtonOnClick,
       ),
       child: Container(
         height: 55.h,
@@ -44,7 +44,7 @@ class AuthMethodButton extends StatelessWidget {
               _title,
               style: GoogleFonts.cantarell(
                 color: Colors.black,
-                fontSize: AppSize.titleFontSize - 2,
+                fontSize: AppSizes.titleFontSize - 2,
               ),
             ),
           ],

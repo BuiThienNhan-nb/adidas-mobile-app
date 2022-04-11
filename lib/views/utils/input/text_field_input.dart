@@ -10,7 +10,7 @@ class TextFieldInput extends StatelessWidget {
   var lableText;
   Color bgColor = Colors.transparent;
   // ignore: non_constant_identifier_names
-  Color TextColor = AppColor.kIconBackgroundColor;
+  Color TextColor = AppColors.kIconBackgroundColor;
   final Function(String) onTextSubmitted;
   Function()? onTap;
   final TextInputType textinputType;
@@ -26,7 +26,7 @@ class TextFieldInput extends StatelessWidget {
     this.readOnly = false,
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
-    this.TextColor = AppColor.kIconBackgroundColor,
+    this.TextColor = AppColors.kIconBackgroundColor,
     this.onTap,
     this.onSuffixIconTap,
     this.suffixIcon = const Icon(null),
@@ -53,11 +53,11 @@ class TextFieldInput extends StatelessWidget {
           },
           controller: textController,
           readOnly: readOnly,
-          cursorColor: AppColor.kIconBackgroundColor,
+          cursorColor: AppColors.kIconBackgroundColor,
           decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderSide:
-                    const BorderSide(color: AppColor.kIconBackgroundColor),
+                    const BorderSide(color: AppColors.kIconBackgroundColor),
                 borderRadius: BorderRadius.circular(0.r)),
             contentPadding:
                 EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),

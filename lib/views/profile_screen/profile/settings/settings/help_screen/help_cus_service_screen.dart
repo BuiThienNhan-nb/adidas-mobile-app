@@ -24,7 +24,7 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             const Text(
               "STILL CAN'T FIND YOUR ANSWER? ASK OUR CUSTOMER SERVICE",
               style: TextStyle(
-                color: AppColor.kIconBackgroundColor,
+                color: AppColors.kIconBackgroundColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
               ),
@@ -33,8 +33,8 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             HelpServiceItem(
               icon: const FaIcon(
                 FontAwesomeIcons.questionCircle,
-                color: AppColor.kIconBackgroundColor,
-                size: AppSize.appBarIconSize * 2.5,
+                color: AppColors.kIconBackgroundColor,
+                size: AppSizes.appBarIconSize * 2.5,
               ),
               title: "Vist our help section",
               subTitle: "FAQ & HELP",
@@ -53,15 +53,15 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Divider(
-              color: AppColor.kIconBackgroundColor,
+              color: AppColors.kIconBackgroundColor,
               height: 3.h,
             ),
             SizedBox(height: 20.h),
             HelpServiceItem(
               icon: const FaIcon(
                 FontAwesomeIcons.comments,
-                color: AppColor.kIconBackgroundColor,
-                size: AppSize.appBarIconSize * 2.5,
+                color: AppColors.kIconBackgroundColor,
+                size: AppSizes.appBarIconSize * 2.5,
               ),
               title:
                   "Facebook. Use the private message option to contact our support team.",
@@ -112,22 +112,22 @@ class HelpServiceItem extends StatelessWidget {
                 TextButton(
                   onPressed: _onSubTap,
                   style: TextButton.styleFrom(
-                    // backgroundColor: _isLoading ? AppColor.kButtonOnClick : Colors.black,
+                    // backgroundColor: _isLoading ? AppColors.kButtonOnClick : Colors.black,
                     padding: EdgeInsets.zero,
-                    primary: AppColor.kButtonOnClick,
+                    primary: AppColors.kButtonOnClick,
                   ),
                   child: Text(
                     _subTitle,
                     style: const TextStyle(
                       shadows: [
                         Shadow(
-                            color: AppColor.kIconBackgroundColor,
+                            color: AppColors.kIconBackgroundColor,
                             offset: Offset(0, -5))
                       ],
                       color: Colors.transparent,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      decorationColor: AppColor.kIconBackgroundColor,
+                      decorationColor: AppColors.kIconBackgroundColor,
                       decorationThickness: 3,
                     ),
                   ),
