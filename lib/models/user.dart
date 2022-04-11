@@ -22,7 +22,7 @@ class User {
   String gender;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["_id"],
+        id: json["_id"] ?? "",
         fullname: json["fullname"],
         dateOfBirth:
             DateTime.parse(json["dateOfBirth"] ?? DateTime.now().toString()),

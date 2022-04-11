@@ -9,4 +9,9 @@ class UserProvider extends ChangeNotifier {
     _user = val;
     notifyListeners();
   }
+
+  setUser(User user) {
+    _user = user;
+    notifyListeners();
+  }
 }
