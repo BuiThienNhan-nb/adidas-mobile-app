@@ -40,4 +40,24 @@ class AuthProvider extends ChangeNotifier {
       };
     }
   }
+
+  Future<Map<String, dynamic>> register(String email, String passWord) async {
+    var result;
+    Response response = await DataRepository().register(email, passWord);
+    if (response.statusCode == 200) {
+      notifyListeners();
+      return result = {
+        'status': true,
+        'message': 'Successfully register',
+        'data': response.data
+      };
+    } else {
+      notifyListeners();
+      return result = {
+        'status': false,
+        'message': 'Unsuccessful register',
+        'data': response.data
+      };
+    }
+  }
 }

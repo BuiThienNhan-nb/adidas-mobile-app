@@ -3,14 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
 import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
@@ -24,6 +27,8 @@ class RegisterWithEmail extends StatefulWidget {
 class _RegisterWithEmailState extends State<RegisterWithEmail> {
   @override
   Widget build(BuildContext context) {
+    var auth = context.read<AuthProvider>();
+    late User user;
     final TextEditingController _txtEmailController = TextEditingController();
     final TextEditingController _txtPasswordController =
         TextEditingController();
@@ -44,6 +49,27 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
+    register() async {
+      context.read<AuthProvider>().isLoading = true;
+      Map<String, dynamic> response = await auth.register(
+          _txtEmailController.text, _txtPasswordController.text);
+      if (response['status']) {
+        // user = User.fromJson(response['data']['user']);
+        // context.read<UserProvider>().setUser(user);
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const AlertDialog(
+                  title: Text("Success!!"),
+                  content: Text("Check your mail box to verify email"));
+            });
+        context.read<AuthProvider>().isLoading = false;
+      } else {
+        print('fail');
+        context.read<AuthProvider>().isLoading = false;
+      }
     }
 
     return Scaffold(
@@ -115,38 +141,13 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               obcureText: true,
             ),
             const Expanded(child: SizedBox()),
-            MyTextButton(
-              function: () {
-                // Fake function create account
-                // setState(() => context.read<AuthProvider>().isLoading = true);
-                // Future.delayed(
-                //   const Duration(seconds: 3),
-                // ).then((value) {
-                //   setState(
-                //       () => context.read<AuthProvider>().isLoading = false);
-
-                //   // Push to screen complete user info
-                //   Navigator.push(
-                //     context,
-                //     CupertinoPageRoute(
-                //       builder: (context) => const RegisterWithEmailPage2(),
-                //     ),
-                //   );
-                //   showSnackBar();
-                // });
-                DataRepository()
-                    .register(
-                        _txtEmailController.text, _txtPasswordController.text)
-                    .then((response) => {
-                          if (response.data)
-                            {
-                              // show dialog for register success
-                            }
-                        });
-              },
-              content: "REGISTER",
-              isLoading: context.read<AuthProvider>().isLoading,
-            ),
+            Consumer<AuthProvider>(builder: (_, value, __) {
+              return MyTextButton(
+                function: register,
+                content: "REGISTER",
+                isLoading: context.read<AuthProvider>().isLoading,
+              );
+            }),
             SizedBox(height: 30.h),
           ],
         ),

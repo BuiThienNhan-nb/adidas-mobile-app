@@ -23,8 +23,16 @@ class DataRepository {
 
     final data = {"email": email, "password": passWord};
 
-    Response response =
-        await _dio.post("$baseUrl${EndPoint.register}", data: data);
+    Response response = await _dio.post(
+      "$baseUrl/${EndPoint.register}",
+      data: data,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+      ),
+    );
     return response;
   }
 
