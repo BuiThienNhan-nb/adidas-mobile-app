@@ -22,7 +22,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<Map<String, dynamic>> fetchLogin(String email, String passWord) async {
-    var result;
+    Map<String, dynamic> result;
     Response response = await DataRepository().login(email, passWord);
     if (response.statusCode == 200) {
       notifyListeners();

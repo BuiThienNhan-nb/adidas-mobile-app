@@ -17,64 +17,64 @@ import 'search_screen/news_feed_screen.dart';
 class HomeScreen extends StatelessWidget {
   static const String id = "HomeScreen";
 
-  HomeScreen({Key? key}) : super(key: key);
-
-  // Nav Bottom Bar material
-  final List<Widget> _screens = [
-    const PopularProductScreen(),
-    const NewsFeedScreen(),
-    const WishListScreen(),
-    const ShoppingCartScreen(),
-  ];
-  final _navBarItems = <PersistentBottomNavBarItem>[
-    PersistentBottomNavBarItem(
-      icon: const FaIcon(
-        FontAwesomeIcons.fire,
-        size: AppSizes.navBarIconSize,
-      ),
-      activeColorPrimary: Colors.black,
-      inactiveColorPrimary: CupertinoColors.systemGrey2,
-      routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        onGenerateRoute: AppRoutes().onGenerateRoute,
-      ),
-    ),
-    PersistentBottomNavBarItem(
-      icon: const FaIcon(
-        FontAwesomeIcons.search,
-        size: AppSizes.navBarIconSize,
-      ),
-      activeColorPrimary: Colors.black,
-      inactiveColorPrimary: CupertinoColors.systemGrey2,
-      routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        onGenerateRoute: AppRoutes().onGenerateRoute,
-      ),
-    ),
-    PersistentBottomNavBarItem(
-      icon: const FaIcon(
-        FontAwesomeIcons.solidHeart,
-        size: AppSizes.navBarIconSize,
-      ),
-      activeColorPrimary: Colors.black,
-      inactiveColorPrimary: CupertinoColors.systemGrey2,
-      routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        onGenerateRoute: AppRoutes().onGenerateRoute,
-      ),
-    ),
-    PersistentBottomNavBarItem(
-      icon: const FaIcon(
-        FontAwesomeIcons.shoppingCart,
-        size: AppSizes.navBarIconSize,
-      ),
-      activeColorPrimary: Colors.black,
-      inactiveColorPrimary: CupertinoColors.systemGrey2,
-      routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        onGenerateRoute: AppRoutes().onGenerateRoute,
-      ),
-    ),
-  ];
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Nav Bottom Bar material
+    final List<Widget> _screens = [
+      const PopularProductScreen(),
+      const NewsFeedScreen(),
+      const WishListScreen(),
+      const ShoppingCartScreen(),
+    ];
+    final _navBarItems = <PersistentBottomNavBarItem>[
+      PersistentBottomNavBarItem(
+        icon: const FaIcon(
+          FontAwesomeIcons.fire,
+          size: AppSizes.navBarIconSize,
+        ),
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: CupertinoColors.systemGrey2,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          onGenerateRoute: AppRoutes().onGenerateRoute,
+        ),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const FaIcon(
+          FontAwesomeIcons.search,
+          size: AppSizes.navBarIconSize,
+        ),
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: CupertinoColors.systemGrey2,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          onGenerateRoute: AppRoutes().onGenerateRoute,
+        ),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const FaIcon(
+          FontAwesomeIcons.solidHeart,
+          size: AppSizes.navBarIconSize,
+        ),
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: CupertinoColors.systemGrey2,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          onGenerateRoute: AppRoutes().onGenerateRoute,
+        ),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const FaIcon(
+          FontAwesomeIcons.shoppingCart,
+          size: AppSizes.navBarIconSize,
+        ),
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: CupertinoColors.systemGrey2,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          onGenerateRoute: AppRoutes().onGenerateRoute,
+        ),
+      ),
+    ];
+
     return PersistentTabView(
       context,
       screens: _screens,

@@ -3,7 +3,7 @@ import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/w_cart_item_save_btn.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/utils/cart_item/w_cart_item_save_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -68,7 +68,7 @@ class CartItem extends StatelessWidget {
                     width: 230.w,
                     child: Text(
                       _product.name,
-                      style: AppStyles.regularTextStyle,
+                      style: AppStyles.smallBoldTextStyle,
                     ),
                   ),
                   SizedBox(height: 8.h),

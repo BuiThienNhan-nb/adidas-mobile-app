@@ -10,10 +10,15 @@ class AppStyles {
     fontSize: AppSizes.appBarIconSize,
   );
 
-  static final TextStyle regularTextStyle = GoogleFonts.cantarell(
+  static final TextStyle smallBoldTextStyle = GoogleFonts.cantarell(
     color: AppColors.kIconBackgroundColor,
     fontWeight: FontWeight.bold,
     fontSize: AppSizes.smallText,
+  );
+
+  static final TextStyle regularTextStyle = GoogleFonts.cantarell(
+    color: AppColors.kIconBackgroundColor,
+    fontSize: AppSizes.mediumText,
   );
 
   static final TextStyle whiteTitleTextStyle = GoogleFonts.cantarell(

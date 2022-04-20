@@ -27,7 +27,7 @@ class CartItemSaveButton extends StatelessWidget {
             SizedBox(width: 12.w),
             Text(
               "SAVE",
-              style: AppStyles.regularTextStyle,
+              style: AppStyles.smallBoldTextStyle,
             ),
             SizedBox(width: 15.w),
             Padding(
