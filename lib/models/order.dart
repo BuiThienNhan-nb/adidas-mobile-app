@@ -9,7 +9,7 @@ class Order {
   String receptionName;
   String receptionPhone;
   String? promotionId;
-  final int total;
+  int total;
   Order({
     required this.id,
     required this.userId,

@@ -15,12 +15,10 @@ class PaymentSelect extends StatelessWidget {
 
   const PaymentSelect({
     Key? key,
-    Function? onTap,
-    Function? updateParent,
-  })  : _onTap = onTap,
-        _updateParent = updateParent,
+    required Function updateParent,
+  })  : _updateParent = updateParent,
         super(key: key);
-  final Function? _onTap, _updateParent;
+  final Function _updateParent;
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +49,9 @@ class PaymentSelect extends StatelessWidget {
                       0,
                       CheckoutCartBottomSheet.mainCheckoutBottomSheetHeight,
                     );
-                context
-                    .read<OrderProvider>()
-                    .updatePaymentMethod("Cash on delivery");
-                _updateParent!("");
+                context.read<OrderProvider>().order.paymentMethod =
+                    "Cash on delivery";
+                _updateParent("");
               },
               child: const PaymentMethod(
                 child: CashOnDelivery(),

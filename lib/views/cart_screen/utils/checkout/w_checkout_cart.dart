@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/models/order.dart';
+import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_checkout_mbs.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutCartContainer extends StatelessWidget {
   const CheckoutCartContainer({
@@ -19,13 +22,26 @@ class CheckoutCartContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final _oCcy = NumberFormat("#,##0", "en_US");
 
-    void onCheckoutClick() => showModalBottomSheet<dynamic>(
-          context: context,
-          // context: context.read<NavBarProvider>().navBarContainerContext,
-          isDismissible: false,
-          isScrollControlled: true,
-          builder: (_) => Wrap(children: const [CheckoutCartBottomSheet()]),
-        );
+    void onCheckoutClick() {
+      context.read<OrderProvider>().order = Order(
+        id: "id",
+        userId: "",
+        orderTime: DateTime.now(),
+        orderAddress: "05/66 Phan Đăng Lưu",
+        paymentMethod: "Select payment method",
+        receptionName: "Bùi Thiện Nhân",
+        receptionPhone: "0762796747",
+        promotionId: null,
+        total: 17500000,
+      );
+      showModalBottomSheet<dynamic>(
+        context: context,
+        // context: context.read<NavBarProvider>().navBarContainerContext,
+        isDismissible: false,
+        isScrollControlled: true,
+        builder: (_) => Wrap(children: const [CheckoutCartBottomSheet()]),
+      );
+    }
 
     return SizedBox(
       height: 90.h,

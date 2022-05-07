@@ -6,6 +6,7 @@ import 'package:flutter_adidas_clone/view_models/cart_view_model/checkout_cart_c
 import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_adress_info.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/payment/w_payment_select.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/promotion/w_promotion.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/shipping/w_shipping_content.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_expand_photo.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_order_info.dart';
@@ -63,7 +64,12 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               title: "PAYMENT",
               content: Text(
                 context.read<OrderProvider>().order.paymentMethod,
-                style: const TextStyle(color: AppColors.kNavyFont),
+                style: TextStyle(
+                  color: context.read<OrderProvider>().order.paymentMethod ==
+                          "Select payment method"
+                      ? AppColors.kNavyFont
+                      : AppColors.kIconBackgroundColor,
+                ),
               ),
               onTap: () {
                 setState(() => context
@@ -81,17 +87,29 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             Container(height: 0.5.h, color: AppColors.kSubTitleText),
             OrderInformation(
               title: "PROMO CODE",
-              content: const Text(
-                "Pick discount",
-                style: TextStyle(color: AppColors.kNavyFont),
+              content: Text(
+                context.read<OrderProvider>().order.promotionId ??
+                    "Pick discount",
+                style: TextStyle(
+                  color: context.read<OrderProvider>().order.promotionId ==
+                              null ||
+                          context.read<OrderProvider>().order.promotionId == ""
+                      ? AppColors.kNavyFont
+                      : AppColors.kIconBackgroundColor,
+                ),
               ),
-              onTap: () {},
+              onTap: () {
+                setState(() => context
+                    .read<CheckoutCartConfigProvider>()
+                    .onPageTransition(true, 3, PromotionWidget.height));
+                widget._updateParent("");
+              },
             ),
             Container(height: 0.5.h, color: AppColors.kSubTitleText),
             OrderInformation(
               title: "TOTAL",
               content: Text(
-                "đ\t\t\t\t${_oCcy.format(17500000)}",
+                "đ\t\t\t\t${_oCcy.format(context.read<OrderProvider>().order.total)}",
               ),
               onTap: () {},
             ),
@@ -187,10 +205,10 @@ class CheckoutPolicyTerm extends StatelessWidget {
           TermSpanText(
             contentText1:
                 "I hereby consent to the use of my personal data for marketing and promotional purposes as well as its transfer, sharing, disclosure to third parties.",
-            linkText1: "Privacy Notice",
+            linkText1: "",
             contentText2: "",
             linkText2: "",
-            onTap1: popUpPrivacy,
+            onTap1: () {},
             onTap2: () {},
           ),
         ],
