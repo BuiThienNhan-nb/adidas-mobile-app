@@ -55,6 +55,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         );
 
     login() async {
+      String email = _txtEmailController.text;
+      String password = _txtPasswordController.text;
+      if (email == "" || password == "") {
+        setState(() {});
+        return;
+      }
       context.read<AuthProvider>().isLoading = true;
       Map<String, dynamic> response = await auth.fetchLogin(
           _txtEmailController.text, _txtPasswordController.text);
@@ -76,12 +82,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         shadowColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
         iconTheme: const IconThemeData(
-          color: AppColors.kIconBackgroundColor,
+          color: AppColors.iconBackgroundColor,
         ),
         centerTitle: false,
         title: Text(
@@ -99,7 +105,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               child: Text(
                 "Looks like we already know you",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                   fontSize: 14,
                 ),
               ),
@@ -138,12 +144,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.kButtonOnClick,
+                  primary: AppColors.buttonOnClick,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.kIconBackgroundColor,
+                    color: AppColors.iconBackgroundColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
