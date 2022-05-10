@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/models/ad_banner.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AdBannerCarouselItem extends StatelessWidget {
   const AdBannerCarouselItem({
@@ -20,12 +24,12 @@ class AdBannerCarouselItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // _wChild,
-        Expanded(
-          child: Container(
-            color: Colors.green,
-          ),
-        ),
+        _wChild,
+        // Expanded(
+        //   child: Container(
+        //     color: Colors.green,
+        //   ),
+        // ),
         Padding(
           padding: EdgeInsets.only(left: 8.w, top: 8.h),
           child: Align(
@@ -51,6 +55,7 @@ class AdBannerCarouselItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
+                  width: 320.w,
                   color: AppColors.backgroundColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
@@ -92,29 +97,51 @@ class CarouselItemButton extends StatelessWidget {
   final double width = 320.w;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: height * 1.4,
-        width: width * 1.2,
-        child: Stack(
-          children: [
-            Positioned(
-              left: 8.w,
-              top: 8.h,
-              child: Container(
-                height: height,
-                width: width,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(color: AppColors.iconBackgroundColor),
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => log('BUTTON SHOP NOW CLICKED'),
+        child: SizedBox(
+          height: height * 1.4,
+          width: width * 1.2,
+          child: Stack(
+            children: [
+              Positioned(
+                left: 8.w,
+                top: 8.h,
+                child: Container(
+                  height: height,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(color: AppColors.backgroundColor),
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: height,
-              width: width,
-              color: AppColors.backgroundColor,
-            ),
-          ],
+              Container(
+                height: height,
+                width: width,
+                color: AppColors.backgroundColor,
+                child: Row(
+                  children: [
+                    SizedBox(width: 10.w),
+                    Text(
+                      'SHOP NOW',
+                      style: GoogleFonts.cantarell(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: AppSizes.titleFontSize - 5,
+                      ),
+                    ),
+                    const Spacer(),
+                    Image.asset(
+                      'assets/images/arrow_right.png',
+                      width: width / 12,
+                    ),
+                    SizedBox(width: 20.w),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       );
   //   return Stack(
