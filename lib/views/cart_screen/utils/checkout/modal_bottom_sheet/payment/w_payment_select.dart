@@ -24,7 +24,7 @@ class PaymentSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     showFailureCardPaymentMethod() => showAnimatedDialog(
           context: context,
-          builder: (context) => const AuthDialog(
+          builder: (context) => AuthDialog(
             title: "Choose Method fail",
             subTitle:
                 "We sorry that our app haven't support this payment method yet.",
@@ -96,7 +96,7 @@ class PaymentMethod extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
-        border: Border.all(color: AppColors.kExtraGreyBackground),
+        border: Border.all(color: AppColors.extraGreyBackground),
       ),
       child: Padding(
         padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
@@ -130,13 +130,13 @@ class CashOnDelivery extends StatelessWidget {
       width: 80.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: AppColors.kIconBackgroundColor),
+        border: Border.all(color: AppColors.iconBackgroundColor),
       ),
       child: Text(
         "CASH ON DELIVERY",
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: AppColors.kIconBackgroundColor,
+          color: AppColors.iconBackgroundColor,
           fontWeight: FontWeight.bold,
           fontSize: 12.sp,
         ),

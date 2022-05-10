@@ -40,14 +40,13 @@ class _PersonalScreenState extends State<PersonalScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary:
-                  AppColors.kIconBackgroundColor, // header background color
-              onPrimary: AppColors.kBackgroundColor, // header text color
-              onSurface: AppColors.kIconBackgroundColor, // body text color
+              primary: AppColors.iconBackgroundColor, // header background color
+              onPrimary: AppColors.backgroundColor, // header text color
+              onSurface: AppColors.iconBackgroundColor, // body text color
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                primary: AppColors.kIconBackgroundColor, // button text color
+                primary: AppColors.iconBackgroundColor, // button text color
               ),
             ),
           ),
@@ -107,18 +106,20 @@ class _PersonalScreenState extends State<PersonalScreen> {
                 lableText: "EMAIL",
                 readOnly: true,
                 suffixIcon: const Icon(Icons.lock,
-                    color: AppColors.kIconBackgroundColor),
+                    color: AppColors.iconBackgroundColor),
               ),
               TextFieldInput(
                 onTextSubmitted: (str) {},
                 textController: TextEditingController(text: "12345678@"),
                 textinputType: TextInputType.emailAddress,
-                validator: (str) {},
+                validator: (str) {
+                  return null;
+                },
                 lableText: "PASSWORD",
                 obcureText: true,
                 suffixIcon: const FaIcon(
                   FontAwesomeIcons.pen,
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                 ),
                 // ignore: avoid_print
                 onSuffixIconTap: () =>
@@ -131,7 +132,9 @@ class _PersonalScreenState extends State<PersonalScreen> {
                     onTextSubmitted: (str) {},
                     textController: TextEditingController(text: " "),
                     textinputType: TextInputType.emailAddress,
-                    validator: (str) {},
+                    validator: (str) {
+                      return null;
+                    },
                     lableText: "GENDER",
                     readOnly: true,
                   ),

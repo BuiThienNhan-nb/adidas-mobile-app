@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,

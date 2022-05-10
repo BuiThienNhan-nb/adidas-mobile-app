@@ -22,27 +22,27 @@ class SettingOption extends StatelessWidget {
           TextButton(
             onPressed: _function,
             style: TextButton.styleFrom(
-              primary: AppColors.kButtonOnClick,
+              primary: AppColors.buttonOnClick,
             ),
             child: Row(
               children: [
                 Text(
                   _content,
                   style: const TextStyle(
-                    color: AppColors.kIconBackgroundColor,
+                    color: AppColors.iconBackgroundColor,
                     fontSize: 17,
                   ),
                 ),
                 const Spacer(),
                 const Icon(
                   Icons.arrow_forward_ios_outlined,
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                 )
               ],
             ),
           ),
           Container(
-            color: AppColors.kGreyBackground,
+            color: AppColors.greyBackground,
             height: 1.h,
           ),
         ],

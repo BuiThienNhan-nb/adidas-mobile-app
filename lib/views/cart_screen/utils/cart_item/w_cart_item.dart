@@ -20,7 +20,7 @@ class CartItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          color: AppColors.kSneakerItemBackground,
+          color: AppColors.sneakerItemBackground,
           height: 191.h,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,14 +36,14 @@ class CartItem extends StatelessWidget {
                 children: [
                   SizedBox(height: 15.h),
                   Container(
-                    color: AppColors.kItemTagBackground,
+                    color: AppColors.itemTagBackground,
                     child: Padding(
                       padding: EdgeInsets.all(6.w),
                       child: Text(
                         _product.tag,
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
-                          color: AppColors.kBackgroundColor,
+                          color: AppColors.backgroundColor,
                           fontSize: AppSizes.extraSmallText,
                         ),
                       ),
@@ -51,7 +51,7 @@ class CartItem extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Container(
-                    color: AppColors.kBackgroundColor,
+                    color: AppColors.backgroundColor,
                     child: Padding(
                       padding: EdgeInsets.all(6.w),
                       child: Text(
@@ -76,7 +76,7 @@ class CartItem extends StatelessWidget {
                     "Size: 9 UK - Qty: 1",
                     style: TextStyle(
                       fontSize: AppSizes.smallText,
-                      color: AppColors.kSubTitleText,
+                      color: AppColors.subTitleText,
                     ),
                   ),
                   SizedBox(height: 10.h),

@@ -41,13 +41,13 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
                 primary:
-                    AppColors.kIconBackgroundColor, // header background color
-                onPrimary: AppColors.kBackgroundColor, // header text color
-                onSurface: AppColors.kIconBackgroundColor, // body text color
+                    AppColors.iconBackgroundColor, // header background color
+                onPrimary: AppColors.backgroundColor, // header text color
+                onSurface: AppColors.iconBackgroundColor, // body text color
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: AppColors.kIconBackgroundColor, // button text color
+                  primary: AppColors.iconBackgroundColor, // button text color
                 ),
               ),
             ),
@@ -70,7 +70,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
             ..popUntil(ModalRoute.withName(HomeScreen.id))
             ..push(
               CupertinoPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const HomeScreen(),
               ),
             );
         },
@@ -81,10 +81,10 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.kBackgroundColor,
+          backgroundColor: AppColors.backgroundColor,
           shadowColor: Colors.transparent,
           iconTheme: const IconThemeData(
-            color: AppColors.kIconBackgroundColor,
+            color: AppColors.iconBackgroundColor,
           ),
           bottomOpacity: 0.0,
           elevation: 0.0,
@@ -106,7 +106,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 child: Text(
                   "Complete your information to join with us",
                   style: GoogleFonts.cantarell(
-                    color: AppColors.kIconBackgroundColor,
+                    color: AppColors.iconBackgroundColor,
                     fontSize: 14,
                   ),
                 ),

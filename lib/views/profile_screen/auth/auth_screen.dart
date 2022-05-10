@@ -40,9 +40,9 @@ class AuthScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 10.h),
                   AuthButton(
-                    backgroundColor: AppColors.kBackgroundColor,
+                    backgroundColor: AppColors.backgroundColor,
                     title: "L O G I N",
-                    fontColor: AppColors.kIconBackgroundColor,
+                    fontColor: AppColors.iconBackgroundColor,
                     onPress: () => Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -51,9 +51,9 @@ class AuthScreen extends StatelessWidget {
                     ),
                   ),
                   AuthButton(
-                    backgroundColor: AppColors.kIconBackgroundColor,
+                    backgroundColor: AppColors.iconBackgroundColor,
                     title: "R E G I S T E R",
-                    fontColor: AppColors.kBackgroundColor,
+                    fontColor: AppColors.backgroundColor,
                     onPress: () => Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -97,14 +97,14 @@ class AuthButton extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: _backgroundColor,
         padding: EdgeInsets.zero,
-        primary: AppColors.kButtonOnClick,
+        primary: AppColors.buttonOnClick,
       ),
       child: Container(
         height: 35.h,
         width: 365.w,
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.kIconBackgroundColor),
+          border: Border.all(color: AppColors.iconBackgroundColor),
         ),
         child: Text(
           _title,

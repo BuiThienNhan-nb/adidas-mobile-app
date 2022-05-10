@@ -25,9 +25,9 @@ class AuthMethodButton extends StatelessWidget {
     return TextButton(
       onPressed: _onPress,
       style: TextButton.styleFrom(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         padding: EdgeInsets.zero,
-        primary: AppColors.kButtonOnClick,
+        primary: AppColors.buttonOnClick,
       ),
       child: Container(
         height: 55.h,

@@ -23,14 +23,14 @@ class EmptyItemsButton extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: Colors.black,
         padding: EdgeInsets.zero,
-        primary: AppColors.kButtonOnClick,
+        primary: AppColors.buttonOnClick,
       ),
       child: Container(
         height: 40.h,
         width: 350.w,
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.kIconBackgroundColor),
+          border: Border.all(color: AppColors.iconBackgroundColor),
         ),
         child: Row(
           children: [
@@ -46,7 +46,7 @@ class EmptyItemsButton extends StatelessWidget {
             const Spacer(),
             const FaIcon(
               FontAwesomeIcons.arrowRight,
-              color: AppColors.kBackgroundColor,
+              color: AppColors.backgroundColor,
               size: AppSizes.appBarIconSize,
             ),
             SizedBox(width: 20.w),

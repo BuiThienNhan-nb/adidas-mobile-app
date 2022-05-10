@@ -11,7 +11,7 @@ class PasswordFieldInput extends StatefulWidget {
   var lableText;
   Color bgColor = Colors.transparent;
   // ignore: non_constant_identifier_names
-  Color TextColor = AppColors.kIconBackgroundColor;
+  Color TextColor = AppColors.iconBackgroundColor;
   final Function(String) onTextSubmitted;
   Function()? onTap;
   final TextInputType textinputType;
@@ -26,7 +26,7 @@ class PasswordFieldInput extends StatefulWidget {
     this.readOnly = false,
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
-    this.TextColor = AppColors.kIconBackgroundColor,
+    this.TextColor = AppColors.iconBackgroundColor,
     this.onTap,
     this.onSuffixIconTap,
     required this.onTextSubmitted,
@@ -60,11 +60,11 @@ class _PasswordFieldInputState extends State<PasswordFieldInput> {
           },
           controller: widget.textController,
           readOnly: widget.readOnly,
-          cursorColor: AppColors.kIconBackgroundColor,
+          cursorColor: AppColors.iconBackgroundColor,
           decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderSide:
-                    const BorderSide(color: AppColors.kIconBackgroundColor),
+                    const BorderSide(color: AppColors.iconBackgroundColor),
                 borderRadius: BorderRadius.circular(0.r)),
             contentPadding:
                 EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),
@@ -81,11 +81,11 @@ class _PasswordFieldInputState extends State<PasswordFieldInput> {
                 icon: widget.obcureText
                     ? const FaIcon(
                         FontAwesomeIcons.eye,
-                        color: AppColors.kIconBackgroundColor,
+                        color: AppColors.iconBackgroundColor,
                       )
                     : const FaIcon(
                         FontAwesomeIcons.eyeSlash,
-                        color: AppColors.kIconBackgroundColor,
+                        color: AppColors.iconBackgroundColor,
                       ),
               ),
             ),
