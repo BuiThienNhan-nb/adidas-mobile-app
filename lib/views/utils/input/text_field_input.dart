@@ -41,38 +41,34 @@ class TextFieldInput extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 10.h),
       width: double.infinity,
       height: 70.h,
-      child: Form(
-        autovalidateMode: AutovalidateMode.always,
-        child: TextFormField(
-          obscureText: obcureText,
-          onTap: onTap,
-          keyboardType: textinputType,
-          validator: validator,
-          onFieldSubmitted: (value) {
-            onTextSubmitted(value);
-          },
-          controller: textController,
-          readOnly: readOnly,
-          cursorColor: AppColors.iconBackgroundColor,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppColors.iconBackgroundColor),
-                borderRadius: BorderRadius.circular(0.r)),
-            contentPadding:
-                EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(0.r),
-            ),
-            labelText: lableText,
-            labelStyle:
-                TextStyle(color: TextColor, fontWeight: FontWeight.bold),
-            suffixIcon: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 12.0, bottom: 4.0),
-              child: IconButton(
-                onPressed: onSuffixIconTap,
-                icon: suffixIcon,
-              ),
+      child: TextFormField(
+        obscureText: obcureText,
+        onTap: onTap,
+        keyboardType: textinputType,
+        validator: validator,
+        onFieldSubmitted: (value) {
+          onTextSubmitted(value);
+        },
+        controller: textController,
+        readOnly: readOnly,
+        cursorColor: AppColors.iconBackgroundColor,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColors.iconBackgroundColor),
+              borderRadius: BorderRadius.circular(0.r)),
+          contentPadding:
+              EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(0.r),
+          ),
+          labelText: lableText,
+          labelStyle: TextStyle(color: TextColor, fontWeight: FontWeight.bold),
+          suffixIcon: Padding(
+            padding: const EdgeInsetsDirectional.only(end: 12.0, bottom: 4.0),
+            child: IconButton(
+              onPressed: onSuffixIconTap,
+              icon: suffixIcon,
             ),
           ),
         ),
