@@ -18,7 +18,7 @@ class CartItemSaveButton extends StatelessWidget {
       onTap: _function,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.kIconBackgroundColor),
+          border: Border.all(color: AppColors.iconBackgroundColor),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,7 +27,7 @@ class CartItemSaveButton extends StatelessWidget {
             SizedBox(width: 12.w),
             Text(
               "SAVE",
-              style: AppStyles.regularTextStyle,
+              style: AppStyles.smallBoldTextStyle,
             ),
             SizedBox(width: 15.w),
             Padding(

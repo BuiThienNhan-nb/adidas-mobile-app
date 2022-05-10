@@ -10,6 +10,7 @@ class AuthDialog extends StatelessWidget {
     required String title,
     required String subTitle,
     required String btnTitle,
+    this.onTap,
   })  : _title = title,
         _subTitle = subTitle,
         _btnTitle = btnTitle,
@@ -17,18 +18,19 @@ class AuthDialog extends StatelessWidget {
   final String _title;
   final String _subTitle;
   final String _btnTitle;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
-      backgroundColor: AppColors.kIconBackgroundColor,
+      backgroundColor: AppColors.iconBackgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            color: AppColors.kBackgroundColor,
+            color: AppColors.backgroundColor,
             padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,7 +45,8 @@ class AuthDialog extends StatelessWidget {
             ),
           ),
           MyTextButton(
-            function: () => Navigator.of(context).pop(),
+            function:
+                onTap == null ? () => Navigator.of(context).pop() : onTap!,
             content: _btnTitle,
             isLoading: false,
           ),

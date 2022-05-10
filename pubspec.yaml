@@ -45,6 +45,9 @@ dependencies:
   flutter_animated_dialog: ^2.0.1
   dio: ^4.0.4
   webview_flutter: ^3.0.1
+  hidable: ^1.0.2
+  carousel_slider: ^4.1.1
+  video_player: ^2.4.0
 
 flutter_native_splash:
   color: "#000000"
@@ -75,6 +78,7 @@ flutter:
   assets:
     - assets/images/
     - assets/docs/
+    - assets/videos/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
@@ -12,8 +14,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-// ignore: implementation_imports
-import 'package:provider/src/provider.dart';
 
 class LoginWithEmail extends StatefulWidget {
   const LoginWithEmail({Key? key}) : super(key: key);
@@ -23,13 +23,15 @@ class LoginWithEmail extends StatefulWidget {
 }
 
 class _LoginWithEmailState extends State<LoginWithEmail> {
+  final TextEditingController _txtEmailController = TextEditingController();
+  final TextEditingController _txtPasswordController = TextEditingController();
+  final _key = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    var auth = context.read<AuthProvider>();
+    AuthProvider auth = context.read<AuthProvider>();
+
     late User user;
-    final TextEditingController _txtEmailController = TextEditingController();
-    final TextEditingController _txtPasswordController =
-        TextEditingController();
 
     showFailDialog() => showAnimatedDialog(
           context: context,
@@ -56,6 +58,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         );
 
     login() async {
+      if (!_key.currentState!.validate()) {
+        return;
+      } else {
+        log('1');
+      }
+      return;
       context.read<AuthProvider>().isLoading = true;
       Map<String, dynamic> response = await auth.fetchLogin(
           _txtEmailController.text, _txtPasswordController.text);
@@ -63,12 +71,14 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         user = User.fromJson(response['data']['user']);
         context.read<UserProvider>().setUser(user);
         showDialog(
-            context: context,
-            builder: (context) {
-              return const AlertDialog(
-                  title: Text("Success!!"),
-                  content: Text("Navigate to another screen"));
-            });
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              title: Text("Success!!"),
+              content: Text("Navigate to another screen"),
+            );
+          },
+        );
         context.read<AuthProvider>().isLoading = false;
       } else {
         showFailDialog();
@@ -77,12 +87,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         shadowColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
         iconTheme: const IconThemeData(
-          color: AppColors.kIconBackgroundColor,
+          color: AppColors.iconBackgroundColor,
         ),
         centerTitle: false,
         title: Text(
@@ -100,37 +110,47 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               child: Text(
                 "Looks like we already know you",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                   fontSize: 14,
                 ),
               ),
             ),
             SizedBox(height: 20.h),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtEmailController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  EmailValidator(errorText: "Please enter a valid email!"),
-                  RequiredValidator(errorText: "Email is required"),
+            Form(
+              key: _key,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                children: [
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtEmailController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: MultiValidator(
+                      [
+                        EmailValidator(
+                            errorText: "Please enter a valid email!"),
+                        RequiredValidator(errorText: "Email is required"),
+                      ],
+                    ),
+                    lableText: "EMAIL",
+                  ),
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtPasswordController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: MultiValidator(
+                      [
+                        RequiredValidator(errorText: "Password is required"),
+                        MinLengthValidator(8,
+                            errorText:
+                                "Password must be at least 8 digits long"),
+                      ],
+                    ),
+                    lableText: "PASSWORD",
+                    obcureText: true,
+                  ),
                 ],
               ),
-              lableText: "EMAIL",
-            ),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  RequiredValidator(errorText: "Password is required"),
-                  MinLengthValidator(8,
-                      errorText: "Password must be at least 8 digits long"),
-                ],
-              ),
-              lableText: "PASSWORD",
-              obcureText: true,
             ),
             Padding(
               padding: EdgeInsets.only(left: 20.w),
@@ -139,18 +159,23 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.kButtonOnClick,
+                  primary: AppColors.buttonOnClick,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.kIconBackgroundColor,
+                    color: AppColors.iconBackgroundColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
             const Expanded(child: SizedBox()),
+            // MyTextButton(
+            //   function: login,
+            //   content: "SIGN IN",
+            //   isLoading: context.read<AuthProvider>().isLoading,
+            // ),
             Consumer<AuthProvider>(
               builder: (_, value, __) {
                 return MyTextButton(

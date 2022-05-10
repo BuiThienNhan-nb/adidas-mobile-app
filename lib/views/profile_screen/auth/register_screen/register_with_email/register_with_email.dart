@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
@@ -29,6 +29,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         TextEditingController();
     final TextEditingController _txtConfirmPasswordController =
         TextEditingController();
+    final _key = GlobalKey<FormState>();
 
     showSnackBar() {
       SnackBar snackBar = SnackBar(
@@ -39,7 +40,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         ),
         action: SnackBarAction(
           label: "Dismiss",
-          textColor: AppColors.kBackgroundColor,
+          textColor: AppColors.backgroundColor,
           onPressed: () {},
         ),
       );
@@ -48,10 +49,10 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         shadowColor: Colors.transparent,
         iconTheme: const IconThemeData(
-          color: AppColors.kIconBackgroundColor,
+          color: AppColors.iconBackgroundColor,
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -72,77 +73,93 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               child: Text(
                 "No account, so let's get you once",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                   fontSize: 14,
                 ),
               ),
             ),
             SizedBox(height: 20.h),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtEmailController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  EmailValidator(errorText: "Please enter a valid email!"),
-                  RequiredValidator(errorText: "Email is required"),
+            Form(
+              key: _key,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                children: [
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtEmailController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: MultiValidator(
+                      [
+                        EmailValidator(
+                            errorText: "Please enter a valid email!"),
+                        RequiredValidator(errorText: "Email is required"),
+                      ],
+                    ),
+                    lableText: "EMAIL",
+                  ),
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtPasswordController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: MultiValidator(
+                      [
+                        RequiredValidator(errorText: "Password is required"),
+                        MinLengthValidator(8,
+                            errorText:
+                                "Password must be at least 8 digits long"),
+                      ],
+                    ),
+                    lableText: "PASSWORD",
+                    obcureText: true,
+                  ),
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtConfirmPasswordController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: (str) =>
+                        MatchValidator(errorText: "Password do not match")
+                            .validateMatch(
+                                str!, _txtPasswordController.text.trim()),
+                    lableText: "CONFIRM PASSWORD",
+                    obcureText: true,
+                  ),
                 ],
               ),
-              lableText: "EMAIL",
-            ),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  RequiredValidator(errorText: "Password is required"),
-                  MinLengthValidator(8,
-                      errorText: "Password must be at least 8 digits long"),
-                ],
-              ),
-              lableText: "PASSWORD",
-              obcureText: true,
-            ),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtConfirmPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: (str) =>
-                  MatchValidator(errorText: "Password do not match")
-                      .validateMatch(str!, _txtPasswordController.text.trim()),
-              lableText: "CONFIRM PASSWORD",
-              obcureText: true,
             ),
             const Expanded(child: SizedBox()),
             MyTextButton(
               function: () {
-                // Fake function create account
-                // setState(() => context.read<AuthProvider>().isLoading = true);
-                // Future.delayed(
-                //   const Duration(seconds: 3),
-                // ).then((value) {
-                //   setState(
-                //       () => context.read<AuthProvider>().isLoading = false);
+                if (!_key.currentState!.validate()) {
+                  log('VALIDATE RETURN FALSE');
+                  return;
+                }
 
-                //   // Push to screen complete user info
-                //   Navigator.push(
-                //     context,
-                //     CupertinoPageRoute(
-                //       builder: (context) => const RegisterWithEmailPage2(),
-                //     ),
-                //   );
-                //   showSnackBar();
-                // });
-                DataRepository()
-                    .register(
-                        _txtEmailController.text, _txtPasswordController.text)
-                    .then((response) => {
-                          if (response.data)
-                            {
-                              // show dialog for register success
-                            }
-                        });
+                /// Fake function create account
+                setState(() => context.read<AuthProvider>().isLoading = true);
+                Future.delayed(
+                  const Duration(seconds: 3),
+                ).then((value) {
+                  setState(
+                      () => context.read<AuthProvider>().isLoading = false);
+                  // Push to screen complete user info
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => const RegisterWithEmailPage2(),
+                    ),
+                  );
+                  showSnackBar();
+                });
+
+                // DataRepository()
+                //     .register(
+                //         _txtEmailController.text, _txtPasswordController.text)
+                //     .then((response) => {
+                //           if (response.data)
+                //             {
+                //               // show dialog for register success
+                //             }
+                //         });
               },
               content: "REGISTER",
               isLoading: context.read<AuthProvider>().isLoading,
