@@ -39,7 +39,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     showForgotPasswordDialog() => showAnimatedDialog(
           context: context,
-          builder: (context) => AuthDialog(
+          builder: (context) => const AuthDialog(
             title: "We've sent your reset password link to:",
             subTitle: "buithiennhan250901@gmail.com",
             btnTitle: "TRY LOGGING IN AGAIN",
@@ -54,6 +54,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         backgroundColor: AppColors.backgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         automaticallyImplyLeading: false,
         title: Text(
           "CHANGE PASSWORD",
