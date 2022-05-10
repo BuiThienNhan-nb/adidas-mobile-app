@@ -130,7 +130,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
             MyTextButton(
               function: () {
                 if (!_key.currentState!.validate()) {
-                  log('VALIDATE FALSE');
+                  log('VALIDATE RETURN FALSE');
                   return;
                 }
 
