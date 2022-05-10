@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
@@ -26,6 +28,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
     final TextEditingController _txtNameController = TextEditingController();
     final TextEditingController _txtBirthdateController =
         TextEditingController();
+    final _key = GlobalKey<FormState>();
 
     void pickDate() async {
       final initDate = _txtBirthdateController.text == ""
@@ -61,6 +64,10 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
 
     register() {
       // Register success
+      if (!_key.currentState!.validate()) {
+        log('VALIDATE RETURN FALSE');
+        return;
+      }
       setState(() => context.read<AuthProvider>().isLoading = true);
       Future.delayed(const Duration(seconds: 3)).then(
         (val) {
@@ -112,28 +119,35 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 ),
               ),
               SizedBox(height: 20.h),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: _txtNameController,
-                textinputType: TextInputType.emailAddress,
-                validator: MultiValidator(
-                  [
-                    RequiredValidator(errorText: "Name is required"),
-                    MinLengthValidator(4,
-                        errorText: "Name must be at least 4 digits long"),
+              Form(
+                key: _key,
+                child: Column(
+                  children: [
+                    TextFieldInput(
+                      onTextSubmitted: (str) {},
+                      textController: _txtNameController,
+                      textinputType: TextInputType.emailAddress,
+                      validator: MultiValidator(
+                        [
+                          RequiredValidator(errorText: "Name is required"),
+                          MinLengthValidator(4,
+                              errorText: "Name must be at least 4 digits long"),
+                        ],
+                      ),
+                      lableText: "NAME",
+                    ),
+                    TextFieldInput(
+                      onTextSubmitted: (str) {},
+                      textController: _txtBirthdateController,
+                      textinputType: TextInputType.emailAddress,
+                      validator:
+                          RequiredValidator(errorText: "Birthdate is required"),
+                      onTap: () => pickDate(),
+                      lableText: "BIRTHDATE",
+                      readOnly: true,
+                    ),
                   ],
                 ),
-                lableText: "NAME",
-              ),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: _txtBirthdateController,
-                textinputType: TextInputType.emailAddress,
-                validator:
-                    RequiredValidator(errorText: "Birthdate is required"),
-                onTap: () => pickDate(),
-                lableText: "BIRTHDATE",
-                readOnly: true,
               ),
               const Expanded(child: SizedBox()),
               MyTextButton(

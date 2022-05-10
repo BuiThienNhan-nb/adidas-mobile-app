@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
@@ -27,6 +29,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         TextEditingController();
     final TextEditingController _txtConfirmPasswordController =
         TextEditingController();
+    final _key = GlobalKey<FormState>();
 
     showSnackBar() {
       SnackBar snackBar = SnackBar(
@@ -76,45 +79,61 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               ),
             ),
             SizedBox(height: 20.h),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtEmailController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  EmailValidator(errorText: "Please enter a valid email!"),
-                  RequiredValidator(errorText: "Email is required"),
+            Form(
+              key: _key,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                children: [
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtEmailController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: MultiValidator(
+                      [
+                        EmailValidator(
+                            errorText: "Please enter a valid email!"),
+                        RequiredValidator(errorText: "Email is required"),
+                      ],
+                    ),
+                    lableText: "EMAIL",
+                  ),
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtPasswordController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: MultiValidator(
+                      [
+                        RequiredValidator(errorText: "Password is required"),
+                        MinLengthValidator(8,
+                            errorText:
+                                "Password must be at least 8 digits long"),
+                      ],
+                    ),
+                    lableText: "PASSWORD",
+                    obcureText: true,
+                  ),
+                  TextFieldInput(
+                    onTextSubmitted: (str) {},
+                    textController: _txtConfirmPasswordController,
+                    textinputType: TextInputType.emailAddress,
+                    validator: (str) =>
+                        MatchValidator(errorText: "Password do not match")
+                            .validateMatch(
+                                str!, _txtPasswordController.text.trim()),
+                    lableText: "CONFIRM PASSWORD",
+                    obcureText: true,
+                  ),
                 ],
               ),
-              lableText: "EMAIL",
-            ),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  RequiredValidator(errorText: "Password is required"),
-                  MinLengthValidator(8,
-                      errorText: "Password must be at least 8 digits long"),
-                ],
-              ),
-              lableText: "PASSWORD",
-              obcureText: true,
-            ),
-            TextFieldInput(
-              onTextSubmitted: (str) {},
-              textController: _txtConfirmPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: (str) =>
-                  MatchValidator(errorText: "Password do not match")
-                      .validateMatch(str!, _txtPasswordController.text.trim()),
-              lableText: "CONFIRM PASSWORD",
-              obcureText: true,
             ),
             const Expanded(child: SizedBox()),
             MyTextButton(
               function: () {
+                if (!_key.currentState!.validate()) {
+                  log('VALIDATE FALSE');
+                  return;
+                }
+
                 /// Fake function create account
                 setState(() => context.read<AuthProvider>().isLoading = true);
                 Future.delayed(
