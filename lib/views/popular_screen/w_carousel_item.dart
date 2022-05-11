@@ -82,7 +82,7 @@ class AdBannerCarouselItem extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }

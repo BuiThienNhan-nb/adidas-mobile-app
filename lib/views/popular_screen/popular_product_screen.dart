@@ -12,7 +12,6 @@ class PopularProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String content = "Loading...";
-    final ScrollController scrollController = ScrollController();
     final Product product = Product(
       image: 'assets/images/temp_sneaker.png',
       tag: "LOW IN STOCK",
@@ -23,7 +22,8 @@ class PopularProductScreen extends StatelessWidget {
       id: 'id',
       tag: 'ORIGINALS',
       title: 'ADIZERO X ALLBIRDS 2.94 KG CO2e',
-      image: null,
+      image:
+          'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/viVN/Images/running-ss22-4dfwd-x-parley-launch-hp-teaser-carousel-card-dual-2d-d_tcm337-820245.jpg',
       video: 'assets/videos/adizero_ads.mp4',
       product: product,
     );
@@ -38,17 +38,21 @@ class PopularProductScreen extends StatelessWidget {
       //   color: Colors.white,
       //   child: LoadingIndicator(content: _content),
       // ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // const Text("Một cái gì đó hay ho"),
-          Expanded(
-            child: ProductCarouselSlider(
-              adBanners: adBanners,
-              callback: (val) {},
-            ),
-          ),
-        ],
+      // body: Column(
+      //   crossAxisAlignment: CrossAxisAlignment.start,
+      //   children: [
+      //     // const Text("Một cái gì đó hay ho"),
+      //     Expanded(
+      //       child: ProductCarouselSlider(
+      //         adBanners: adBanners,
+      //         callback: (val) {},
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      body: ProductCarouselSlider(
+        adBanners: adBanners,
+        callback: (value) {},
       ),
     );
   }
