@@ -1,12 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/models/ad_banner.dart';
+import 'package:flutter_adidas_clone/views/utils/button/outline_empty_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AdBannerCarouselItem extends StatelessWidget {
   const AdBannerCarouselItem({
@@ -72,12 +70,15 @@ class AdBannerCarouselItem extends StatelessWidget {
                     padding: EdgeInsets.all(8.w),
                     child: Text(
                       'JUST DROPPED',
-                      style: AppStyles.italicRegularTextStyle,
+                      style: AppStyles.italicMediumTextStyle,
                     ),
                   ),
                 ),
                 SizedBox(height: 12.h),
-                CarouselItemButton(),
+                OutlineShadowButton(
+                  content: 'SHOP NOW',
+                  onTap: () => log('SHOP NOW BUTTON CLICKED'),
+                ),
                 SizedBox(height: 12.h),
               ],
             ),
@@ -86,84 +87,4 @@ class AdBannerCarouselItem extends StatelessWidget {
       ],
     );
   }
-}
-
-class CarouselItemButton extends StatelessWidget {
-  CarouselItemButton({
-    Key? key,
-  }) : super(key: key);
-
-  final double height = 52.h;
-  final double width = 320.w;
-
-  @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: () => log('BUTTON SHOP NOW CLICKED'),
-        child: SizedBox(
-          height: height * 1.4,
-          width: width * 1.2,
-          child: Stack(
-            children: [
-              Positioned(
-                left: 8.w,
-                top: 8.h,
-                child: Container(
-                  height: height,
-                  width: width,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(color: AppColors.backgroundColor),
-                  ),
-                ),
-              ),
-              Container(
-                height: height,
-                width: width,
-                color: AppColors.backgroundColor,
-                child: Row(
-                  children: [
-                    SizedBox(width: 10.w),
-                    Text(
-                      'SHOP NOW',
-                      style: GoogleFonts.cantarell(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: AppSizes.titleFontSize - 5,
-                      ),
-                    ),
-                    const Spacer(),
-                    Image.asset(
-                      'assets/images/arrow_right.png',
-                      width: width / 12,
-                    ),
-                    SizedBox(width: 20.w),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-  //   return Stack(
-  //     child: Container(
-  //       height: 54.h,
-  //       width: 320.w,
-  //       decoration: BoxDecoration(
-  //         color: AppColors.backgroundColor,
-  //         borderRadius: BorderRadius.circular(0.0),
-  //         boxShadow: const [
-  //           BoxShadow(
-  //             color: Colors.transparent,
-  //             blurRadius: 0.0,
-  //             offset: Offset(4, 8),
-  //           ),
-  //         ],
-  //       ),
-  //       child: Text(
-  //         'SHOP NOW',
-  //         style: AppStyles.regularTextStyle,
-  //       ),
-  //     ),
-  //   );
-  // }
 }

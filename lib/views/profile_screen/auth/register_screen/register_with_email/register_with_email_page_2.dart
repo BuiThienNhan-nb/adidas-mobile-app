@@ -121,6 +121,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
               SizedBox(height: 20.h),
               Form(
                 key: _key,
+                autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: [
                     TextFieldInput(
