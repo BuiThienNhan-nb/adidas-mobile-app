@@ -81,7 +81,7 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text("By clicking REGISTER, I: "),
-                TermSpanText(
+                MyTextSpan(
                   contentText1:
                       "\t\t * agree that I have read, understood and accepted the ",
                   linkText1: "Privacy Notice",
@@ -90,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
                   onTap1: popUpPrivacy,
                   onTap2: popUpTerm,
                 ),
-                TermSpanText(
+                MyTextSpan(
                   contentText1:
                       "\t\t * hereby consent to the use of my personal data for marketing and promotional purposes as set out in the adidas ",
                   linkText1: "Privacy Notice",

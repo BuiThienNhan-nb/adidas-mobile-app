@@ -3,8 +3,8 @@ import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SettingOption extends StatelessWidget {
-  const SettingOption({
+class OptionTextButton extends StatelessWidget {
+  const OptionTextButton({
     Key? key,
     required String content,
     required Function() function,
@@ -23,12 +23,12 @@ class SettingOption extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 12.h),
+              padding: EdgeInsets.fromLTRB(40.w, 12.h, 16.w, 12.h),
               child: Row(
                 children: [
                   Text(
                     _content,
-                    style: AppStyles.boldRegularTextStyle,
+                    style: AppStyles.boldSmallTextStyle,
                   ),
                   const Spacer(),
                   const Icon(

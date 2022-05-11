@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
@@ -15,7 +16,6 @@ import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart
 import 'package:flutter_adidas_clone/views/utils/widget/span_text_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 
 class CheckoutMainPage extends StatefulWidget {
   const CheckoutMainPage({Key? key, required Function updateParent})
@@ -31,7 +31,6 @@ class CheckoutMainPage extends StatefulWidget {
 class _CheckoutMainPageState extends State<CheckoutMainPage> {
   @override
   Widget build(BuildContext context) {
-    final _oCcy = NumberFormat("#,##0", "en_US");
     final List<String> _imageUrls = [
       'assets/images/temp_sneaker.png',
       'assets/images/temp_sneaker.png',
@@ -109,7 +108,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "TOTAL",
               content: Text(
-                "đ\t\t\t\t${_oCcy.format(context.read<OrderProvider>().order.total)}",
+                "đ\t\t\t\t${AppFormat.currencyFormat.format(context.read<OrderProvider>().order.total)}",
               ),
               onTap: () {},
             ),
@@ -194,7 +193,7 @@ class CheckoutPolicyTerm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("By clicking PLACE ORDER, I confirm: "),
-          TermSpanText(
+          MyTextSpan(
             contentText1: "I have read, understood and accepted the ",
             linkText1: "Privacy Notice",
             contentText2: " and ",
@@ -202,7 +201,7 @@ class CheckoutPolicyTerm extends StatelessWidget {
             onTap1: popUpPrivacy,
             onTap2: popUpTerm,
           ),
-          TermSpanText(
+          MyTextSpan(
             contentText1:
                 "I hereby consent to the use of my personal data for marketing and promotional purposes as well as its transfer, sharing, disclosure to third parties.",
             linkText1: "",

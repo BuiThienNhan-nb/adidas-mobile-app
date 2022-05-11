@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/models/order.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialo
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutCartContainer extends StatelessWidget {
@@ -25,8 +25,6 @@ class CheckoutCartContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _oCcy = NumberFormat("#,##0", "en_US");
-
     void authenticate() {
       showAnimatedDialog(
         context: context,
@@ -92,7 +90,7 @@ class CheckoutCartContainer extends StatelessWidget {
                   style: AppStyles.titleTextStyle,
                 ),
                 Text(
-                  "đ\t\t\t\t${_oCcy.format(_total)}",
+                  "đ\t\t\t\t${AppFormat.currencyFormat.format(_total)}",
                   style: TextStyle(
                     fontSize: AppSizes.mediumText,
                     letterSpacing: 2.0,
