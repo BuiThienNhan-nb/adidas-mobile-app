@@ -75,6 +75,8 @@ class HomeScreen extends StatelessWidget {
       ),
     ];
 
+    final _navBarHeight = 44.h;
+
     return PersistentTabView(
       context,
       screens: _screens,
@@ -83,15 +85,15 @@ class HomeScreen extends StatelessWidget {
       confineInSafeArea: true,
       popActionScreens: PopActionScreensType.all,
       backgroundColor: AppColors.backgroundColor,
-      navBarHeight: 49.h,
+      navBarHeight: _navBarHeight,
       itemAnimationProperties: const ItemAnimationProperties(
         duration: Duration(milliseconds: 400),
         curve: Curves.ease,
       ),
       padding: NavBarPadding.only(
-        top: 15.h,
+        top: 12.h,
       ),
-      bottomScreenMargin: 50.h,
+      bottomScreenMargin: _navBarHeight + 0.4.h,
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.ease,
