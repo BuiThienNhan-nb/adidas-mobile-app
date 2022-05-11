@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/models/ad_banner.dart';
@@ -25,7 +26,7 @@ class ProductCarouselSlider extends StatelessWidget {
         onScrolled: (val) => _callback(val),
         height: double.infinity,
         //height: widget.size.height,
-        enlargeCenterPage: true,
+        // enlargeCenterPage: true,
         viewportFraction: 1,
         // autoPlay: true,
         // autoPlayInterval: const Duration(seconds: 3),
@@ -36,20 +37,34 @@ class ProductCarouselSlider extends StatelessWidget {
         //     setState(() => activeIndex = index),
       ),
       itemCount: _adBanners.length,
-      itemBuilder: (context, index, realIndex) =>
-          (_adBanners[index].image == null)
-              ? AdBannerCarouselItem(
-                  adBanner: _adBanners[index],
-                  wChild: BannerVideoPlayer(url: _adBanners[index].video!),
-                )
-              // ? const VideoPlay()
-              : AdBannerCarouselItem(
-                  adBanner: _adBanners[index],
-                  wChild: Image.asset(
-                    _adBanners[index].image!,
-                    fit: BoxFit.fill,
+      itemBuilder: (context, index, realIndex) => (_adBanners[index].image ==
+              null)
+          ? AdBannerCarouselItem(
+              adBanner: _adBanners[index],
+              wChild: BannerVideoPlayer(url: _adBanners[index].video!),
+            )
+          // ? const VideoPlay()
+          : AdBannerCarouselItem(
+              adBanner: _adBanners[index],
+              // wChild: Image.asset(
+              //   _adBanners[index].image!,
+              //   fit: BoxFit.fitHeight,
+              // ),
+              wChild: CachedNetworkImage(
+                imageUrl: _adBanners[index].image!,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
+              ),
+            ),
     );
   }
 }
