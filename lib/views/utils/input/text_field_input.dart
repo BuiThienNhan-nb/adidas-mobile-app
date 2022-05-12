@@ -54,9 +54,9 @@ class TextFieldInput extends StatelessWidget {
         cursorColor: AppColors.iconBackgroundColor,
         decoration: InputDecoration(
           border: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: AppColors.iconBackgroundColor),
-              borderRadius: BorderRadius.circular(0.r)),
+            borderSide: const BorderSide(color: AppColors.iconBackgroundColor),
+            borderRadius: BorderRadius.circular(0.r),
+          ),
           contentPadding:
               EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),
           focusedBorder: OutlineInputBorder(
