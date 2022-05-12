@@ -2,17 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/routes.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
 import 'package:flutter_adidas_clone/views/popular_screen/popular_product_screen.dart';
 import 'package:flutter_adidas_clone/views/wishlist_screen/wishlist_screen.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
-import 'search_screen/news_feed_screen.dart';
+import 'search_screen/screens/news_feed_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = "HomeScreen";
@@ -30,10 +28,11 @@ class HomeScreen extends StatelessWidget {
     ];
     final _navBarItems = <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
-        icon: const FaIcon(
-          FontAwesomeIcons.fire,
-          size: AppSizes.navBarIconSize,
+        icon: Transform.scale(
+          child: Image.asset('assets/icons/flame_icon.png'),
+          scale: 1.1,
         ),
+        inactiveIcon: Image.asset('assets/icons/flame_icon_light.png'),
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: CupertinoColors.systemGrey2,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -41,10 +40,11 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       PersistentBottomNavBarItem(
-        icon: const FaIcon(
-          FontAwesomeIcons.search,
-          size: AppSizes.navBarIconSize,
+        icon: Transform.scale(
+          child: Image.asset('assets/icons/search_icon.png'),
+          scale: 1.1,
         ),
+        inactiveIcon: Image.asset('assets/icons/search_icon_light.png'),
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: CupertinoColors.systemGrey2,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -52,21 +52,27 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       PersistentBottomNavBarItem(
-        icon: const FaIcon(
-          FontAwesomeIcons.solidHeart,
-          size: AppSizes.navBarIconSize,
+        // icon: const FaIcon(
+        //   FontAwesomeIcons.solidHeart,
+        //   size: AppSizes.navBarIconSize,
+        // ),
+        // activeColorPrimary: Colors.black,
+        // inactiveColorPrimary: CupertinoColors.systemGrey2,
+        icon: Transform.scale(
+          child: Image.asset('assets/icons/heart_icon.png'),
+          scale: 1.1,
         ),
-        activeColorPrimary: Colors.black,
-        inactiveColorPrimary: CupertinoColors.systemGrey2,
+        inactiveIcon: Image.asset('assets/icons/heart_icon_light.png'),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           onGenerateRoute: AppRoutes().onGenerateRoute,
         ),
       ),
       PersistentBottomNavBarItem(
-        icon: const FaIcon(
-          FontAwesomeIcons.shoppingCart,
-          size: AppSizes.navBarIconSize,
+        icon: Transform.scale(
+          child: Image.asset('assets/icons/cart_icon.png'),
+          scale: 1.1,
         ),
+        inactiveIcon: Image.asset('assets/icons/cart_icon_light.png'),
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: CupertinoColors.systemGrey2,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -90,9 +96,7 @@ class HomeScreen extends StatelessWidget {
         duration: Duration(milliseconds: 400),
         curve: Curves.ease,
       ),
-      padding: NavBarPadding.only(
-        top: 12.h,
-      ),
+      padding: NavBarPadding.only(top: 12.h, bottom: 12.h),
       bottomScreenMargin: _navBarHeight + 0.4.h,
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,

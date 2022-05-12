@@ -10,10 +10,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsFeedScreen extends StatelessWidget {
   const NewsFeedScreen({Key? key}) : super(key: key);
+  static const String heroWidgetTag = 'searchBar';
 
   @override
   Widget build(BuildContext context) {
     String _content = "Loading...";
+
     final Product product = Product(
       image:
           'https://assets.adidas.com/images/w_276,h_276,f_auto,q_auto,fl_lossy,c_fill,g_auto/329bbd5423a9422b8830ae120157fbf0_9366/GY5969_01_standard.jpg',
@@ -41,7 +43,10 @@ class NewsFeedScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SearchBar(),
+            const Hero(
+              tag: heroWidgetTag,
+              child: SearchBar(isNext: true),
+            ),
             OptionTextButton(
               content: 'SHOES',
               function: () {},
