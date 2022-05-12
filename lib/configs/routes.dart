@@ -25,7 +25,7 @@ class AppRoutes {
     switch (_settings.name) {
       case HomeScreen.id:
         return CupertinoPageRoute(
-          builder: (_) => HomeScreen(),
+          builder: (_) => const HomeScreen(),
         );
       case AuthScreen.id:
         return CupertinoPageRoute(
