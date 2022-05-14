@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/configs/validator.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
@@ -128,13 +129,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                       onTextSubmitted: (str) {},
                       textController: _txtNameController,
                       textinputType: TextInputType.emailAddress,
-                      validator: MultiValidator(
-                        [
-                          RequiredValidator(errorText: "Name is required"),
-                          MinLengthValidator(4,
-                              errorText: "Name must be at least 4 digits long"),
-                        ],
-                      ),
+                      validator: AppValidators.nameValidator,
                       lableText: "NAME",
                     ),
                     TextFieldInput(

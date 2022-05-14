@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/configs/validator.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
@@ -88,27 +88,14 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
                     onTextSubmitted: (str) {},
                     textController: _txtEmailController,
                     textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        EmailValidator(
-                            errorText: "Please enter a valid email!"),
-                        RequiredValidator(errorText: "Email is required"),
-                      ],
-                    ),
+                    validator: AppValidators.emailValidator,
                     lableText: "EMAIL",
                   ),
                   TextFieldInput(
                     onTextSubmitted: (str) {},
                     textController: _txtPasswordController,
                     textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        RequiredValidator(errorText: "Password is required"),
-                        MinLengthValidator(8,
-                            errorText:
-                                "Password must be at least 8 digits long"),
-                      ],
-                    ),
+                    validator: AppValidators.passwordValidator,
                     lableText: "PASSWORD",
                     obcureText: true,
                   ),
