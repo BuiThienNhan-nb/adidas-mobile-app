@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
@@ -26,6 +28,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
   final TextEditingController _txtBirthdateController =
       TextEditingController(text: "25/09/2001");
   String _txtGender = "";
+  final _key = GlobalKey<FormState>();
 
   void pickDate() async {
     final initDate = _txtBirthdateController.text == ""
@@ -40,14 +43,13 @@ class _PersonalScreenState extends State<PersonalScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary:
-                  AppColors.kIconBackgroundColor, // header background color
-              onPrimary: AppColors.kBackgroundColor, // header text color
-              onSurface: AppColors.kIconBackgroundColor, // body text color
+              primary: AppColors.iconBackgroundColor, // header background color
+              onPrimary: AppColors.backgroundColor, // header text color
+              onSurface: AppColors.iconBackgroundColor, // body text color
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                primary: AppColors.kIconBackgroundColor, // button text color
+                primary: AppColors.iconBackgroundColor, // button text color
               ),
             ),
           ),
@@ -66,91 +68,105 @@ class _PersonalScreenState extends State<PersonalScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: _txtNameController,
-                textinputType: TextInputType.emailAddress,
-                validator: MultiValidator(
-                  [
-                    RequiredValidator(errorText: "Name is required"),
-                    MinLengthValidator(4,
-                        errorText: "Name must be at least 4 digits long"),
-                  ],
-                ),
-                lableText: "NAME",
-              ),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: _txtBirthdateController,
-                textinputType: TextInputType.emailAddress,
-                validator:
-                    RequiredValidator(errorText: "Birthdate is required"),
-                onTap: () => pickDate(),
-                lableText: "BIRTHDATE",
-                readOnly: true,
-              ),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController:
-                    TextEditingController(text: "buithiennhan250901@gmail.com"),
-                textinputType: TextInputType.emailAddress,
-                validator: MultiValidator(
-                  [
-                    EmailValidator(errorText: "Please enter a valid email!"),
-                    RequiredValidator(errorText: "Email is required"),
-                  ],
-                ),
-                lableText: "EMAIL",
-                readOnly: true,
-                suffixIcon: const Icon(Icons.lock,
-                    color: AppColors.kIconBackgroundColor),
-              ),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: TextEditingController(text: "12345678@"),
-                textinputType: TextInputType.emailAddress,
-                validator: (str) {},
-                lableText: "PASSWORD",
-                obcureText: true,
-                suffixIcon: const FaIcon(
-                  FontAwesomeIcons.pen,
-                  color: AppColors.kIconBackgroundColor,
-                ),
-                // ignore: avoid_print
-                onSuffixIconTap: () =>
-                    Navigator.pushNamed(context, ForgotPasswordScreen.id),
-                readOnly: true,
-              ),
-              Stack(
-                children: [
-                  TextFieldInput(
-                    onTextSubmitted: (str) {},
-                    textController: TextEditingController(text: " "),
-                    textinputType: TextInputType.emailAddress,
-                    validator: (str) {},
-                    lableText: "GENDER",
-                    readOnly: true,
+          child: Form(
+            key: _key,
+            autovalidateMode: AutovalidateMode.always,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFieldInput(
+                  onTextSubmitted: (str) {},
+                  textController: _txtNameController,
+                  textinputType: TextInputType.emailAddress,
+                  validator: MultiValidator(
+                    [
+                      RequiredValidator(errorText: "Name is required"),
+                      MinLengthValidator(4,
+                          errorText: "Name must be at least 4 digits long"),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: MyRadioButton(
-                      values: const <String>["Male", "Female", "Other"],
-                      selectedValue: _txtGender,
-                      onChanged: (val) => setState(() => _txtGender = val!),
+                  lableText: "NAME",
+                ),
+                TextFieldInput(
+                  onTextSubmitted: (str) {},
+                  textController: _txtBirthdateController,
+                  textinputType: TextInputType.emailAddress,
+                  validator:
+                      RequiredValidator(errorText: "Birthdate is required"),
+                  onTap: () => pickDate(),
+                  lableText: "BIRTHDATE",
+                  readOnly: true,
+                ),
+                TextFieldInput(
+                  onTextSubmitted: (str) {},
+                  textController: TextEditingController(
+                      text: "buithiennhan250901@gmail.com"),
+                  textinputType: TextInputType.emailAddress,
+                  validator: MultiValidator(
+                    [
+                      EmailValidator(errorText: "Please enter a valid email!"),
+                      RequiredValidator(errorText: "Email is required"),
+                    ],
+                  ),
+                  lableText: "EMAIL",
+                  readOnly: true,
+                  suffixIcon: const Icon(Icons.lock,
+                      color: AppColors.iconBackgroundColor),
+                ),
+                TextFieldInput(
+                  onTextSubmitted: (str) {},
+                  textController: TextEditingController(text: "12345678@"),
+                  textinputType: TextInputType.emailAddress,
+                  validator: (str) {
+                    return null;
+                  },
+                  lableText: "PASSWORD",
+                  obcureText: true,
+                  suffixIcon: const FaIcon(
+                    FontAwesomeIcons.pen,
+                    color: AppColors.iconBackgroundColor,
+                  ),
+                  // ignore: avoid_print
+                  onSuffixIconTap: () =>
+                      Navigator.pushNamed(context, ForgotPasswordScreen.id),
+                  readOnly: true,
+                ),
+                Stack(
+                  children: [
+                    TextFieldInput(
+                      onTextSubmitted: (str) {},
+                      textController: TextEditingController(text: " "),
+                      textinputType: TextInputType.emailAddress,
+                      validator: (str) {
+                        return null;
+                      },
+                      lableText: "GENDER",
+                      readOnly: true,
                     ),
-                  ),
-                ],
-              ),
-              MyTextButton(
-                function: () => print(_txtGender),
-                content: "SAVE",
-                isLoading: context.read<AuthProvider>().isLoading,
-              ),
-            ],
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: MyRadioButton(
+                        values: const <String>["Male", "Female", "Other"],
+                        selectedValue: _txtGender,
+                        onChanged: (val) => setState(() => _txtGender = val!),
+                      ),
+                    ),
+                  ],
+                ),
+                MyTextButton(
+                  function: () {
+                    if (_key.currentState!.validate()) {
+                      log(_txtGender);
+                    } else {
+                      log('VALIDATE RETURN FALSE');
+                    }
+                  },
+                  content: "SAVE",
+                  isLoading: context.read<AuthProvider>().isLoading,
+                ),
+              ],
+            ),
           ),
         ),
       ),

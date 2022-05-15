@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
@@ -26,6 +30,8 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
     final TextEditingController _txtNameController = TextEditingController();
     final TextEditingController _txtBirthdateController =
         TextEditingController();
+    final _key = GlobalKey<FormState>();
+    final userProvider = context.read<UserProvider>();
 
     void pickDate() async {
       final initDate = _txtBirthdateController.text == ""
@@ -41,13 +47,13 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
                 primary:
-                    AppColors.kIconBackgroundColor, // header background color
-                onPrimary: AppColors.kBackgroundColor, // header text color
-                onSurface: AppColors.kIconBackgroundColor, // body text color
+                    AppColors.iconBackgroundColor, // header background color
+                onPrimary: AppColors.backgroundColor, // header text color
+                onSurface: AppColors.iconBackgroundColor, // body text color
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: AppColors.kIconBackgroundColor, // button text color
+                  primary: AppColors.iconBackgroundColor, // button text color
                 ),
               ),
             ),
@@ -59,32 +65,53 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
       _txtBirthdateController.text = AppFormat.formatDay.format(pickDate);
     }
 
-    register() {
+    register() async {
+      Map<String, dynamic> response = await userProvider.updateUserInfor(
+          context.read<UserProvider>().user.id,
+          _txtNameController.text,
+          _txtBirthdateController.text);
+      if (response['status']) {
+        userProvider.setUser(User.fromJson(response['data']));
+        context.read<AuthProvider>().isLogin = true;
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      } else {
+        print('falied');
+      }
+
       // Register success
-      setState(() => context.read<AuthProvider>().isLoading = true);
-      Future.delayed(const Duration(seconds: 3)).then(
-        (val) {
-          setState(() => context.read<AuthProvider>().isLogin = true);
-          setState(() => context.read<AuthProvider>().isLoading = false);
-          Navigator.of(context)
-            ..popUntil(ModalRoute.withName(HomeScreen.id))
-            ..push(
-              CupertinoPageRoute(
-                builder: (context) => HomeScreen(),
-              ),
-            );
-        },
-      );
+      // if (!_key.currentState!.validate()) {
+      //   log('VALIDATE RETURN FALSE');
+      //   return;
+      // }
+      // setState(() => context.read<AuthProvider>().isLoading = true);
+      // Future.delayed(const Duration(seconds: 3)).then(
+      //   (val) {
+      //     setState(() => context.read<AuthProvider>().isLogin = true);
+      //     setState(() => context.read<AuthProvider>().isLoading = false);
+      //     Navigator.of(context)
+      //       ..popUntil(ModalRoute.withName(HomeScreen.id))
+      //       ..push(
+      //         CupertinoPageRoute(
+      //           builder: (context) => const HomeScreen(),
+      //         ),
+      //       );
+      //   },
+      // );
     }
 
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.kBackgroundColor,
+          backgroundColor: AppColors.backgroundColor,
           shadowColor: Colors.transparent,
           iconTheme: const IconThemeData(
-            color: AppColors.kIconBackgroundColor,
+            color: AppColors.iconBackgroundColor,
           ),
           bottomOpacity: 0.0,
           elevation: 0.0,
@@ -106,34 +133,42 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 child: Text(
                   "Complete your information to join with us",
                   style: GoogleFonts.cantarell(
-                    color: AppColors.kIconBackgroundColor,
+                    color: AppColors.iconBackgroundColor,
                     fontSize: 14,
                   ),
                 ),
               ),
               SizedBox(height: 20.h),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: _txtNameController,
-                textinputType: TextInputType.emailAddress,
-                validator: MultiValidator(
-                  [
-                    RequiredValidator(errorText: "Name is required"),
-                    MinLengthValidator(4,
-                        errorText: "Name must be at least 4 digits long"),
+              Form(
+                key: _key,
+                autovalidateMode: AutovalidateMode.always,
+                child: Column(
+                  children: [
+                    TextFieldInput(
+                      onTextSubmitted: (str) {},
+                      textController: _txtNameController,
+                      textinputType: TextInputType.emailAddress,
+                      validator: MultiValidator(
+                        [
+                          RequiredValidator(errorText: "Name is required"),
+                          MinLengthValidator(4,
+                              errorText: "Name must be at least 4 digits long"),
+                        ],
+                      ),
+                      lableText: "NAME",
+                    ),
+                    TextFieldInput(
+                      onTextSubmitted: (str) {},
+                      textController: _txtBirthdateController,
+                      textinputType: TextInputType.emailAddress,
+                      validator:
+                          RequiredValidator(errorText: "Birthdate is required"),
+                      onTap: () => pickDate(),
+                      lableText: "BIRTHDATE",
+                      readOnly: true,
+                    ),
                   ],
                 ),
-                lableText: "NAME",
-              ),
-              TextFieldInput(
-                onTextSubmitted: (str) {},
-                textController: _txtBirthdateController,
-                textinputType: TextInputType.emailAddress,
-                validator:
-                    RequiredValidator(errorText: "Birthdate is required"),
-                onTap: () => pickDate(),
-                lableText: "BIRTHDATE",
-                readOnly: true,
               ),
               const Expanded(child: SizedBox()),
               MyTextButton(

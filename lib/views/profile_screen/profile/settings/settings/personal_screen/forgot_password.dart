@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
@@ -52,9 +51,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         automaticallyImplyLeading: false,
         title: Text(
           "CHANGE PASSWORD",
@@ -66,7 +67,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 8,
-              color: AppColors.kIconBackgroundColor,
+              color: AppColors.iconBackgroundColor,
             ),
           )
         ],
@@ -81,7 +82,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Text(
                 "Enter your password to continue",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                   fontSize: 14,
                 ),
               ),
@@ -112,12 +113,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.kButtonOnClick,
+                  primary: AppColors.buttonOnClick,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.kIconBackgroundColor,
+                    color: AppColors.iconBackgroundColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

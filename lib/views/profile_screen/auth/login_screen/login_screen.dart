@@ -36,9 +36,9 @@ class LoginScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: AppColors.kBackgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         centerTitle: false,
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -99,13 +99,13 @@ class LoginScreen extends StatelessWidget {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
                     padding: EdgeInsets.zero,
-                    primary: AppColors.kButtonOnClick,
+                    primary: AppColors.buttonOnClick,
                   ),
                   child: const Text(
                     "Terms and Conditions",
                     style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: AppColors.kIconBackgroundColor,
+                      color: AppColors.iconBackgroundColor,
                     ),
                   ),
                 ),

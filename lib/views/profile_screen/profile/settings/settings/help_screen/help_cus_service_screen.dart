@@ -24,7 +24,7 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             const Text(
               "STILL CAN'T FIND YOUR ANSWER? ASK OUR CUSTOMER SERVICE",
               style: TextStyle(
-                color: AppColors.kIconBackgroundColor,
+                color: AppColors.iconBackgroundColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
               ),
@@ -33,7 +33,7 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             HelpServiceItem(
               icon: const FaIcon(
                 FontAwesomeIcons.questionCircle,
-                color: AppColors.kIconBackgroundColor,
+                color: AppColors.iconBackgroundColor,
                 size: AppSizes.appBarIconSize * 2.5,
               ),
               title: "Vist our help section",
@@ -53,14 +53,14 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Divider(
-              color: AppColors.kIconBackgroundColor,
+              color: AppColors.iconBackgroundColor,
               height: 3.h,
             ),
             SizedBox(height: 20.h),
             HelpServiceItem(
               icon: const FaIcon(
                 FontAwesomeIcons.comments,
-                color: AppColors.kIconBackgroundColor,
+                color: AppColors.iconBackgroundColor,
                 size: AppSizes.appBarIconSize * 2.5,
               ),
               title:
@@ -114,20 +114,20 @@ class HelpServiceItem extends StatelessWidget {
                   style: TextButton.styleFrom(
                     // backgroundColor: _isLoading ? AppColors.kButtonOnClick : Colors.black,
                     padding: EdgeInsets.zero,
-                    primary: AppColors.kButtonOnClick,
+                    primary: AppColors.buttonOnClick,
                   ),
                   child: Text(
                     _subTitle,
                     style: const TextStyle(
                       shadows: [
                         Shadow(
-                            color: AppColors.kIconBackgroundColor,
+                            color: AppColors.iconBackgroundColor,
                             offset: Offset(0, -5))
                       ],
                       color: Colors.transparent,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      decorationColor: AppColors.kIconBackgroundColor,
+                      decorationColor: AppColors.iconBackgroundColor,
                       decorationThickness: 3,
                     ),
                   ),

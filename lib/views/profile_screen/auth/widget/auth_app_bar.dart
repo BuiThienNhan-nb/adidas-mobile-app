@@ -23,7 +23,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSize {
           padding: EdgeInsets.only(left: 10),
           child: Icon(
             Icons.settings_outlined,
-            color: AppColors.kBackgroundColor,
+            color: AppColors.backgroundColor,
             size: AppSizes.appBarIconSize + 12,
           ),
         ),

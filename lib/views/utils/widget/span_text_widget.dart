@@ -1,9 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TermSpanText extends StatelessWidget {
-  const TermSpanText({
+class MyTextSpan extends StatelessWidget {
+  const MyTextSpan({
     Key? key,
     required String contentText1,
     required linkText1,
@@ -27,32 +28,42 @@ class TermSpanText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle linkStyle = TextStyle(
+    TextStyle linkStyle = TextStyle(
       decoration: TextDecoration.underline,
       decorationThickness: 1.3,
-      color: AppColors.kIconBackgroundColor,
+      decorationColor: AppColors.iconBackgroundColor,
+      color: Colors.transparent,
       fontWeight: FontWeight.bold,
+      shadows: [
+        Shadow(
+          color: AppColors.iconBackgroundColor,
+          offset: Offset(0, -4.h),
+        ),
+      ],
     );
 
-    return RichText(
-      text: TextSpan(
-        style: const TextStyle(
-          color: AppColors.kIconBackgroundColor,
+    return Padding(
+      padding: EdgeInsets.only(top: 10.h),
+      child: RichText(
+        text: TextSpan(
+          style: const TextStyle(
+            color: AppColors.iconBackgroundColor,
+          ),
+          children: <TextSpan>[
+            TextSpan(text: _contentText1),
+            TextSpan(
+              text: _linkText1,
+              style: linkStyle,
+              recognizer: TapGestureRecognizer()..onTap = _onTap1,
+            ),
+            TextSpan(text: _contentText2),
+            TextSpan(
+              text: _linkText2,
+              style: linkStyle,
+              recognizer: TapGestureRecognizer()..onTap = _onTap2,
+            ),
+          ],
         ),
-        children: <TextSpan>[
-          TextSpan(text: _contentText1),
-          TextSpan(
-            text: _linkText1,
-            style: linkStyle,
-            recognizer: TapGestureRecognizer()..onTap = _onTap1,
-          ),
-          TextSpan(text: _contentText2),
-          TextSpan(
-            text: _linkText2,
-            style: linkStyle,
-            recognizer: TapGestureRecognizer()..onTap = _onTap2,
-          ),
-        ],
       ),
     );
   }

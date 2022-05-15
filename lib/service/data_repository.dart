@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_adidas_clone/configs/domain.dart';
-
-import 'package:flutter_adidas_clone/configs/end_point.dart';
+import 'package:flutter_adidas_clone/configs/end_point/auth_end_points.dart';
+import 'package:flutter_adidas_clone/configs/end_point/user_end_points.dart';
 
 class DataRepository {
   static final DataRepository _singelton = DataRepository._internal();
@@ -24,7 +23,7 @@ class DataRepository {
     final data = {"email": email, "password": passWord};
 
     Response response = await _dio.post(
-      "$baseUrl/${EndPoint.register}",
+      "$baseUrl${AuthEndPoint.register}",
       data: data,
       options: Options(
         followRedirects: false,
@@ -42,7 +41,7 @@ class DataRepository {
     final data = {"email": email, "password": passWord};
 
     Response response = await dio.post(
-      "$baseUrl/${EndPoint.login}",
+      "$baseUrl${AuthEndPoint.login}",
       data: data,
       options: Options(
         followRedirects: false,
@@ -51,8 +50,53 @@ class DataRepository {
         },
       ),
     );
-
     print(response.statusCode);
+    return response;
+  }
+
+  Future<Response> checkEmail(String id) async {
+    Dio dio = Dio();
+    Response response = await dio.get(
+      "$baseUrl${AuthEndPoint.checkEmail(id)}",
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+      ),
+    );
+    return response;
+  }
+
+  Future<Response> updateUserInfor(
+      String id, String fullName, String dateOfBirth) async {
+    Dio dio = Dio();
+    final data = {"fullName": fullName, "dateOfBirth": dateOfBirth};
+
+    Response response = await dio.patch(
+      "$baseUrl${UserEndPoint.updateUserInfor(id)}",
+      data: data,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+      ),
+    );
+    return response;
+  }
+
+  Future<Response> getUserById(String id) async {
+    Dio dio = Dio();
+    Response response = await dio.get(
+      "$baseUrl${UserEndPoint.getUserById(id)}",
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+      ),
+    );
     return response;
   }
 

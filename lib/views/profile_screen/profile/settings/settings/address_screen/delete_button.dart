@@ -15,7 +15,7 @@ class DeleteAddressButton extends StatelessWidget {
     required bool isLoading,
     this.icon = const FaIcon(
       FontAwesomeIcons.arrowRight,
-      color: AppColors.kIconBackgroundColor,
+      color: AppColors.iconBackgroundColor,
       size: AppSizes.appBarIconSize,
     ),
   })  : _function = function,
@@ -32,9 +32,9 @@ class DeleteAddressButton extends StatelessWidget {
     return TextButton(
       onPressed: _isLoading ? () {} : _function,
       style: TextButton.styleFrom(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         padding: EdgeInsets.zero,
-        primary: AppColors.kButtonOnClick,
+        primary: AppColors.buttonOnClick,
       ),
       child: Container(
         height: 40.h,
@@ -42,7 +42,7 @@ class DeleteAddressButton extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
           border: Border.all(
-              color: _isLoading ? AppColors.kButtonOnClick : Colors.black),
+              color: _isLoading ? AppColors.buttonOnClick : Colors.black),
         ),
         child: Row(
           children: [
@@ -50,13 +50,13 @@ class DeleteAddressButton extends StatelessWidget {
             _isLoading
                 ? LoadingIndicator(
                     content: "Loading...",
-                    valueColor: AppColors.kIconBackgroundColor,
-                    backgroundColor: AppColors.kButtonOnClick,
+                    valueColor: AppColors.iconBackgroundColor,
+                    backgroundColor: AppColors.buttonOnClick,
                   )
                 : Text(
                     _content,
                     style: GoogleFonts.cantarell(
-                      color: AppColors.kIconBackgroundColor,
+                      color: AppColors.iconBackgroundColor,
                       fontWeight: FontWeight.bold,
                       fontSize: AppSizes.titleFontSize - 5,
                     ),

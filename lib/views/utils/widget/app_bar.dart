@@ -11,18 +11,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/src/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSize {
-  const MyAppBar(
-      {Key? key, required String title, required bool isPopularScreen})
-      : _title = title,
+  const MyAppBar({
+    Key? key,
+    required String title,
+    required bool isPopularScreen,
+    double? height,
+  })  : _title = title,
         _isPopularScreen = isPopularScreen,
+        _height = height,
         super(key: key);
   final String _title;
   final bool _isPopularScreen;
+  final double? _height;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.kBackgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       centerTitle: false,
       bottomOpacity: 0.0,
       elevation: 1,
@@ -36,7 +41,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
           icon: _isPopularScreen
               ? const FaIcon(
                   FontAwesomeIcons.search,
-                  color: AppColors.kIconBackgroundColor,
+                  color: AppColors.iconBackgroundColor,
                   size: AppSizes.appBarIconSize,
                 )
               : Container(),
@@ -49,7 +54,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
                   .pushNamed(AuthScreen.id),
           icon: const FaIcon(
             FontAwesomeIcons.user,
-            color: AppColors.kIconBackgroundColor,
+            color: AppColors.iconBackgroundColor,
             size: AppSizes.appBarIconSize + 2,
           ),
         ),
@@ -63,5 +68,6 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(50.h);
+  Size get preferredSize =>
+      _height != null ? Size.fromHeight(_height!) : Size.fromHeight(48.h);
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/w_cart_item_save_btn.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/utils/cart_item/w_cart_item_save_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({Key? key, required Product product})
@@ -15,12 +15,11 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _oCcy = NumberFormat("#,##0", "en_US");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          color: AppColors.kSneakerItemBackground,
+          color: AppColors.sneakerItemBackground,
           height: 191.h,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,14 +35,14 @@ class CartItem extends StatelessWidget {
                 children: [
                   SizedBox(height: 15.h),
                   Container(
-                    color: AppColors.kItemTagBackground,
+                    color: AppColors.itemTagBackground,
                     child: Padding(
                       padding: EdgeInsets.all(6.w),
                       child: Text(
                         _product.tag,
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
-                          color: AppColors.kBackgroundColor,
+                          color: AppColors.backgroundColor,
                           fontSize: AppSizes.extraSmallText,
                         ),
                       ),
@@ -51,11 +50,11 @@ class CartItem extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Container(
-                    color: AppColors.kBackgroundColor,
+                    color: AppColors.backgroundColor,
                     child: Padding(
                       padding: EdgeInsets.all(6.w),
                       child: Text(
-                        "đ\t\t\t\t${_oCcy.format(_product.price)}",
+                        "đ\t\t\t\t${AppFormat.currencyFormat.format(_product.price)}",
                         style: TextStyle(
                           fontSize: AppSizes.smallText,
                           letterSpacing: 2.0,
@@ -68,7 +67,7 @@ class CartItem extends StatelessWidget {
                     width: 230.w,
                     child: Text(
                       _product.name,
-                      style: AppStyles.regularTextStyle,
+                      style: AppStyles.boldSmallTextStyle,
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -76,7 +75,7 @@ class CartItem extends StatelessWidget {
                     "Size: 9 UK - Qty: 1",
                     style: TextStyle(
                       fontSize: AppSizes.smallText,
-                      color: AppColors.kSubTitleText,
+                      color: AppColors.subTitleText,
                     ),
                   ),
                   SizedBox(height: 10.h),

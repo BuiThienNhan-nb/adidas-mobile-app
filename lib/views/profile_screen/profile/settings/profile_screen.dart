@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/orders_screen.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_screen.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -33,12 +35,12 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
         title: Text(
-          "BÙI THIỆN NHÂN",
+          context.read<UserProvider>().user.fullname,
           style: AppStyles.titleTextStyle,
         ),
         actions: <Widget>[
@@ -50,13 +52,13 @@ class _ProfileScreenState extends State<ProfileScreen>
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 12,
-              color: AppColors.kIconBackgroundColor,
+              color: AppColors.iconBackgroundColor,
             ),
           ),
         ],
         bottom: TabBar(
-          labelColor: AppColors.kIconBackgroundColor,
-          indicatorColor: AppColors.kIconBackgroundColor,
+          labelColor: AppColors.iconBackgroundColor,
+          indicatorColor: AppColors.iconBackgroundColor,
           indicatorWeight: 1.3,
           controller: _tabController,
           tabs: const [

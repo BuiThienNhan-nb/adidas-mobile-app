@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class LoadingIndicator extends StatelessWidget {
-  Color valueColor = AppColors.kIconBackgroundColor;
-  Color backgroundColor = AppColors.kBackgroundColor;
+  Color valueColor = AppColors.iconBackgroundColor;
+  Color backgroundColor = AppColors.backgroundColor;
 
   LoadingIndicator({
     Key? key,
-    this.valueColor = AppColors.kIconBackgroundColor,
-    this.backgroundColor = AppColors.kBackgroundColor,
+    this.valueColor = AppColors.iconBackgroundColor,
+    this.backgroundColor = AppColors.backgroundColor,
     required String content,
   })  : _content = content,
         super(key: key);

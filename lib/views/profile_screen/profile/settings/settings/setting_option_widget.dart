@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingOption extends StatelessWidget {
@@ -15,37 +16,34 @@ class SettingOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
-      child: Column(
-        children: [
-          TextButton(
-            onPressed: _function,
-            style: TextButton.styleFrom(
-              primary: AppColors.kButtonOnClick,
-            ),
-            child: Row(
-              children: [
-                Text(
-                  _content,
-                  style: const TextStyle(
-                    color: AppColors.kIconBackgroundColor,
-                    fontSize: 17,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: _function,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 12.h),
+              child: Row(
+                children: [
+                  Text(
+                    _content,
+                    style: AppStyles.boldRegularTextStyle,
                   ),
-                ),
-                const Spacer(),
-                const Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppColors.kIconBackgroundColor,
-                )
-              ],
+                  const Spacer(),
+                  const Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: AppColors.iconBackgroundColor,
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            color: AppColors.kGreyBackground,
-            height: 1.h,
-          ),
-        ],
+            Container(
+              color: AppColors.greyBackground,
+              height: 1.h,
+            ),
+          ],
+        ),
       ),
     );
   }

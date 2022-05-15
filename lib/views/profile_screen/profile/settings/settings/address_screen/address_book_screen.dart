@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/add_new_address_screen.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/address_book_item.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
@@ -54,7 +53,7 @@ class AddressBookScreen extends StatelessWidget {
               isLoading: false,
               icon: const FaIcon(
                 FontAwesomeIcons.plus,
-                color: AppColors.kBackgroundColor,
+                color: AppColors.backgroundColor,
                 size: AppSizes.appBarIconSize,
               ),
             ),
