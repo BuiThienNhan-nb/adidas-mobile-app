@@ -45,6 +45,8 @@ dependencies:
   flutter_animated_dialog: ^2.0.1
   dio: ^4.0.4
   webview_flutter: ^3.0.1
+  flutter_facebook_auth: ^4.2.1
+  google_sign_in: ^5.3.0
   hidable: ^1.0.2
   carousel_slider: ^4.1.1
   video_player: ^2.4.0

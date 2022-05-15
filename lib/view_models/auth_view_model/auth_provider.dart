@@ -40,4 +40,42 @@ class AuthProvider extends ChangeNotifier {
       };
     }
   }
+
+  Future<Map<String, dynamic>> register(String email, String passWord) async {
+    Response response = await DataRepository().register(email, passWord);
+    if (response.statusCode == 200) {
+      notifyListeners();
+      return {
+        'status': true,
+        'message': 'Successfully register',
+        'data': response.data
+      };
+    } else {
+      notifyListeners();
+      return {
+        'status': false,
+        'message': 'Unsuccessful register',
+        'data': response.data
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> checkEmail(String id) async {
+    Response response = await DataRepository().checkEmail(id);
+    if (response.statusCode == 200) {
+      notifyListeners();
+      return {
+        'status': true,
+        'message': 'Successfully check mail',
+        'data': response.data
+      };
+    } else {
+      notifyListeners();
+      return {
+        'status': false,
+        'message': 'Unsuccessful check mail',
+        'data': response.data
+      };
+    }
+  }
 }

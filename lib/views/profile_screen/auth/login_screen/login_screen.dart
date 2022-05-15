@@ -1,18 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_method_button.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_with_email/login_with_email_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_method_button.dart';
 import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _googleSignIn = GoogleSignIn();
+    Future loginFaceBook() async {
+      final LoginResult result = await FacebookAuth.instance
+          .login(); // by default we request the email and the public profile
+      // or FacebookAuth.i.login()
+      if (result.status == LoginStatus.success) {
+        // you are logged
+        final AccessToken accessToken = result.accessToken!;
+      } else {
+        print(result.status);
+        print(result.message);
+      }
+    }
+
+    Future loginGoogle() async {
+      final user = _googleSignIn.signIn();
+      print(user);
+    }
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -36,7 +58,7 @@ class LoginScreen extends StatelessWidget {
               color: Colors.indigo.shade800,
             ),
             title: "Facebook",
-            onPress: () {},
+            onPress: loginFaceBook,
           ),
           //SizedBox(height: 3.h),
           AuthMethodButton(
@@ -46,7 +68,7 @@ class LoginScreen extends StatelessWidget {
               color: Colors.red.shade900,
             ),
             title: "Google",
-            onPress: () {},
+            onPress: loginGoogle,
           ),
           //SizedBox(height: 3.h),
           AuthMethodButton(

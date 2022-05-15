@@ -7,6 +7,7 @@ import 'dart:convert';
 class User {
   User({
     required this.id,
+    required this.isVerifiedEmail,
     required this.fullname,
     required this.dateOfBirth,
     required this.phoneNumber,
@@ -16,6 +17,7 @@ class User {
 
   String id;
   String fullname;
+  bool isVerifiedEmail;
   DateTime dateOfBirth;
   String phoneNumber;
   String email;
@@ -23,13 +25,14 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["_id"] ?? "",
-        fullname: json["fullname"],
+        fullname: json["fullname"] ?? "",
         dateOfBirth:
             DateTime.parse(json["dateOfBirth"] ?? DateTime.now().toString()),
         phoneNumber:
             (json["phoneNumber"] == null) ? "" : json["phoneNumber"] ?? "",
         email: ((json["email"] == null) ? "" : json["email"]) ?? "",
         gender: json["gender"] ?? "",
+        isVerifiedEmail: json["isVerifiedEmail"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,5 +42,6 @@ class User {
         "phoneNumber": phoneNumber,
         "email": email,
         "gender": gender,
+        "isVerifiedEmail": isVerifiedEmail,
       };
 }

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
@@ -29,6 +31,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
     final TextEditingController _txtBirthdateController =
         TextEditingController();
     final _key = GlobalKey<FormState>();
+    final userProvider = context.read<UserProvider>();
 
     void pickDate() async {
       final initDate = _txtBirthdateController.text == ""
@@ -62,26 +65,43 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
       _txtBirthdateController.text = AppFormat.formatDay.format(pickDate);
     }
 
-    register() {
-      // Register success
-      if (!_key.currentState!.validate()) {
-        log('VALIDATE RETURN FALSE');
-        return;
+    register() async {
+      Map<String, dynamic> response = await userProvider.updateUserInfor(
+          context.read<UserProvider>().user.id,
+          _txtNameController.text,
+          _txtBirthdateController.text);
+      if (response['status']) {
+        userProvider.setUser(User.fromJson(response['data']));
+        context.read<AuthProvider>().isLogin = true;
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      } else {
+        print('falied');
       }
-      setState(() => context.read<AuthProvider>().isLoading = true);
-      Future.delayed(const Duration(seconds: 3)).then(
-        (val) {
-          setState(() => context.read<AuthProvider>().isLogin = true);
-          setState(() => context.read<AuthProvider>().isLoading = false);
-          Navigator.of(context)
-            ..popUntil(ModalRoute.withName(HomeScreen.id))
-            ..push(
-              CupertinoPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-            );
-        },
-      );
+
+      // Register success
+      // if (!_key.currentState!.validate()) {
+      //   log('VALIDATE RETURN FALSE');
+      //   return;
+      // }
+      // setState(() => context.read<AuthProvider>().isLoading = true);
+      // Future.delayed(const Duration(seconds: 3)).then(
+      //   (val) {
+      //     setState(() => context.read<AuthProvider>().isLogin = true);
+      //     setState(() => context.read<AuthProvider>().isLoading = false);
+      //     Navigator.of(context)
+      //       ..popUntil(ModalRoute.withName(HomeScreen.id))
+      //       ..push(
+      //         CupertinoPageRoute(
+      //           builder: (context) => const HomeScreen(),
+      //         ),
+      //       );
+      //   },
+      // );
     }
 
     return WillPopScope(
