@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/validator.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/personal_screen/forgot_password.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
@@ -79,13 +80,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   onTextSubmitted: (str) {},
                   textController: _txtNameController,
                   textinputType: TextInputType.emailAddress,
-                  validator: MultiValidator(
-                    [
-                      RequiredValidator(errorText: "Name is required"),
-                      MinLengthValidator(4,
-                          errorText: "Name must be at least 4 digits long"),
-                    ],
-                  ),
+                  validator: AppValidators.nameValidator,
                   lableText: "NAME",
                 ),
                 TextFieldInput(
@@ -103,12 +98,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   textController: TextEditingController(
                       text: "buithiennhan250901@gmail.com"),
                   textinputType: TextInputType.emailAddress,
-                  validator: MultiValidator(
-                    [
-                      EmailValidator(errorText: "Please enter a valid email!"),
-                      RequiredValidator(errorText: "Email is required"),
-                    ],
-                  ),
+                  validator: AppValidators.emailValidator,
                   lableText: "EMAIL",
                   readOnly: true,
                   suffixIcon: const Icon(Icons.lock,

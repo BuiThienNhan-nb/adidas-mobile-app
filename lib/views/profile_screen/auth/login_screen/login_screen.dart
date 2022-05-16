@@ -1,8 +1,8 @@
+import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
@@ -25,14 +25,14 @@ class LoginScreen extends StatelessWidget {
         // you are logged
         final AccessToken accessToken = result.accessToken!;
       } else {
-        print(result.status);
-        print(result.message);
+        log('${result.status}');
+        log('${result.message}');
       }
     }
 
     Future loginGoogle() async {
       final user = _googleSignIn.signIn();
-      print(user);
+      log(user.toString());
     }
 
     return Scaffold(

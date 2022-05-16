@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/configs/validator.dart';
 import 'package:flutter_adidas_clone/models/user.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
@@ -11,12 +11,9 @@ import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
 // ignore: implementation_imports
-import 'package:provider/src/provider.dart';
 
 class LoginWithEmail extends StatefulWidget {
   const LoginWithEmail({Key? key}) : super(key: key);
@@ -143,27 +140,14 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                     onTextSubmitted: (str) {},
                     textController: _txtEmailController,
                     textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        EmailValidator(
-                            errorText: "Please enter a valid email!"),
-                        RequiredValidator(errorText: "Email is required"),
-                      ],
-                    ),
+                    validator: AppValidators.emailValidator,
                     lableText: "EMAIL",
                   ),
                   TextFieldInput(
                     onTextSubmitted: (str) {},
                     textController: _txtPasswordController,
                     textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        RequiredValidator(errorText: "Password is required"),
-                        MinLengthValidator(8,
-                            errorText:
-                                "Password must be at least 8 digits long"),
-                      ],
-                    ),
+                    validator: AppValidators.passwordValidator,
                     lableText: "PASSWORD",
                     obcureText: true,
                   ),

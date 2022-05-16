@@ -1,11 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/configs/validator.dart';
 import 'package:flutter_adidas_clone/models/user.dart';
-import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
@@ -18,7 +17,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 // ignore: implementation_imports
-import 'package:provider/src/provider.dart';
 
 class RegisterWithEmail extends StatefulWidget {
   const RegisterWithEmail({Key? key}) : super(key: key);
@@ -69,7 +67,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
 
     register() async {
       context.read<AuthProvider>().isLoading = true;
-      print(_txtEmailController.text);
+      log(_txtEmailController.text);
       Map<String, dynamic> response = await auth.register(
           _txtEmailController.text, _txtPasswordController.text);
       if (response['status']) {
@@ -78,7 +76,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         showVerifiedEmailDialog();
         context.read<AuthProvider>().isLoading = false;
       } else {
-        print('fail');
+        log('fail');
         context.read<AuthProvider>().isLoading = false;
       }
     }
@@ -94,7 +92,7 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
           ),
         );
       } else {
-        print('falied');
+        log('falied');
       }
     }
 
@@ -139,27 +137,14 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
                     onTextSubmitted: (str) {},
                     textController: _txtEmailController,
                     textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        EmailValidator(
-                            errorText: "Please enter a valid email!"),
-                        RequiredValidator(errorText: "Email is required"),
-                      ],
-                    ),
+                    validator: AppValidators.emailValidator,
                     lableText: "EMAIL",
                   ),
                   TextFieldInput(
                     onTextSubmitted: (str) {},
                     textController: _txtPasswordController,
                     textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        RequiredValidator(errorText: "Password is required"),
-                        MinLengthValidator(8,
-                            errorText:
-                                "Password must be at least 8 digits long"),
-                      ],
-                    ),
+                    validator: AppValidators.passwordValidator,
                     lableText: "PASSWORD",
                     obcureText: true,
                   ),
