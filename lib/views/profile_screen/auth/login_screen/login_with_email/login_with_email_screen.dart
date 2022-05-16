@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
@@ -14,6 +13,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+// ignore: implementation_imports
 
 class LoginWithEmail extends StatefulWidget {
   const LoginWithEmail({Key? key}) : super(key: key);
@@ -33,12 +33,11 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 
     late User user;
 
-    showFailDialog() => showAnimatedDialog(
+    showFailDialog(String subTitle) => showAnimatedDialog(
           context: context,
-          builder: (context) => const AuthDialog(
+          builder: (context) => AuthDialog(
             title: "Login Failed",
-            subTitle:
-                "We didn't recognize the username or password you entered. Please try again.",
+            subTitle: subTitle,
             btnTitle: "OK",
           ),
           barrierDismissible: true,
@@ -63,11 +62,26 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       } else {
         log('1');
       }
-      return;
       context.read<AuthProvider>().isLoading = true;
       Map<String, dynamic> response = await auth.fetchLogin(
           _txtEmailController.text, _txtPasswordController.text);
+
       if (response['status']) {
+        if (response['data']['user']['isVerifiedEmail']) {
+          user = User.fromJson(response['data']['user']);
+          context.read<UserProvider>().setUser(user);
+          showDialog(
+              context: context,
+              builder: (context) {
+                return const AlertDialog(
+                    title: Text("Success!!"),
+                    content: Text("Navigate to another screen"));
+              });
+          context.read<AuthProvider>().isLoading = false;
+        } else {
+          showFailDialog(
+              "Your email haven't access please check your mail box to verify your email");
+        }
         user = User.fromJson(response['data']['user']);
         context.read<UserProvider>().setUser(user);
         showDialog(
@@ -81,7 +95,8 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         );
         context.read<AuthProvider>().isLoading = false;
       } else {
-        showFailDialog();
+        showFailDialog(
+            "We didn't recognize the username or password you entered. Please try again.");
       }
     }
 

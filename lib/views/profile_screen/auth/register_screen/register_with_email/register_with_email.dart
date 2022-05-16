@@ -4,15 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/configs/validator.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 // ignore: implementation_imports
-import 'package:provider/src/provider.dart';
 
 class RegisterWithEmail extends StatefulWidget {
   const RegisterWithEmail({Key? key}) : super(key: key);
@@ -24,12 +28,26 @@ class RegisterWithEmail extends StatefulWidget {
 class _RegisterWithEmailState extends State<RegisterWithEmail> {
   @override
   Widget build(BuildContext context) {
+    var auth = context.read<AuthProvider>();
+    late User user;
     final TextEditingController _txtEmailController = TextEditingController();
     final TextEditingController _txtPasswordController =
         TextEditingController();
     final TextEditingController _txtConfirmPasswordController =
         TextEditingController();
     final _key = GlobalKey<FormState>();
+
+    showVerifiedEmailDialog() => showAnimatedDialog(
+          context: context,
+          builder: (context) => AuthDialog(
+            title: "We've sent email code to:",
+            subTitle: _txtEmailController.text,
+            btnTitle: "PLEASE VERIFY YOUR EMAIL",
+          ),
+          barrierDismissible: true,
+          animationType: DialogTransitionType.size,
+          duration: const Duration(milliseconds: 300),
+        );
 
     showSnackBar() {
       SnackBar snackBar = SnackBar(
@@ -45,6 +63,37 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
+    register() async {
+      context.read<AuthProvider>().isLoading = true;
+      log(_txtEmailController.text);
+      Map<String, dynamic> response = await auth.register(
+          _txtEmailController.text, _txtPasswordController.text);
+      if (response['status']) {
+        user = User.fromJson(response['data']['user']);
+        context.read<UserProvider>().setUser(user);
+        showVerifiedEmailDialog();
+        context.read<AuthProvider>().isLoading = false;
+      } else {
+        log('fail');
+        context.read<AuthProvider>().isLoading = false;
+      }
+    }
+
+    checkVefifyEmail() async {
+      Map<String, dynamic> response =
+          await auth.checkEmail(context.read<UserProvider>().user.id);
+      if (response['data']) {
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => const RegisterWithEmailPage2(),
+          ),
+        );
+      } else {
+        log('falied');
+      }
     }
 
     return Scaffold(
@@ -113,7 +162,25 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
                 ],
               ),
             ),
+            Consumer<AuthProvider>(
+              builder: (_, value, __) {
+                return context.read<UserProvider>().isStepOneRegister
+                    ? MyTextButton(
+                        function: checkVefifyEmail,
+                        content: "NEXT STEP",
+                        isLoading: context.read<AuthProvider>().isLoading,
+                      )
+                    : const SizedBox.shrink();
+              },
+            ),
             const Expanded(child: SizedBox()),
+            Consumer<AuthProvider>(builder: (_, value, __) {
+              return MyTextButton(
+                function: register,
+                content: "REGISTER",
+                isLoading: context.read<AuthProvider>().isLoading,
+              );
+            }),
             MyTextButton(
               function: () {
                 if (!_key.currentState!.validate()) {
@@ -137,16 +204,6 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
                   );
                   showSnackBar();
                 });
-
-                // DataRepository()
-                //     .register(
-                //         _txtEmailController.text, _txtPasswordController.text)
-                //     .then((response) => {
-                //           if (response.data)
-                //             {
-                //               // show dialog for register success
-                //             }
-                //         });
               },
               content: "REGISTER",
               isLoading: context.read<AuthProvider>().isLoading,
