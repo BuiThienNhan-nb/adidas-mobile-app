@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/span_text_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/style.dart';
+import '../../utils/widget/span_text_widget.dart';
 
 class ExploreHeading extends StatelessWidget {
   const ExploreHeading({

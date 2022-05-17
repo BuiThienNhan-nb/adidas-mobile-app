@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
 
 class MyTextSpan extends StatelessWidget {
   const MyTextSpan({

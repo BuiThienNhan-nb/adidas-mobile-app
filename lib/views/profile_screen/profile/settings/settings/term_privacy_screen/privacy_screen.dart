@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/term_privacy_screen/body_widget.dart';
+
+import '../setting_app_bar.dart';
+import 'body_widget.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   static const String id = "PrivacyPolicyScreen";

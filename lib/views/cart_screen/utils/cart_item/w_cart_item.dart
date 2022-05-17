@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/cart_item/w_cart_item_save_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../configs/format.dart';
+import '../../../../configs/palette.dart';
+import '../../../../configs/size.dart';
+import '../../../../configs/style.dart';
+import '../../../../models/product.dart';
+import 'w_cart_item_save_btn.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({Key? key, required Product product})

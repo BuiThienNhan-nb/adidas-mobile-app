@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_adidas_clone/models/order.dart';
+
+import '../../models/order.dart';
 
 class OrderProvider extends ChangeNotifier {
   // Order _oder = Order(

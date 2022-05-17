@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
 
 class OutlineShadowButton extends StatelessWidget {
   OutlineShadowButton({

@@ -1,21 +1,23 @@
 import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/configs/validator.dart';
-import 'package:flutter_adidas_clone/models/user.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
-import 'package:flutter_adidas_clone/views/home_screen.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../../../configs/format.dart';
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/style.dart';
+import '../../../../../configs/validator.dart';
+import '../../../../../models/user.dart';
+import '../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../../home_screen.dart';
+import '../../../../utils/button/my_text_button.dart';
+import '../../../../utils/input/text_field_input.dart';
 
 class RegisterWithEmailPage2 extends StatefulWidget {
   const RegisterWithEmailPage2({Key? key}) : super(key: key);

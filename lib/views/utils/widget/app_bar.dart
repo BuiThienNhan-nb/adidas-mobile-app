@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/auth_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
+import '../../../configs/style.dart';
+import '../../../view_models/auth_view_model/auth_provider.dart';
+import '../../profile_screen/auth/auth_screen.dart';
+import '../../profile_screen/profile/settings/profile_screen.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSize {
   const MyAppBar({

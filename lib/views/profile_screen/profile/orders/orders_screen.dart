@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/empty_order_screen.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../../view_models/cart_view_model/cart_provider.dart';
+import 'empty_order_screen.dart';
 
 // class OrderScreen extends StatefulWidget {
 //   const OrderScreen({Key? key}) : super(key: key);

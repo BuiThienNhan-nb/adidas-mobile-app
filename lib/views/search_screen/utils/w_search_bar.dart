@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/views/search_screen/screens/search_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
+import '../screens/search_screen.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({

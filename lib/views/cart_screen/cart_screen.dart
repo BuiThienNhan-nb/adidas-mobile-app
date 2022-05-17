@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/cart_item/w_cart_item.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/w_checkout_cart.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../configs/palette.dart';
+import '../../models/product.dart';
+import '../utils/widget/app_bar.dart';
+import 'utils/cart_item/w_cart_item.dart';
+import 'utils/checkout/w_checkout_cart.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
   const ShoppingCartScreen({Key? key}) : super(key: key);

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/format.dart';
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
+import '../../../configs/style.dart';
+import '../../../models/product.dart';
 
 class ExploreItem extends StatelessWidget {
   const ExploreItem({

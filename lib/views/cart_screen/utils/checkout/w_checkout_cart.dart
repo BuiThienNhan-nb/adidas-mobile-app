@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/order.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_checkout_mbs.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../configs/format.dart';
+import '../../../../configs/size.dart';
+import '../../../../configs/style.dart';
+import '../../../../models/order.dart';
+import '../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../view_models/order_view_model/order_provider.dart';
+import '../../../profile_screen/auth/login_screen/login_screen.dart';
+import '../../../profile_screen/auth/widget/auth_dialog.dart';
+import '../../../utils/button/my_text_button.dart';
+import 'modal_bottom_sheet/w_checkout_mbs.dart';
 
 class CheckoutCartContainer extends StatelessWidget {
   const CheckoutCartContainer({

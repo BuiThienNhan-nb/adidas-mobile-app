@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/loading_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'loading_indicator.dart';
 
 class WebViewWidget extends StatefulWidget {
   const WebViewWidget({

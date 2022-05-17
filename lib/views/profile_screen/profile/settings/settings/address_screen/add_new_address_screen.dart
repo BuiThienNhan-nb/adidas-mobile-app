@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/delete_button.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
+import '../../../../../../configs/style.dart';
+import '../../../../../utils/button/my_text_button.dart';
+import '../../../../../utils/input/text_field_input.dart';
+import 'delete_button.dart';
 
 class AddNewAddressScreen extends StatelessWidget {
   const AddNewAddressScreen({

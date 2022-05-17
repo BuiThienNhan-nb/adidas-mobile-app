@@ -1,15 +1,17 @@
 import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_with_email/login_with_email_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_method_button.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../../configs/palette.dart';
+import '../../../../configs/size.dart';
+import '../../../../configs/style.dart';
+import '../../../utils/widget/privacy_term_dialog.dart';
+import '../widget/auth_method_button.dart';
+import 'login_with_email/login_with_email_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);

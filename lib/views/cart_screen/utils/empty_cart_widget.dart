@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
-import 'package:flutter_adidas_clone/views/utils/button/empty_item_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../configs/style.dart';
+import '../../../view_models/bot_nav_bar_view_model.dart';
+import '../../utils/button/empty_item_button.dart';
 
 class EmptyCartWidget extends StatelessWidget {
   const EmptyCartWidget({Key? key}) : super(key: key);

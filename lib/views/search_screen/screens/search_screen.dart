@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/views/search_screen/screens/news_feed_screen.dart';
-import 'package:flutter_adidas_clone/views/search_screen/utils/w_search_bar.dart';
+
+import '../../../configs/palette.dart';
+import '../utils/w_search_bar.dart';
+import 'news_feed_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);

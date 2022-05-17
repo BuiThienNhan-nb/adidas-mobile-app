@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
 
 // ignore: must_be_immutable
 class LoadingIndicator extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_adidas_clone/models/product.dart';
+import 'product.dart';
 
 class AdBanner {
   final String id;
