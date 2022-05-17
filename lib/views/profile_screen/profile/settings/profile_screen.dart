@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
         title: Text(
-          context.read<UserProvider>().user.fullname,
+          context.read<UserProvider>().user.fullName,
           style: AppStyles.titleTextStyle,
         ),
         actions: <Widget>[

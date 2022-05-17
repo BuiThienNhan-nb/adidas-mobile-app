@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../configs/palette.dart';
 import '../../../../configs/size.dart';
 import '../../../../configs/style.dart';
+import '../../../../models/user.dart';
+import '../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../home_screen.dart';
 import '../../../utils/widget/privacy_term_dialog.dart';
 import '../widget/auth_method_button.dart';
 import 'login_with_email/login_with_email_screen.dart';
@@ -33,8 +38,32 @@ class LoginScreen extends StatelessWidget {
     }
 
     Future loginGoogle() async {
-      final user = _googleSignIn.signIn();
-      log(user.toString());
+      _googleSignIn.signIn().then(
+        (value) {
+          context.read<AuthProvider>().loginMethod =
+              LoginMethod.google.toString();
+          log(value.toString());
+          log(context.read<AuthProvider>().loginMethod);
+          context.read<UserProvider>().user = User(
+            id: '2',
+            isVerifiedEmail: true,
+            fullName: value?.displayName ?? 'None',
+            dateOfBirth: DateTime.now(),
+            phoneNumber: '0123456789',
+            email: value?.email ?? 'sample_email@gmail.com',
+          );
+        },
+        onError: (_) => log('LOGIN FAILURE'),
+      ).then(
+        (value) {
+          context.read<AuthProvider>().isLogin = true;
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            HomeScreen.id,
+            (route) => false,
+          );
+        },
+      );
+      // log(user.toString());
     }
 
     return Scaffold(
