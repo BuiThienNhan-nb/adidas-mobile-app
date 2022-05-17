@@ -74,7 +74,7 @@ class AppRoutes {
   }
 
   Route _errorRoute() {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => const Scaffold(
         body: Center(
           child: Text('Error'),
