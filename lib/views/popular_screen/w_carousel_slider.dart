@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/models/ad_banner.dart';
-import 'package:flutter_adidas_clone/views/popular_screen/w_carousel_item.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/stf_wrapper.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../models/ad_banner.dart';
+import '../utils/widget/stf_wrapper.dart';
+import 'w_carousel_item.dart';
 
 class ProductCarouselSlider extends StatelessWidget {
   const ProductCarouselSlider({

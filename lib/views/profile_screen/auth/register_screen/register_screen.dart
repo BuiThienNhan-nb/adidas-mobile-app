@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_method_button.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/span_text_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../../configs/palette.dart';
+import '../../../../configs/size.dart';
+import '../../../../configs/style.dart';
+import '../../../utils/widget/privacy_term_dialog.dart';
+import '../../../utils/widget/span_text_widget.dart';
+import '../widget/auth_method_button.dart';
+import 'register_with_email/register_with_email.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);

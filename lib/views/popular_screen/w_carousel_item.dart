@@ -1,10 +1,12 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/ad_banner.dart';
-import 'package:flutter_adidas_clone/views/utils/button/outline_empty_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../configs/palette.dart';
+import '../../configs/style.dart';
+import '../../models/ad_banner.dart';
+import '../utils/button/outline_empty_button.dart';
 
 class AdBannerCarouselItem extends StatelessWidget {
   const AdBannerCarouselItem({

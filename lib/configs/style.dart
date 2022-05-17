@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'palette.dart';
+import 'size.dart';
 
 class AppStyles {
   static final TextStyle titleTextStyle = GoogleFonts.cantarell(

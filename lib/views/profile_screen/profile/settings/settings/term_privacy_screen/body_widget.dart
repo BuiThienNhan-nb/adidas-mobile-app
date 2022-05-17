@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/loading_indicator.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+
+import '../../../../../utils/widget/loading_indicator.dart';
 
 class PrivacyTermBodyWidget extends StatelessWidget {
   PrivacyTermBodyWidget({

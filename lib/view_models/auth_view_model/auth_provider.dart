@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/service/data_repository.dart';
+
+import '../../service/data_repository.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool _isLogin = false;

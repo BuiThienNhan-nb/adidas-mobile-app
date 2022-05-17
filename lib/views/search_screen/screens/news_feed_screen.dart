@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
-import 'package:flutter_adidas_clone/views/search_screen/utils/w_explore_heading.dart';
-import 'package:flutter_adidas_clone/views/search_screen/utils/w_explore_item.dart';
-import 'package:flutter_adidas_clone/views/search_screen/utils/w_explore_store_banner.dart';
-import 'package:flutter_adidas_clone/views/search_screen/utils/w_search_bar.dart';
-import 'package:flutter_adidas_clone/views/utils/button/option_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../models/product.dart';
+import '../../utils/button/option_text_button.dart';
+import '../../utils/widget/app_bar.dart';
+import '../utils/w_explore_heading.dart';
+import '../utils/w_explore_item.dart';
+import '../utils/w_explore_store_banner.dart';
+import '../utils/w_search_bar.dart';
 
 class NewsFeedScreen extends StatelessWidget {
   const NewsFeedScreen({Key? key}) : super(key: key);

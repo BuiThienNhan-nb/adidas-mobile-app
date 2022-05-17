@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/view_models/cart_view_model/checkout_cart_config_provider.dart';
-import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_checkout_mbs.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/style.dart';
+import '../../../../../../view_models/cart_view_model/checkout_cart_config_provider.dart';
+import '../../../../../../view_models/order_view_model/order_provider.dart';
+import '../../../../../profile_screen/auth/widget/auth_dialog.dart';
+import '../../../../../profile_screen/profile/settings/settings/setting_app_bar.dart';
+import '../w_checkout_mbs.dart';
 
 class PaymentSelect extends StatelessWidget {
   static double height = 200.h;
@@ -24,7 +25,7 @@ class PaymentSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     showFailureCardPaymentMethod() => showAnimatedDialog(
           context: context,
-          builder: (context) => AuthDialog(
+          builder: (context) => const AuthDialog(
             title: "Choose Method fail",
             subTitle:
                 "We sorry that our app haven't support this payment method yet.",

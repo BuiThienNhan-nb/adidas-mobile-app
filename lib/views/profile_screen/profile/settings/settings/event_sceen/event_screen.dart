@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/event_sceen/empty_event_widget.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
+
+import '../setting_app_bar.dart';
+import 'empty_event_widget.dart';
 
 class MyEventScreen extends StatelessWidget {
   static const String id = "MyEventScreen";

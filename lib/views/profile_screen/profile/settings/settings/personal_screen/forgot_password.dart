@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/configs/validator.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
+import '../../../../../../configs/style.dart';
+import '../../../../../../configs/validator.dart';
+import '../../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../utils/button/my_text_button.dart';
+import '../../../../../utils/input/password_field_input.dart';
+import '../../../../auth/widget/auth_dialog.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   static const String id = "ForgotPasswordScreen";

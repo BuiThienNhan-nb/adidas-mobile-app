@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/routes.dart';
-import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
-import 'package:flutter_adidas_clone/views/popular_screen/popular_product_screen.dart';
-import 'package:flutter_adidas_clone/views/wishlist_screen/wishlist_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../configs/palette.dart';
+import '../configs/routes.dart';
+import '../view_models/bot_nav_bar_view_model.dart';
+import 'cart_screen/cart_screen.dart';
+import 'popular_screen/popular_product_screen.dart';
 import 'search_screen/screens/news_feed_screen.dart';
+import 'wishlist_screen/wishlist_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = "HomeScreen";

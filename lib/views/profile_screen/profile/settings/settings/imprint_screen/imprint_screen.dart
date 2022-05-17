@@ -1,8 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/imprint_screen/imprint_info_widget.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/webview_widget.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
+
+import '../../../../../utils/widget/webview_widget.dart';
+import '../setting_app_bar.dart';
+import 'imprint_info_widget.dart';
 
 class ImprintScreen extends StatefulWidget {
   static const String id = "ImprintScreen";

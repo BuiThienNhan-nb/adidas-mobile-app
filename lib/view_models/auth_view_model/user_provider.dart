@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/models/user.dart';
-import 'package:flutter_adidas_clone/service/data_repository.dart';
+
+import '../../models/user.dart';
+import '../../service/data_repository.dart';
 
 class UserProvider extends ChangeNotifier {
   late User _user;

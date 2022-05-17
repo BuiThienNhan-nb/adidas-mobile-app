@@ -1,19 +1,20 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/validator.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/personal_screen/forgot_password.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_radio_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../../../../configs/format.dart';
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/validator.dart';
+import '../../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../utils/button/my_radio_button.dart';
+import '../../../../../utils/button/my_text_button.dart';
+import '../../../../../utils/input/text_field_input.dart';
+import '../setting_app_bar.dart';
+import 'forgot_password.dart';
 
 class PersonalScreen extends StatefulWidget {
   static const String id = "PersonalScreen";
