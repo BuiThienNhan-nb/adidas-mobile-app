@@ -5,7 +5,7 @@ class AppValidators {
     [
       EmailValidator(errorText: 'Please enter a valid email!'),
       RequiredValidator(errorText: 'Email is required'),
-      WhiteSpaceValidator(errorText: 'Email must not contain whitespace'),
+      // WhiteSpaceValidator(errorText: 'Email must not contain whitespace'),
     ],
   );
 
@@ -40,6 +40,6 @@ class WhiteSpaceValidator extends TextFieldValidator {
   @override
   bool isValid(String? value) {
     // return true if the value is valid according the your condition
-    return !hasMatch(r'', value!);
+    return !value!.contains(' ');
   }
 }
