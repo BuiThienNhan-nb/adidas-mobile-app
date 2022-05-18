@@ -1,12 +1,11 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/snack_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
-// ignore: implementation_imports
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../configs/format.dart';
 import '../../../../../configs/palette.dart';
@@ -19,14 +18,16 @@ import '../../../../home_screen.dart';
 import '../../../../utils/button/my_text_button.dart';
 import '../../../../utils/input/text_field_input.dart';
 
-class RegisterWithEmailPage2 extends StatefulWidget {
+// class RegisterWithEmailPage2 extends StatefulWidget {
+//   const RegisterWithEmailPage2({Key? key}) : super(key: key);
+
+//   @override
+//   State<RegisterWithEmailPage2> createState() => _RegisterWithEmailPage2State();
+// }
+
+class RegisterWithEmailPage2 extends StatelessWidget {
   const RegisterWithEmailPage2({Key? key}) : super(key: key);
 
-  @override
-  State<RegisterWithEmailPage2> createState() => _RegisterWithEmailPage2State();
-}
-
-class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _txtNameController = TextEditingController();
@@ -68,21 +69,39 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
     }
 
     register() async {
-      Map<String, dynamic> response = await userProvider.updateUserInfor(
-          context.read<UserProvider>().user.id,
-          _txtNameController.text,
-          _txtBirthdateController.text);
+      context.read<AuthProvider>().isLoading = true;
+      context.read<AuthProvider>().isLogin = true;
+      Map<String, dynamic> response = await userProvider.updateUserInfo(
+        context.read<UserProvider>().user.id,
+        _txtNameController.text,
+        _txtBirthdateController.text,
+      );
       if (response['status']) {
         userProvider.setUser(User.fromJson(response['data']));
-        context.read<AuthProvider>().isLogin = true;
-        Navigator.push(
+
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(HomeScreen.id, (route) => false);
+        context.read<AuthProvider>().isLogin = false;
+        showSnackBar(
           context,
-          CupertinoPageRoute(
-            builder: (context) => const HomeScreen(),
-          ),
+          "Welcome to Adidas ${_txtNameController.text}",
+          "Dismiss",
         );
       } else {
-        log('falied');
+        log('failed');
+
+        /// Fake update user
+        userProvider.user.fullName = _txtNameController.text.trim();
+        userProvider.user.dateOfBirth =
+            AppFormat.formatDay.parse(_txtBirthdateController.text);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(HomeScreen.id, (route) => false);
+        context.read<AuthProvider>().isLoading = false;
+        showSnackBar(
+          context,
+          "Welcome to Adidas ${_txtNameController.text}",
+          "Dismiss",
+        );
       }
 
       // Register success
@@ -167,11 +186,13 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 ),
               ),
               const Expanded(child: SizedBox()),
-              MyTextButton(
-                function: register,
-                content: "JOIN US",
-                isLoading: context.read<AuthProvider>().isLoading,
-              ),
+              Consumer<AuthProvider>(builder: (_, value, __) {
+                return MyTextButton(
+                  function: register,
+                  content: "JOIN US",
+                  isLoading: context.read<AuthProvider>().isLoading,
+                );
+              }),
               SizedBox(height: 30.h),
             ],
           ),
