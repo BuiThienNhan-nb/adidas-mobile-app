@@ -23,7 +23,7 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Map<String, dynamic>> updateUserInfor(
+  Future<Map<String, dynamic>> updateUserInfo(
       String id, String fullName, String dateOfBirth) async {
     Response response =
         await DataRepository().updateUserInfor(id, fullName, dateOfBirth);
