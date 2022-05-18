@@ -97,7 +97,7 @@ class _SearchBarState extends State<SearchBar> {
                   }),
                   child: suffixIcon,
                 )
-              : const SizedBox(),
+              : const SizedBox.shrink(),
           hintText: 'Find products...',
         ),
       ),
