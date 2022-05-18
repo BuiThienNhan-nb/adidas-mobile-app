@@ -168,18 +168,18 @@ class RegisterWithEmailPage2 extends StatelessWidget {
                     TextFieldInput(
                       onTextSubmitted: (str) {},
                       textController: _txtNameController,
-                      textinputType: TextInputType.emailAddress,
+                      textInputType: TextInputType.emailAddress,
                       validator: AppValidators.nameValidator,
-                      lableText: "NAME",
+                      labelText: "NAME",
                     ),
                     TextFieldInput(
                       onTextSubmitted: (str) {},
                       textController: _txtBirthdateController,
-                      textinputType: TextInputType.emailAddress,
+                      textInputType: TextInputType.emailAddress,
                       validator:
                           RequiredValidator(errorText: "Birthdate is required"),
                       onTap: () => pickDate(),
-                      lableText: "BIRTHDATE",
+                      labelText: "BIRTHDATE",
                       readOnly: true,
                     ),
                   ],

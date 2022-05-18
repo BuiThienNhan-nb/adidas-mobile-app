@@ -53,7 +53,7 @@ class AddNewAddressScreen extends StatelessWidget {
               TextFieldInput(
                 onTextSubmitted: (str) {},
                 textController: _txtNameController,
-                textinputType: TextInputType.emailAddress,
+                textInputType: TextInputType.emailAddress,
                 validator: MultiValidator(
                   [
                     RequiredValidator(errorText: "Name is required"),
@@ -61,12 +61,12 @@ class AddNewAddressScreen extends StatelessWidget {
                         errorText: "Name must be at least 4 digits long"),
                   ],
                 ),
-                lableText: "NAME",
+                labelText: "NAME",
               ),
               TextFieldInput(
                 onTextSubmitted: (str) {},
                 textController: _txtPhoneController,
-                textinputType: TextInputType.phone,
+                textInputType: TextInputType.phone,
                 validator: MultiValidator(
                   [
                     RequiredValidator(errorText: "Phone number is required"),
@@ -74,7 +74,7 @@ class AddNewAddressScreen extends StatelessWidget {
                         errorText: "Phone number not correct"),
                   ],
                 ),
-                lableText: "PHONE NUMBER",
+                labelText: "PHONE NUMBER",
               ),
               MyTextButton(
                 function: () {},

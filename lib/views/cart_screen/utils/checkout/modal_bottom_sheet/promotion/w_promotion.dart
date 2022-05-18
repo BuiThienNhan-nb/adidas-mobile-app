@@ -94,10 +94,10 @@ class _PromotionWidgetState extends State<PromotionWidget> {
               TextFieldInput(
                 onTextSubmitted: (val) {},
                 textController: _promotionIdController,
-                textinputType: TextInputType.name,
+                textInputType: TextInputType.name,
                 validator:
                     RequiredValidator(errorText: "Promotion Id is required"),
-                lableText: "PROMOTION ID",
+                labelText: "PROMOTION ID",
               ),
               SizedBox(height: 12.h),
               MyTextButton(

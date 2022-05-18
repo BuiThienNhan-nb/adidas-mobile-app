@@ -85,26 +85,26 @@ class _PersonalScreenState extends State<PersonalScreen> {
                 TextFieldInput(
                   onTextSubmitted: (str) {},
                   textController: txtNameController,
-                  textinputType: TextInputType.emailAddress,
+                  textInputType: TextInputType.emailAddress,
                   validator: AppValidators.nameValidator,
-                  lableText: "NAME",
+                  labelText: "NAME",
                 ),
                 TextFieldInput(
                   onTextSubmitted: (str) {},
                   textController: txtBirthdateController,
-                  textinputType: TextInputType.emailAddress,
+                  textInputType: TextInputType.emailAddress,
                   validator:
                       RequiredValidator(errorText: "Birthdate is required"),
                   onTap: () => pickDate(),
-                  lableText: "BIRTHDATE",
+                  labelText: "BIRTHDATE",
                   readOnly: true,
                 ),
                 TextFieldInput(
                   onTextSubmitted: (str) {},
                   textController: TextEditingController(text: email),
-                  textinputType: TextInputType.emailAddress,
+                  textInputType: TextInputType.emailAddress,
                   validator: AppValidators.emailValidator,
-                  lableText: "EMAIL",
+                  labelText: "EMAIL",
                   readOnly: true,
                   suffixIcon: const Icon(Icons.lock,
                       color: AppColors.iconBackgroundColor),
@@ -112,12 +112,12 @@ class _PersonalScreenState extends State<PersonalScreen> {
                 TextFieldInput(
                   onTextSubmitted: (str) {},
                   textController: TextEditingController(text: "12345678@"),
-                  textinputType: TextInputType.emailAddress,
+                  textInputType: TextInputType.emailAddress,
                   validator: (str) {
                     return null;
                   },
-                  lableText: "PASSWORD",
-                  obcureText: true,
+                  labelText: "PASSWORD",
+                  obscureText: true,
                   suffixIcon: const FaIcon(
                     FontAwesomeIcons.pen,
                     color: AppColors.iconBackgroundColor,
@@ -132,11 +132,11 @@ class _PersonalScreenState extends State<PersonalScreen> {
                     TextFieldInput(
                       onTextSubmitted: (str) {},
                       textController: TextEditingController(text: " "),
-                      textinputType: TextInputType.emailAddress,
+                      textInputType: TextInputType.emailAddress,
                       validator: (str) {
                         return null;
                       },
-                      lableText: "GENDER",
+                      labelText: "GENDER",
                       readOnly: true,
                     ),
                     Padding(

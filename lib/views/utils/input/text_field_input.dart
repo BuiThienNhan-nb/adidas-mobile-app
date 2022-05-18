@@ -8,22 +8,22 @@ class TextFieldInput extends StatelessWidget {
   final TextEditingController textController;
   bool readOnly = false;
   // ignore: prefer_typing_uninitialized_variables
-  var lableText;
+  var labelText;
   Color bgColor = Colors.transparent;
   // ignore: non_constant_identifier_names
   Color TextColor = AppColors.iconBackgroundColor;
   final Function(String) onTextSubmitted;
   Function()? onTap;
-  final TextInputType textinputType;
+  final TextInputType textInputType;
   Widget suffixIcon = const Icon(null);
-  bool obcureText = false;
+  bool obscureText = false;
   Function()? onSuffixIconTap;
   String? Function(String?)? validator;
 
   TextFieldInput({
     Key? key,
-    this.lableText,
-    this.obcureText = false,
+    this.labelText,
+    this.obscureText = false,
     this.readOnly = false,
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
@@ -33,7 +33,7 @@ class TextFieldInput extends StatelessWidget {
     this.suffixIcon = const Icon(null),
     required this.onTextSubmitted,
     required this.textController,
-    required this.textinputType,
+    required this.textInputType,
     required this.validator,
   }) : super(key: key);
   @override
@@ -43,9 +43,9 @@ class TextFieldInput extends StatelessWidget {
       width: double.infinity,
       height: 70.h,
       child: TextFormField(
-        obscureText: obcureText,
+        obscureText: obscureText,
         onTap: onTap,
-        keyboardType: textinputType,
+        keyboardType: textInputType,
         validator: validator,
         onFieldSubmitted: (value) {
           onTextSubmitted(value);
@@ -63,7 +63,7 @@ class TextFieldInput extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(0.r),
           ),
-          labelText: lableText,
+          labelText: labelText,
           labelStyle: TextStyle(color: TextColor, fontWeight: FontWeight.bold),
           suffixIcon: Padding(
             padding: const EdgeInsetsDirectional.only(end: 12.0, bottom: 4.0),
