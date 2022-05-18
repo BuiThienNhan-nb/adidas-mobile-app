@@ -107,7 +107,7 @@ class User {
       isVerifiedEmail: map['isVerifiedEmail'] ?? false,
       dateOfBirth: map['dateOfBirth'] == null
           ? DateTime.now()
-          : DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth']),
+          : DateTime.parse(map['dateOfBirth']),
       phoneNumber: map['phoneNumber'] ?? '',
       email: map['email'] ?? '',
       gender: map['gender'],
