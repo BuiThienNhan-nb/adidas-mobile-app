@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../configs/palette.dart';
 import '../screens/search_screen.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
   const SearchBar({
     Key? key,
     required this.isNext,
@@ -13,20 +15,34 @@ class SearchBar extends StatelessWidget {
   final bool isNext;
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    final UnderlineInputBorder border = UnderlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.greyBackground),
-      borderRadius: BorderRadius.circular(0.r),
-    );
+  State<SearchBar> createState() => _SearchBarState();
+}
 
+class _SearchBarState extends State<SearchBar> {
+  final TextEditingController controller = TextEditingController();
+  Widget? suffixIcon;
+  final UnderlineInputBorder border = UnderlineInputBorder(
+    borderSide: const BorderSide(color: AppColors.greyBackground),
+    borderRadius: BorderRadius.circular(0.r),
+  );
+  final Widget suffixIconTemplate = Padding(
+    padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 16.h),
+    child: Image.asset(
+      'assets/icons/cross_circle_icon.png',
+      fit: BoxFit.scaleDown,
+      height: 16.h,
+      width: 16.w,
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
     return Material(
       child: TextFormField(
         controller: controller,
-        readOnly: isNext,
-        // autofocus: !isNext,
+        readOnly: widget.isNext,
         onTap: () {
-          if (isNext) {
+          if (widget.isNext) {
             Navigator.push(
               context,
               MaterialPageRoute<void>(
@@ -34,6 +50,20 @@ class SearchBar extends StatelessWidget {
               ),
             );
           } else {}
+        },
+        onChanged: (value) {
+          log(controller.text);
+          log(value);
+          // if (!(value == '')) {
+          //   setState(() => suffixIcon = suffixIconTemplate);
+          if ((value != '')) {
+            controller.text = value;
+            controller.selection = TextSelection.fromPosition(
+                TextPosition(offset: controller.text.length));
+            setState(() => suffixIcon = suffixIconTemplate);
+          } else {
+            setState(() => suffixIcon = null);
+          }
         },
         cursorColor: AppColors.iconBackgroundColor,
         decoration: InputDecoration(
@@ -43,7 +73,7 @@ class SearchBar extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(vertical: 16.h),
           prefixIcon: Padding(
             padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 16.h),
-            child: !isNext
+            child: !widget.isNext
                 ? GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: Icon(
@@ -52,12 +82,6 @@ class SearchBar extends StatelessWidget {
                       size: 18.h,
                     ),
                   )
-                // ? Image.asset(
-                //     'assets/images/arrow_left.png',
-                //     fit: BoxFit.scaleDown,
-                //     height: 4.h,
-                //     width: 4.w,
-                //   )
                 : Image.asset(
                     'assets/icons/search_icon_sb.png',
                     fit: BoxFit.scaleDown,
@@ -65,6 +89,15 @@ class SearchBar extends StatelessWidget {
                     width: 4.w,
                   ),
           ),
+          suffixIcon: suffixIcon != null
+              ? GestureDetector(
+                  onTap: () => setState(() {
+                    controller.text = '';
+                    suffixIcon = null;
+                  }),
+                  child: suffixIcon,
+                )
+              : const SizedBox.shrink(),
           hintText: 'Find products...',
         ),
       ),
