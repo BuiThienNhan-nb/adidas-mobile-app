@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../configs/palette.dart';
 
@@ -80,13 +79,15 @@ class _PasswordFieldInputState extends State<PasswordFieldInput> {
               child: IconButton(
                 onPressed: togglePasswordVisibity,
                 icon: widget.obcureText
-                    ? const FaIcon(
-                        FontAwesomeIcons.eye,
-                        color: AppColors.iconBackgroundColor,
+                    ? Image.asset(
+                        'assets/icons/eye_icon.png',
+                        height: 28.h,
+                        width: 28.w,
                       )
-                    : const FaIcon(
-                        FontAwesomeIcons.eyeSlash,
-                        color: AppColors.iconBackgroundColor,
+                    : Image.asset(
+                        'assets/icons/eye_crossed_icon.png',
+                        height: 28.h,
+                        width: 28.w,
                       ),
               ),
             ),

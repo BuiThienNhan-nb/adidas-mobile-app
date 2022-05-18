@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -141,7 +142,7 @@ class RegisterWithEmail extends StatelessWidget {
                     validator: AppValidators.emailValidator,
                     lableText: "EMAIL",
                   ),
-                  TextFieldInput(
+                  PasswordFieldInput(
                     onTextSubmitted: (str) {},
                     textController: txtPasswordController,
                     textinputType: TextInputType.emailAddress,
@@ -149,7 +150,7 @@ class RegisterWithEmail extends StatelessWidget {
                     lableText: "PASSWORD",
                     obcureText: true,
                   ),
-                  TextFieldInput(
+                  PasswordFieldInput(
                     onTextSubmitted: (str) {},
                     textController: txtConfirmPasswordController,
                     textinputType: TextInputType.emailAddress,
