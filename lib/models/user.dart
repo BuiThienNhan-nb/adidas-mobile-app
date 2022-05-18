@@ -105,7 +105,9 @@ class User {
       id: map['id'] ?? '',
       fullName: map['fullName'] ?? '',
       isVerifiedEmail: map['isVerifiedEmail'] ?? false,
-      dateOfBirth: DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth']),
+      dateOfBirth: map['dateOfBirth'] == null
+          ? DateTime.now()
+          : DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth']),
       phoneNumber: map['phoneNumber'] ?? '',
       email: map['email'] ?? '',
       gender: map['gender'],
