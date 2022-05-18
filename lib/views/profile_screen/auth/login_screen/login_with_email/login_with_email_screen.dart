@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,22 +16,17 @@ import '../../../../../view_models/auth_view_model/user_provider.dart';
 import '../../../../utils/button/my_text_button.dart';
 import '../../../../utils/input/text_field_input.dart';
 import '../../widget/auth_dialog.dart';
-// ignore: implementation_imports
 
-class LoginWithEmail extends StatefulWidget {
+class LoginWithEmail extends StatelessWidget {
   const LoginWithEmail({Key? key}) : super(key: key);
 
   @override
-  State<LoginWithEmail> createState() => _LoginWithEmailState();
-}
-
-class _LoginWithEmailState extends State<LoginWithEmail> {
-  final TextEditingController _txtEmailController = TextEditingController();
-  final TextEditingController _txtPasswordController = TextEditingController();
-  final _key = GlobalKey<FormState>();
-
-  @override
   Widget build(BuildContext context) {
+    final TextEditingController _txtEmailController = TextEditingController();
+    final TextEditingController _txtPasswordController =
+        TextEditingController();
+    final _key = GlobalKey<FormState>();
+
     AuthProvider auth = context.read<AuthProvider>();
 
     late User user;
@@ -59,46 +55,46 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         );
 
     login() async {
-      if (!_key.currentState!.validate()) {
-        return;
-      } else {
-        log('1');
-      }
-      context.read<AuthProvider>().isLoading = true;
-      Map<String, dynamic> response = await auth.fetchLogin(
-          _txtEmailController.text, _txtPasswordController.text);
+      if (_key.currentState!.validate()) {
+        log('VALIDATE RETURN TRUE');
+        context.read<AuthProvider>().isLoading = true;
+        Map<String, dynamic> response = await auth.fetchLogin(
+            _txtEmailController.text, _txtPasswordController.text);
 
-      if (response['status']) {
-        if (response['data']['user']['isVerifiedEmail']) {
+        if (response['status']) {
+          if (response['data']['user']['isVerifiedEmail']) {
+            user = User.fromJson(response['data']['user']);
+            context.read<UserProvider>().setUser(user);
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const AlertDialog(
+                      title: Text("Success!!"),
+                      content: Text("Navigate to another screen"));
+                });
+            context.read<AuthProvider>().isLoading = false;
+          } else {
+            showFailDialog(
+                "Your email haven't access please check your mail box to verify your email");
+          }
           user = User.fromJson(response['data']['user']);
           context.read<UserProvider>().setUser(user);
           showDialog(
-              context: context,
-              builder: (context) {
-                return const AlertDialog(
-                    title: Text("Success!!"),
-                    content: Text("Navigate to another screen"));
-              });
+            context: context,
+            builder: (context) {
+              return const AlertDialog(
+                title: Text("Success!!"),
+                content: Text("Navigate to another screen"),
+              );
+            },
+          );
           context.read<AuthProvider>().isLoading = false;
         } else {
           showFailDialog(
-              "Your email haven't access please check your mail box to verify your email");
+              "We didn't recognize the username or password you entered. Please try again.");
         }
-        user = User.fromJson(response['data']['user']);
-        context.read<UserProvider>().setUser(user);
-        showDialog(
-          context: context,
-          builder: (context) {
-            return const AlertDialog(
-              title: Text("Success!!"),
-              content: Text("Navigate to another screen"),
-            );
-          },
-        );
-        context.read<AuthProvider>().isLoading = false;
       } else {
-        showFailDialog(
-            "We didn't recognize the username or password you entered. Please try again.");
+        log('VALIDATE RETURN FALSE');
       }
     }
 
@@ -145,7 +141,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                     validator: AppValidators.emailValidator,
                     lableText: "EMAIL",
                   ),
-                  TextFieldInput(
+                  PasswordFieldInput(
                     onTextSubmitted: (str) {},
                     textController: _txtPasswordController,
                     textinputType: TextInputType.emailAddress,
