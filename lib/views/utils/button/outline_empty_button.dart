@@ -15,11 +15,11 @@ class OutlineShadowButton extends StatelessWidget {
   final double height = 52.h;
   final double width = 320.w;
   final String content;
-  final Function onTap;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => onTap,
+        onTap: onTap,
         child: SizedBox(
           height: height * 1.4,
           width: width * 1.2,
