@@ -18,8 +18,9 @@ class NewsFeedScreen extends StatelessWidget {
     String _content = "Loading...";
 
     final Product product = Product(
-      image:
-          'https://assets.adidas.com/images/w_276,h_276,f_auto,q_auto,fl_lossy,c_fill,g_auto/329bbd5423a9422b8830ae120157fbf0_9366/GY5969_01_standard.jpg',
+      imageUrl: [
+        'https://assets.adidas.com/images/w_276,h_276,f_auto,q_auto,fl_lossy,c_fill,g_auto/329bbd5423a9422b8830ae120157fbf0_9366/GY5969_01_standard.jpg'
+      ],
       tag: "NEW",
       price: 2500000,
       name: "STAN SMITH",

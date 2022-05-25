@@ -14,7 +14,7 @@ class PopularProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String content = "Loading...";
     final Product product = Product(
-      image: 'assets/images/temp_sneaker.png',
+      imageUrl: ['assets/images/temp_sneaker.png'],
       tag: "LOW IN STOCK",
       price: 5200000,
       name: "ULTRABOOST 21 x PAREY SHOES",

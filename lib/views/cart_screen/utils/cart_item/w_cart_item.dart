@@ -27,7 +27,7 @@ class CartItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image.asset(
-                _product.image,
+                _product.imageUrl.first,
                 height: 190.h,
                 width: 170.w,
               ),

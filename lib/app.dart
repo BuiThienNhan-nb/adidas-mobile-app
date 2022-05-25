@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -42,9 +43,10 @@ class AdidasApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData().copyWith(
-            colorScheme: ThemeData()
-                .colorScheme
-                .copyWith(secondary: Colors.grey.shade500),
+            colorScheme: ThemeData().colorScheme.copyWith(
+                  primary: AppColors.iconBackgroundColor,
+                  secondary: Colors.grey.shade500,
+                ),
           ),
           onGenerateRoute: AppRoutes().onGenerateRoute,
           initialRoute: HomeScreen.id,
