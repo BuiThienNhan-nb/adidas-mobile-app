@@ -19,6 +19,8 @@ class MyTextButton extends StatelessWidget {
       color: AppColors.backgroundColor,
       size: AppSizes.appBarIconSize,
     ),
+    this.buttonStyle,
+    this.contentStyle,
   })  : _function = function,
         _content = content,
         _isLoading = isLoading,
@@ -27,16 +29,21 @@ class MyTextButton extends StatelessWidget {
   final Function() _function;
   final String _content;
   final bool _isLoading;
+  final ButtonStyle? buttonStyle;
+  final TextStyle? contentStyle;
+
   Widget icon;
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: _isLoading ? () {} : _function,
-      style: TextButton.styleFrom(
-        backgroundColor: _isLoading ? AppColors.buttonOnClick : Colors.black,
-        padding: EdgeInsets.zero,
-        primary: AppColors.buttonOnClick,
-      ),
+      style: buttonStyle ??
+          TextButton.styleFrom(
+            backgroundColor:
+                _isLoading ? AppColors.buttonOnClick : Colors.black,
+            padding: EdgeInsets.zero,
+            primary: AppColors.buttonOnClick,
+          ),
       child: Container(
         height: 40.h,
         width: double.infinity,
@@ -56,11 +63,12 @@ class MyTextButton extends StatelessWidget {
                   )
                 : Text(
                     _content,
-                    style: GoogleFonts.cantarell(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: AppSizes.titleFontSize - 5,
-                    ),
+                    style: contentStyle ??
+                        GoogleFonts.cantarell(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppSizes.titleFontSize - 5,
+                        ),
                   ),
             const Spacer(),
             icon,
