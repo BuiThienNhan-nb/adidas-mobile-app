@@ -122,13 +122,19 @@ class PaymentMethod extends StatelessWidget {
 class CashOnDelivery extends StatelessWidget {
   const CashOnDelivery({
     Key? key,
+    this.height,
+    this.width,
+    this.textStyle,
   }) : super(key: key);
+  final double? height;
+  final double? width;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 28.h,
-      width: 80.w,
+      height: height ?? 28.h,
+      width: width ?? 80.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         border: Border.all(color: AppColors.iconBackgroundColor),
