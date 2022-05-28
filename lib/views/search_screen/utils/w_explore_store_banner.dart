@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../configs/palette.dart';
 import '../../../configs/style.dart';
-import '../../utils/button/outline_empty_button.dart';
+import '../../utils/button/outline_shadow_button.dart';
 
 class ExploreStoreBanner extends StatelessWidget {
   const ExploreStoreBanner({
