@@ -1,15 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class Product {
   final String? id;
-  final String image;
+  final List<String> imageUrl;
   final String tag;
   final int price;
   final String name;
-
   Product({
     this.id,
-    required this.image,
+    required this.imageUrl,
     required this.tag,
     required this.price,
     required this.name,
@@ -17,14 +18,14 @@ class Product {
 
   Product copyWith({
     String? id,
-    String? image,
+    List<String>? imageUrl,
     String? tag,
     int? price,
     String? name,
   }) {
     return Product(
       id: id ?? this.id,
-      image: image ?? this.image,
+      imageUrl: imageUrl ?? this.imageUrl,
       tag: tag ?? this.tag,
       price: price ?? this.price,
       name: name ?? this.name,
@@ -37,7 +38,7 @@ class Product {
     if (id != null) {
       result.addAll({'id': id});
     }
-    result.addAll({'image': image});
+    result.addAll({'imageUrl': imageUrl});
     result.addAll({'tag': tag});
     result.addAll({'price': price});
     result.addAll({'name': name});
@@ -48,7 +49,7 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       id: map['id'],
-      image: map['image'] ?? '',
+      imageUrl: List<String>.from(map['imageUrl']),
       tag: map['tag'] ?? '',
       price: map['price']?.toInt() ?? 0,
       name: map['name'] ?? '',
@@ -62,7 +63,7 @@ class Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, image: $image, tag: $tag, price: $price, name: $name)';
+    return 'Product(id: $id, imageUrl: $imageUrl, tag: $tag, price: $price, name: $name)';
   }
 
   @override
@@ -71,7 +72,7 @@ class Product {
 
     return other is Product &&
         other.id == id &&
-        other.image == image &&
+        listEquals(other.imageUrl, imageUrl) &&
         other.tag == tag &&
         other.price == price &&
         other.name == name;
@@ -80,7 +81,7 @@ class Product {
   @override
   int get hashCode {
     return id.hashCode ^
-        image.hashCode ^
+        imageUrl.hashCode ^
         tag.hashCode ^
         price.hashCode ^
         name.hashCode;

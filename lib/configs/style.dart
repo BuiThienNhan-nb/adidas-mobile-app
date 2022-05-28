@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'palette.dart';
@@ -22,9 +23,31 @@ class AppStyles {
     fontSize: AppSizes.mediumText,
   );
 
+  static final TextStyle smallTextStyle = GoogleFonts.cantarell(
+    color: AppColors.iconBackgroundColor,
+    fontSize: AppSizes.smallText,
+  );
+
+  static final TextStyle extraXSmallTextStyle = GoogleFonts.cantarell(
+    color: AppColors.iconBackgroundColor,
+    fontSize: AppSizes.extraSmallText - 4.sp,
+  );
+
   static final TextStyle boldRegularTextStyle = GoogleFonts.cantarell(
     color: AppColors.iconBackgroundColor,
     fontSize: AppSizes.mediumText,
+    fontWeight: FontWeight.bold,
+  );
+
+  static final TextStyle whiteBoldRegularTextStyle = GoogleFonts.cantarell(
+    color: AppColors.backgroundColor,
+    fontSize: AppSizes.mediumText,
+    fontWeight: FontWeight.bold,
+  );
+
+  static final TextStyle boldLargeTextStyle = GoogleFonts.cantarell(
+    color: AppColors.iconBackgroundColor,
+    fontSize: AppSizes.largeText,
     fontWeight: FontWeight.bold,
   );
 

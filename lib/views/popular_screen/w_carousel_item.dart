@@ -1,12 +1,14 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../configs/palette.dart';
 import '../../configs/style.dart';
 import '../../models/ad_banner.dart';
-import '../utils/button/outline_empty_button.dart';
+import '../../models/product.dart';
+import '../product_screen/screens/product_detail_screen.dart';
+import '../utils/button/outline_shadow_button.dart';
 
 class AdBannerCarouselItem extends StatelessWidget {
   const AdBannerCarouselItem({
@@ -79,7 +81,30 @@ class AdBannerCarouselItem extends StatelessWidget {
                 SizedBox(height: 12.h),
                 OutlineShadowButton(
                   content: 'SHOP NOW',
-                  onTap: () => log('SHOP NOW BUTTON CLICKED'),
+                  onTap: () {
+                    log('SHOP NOW BUTTON CLICKED');
+                    Navigator.of(context, rootNavigator: true).push(
+                      CupertinoPageRoute(
+                        builder: (_) => ProductDetailScreen(
+                          heroTag: 'heroTag',
+                          product: Product(
+                            imageUrl: [
+                              'assets/fwdxparley/fwd_parley_1.png',
+                              'assets/fwdxparley/fwd_parley_2.png',
+                              'assets/fwdxparley/fwd_parley_3.png',
+                              'assets/fwdxparley/fwd_parley_4.png',
+                              'assets/fwdxparley/fwd_parley_5.png',
+                              'assets/fwdxparley/fwd_parley_6.png',
+                              'assets/fwdxparley/fwd_parley_7.png',
+                            ],
+                            tag: 'NEW',
+                            price: 1200000,
+                            name: 'Giày Adidas 4D FWD x PARLEY',
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 12.h),
               ],

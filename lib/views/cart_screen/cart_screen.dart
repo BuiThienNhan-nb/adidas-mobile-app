@@ -43,7 +43,7 @@ class ShoppingCartScreen extends StatelessWidget {
               itemCount: 6,
               itemBuilder: (context, index) => CartItem(
                 product: Product(
-                  image: 'assets/images/temp_sneaker.png',
+                  imageUrl: ['assets/images/temp_sneaker.png'],
                   tag: "LOW IN STOCK",
                   price: 5200000,
                   name: "ULTRABOOST 21 x PAREY SHOES",

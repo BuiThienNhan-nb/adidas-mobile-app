@@ -92,9 +92,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             PasswordFieldInput(
               onTextSubmitted: (str) {},
               textController: _txtPasswordController,
-              textinputType: TextInputType.emailAddress,
+              textInputType: TextInputType.emailAddress,
               validator: AppValidators.passwordValidator,
-              lableText: "PASSWORD",
+              labelText: "PASSWORD",
             ),
             MyTextButton(
               function: onBtnTap,

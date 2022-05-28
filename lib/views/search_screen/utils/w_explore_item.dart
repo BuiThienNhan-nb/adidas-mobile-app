@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../configs/format.dart';
@@ -23,8 +25,31 @@ class ExploreItem extends StatelessWidget {
     return Row(
       children: [
         (index == 0) ? SizedBox(width: 40.w) : SizedBox(width: 4.w),
-        Item(
-          product: products[index],
+        GestureDetector(
+          onTap: () => Navigator.of(context).push(
+            CupertinoPageRoute(
+              builder: (_) => ProductDetailScreen(
+                heroTag: 'from_news_feed',
+                product: Product(
+                  imageUrl: [
+                    'assets/fwdxparley/fwd_parley_1.png',
+                    'assets/fwdxparley/fwd_parley_2.png',
+                    'assets/fwdxparley/fwd_parley_3.png',
+                    'assets/fwdxparley/fwd_parley_4.png',
+                    'assets/fwdxparley/fwd_parley_5.png',
+                    'assets/fwdxparley/fwd_parley_6.png',
+                    'assets/fwdxparley/fwd_parley_7.png',
+                  ],
+                  tag: 'NEW',
+                  price: 1200000,
+                  name: 'Giày Adidas 4D FWD x PARLEY',
+                ),
+              ),
+            ),
+          ),
+          child: Item(
+            product: products[index],
+          ),
         ),
         (index == products.length - 1)
             ? SizedBox(width: 40.w)
@@ -52,7 +77,7 @@ class Item extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CachedNetworkImage(
-            imageUrl: _product.image,
+            imageUrl: _product.imageUrl.first,
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             height: 148.h,
