@@ -16,11 +16,15 @@ class CartItem extends StatelessWidget {
     Key? key,
     required Product product,
     required this.appContext,
+    required this.optionItems,
+    required this.isWishList,
   })  : _product = product,
         super(key: key);
 
   final Product _product;
   final BuildContext appContext;
+  final Map<String, Widget> optionItems;
+  final bool isWishList;
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +38,7 @@ class CartItem extends StatelessWidget {
           width: double.infinity,
           child: OptionsModalBottomSheet(
             title: 'OPTIONS',
-            optionItems: {
-              "Move to wishlist":
-                  Image.asset('assets/icons/heart_icon_light.png'),
-              "Remove from cart": Image.asset('assets/icons/trash_icon.png'),
-            },
+            optionItems: optionItems,
           ),
         ),
       );
@@ -103,15 +103,18 @@ class CartItem extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      Text(
-                        "Size: 9 UK - Qty: 1",
-                        style: TextStyle(
-                          fontSize: AppSizes.smallText,
-                          color: AppColors.subTitleText,
-                        ),
-                      ),
+                      isWishList
+                          ? const SizedBox.shrink()
+                          : Text(
+                              "Size: 9 UK - Qty: 1",
+                              style: TextStyle(
+                                fontSize: AppSizes.smallText,
+                                color: AppColors.subTitleText,
+                              ),
+                            ),
                       SizedBox(height: 10.h),
-                      CartItemSaveButton(function: () {}),
+                      CartItemSaveButton(
+                          function: () {}, isWishList: isWishList),
                       SizedBox(height: 14.h),
                     ],
                   ),

@@ -8,12 +8,16 @@ import 'utils/cart_item/w_cart_item.dart';
 import 'utils/checkout/w_checkout_cart.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
-  const ShoppingCartScreen({
+  ShoppingCartScreen({
     Key? key,
     required this.appContext,
   }) : super(key: key);
 
   final BuildContext appContext;
+  final Map<String, Widget> optionItems = {
+    "Move to wishlist": Image.asset('assets/icons/heart_icon_light.png'),
+    "Remove from cart": Image.asset('assets/icons/trash_icon.png'),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,8 @@ class ShoppingCartScreen extends StatelessWidget {
                   name: "ULTRABOOST 21 x PAREY SHOES",
                 ),
                 appContext: appContext,
+                isWishList: false,
+                optionItems: optionItems,
               ),
             ),
           ),
