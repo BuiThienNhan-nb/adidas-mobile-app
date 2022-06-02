@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/views/wishlist_screen/w_filter_modal_bottom_sheet.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,9 +20,29 @@ class WishListScreen extends StatelessWidget {
     "Add to cart": Image.asset('assets/icons/heart_icon_light.png'),
     "Remove from Wishlist": Image.asset('assets/icons/trash_icon.png'),
   };
+  Filter filterOption = Filter.recentlyAdded;
 
   @override
   Widget build(BuildContext context) {
+    showFilterModalBottomSheet() {
+      showModalBottomSheet<dynamic>(
+        context: appContext,
+        isScrollControlled: true,
+        builder: (_) => SizedBox(
+          height: 240.h,
+          width: double.infinity,
+          child: FilterModalBottomSheet(
+            currentFilter: filterOption,
+            callback: (newVal) {
+              filterOption = newVal;
+              log('[FILTER] filter option: $filterOption, callbackVal: $newVal');
+              // Navigator.of(appContext).pop();
+            },
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: const MyAppBar(
         isPopularScreen: false,
@@ -42,16 +64,17 @@ class WishListScreen extends StatelessWidget {
               SizedBox(width: 20.w),
               const Text("5   P R O D U C T S"),
               const Spacer(),
-              Material(
-                child: InkWell(
-                  onTap: () => showFilterModalBottomSheet(appContext),
-                  child: Padding(
-                    padding: EdgeInsets.all(4.w),
-                    child: Image.asset(
-                      'assets/icons/filter_icon.png',
-                      height: 20.h,
-                      width: 20.w,
-                    ),
+              InkWell(
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: showFilterModalBottomSheet,
+                child: Padding(
+                  padding: EdgeInsets.all(4.w),
+                  child: Image.asset(
+                    'assets/icons/filter_icon.png',
+                    height: 20.h,
+                    width: 20.w,
                   ),
                 ),
               ),
@@ -82,16 +105,4 @@ class WishListScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-showFilterModalBottomSheet(BuildContext context) {
-  showModalBottomSheet<dynamic>(
-    context: context,
-    isScrollControlled: true,
-    builder: (_) => SizedBox(
-      height: 240.h,
-      width: double.infinity,
-      child: const FilterModalBottomSheet(),
-    ),
-  );
 }
