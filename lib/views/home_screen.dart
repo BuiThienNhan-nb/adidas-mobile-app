@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       const PopularProductScreen(),
       const NewsFeedScreen(),
       const WishListScreen(),
-      const ShoppingCartScreen(),
+      ShoppingCartScreen(appContext: context),
     ];
     final _navBarItems = <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(

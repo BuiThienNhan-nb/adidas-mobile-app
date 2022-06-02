@@ -8,7 +8,12 @@ import 'utils/cart_item/w_cart_item.dart';
 import 'utils/checkout/w_checkout_cart.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
-  const ShoppingCartScreen({Key? key}) : super(key: key);
+  const ShoppingCartScreen({
+    Key? key,
+    required this.appContext,
+  }) : super(key: key);
+
+  final BuildContext appContext;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +53,7 @@ class ShoppingCartScreen extends StatelessWidget {
                   price: 5200000,
                   name: "ULTRABOOST 21 x PAREY SHOES",
                 ),
+                appContext: appContext,
               ),
             ),
           ),
