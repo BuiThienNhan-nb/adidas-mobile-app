@@ -52,7 +52,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         bottomOpacity: 0.0,
@@ -68,7 +68,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 8,
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
             ),
           )
         ],
@@ -83,7 +83,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Text(
                 "Enter your password to continue",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),
@@ -108,12 +108,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.buttonOnClick,
+                  primary: AppColors.nobelColor,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

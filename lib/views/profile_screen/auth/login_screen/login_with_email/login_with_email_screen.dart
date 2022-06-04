@@ -100,12 +100,12 @@ class LoginWithEmail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         shadowColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
         iconTheme: const IconThemeData(
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
         centerTitle: false,
         title: Text(
@@ -123,7 +123,7 @@ class LoginWithEmail extends StatelessWidget {
               child: Text(
                 "Looks like we already know you",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),
@@ -159,12 +159,12 @@ class LoginWithEmail extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.buttonOnClick,
+                  primary: AppColors.nobelColor,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

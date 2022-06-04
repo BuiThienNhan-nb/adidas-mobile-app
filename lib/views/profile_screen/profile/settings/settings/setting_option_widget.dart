@@ -34,13 +34,13 @@ class SettingOption extends StatelessWidget {
                   const Spacer(),
                   const Icon(
                     Icons.arrow_forward_ios_outlined,
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                   )
                 ],
               ),
             ),
             Container(
-              color: AppColors.greyBackground,
+              color: AppColors.silverColor,
               height: 1.h,
             ),
           ],

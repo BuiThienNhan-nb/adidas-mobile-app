@@ -30,7 +30,7 @@ class EmptyEventWidget extends StatelessWidget {
             SizedBox(height: 10.h),
             const Text(
               "You haven't signed up to any events yet.",
-              style: TextStyle(color: AppColors.buttonOnClick),
+              style: TextStyle(color: AppColors.nobelColor),
             ),
             SizedBox(height: 20.h),
             const Text(

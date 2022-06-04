@@ -28,7 +28,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -37,7 +37,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -46,7 +46,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -55,7 +55,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -64,7 +64,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -73,7 +73,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -82,7 +82,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -91,7 +91,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -100,7 +100,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -109,7 +109,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -118,7 +118,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -127,7 +127,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -136,7 +136,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -145,7 +145,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -154,7 +154,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -163,7 +163,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -172,7 +172,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -181,7 +181,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -190,7 +190,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -199,7 +199,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -208,7 +208,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -217,7 +217,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -226,7 +226,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
               SizedBox(height: 12.h),
@@ -235,7 +235,7 @@ class SizeGuideScreen extends StatelessWidget {
                   style: AppStyles.regularTextStyle),
               SizedBox(height: 12.h),
               Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
                 height: 1.h,
               ),
             ],

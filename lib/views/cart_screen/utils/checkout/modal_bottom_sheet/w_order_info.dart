@@ -22,7 +22,7 @@ class OrderInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        primary: AppColors.iconBackgroundColor,
+        primary: AppColors.blackColor,
       ),
       onPressed: _onTap,
       child: Column(
@@ -37,7 +37,7 @@ class OrderInformation extends StatelessWidget {
               Text(
                 _title,
                 style: TextStyle(
-                  color: AppColors.subTitleText,
+                  color: AppColors.nobelColor,
                   fontSize: AppSizes.mediumText,
                 ),
               ),

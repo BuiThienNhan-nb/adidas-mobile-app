@@ -44,7 +44,7 @@ class ShoppingCartScreen extends StatelessWidget {
             child: const Text("5   P R O D U C T S"),
           ),
           SizedBox(height: 12.h),
-          Divider(height: 3.h, color: AppColors.iconBackgroundColor),
+          Divider(height: 3.h, color: AppColors.blackColor),
 
           /// Temp cart item
           Expanded(

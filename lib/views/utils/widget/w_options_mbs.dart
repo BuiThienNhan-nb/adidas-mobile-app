@@ -52,7 +52,7 @@ List<Widget> buildWidget(Map<String, Widget> items) {
                   SizedBox(height: 16.h),
                   optionItem(e.value, e.key),
                   SizedBox(height: 16.h),
-                  Container(color: AppColors.greyBackground, height: 1.h),
+                  Container(color: AppColors.silverColor, height: 1.h),
                 ],
               ),
             ),

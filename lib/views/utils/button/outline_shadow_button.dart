@@ -33,14 +33,14 @@ class OutlineShadowButton extends StatelessWidget {
                   width: width,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
-                    border: Border.all(color: AppColors.backgroundColor),
+                    border: Border.all(color: AppColors.whiteColor),
                   ),
                 ),
               ),
               Container(
                 height: height,
                 width: width,
-                color: AppColors.backgroundColor,
+                color: AppColors.whiteColor,
                 child: Row(
                   children: [
                     SizedBox(width: 10.w),

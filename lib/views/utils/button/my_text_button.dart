@@ -16,7 +16,7 @@ class MyTextButton extends StatelessWidget {
     required bool isLoading,
     this.icon = const FaIcon(
       FontAwesomeIcons.arrowRight,
-      color: AppColors.backgroundColor,
+      color: AppColors.whiteColor,
       size: AppSizes.appBarIconSize,
     ),
     this.buttonStyle,
@@ -39,10 +39,9 @@ class MyTextButton extends StatelessWidget {
       onPressed: _isLoading ? () {} : _function,
       style: buttonStyle ??
           TextButton.styleFrom(
-            backgroundColor:
-                _isLoading ? AppColors.buttonOnClick : Colors.black,
+            backgroundColor: _isLoading ? AppColors.nobelColor : Colors.black,
             padding: EdgeInsets.zero,
-            primary: AppColors.buttonOnClick,
+            primary: AppColors.nobelColor,
           ),
       child: Container(
         height: 40.h,
@@ -50,7 +49,7 @@ class MyTextButton extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
           border: Border.all(
-              color: _isLoading ? AppColors.buttonOnClick : Colors.black),
+              color: _isLoading ? AppColors.nobelColor : Colors.black),
         ),
         child: Row(
           children: [
@@ -58,8 +57,8 @@ class MyTextButton extends StatelessWidget {
             _isLoading
                 ? LoadingIndicator(
                     content: "Loading...",
-                    valueColor: AppColors.backgroundColor,
-                    backgroundColor: AppColors.buttonOnClick,
+                    valueColor: AppColors.whiteColor,
+                    backgroundColor: AppColors.nobelColor,
                   )
                 : Text(
                     _content,

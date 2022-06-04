@@ -49,14 +49,13 @@ class RegisterWithEmailPage2 extends StatelessWidget {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
-                primary:
-                    AppColors.iconBackgroundColor, // header background color
-                onPrimary: AppColors.backgroundColor, // header text color
-                onSurface: AppColors.iconBackgroundColor, // body text color
+                primary: AppColors.blackColor, // header background color
+                onPrimary: AppColors.whiteColor, // header text color
+                onSurface: AppColors.blackColor, // body text color
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: AppColors.iconBackgroundColor, // button text color
+                  primary: AppColors.blackColor, // button text color
                 ),
               ),
             ),
@@ -129,10 +128,10 @@ class RegisterWithEmailPage2 extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: AppColors.whiteColor,
           shadowColor: Colors.transparent,
           iconTheme: const IconThemeData(
-            color: AppColors.iconBackgroundColor,
+            color: AppColors.blackColor,
           ),
           bottomOpacity: 0.0,
           elevation: 0.0,
@@ -154,7 +153,7 @@ class RegisterWithEmailPage2 extends StatelessWidget {
                 child: Text(
                   "Complete your information to join with us",
                   style: GoogleFonts.cantarell(
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                     fontSize: 14,
                   ),
                 ),

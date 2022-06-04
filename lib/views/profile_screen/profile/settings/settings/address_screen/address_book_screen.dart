@@ -54,7 +54,7 @@ class AddressBookScreen extends StatelessWidget {
               isLoading: false,
               icon: const FaIcon(
                 FontAwesomeIcons.plus,
-                color: AppColors.backgroundColor,
+                color: AppColors.whiteColor,
                 size: AppSizes.appBarIconSize,
               ),
             ),

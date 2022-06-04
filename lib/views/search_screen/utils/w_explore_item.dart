@@ -71,7 +71,7 @@ class Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.sneakerItemBackground,
+      color: AppColors.aliceBlueColor,
       width: 160.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +91,7 @@ class Item extends StatelessWidget {
               children: [
                 SizedBox(height: 12.h),
                 Container(
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(8.w, 8.h, 8.w, 8.h),
                     child: Text(
@@ -113,7 +113,7 @@ class Item extends StatelessWidget {
                   "Men's Performance",
                   style: TextStyle(
                     fontSize: AppSizes.smallText,
-                    color: AppColors.subTitleText,
+                    color: AppColors.nobelColor,
                   ),
                 ),
               ],

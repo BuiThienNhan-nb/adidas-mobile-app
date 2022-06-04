@@ -24,7 +24,7 @@ class AddNewAddressScreen extends StatelessWidget {
         TextEditingController(text: "0");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
@@ -38,7 +38,7 @@ class AddNewAddressScreen extends StatelessWidget {
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 8,
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
             ),
           )
         ],

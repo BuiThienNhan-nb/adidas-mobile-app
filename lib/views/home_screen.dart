@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
       controller: context.read<NavBarProvider>().controller,
       confineInSafeArea: true,
       popActionScreens: PopActionScreensType.all,
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       navBarHeight: _navBarHeight,
       itemAnimationProperties: const ItemAnimationProperties(
         duration: Duration(milliseconds: 400),

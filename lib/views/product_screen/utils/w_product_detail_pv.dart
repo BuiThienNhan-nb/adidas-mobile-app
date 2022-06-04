@@ -27,7 +27,7 @@ class ProductDetailPageView extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: AppColors.greyBackground,
+            color: AppColors.silverColor,
             blurRadius: 4.h,
           ),
         ],
@@ -66,7 +66,7 @@ class ProductDetailPageView extends StatelessWidget {
             left: 16.w,
             bottom: 8.h,
             child: Container(
-              color: AppColors.backgroundColor,
+              color: AppColors.whiteColor,
               child: Padding(
                 padding: EdgeInsets.all(8.w),
                 child: Text(
@@ -92,12 +92,12 @@ Widget smoothPageIndicator(PageController controller, int count) =>
         activeDotDecoration: DotDecoration(
           width: 16.w,
           height: 4.h,
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
         dotDecoration: DotDecoration(
           width: 1.2.w,
           height: 4.h,
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
       ),
     );

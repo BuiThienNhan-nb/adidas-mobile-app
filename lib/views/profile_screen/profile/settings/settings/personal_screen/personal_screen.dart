@@ -51,14 +51,13 @@ class _PersonalScreenState extends State<PersonalScreen> {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
-                primary:
-                    AppColors.iconBackgroundColor, // header background color
-                onPrimary: AppColors.backgroundColor, // header text color
-                onSurface: AppColors.iconBackgroundColor, // body text color
+                primary: AppColors.blackColor, // header background color
+                onPrimary: AppColors.whiteColor, // header text color
+                onSurface: AppColors.blackColor, // body text color
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: AppColors.iconBackgroundColor, // button text color
+                  primary: AppColors.blackColor, // button text color
                 ),
               ),
             ),
@@ -106,8 +105,8 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   validator: AppValidators.emailValidator,
                   labelText: "EMAIL",
                   readOnly: true,
-                  suffixIcon: const Icon(Icons.lock,
-                      color: AppColors.iconBackgroundColor),
+                  suffixIcon:
+                      const Icon(Icons.lock, color: AppColors.blackColor),
                 ),
                 TextFieldInput(
                   onTextSubmitted: (str) {},
@@ -120,7 +119,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   obscureText: true,
                   suffixIcon: const FaIcon(
                     FontAwesomeIcons.pen,
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                   ),
                   // ignore: avoid_print
                   onSuffixIconTap: () =>

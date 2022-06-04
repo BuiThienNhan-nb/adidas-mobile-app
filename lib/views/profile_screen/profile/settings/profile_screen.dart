@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
@@ -53,13 +53,13 @@ class _ProfileScreenState extends State<ProfileScreen>
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 12,
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
             ),
           ),
         ],
         bottom: TabBar(
-          labelColor: AppColors.iconBackgroundColor,
-          indicatorColor: AppColors.iconBackgroundColor,
+          labelColor: AppColors.blackColor,
+          indicatorColor: AppColors.blackColor,
           indicatorWeight: 1.3,
           controller: _tabController,
           tabs: const [

@@ -28,7 +28,7 @@ class ExploreStoreBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
                     child: Text(
@@ -73,7 +73,7 @@ class ItalicTextSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.backgroundColor,
+      color: AppColors.whiteColor,
       child: Padding(
         padding: EdgeInsets.all(8.w),
         child: Text(

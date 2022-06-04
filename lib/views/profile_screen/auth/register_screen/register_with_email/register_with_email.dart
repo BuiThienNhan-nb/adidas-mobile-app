@@ -100,10 +100,10 @@ class RegisterWithEmail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         shadowColor: Colors.transparent,
         iconTheme: const IconThemeData(
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -124,7 +124,7 @@ class RegisterWithEmail extends StatelessWidget {
               child: Text(
                 "No account, so let's get you once",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),

@@ -44,7 +44,7 @@ class AdidasApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData().copyWith(
             colorScheme: ThemeData().colorScheme.copyWith(
-                  primary: AppColors.iconBackgroundColor,
+                  primary: AppColors.blackColor,
                   secondary: Colors.grey.shade500,
                 ),
           ),

@@ -37,7 +37,7 @@ class AdBannerCarouselItem extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: Container(
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
               child: Padding(
                 padding: EdgeInsets.all(8.w),
                 child: Text(
@@ -58,7 +58,7 @@ class AdBannerCarouselItem extends StatelessWidget {
               children: [
                 Container(
                   width: 320.w,
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
                     child: Text(
@@ -69,7 +69,7 @@ class AdBannerCarouselItem extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Container(
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
                     child: Text(

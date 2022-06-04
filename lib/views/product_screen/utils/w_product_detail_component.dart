@@ -111,7 +111,7 @@ Column productSizes(BuildContext context) => Column(
                     padding: EdgeInsets.fromLTRB(12.w, 8.h, 12.w, 8.h),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: AppColors.iconBackgroundColor,
+                        color: AppColors.blackColor,
                       ),
                     ),
                     child: Image.asset(
@@ -167,9 +167,9 @@ Padding purchaseProduct() => Padding(
             content: 'ADD TO BAG',
             isLoading: false,
             buttonStyle: TextButton.styleFrom(
-              backgroundColor: AppColors.backgroundColor,
+              backgroundColor: AppColors.whiteColor,
               padding: EdgeInsets.zero,
-              primary: AppColors.buttonOnClick,
+              primary: AppColors.nobelColor,
             ),
             contentStyle: AppStyles.boldRegularTextStyle,
             icon: Image.asset('assets/icons/cart_add_icon.png'),
@@ -206,7 +206,7 @@ Padding productInfo() {
   TextStyle spanTextStyle = TextStyle(
     decoration: TextDecoration.underline,
     decorationThickness: 1.4,
-    decorationColor: AppColors.iconBackgroundColor,
+    decorationColor: AppColors.blackColor,
     fontWeight: FontWeight.bold,
     fontSize: AppSizes.smallText,
   );

@@ -28,7 +28,7 @@ class EmptyOrderScreen extends StatelessWidget {
             SizedBox(height: 10.h),
             const Text(
               "You haven't placed any orders yet.",
-              style: TextStyle(color: AppColors.buttonOnClick),
+              style: TextStyle(color: AppColors.nobelColor),
             ),
             SizedBox(height: 20.h),
             const Text(
