@@ -20,7 +20,7 @@ class SearchScreen extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: AppColors.greyBackground,
+                color: AppColors.silverColor,
               ),
             ),
           ],

@@ -22,7 +22,7 @@ class _SearchBarState extends State<SearchBar> {
   final TextEditingController controller = TextEditingController();
   Widget? suffixIcon;
   final UnderlineInputBorder border = UnderlineInputBorder(
-    borderSide: const BorderSide(color: AppColors.greyBackground),
+    borderSide: const BorderSide(color: AppColors.silverColor),
     borderRadius: BorderRadius.circular(0.r),
   );
   final Widget suffixIconTemplate = Padding(
@@ -65,7 +65,7 @@ class _SearchBarState extends State<SearchBar> {
             setState(() => suffixIcon = null);
           }
         },
-        cursorColor: AppColors.iconBackgroundColor,
+        cursorColor: AppColors.blackColor,
         decoration: InputDecoration(
           border: border,
           enabledBorder: border,
@@ -78,7 +78,7 @@ class _SearchBarState extends State<SearchBar> {
                     onTap: () => Navigator.of(context).pop(),
                     child: Icon(
                       Icons.arrow_back_outlined,
-                      color: AppColors.iconBackgroundColor,
+                      color: AppColors.blackColor,
                       size: 18.h,
                     ),
                   )

@@ -97,7 +97,7 @@ class PaymentMethod extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
-        border: Border.all(color: AppColors.extraGreyBackground),
+        border: Border.all(color: AppColors.giansboroColor),
       ),
       child: Padding(
         padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
@@ -137,13 +137,13 @@ class CashOnDelivery extends StatelessWidget {
       width: width ?? 80.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: AppColors.iconBackgroundColor),
+        border: Border.all(color: AppColors.blackColor),
       ),
       child: Text(
         "CASH ON DELIVERY",
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
           fontWeight: FontWeight.bold,
           fontSize: 12.sp,
         ),

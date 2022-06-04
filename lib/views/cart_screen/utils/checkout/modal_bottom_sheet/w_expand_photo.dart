@@ -69,7 +69,7 @@ List<Widget> buildImagesGrid(List<String> imageUrls, int maxImages) {
                     '+' + remaining.toString(),
                     style: const TextStyle(
                       fontSize: 20,
-                      color: AppColors.sneakerItemBackground,
+                      color: AppColors.aliceBlueColor,
                     ),
                   ),
                 ),

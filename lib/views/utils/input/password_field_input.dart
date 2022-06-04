@@ -11,7 +11,7 @@ class PasswordFieldInput extends StatefulWidget {
   var labelText;
   Color bgColor = Colors.transparent;
   // ignore: non_constant_identifier_names
-  Color TextColor = AppColors.iconBackgroundColor;
+  Color TextColor = AppColors.blackColor;
   final Function(String) onTextSubmitted;
   Function()? onTap;
   final TextInputType textInputType;
@@ -26,7 +26,7 @@ class PasswordFieldInput extends StatefulWidget {
     this.readOnly = false,
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
-    this.TextColor = AppColors.iconBackgroundColor,
+    this.TextColor = AppColors.blackColor,
     this.onTap,
     this.onSuffixIconTap,
     required this.onTextSubmitted,
@@ -60,11 +60,10 @@ class _PasswordFieldInputState extends State<PasswordFieldInput> {
           },
           controller: widget.textController,
           readOnly: widget.readOnly,
-          cursorColor: AppColors.iconBackgroundColor,
+          cursorColor: AppColors.blackColor,
           decoration: InputDecoration(
             border: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppColors.iconBackgroundColor),
+                borderSide: const BorderSide(color: AppColors.blackColor),
                 borderRadius: BorderRadius.circular(0.r)),
             contentPadding:
                 EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),

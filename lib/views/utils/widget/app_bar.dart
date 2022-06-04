@@ -28,7 +28,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       centerTitle: false,
       bottomOpacity: 0.0,
       elevation: 1,
@@ -42,7 +42,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
           icon: _isPopularScreen
               ? const FaIcon(
                   FontAwesomeIcons.search,
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   size: AppSizes.appBarIconSize,
                 )
               : Container(),
@@ -55,7 +55,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
                   .pushNamed(AuthScreen.id),
           icon: const FaIcon(
             FontAwesomeIcons.user,
-            color: AppColors.iconBackgroundColor,
+            color: AppColors.blackColor,
             size: AppSizes.appBarIconSize + 2,
           ),
         ),

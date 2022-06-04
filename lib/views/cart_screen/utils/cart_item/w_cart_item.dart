@@ -48,7 +48,7 @@ class CartItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          color: AppColors.sneakerItemBackground,
+          color: AppColors.aliceBlueColor,
           height: 191.h,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,14 +67,14 @@ class CartItem extends StatelessWidget {
                     children: [
                       SizedBox(height: 15.h),
                       Container(
-                        color: AppColors.itemTagBackground,
+                        color: AppColors.gambogeColor,
                         child: Padding(
                           padding: EdgeInsets.all(6.w),
                           child: Text(
                             _product.tag,
                             style: TextStyle(
                               fontStyle: FontStyle.italic,
-                              color: AppColors.backgroundColor,
+                              color: AppColors.whiteColor,
                               fontSize: AppSizes.extraSmallText,
                             ),
                           ),
@@ -82,7 +82,7 @@ class CartItem extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       Container(
-                        color: AppColors.backgroundColor,
+                        color: AppColors.whiteColor,
                         child: Padding(
                           padding: EdgeInsets.all(6.w),
                           child: Text(
@@ -109,7 +109,7 @@ class CartItem extends StatelessWidget {
                               "Size: 9 UK - Qty: 1",
                               style: TextStyle(
                                 fontSize: AppSizes.smallText,
-                                color: AppColors.subTitleText,
+                                color: AppColors.nobelColor,
                               ),
                             ),
                       SizedBox(height: 10.h),

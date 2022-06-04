@@ -90,7 +90,7 @@ Padding filterItems(
             ],
           ),
           SizedBox(height: 16.h),
-          Container(color: AppColors.greyBackground, height: 1.h),
+          Container(color: AppColors.silverColor, height: 1.h),
         ],
       ),
     );

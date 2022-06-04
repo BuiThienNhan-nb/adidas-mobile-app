@@ -11,7 +11,7 @@ showSnackBar(BuildContext context, String title, String actionText) {
     ),
     action: SnackBarAction(
       label: actionText,
-      textColor: AppColors.backgroundColor,
+      textColor: AppColors.whiteColor,
       onPressed: () {},
     ),
   );

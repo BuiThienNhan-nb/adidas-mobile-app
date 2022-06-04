@@ -110,20 +110,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
                 SizedBox(height: 24.h),
                 Container(
-                  color: AppColors.greyBackground,
+                  color: AppColors.silverColor,
                   height: 1.h,
                 ),
                 productSizes(context),
                 SizedBox(height: 16.h),
                 Container(
-                  color: AppColors.greyBackground,
+                  color: AppColors.silverColor,
                   height: 1.h,
                 ),
                 SizedBox(height: 24.h),
                 purchaseProduct(),
                 SizedBox(height: 24.h),
                 Container(
-                  color: AppColors.greyBackground,
+                  color: AppColors.silverColor,
                   height: 1.h,
                 ),
                 SizedBox(height: 24.h),

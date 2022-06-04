@@ -27,7 +27,7 @@ class ProductImagesZoom extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.greyBackground,
+                  color: AppColors.silverColor,
                   blurRadius: 2.h,
                 ),
               ],
@@ -81,12 +81,12 @@ Widget smoothPageIndicator(PageController controller, int count) =>
         activeDotDecoration: DotDecoration(
           width: 16.w,
           height: 4.h,
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
         dotDecoration: DotDecoration(
           width: 1.2.w,
           height: 4.h,
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
       ),
     );

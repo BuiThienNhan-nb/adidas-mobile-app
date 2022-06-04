@@ -85,12 +85,12 @@ class _PackageTestState extends State<PackageTest> {
                   activeDotDecoration: DotDecoration(
                     width: 16.w,
                     height: 4.h,
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                   ),
                   dotDecoration: DotDecoration(
                     width: 1.6.w,
                     height: 4.h,
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
 
                     // rotationAngle: 180,
                     // verticalOffset: -10,
