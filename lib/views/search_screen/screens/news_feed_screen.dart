@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,6 +9,8 @@ import '../utils/w_explore_heading.dart';
 import '../utils/w_explore_item.dart';
 import '../utils/w_explore_store_banner.dart';
 import '../utils/w_search_bar.dart';
+import '../utils/category_mock_data.dart';
+import 'category/category_screen.dart';
 
 class NewsFeedScreen extends StatelessWidget {
   const NewsFeedScreen({Key? key}) : super(key: key);
@@ -16,6 +19,7 @@ class NewsFeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String _content = "Loading...";
+    SearchScreenMockData searchScreenMockData = SearchScreenMockData();
 
     final Product product = Product(
       imageUrl: [
@@ -32,6 +36,7 @@ class NewsFeedScreen extends StatelessWidget {
       product,
       product,
     ];
+
     return Scaffold(
       appBar: const MyAppBar(
         isPopularScreen: false,
@@ -50,8 +55,16 @@ class NewsFeedScreen extends StatelessWidget {
               child: SearchBar(isNext: true),
             ),
             OptionTextButton(
-              content: 'SHOES',
-              function: () {},
+              content: searchScreenMockData.shoes.name,
+              function: () {
+                // log(searchScreenMockData.shoes.toString());
+                Navigator.of(context).push(
+                  CupertinoPageRoute<void>(
+                    builder: (BuildContext context) =>
+                        CategoryScreen(productType: searchScreenMockData.shoes),
+                  ),
+                );
+              },
             ),
             OptionTextButton(
               content: 'CLOTHING',

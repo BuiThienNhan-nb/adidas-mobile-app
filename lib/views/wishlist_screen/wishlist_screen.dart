@@ -1,13 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/wishlist_screen/w_filter_modal_bottom_sheet.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../configs/palette.dart';
 import '../../models/product.dart';
 import '../cart_screen/utils/cart_item/w_cart_item.dart';
 import '../utils/widget/app_bar.dart';
+import 'w_filter_modal_bottom_sheet.dart';
 
 class WishListScreen extends StatelessWidget {
   WishListScreen({
@@ -41,6 +41,13 @@ class WishListScreen extends StatelessWidget {
           ),
         ),
       );
+      // .then(
+      //   (value) => Navigator.of(context).push(
+      //     CupertinoPageRoute<void>(
+      //       builder: (BuildContext context) => const TestScreen(),
+      //     ),
+      //   ),
+      // );
     }
 
     return Scaffold(

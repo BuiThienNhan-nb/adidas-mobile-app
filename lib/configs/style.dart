@@ -28,6 +28,11 @@ class AppStyles {
     fontSize: AppSizes.smallText,
   );
 
+  static final TextStyle subTextStyle = GoogleFonts.cantarell(
+    color: AppColors.nobelColor,
+    fontSize: AppSizes.smallText,
+  );
+
   static final TextStyle extraXSmallTextStyle = GoogleFonts.cantarell(
     color: AppColors.blackColor,
     fontSize: AppSizes.extraSmallText - 4.sp,
@@ -79,6 +84,11 @@ class AppStyles {
   static final TextStyle whiteRegularTextStyle = GoogleFonts.cantarell(
     color: AppColors.whiteColor,
     fontSize: AppSizes.mediumText,
+  );
+
+  static final TextStyle whiteSmallTextStyle = GoogleFonts.cantarell(
+    color: AppColors.whiteColor,
+    fontSize: AppSizes.smallText,
   );
 
   static final TextStyle italicWhiteRegularTextStyle = GoogleFonts.cantarell(
