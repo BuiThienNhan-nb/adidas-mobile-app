@@ -5,6 +5,12 @@ class AppSizes {
   static const double appBarIconSize = 20;
   static const double titleFontSize = 20;
 
+  /// 22.sp
+  static final double extraLargeText = 20.sp;
+
+  /// 20.sp
+  static final double largeText = 20.sp;
+
   /// 18.sp
   static final double regularText = 18.sp;
 

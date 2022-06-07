@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/webview_widget.dart';
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
+import '../setting_app_bar.dart';
+import '../../../../../utils/widget/webview_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,7 +24,7 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             const Text(
               "STILL CAN'T FIND YOUR ANSWER? ASK OUR CUSTOMER SERVICE",
               style: TextStyle(
-                color: AppColors.iconBackgroundColor,
+                color: AppColors.blackColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
               ),
@@ -33,7 +33,7 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             HelpServiceItem(
               icon: const FaIcon(
                 FontAwesomeIcons.questionCircle,
-                color: AppColors.iconBackgroundColor,
+                color: AppColors.blackColor,
                 size: AppSizes.appBarIconSize * 2.5,
               ),
               title: "Vist our help section",
@@ -53,14 +53,14 @@ class HelpCustomerServiceScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Divider(
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
               height: 3.h,
             ),
             SizedBox(height: 20.h),
             HelpServiceItem(
               icon: const FaIcon(
                 FontAwesomeIcons.comments,
-                color: AppColors.iconBackgroundColor,
+                color: AppColors.blackColor,
                 size: AppSizes.appBarIconSize * 2.5,
               ),
               title:
@@ -114,20 +114,19 @@ class HelpServiceItem extends StatelessWidget {
                   style: TextButton.styleFrom(
                     // backgroundColor: _isLoading ? AppColors.kButtonOnClick : Colors.black,
                     padding: EdgeInsets.zero,
-                    primary: AppColors.buttonOnClick,
+                    primary: AppColors.nobelColor,
                   ),
                   child: Text(
                     _subTitle,
                     style: const TextStyle(
                       shadows: [
                         Shadow(
-                            color: AppColors.iconBackgroundColor,
-                            offset: Offset(0, -5))
+                            color: AppColors.blackColor, offset: Offset(0, -5))
                       ],
                       color: Colors.transparent,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      decorationColor: AppColors.iconBackgroundColor,
+                      decorationColor: AppColors.blackColor,
                       decorationThickness: 3,
                     ),
                   ),

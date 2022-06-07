@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../configs/palette.dart';
+import '../../../../configs/size.dart';
 
 class AuthMethodButton extends StatelessWidget {
   const AuthMethodButton({
@@ -25,9 +26,9 @@ class AuthMethodButton extends StatelessWidget {
     return TextButton(
       onPressed: _onPress,
       style: TextButton.styleFrom(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         padding: EdgeInsets.zero,
-        primary: AppColors.buttonOnClick,
+        primary: AppColors.nobelColor,
       ),
       child: Container(
         height: 55.h,

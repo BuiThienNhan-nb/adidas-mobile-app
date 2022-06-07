@@ -1,16 +1,10 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/models/ad_banner.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
 import 'package:flutter_adidas_clone/service/data_repository.dart';
-import 'package:flutter_adidas_clone/view_models/banner_view_model/banner_provider.dart';
 import 'package:flutter_adidas_clone/views/popular_screen/w_carousel_slider.dart';
 import 'package:flutter_adidas_clone/views/utils/widget/app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hidable/hidable.dart';
-import 'package:provider/provider.dart';
 
 class PopularProductScreen extends StatelessWidget {
   const PopularProductScreen({Key? key}) : super(key: key);

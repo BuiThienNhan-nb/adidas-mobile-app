@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
+import '../../../../../../configs/style.dart';
+import '../../../../../../configs/validator.dart';
+import '../../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../utils/button/my_text_button.dart';
+import '../../../../../utils/input/password_field_input.dart';
+import '../../../../auth/widget/auth_dialog.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   static const String id = "ForgotPasswordScreen";
@@ -51,7 +52,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         bottomOpacity: 0.0,
@@ -67,7 +68,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 8,
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
             ),
           )
         ],
@@ -82,7 +83,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Text(
                 "Enter your password to continue",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),
@@ -91,15 +92,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             PasswordFieldInput(
               onTextSubmitted: (str) {},
               textController: _txtPasswordController,
-              textinputType: TextInputType.emailAddress,
-              validator: MultiValidator(
-                [
-                  RequiredValidator(errorText: "Password is required"),
-                  MinLengthValidator(8,
-                      errorText: "Password must be at least 8 digits long"),
-                ],
-              ),
-              lableText: "PASSWORD",
+              textInputType: TextInputType.emailAddress,
+              validator: AppValidators.passwordValidator,
+              labelText: "PASSWORD",
             ),
             MyTextButton(
               function: onBtnTap,
@@ -113,12 +108,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.buttonOnClick,
+                  primary: AppColors.nobelColor,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

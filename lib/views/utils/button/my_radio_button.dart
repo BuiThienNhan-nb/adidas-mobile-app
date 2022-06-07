@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
 
 class MyRadioButton extends StatelessWidget {
   const MyRadioButton({
@@ -29,7 +30,7 @@ class MyRadioButton extends StatelessWidget {
               (e) => Expanded(
                 child: RadioListTile<String>(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  activeColor: AppColors.iconBackgroundColor,
+                  activeColor: AppColors.blackColor,
                   value: e,
                   groupValue: _selectedValue,
                   title: Text(e),

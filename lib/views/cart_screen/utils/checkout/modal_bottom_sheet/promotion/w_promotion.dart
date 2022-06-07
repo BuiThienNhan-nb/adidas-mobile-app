@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/view_models/cart_view_model/checkout_cart_config_provider.dart';
-import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_checkout_mbs.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../../view_models/cart_view_model/checkout_cart_config_provider.dart';
+import '../../../../../../view_models/order_view_model/order_provider.dart';
 import '../../../../../profile_screen/auth/widget/auth_dialog.dart';
+import '../../../../../profile_screen/profile/settings/settings/setting_app_bar.dart';
+import '../../../../../utils/button/my_text_button.dart';
+import '../../../../../utils/input/text_field_input.dart';
+import '../w_checkout_mbs.dart';
 
 class PromotionWidget extends StatefulWidget {
   static double height = 240.h;
@@ -94,10 +94,10 @@ class _PromotionWidgetState extends State<PromotionWidget> {
               TextFieldInput(
                 onTextSubmitted: (val) {},
                 textController: _promotionIdController,
-                textinputType: TextInputType.name,
+                textInputType: TextInputType.name,
                 validator:
                     RequiredValidator(errorText: "Promotion Id is required"),
-                lableText: "PROMOTION ID",
+                labelText: "PROMOTION ID",
               ),
               SizedBox(height: 12.h),
               MyTextButton(

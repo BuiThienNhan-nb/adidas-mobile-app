@@ -1,11 +1,12 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/view_models/cart_view_model/checkout_cart_config_provider.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/payment/w_payment_select.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/promotion/w_promotion.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_checkout_main_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../view_models/cart_view_model/checkout_cart_config_provider.dart';
+import 'payment/w_payment_select.dart';
+import 'promotion/w_promotion.dart';
+import 'w_checkout_main_page.dart';
 
 class CheckoutCartBottomSheet extends StatefulWidget {
   static final mainCheckoutBottomSheetHeight = 540.h;

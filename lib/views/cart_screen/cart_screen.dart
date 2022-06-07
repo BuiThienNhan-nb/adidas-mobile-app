@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/cart_item/w_cart_item.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/w_checkout_cart.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../configs/palette.dart';
+import '../../models/product.dart';
+import '../utils/widget/app_bar.dart';
+import 'utils/cart_item/w_cart_item.dart';
+import 'utils/checkout/w_checkout_cart.dart';
+
 class ShoppingCartScreen extends StatelessWidget {
-  const ShoppingCartScreen({Key? key}) : super(key: key);
+  ShoppingCartScreen({
+    Key? key,
+    required this.appContext,
+  }) : super(key: key);
+
+  final BuildContext appContext;
+  final Map<String, Widget> optionItems = {
+    "Move to wishlist": Image.asset('assets/icons/heart_icon_light.png'),
+    "Remove from cart": Image.asset('assets/icons/trash_icon.png'),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +44,7 @@ class ShoppingCartScreen extends StatelessWidget {
             child: const Text("5   P R O D U C T S"),
           ),
           SizedBox(height: 12.h),
-          Divider(height: 3.h, color: AppColors.iconBackgroundColor),
+          Divider(height: 3.h, color: AppColors.blackColor),
 
           /// Temp cart item
           Expanded(
@@ -42,11 +52,14 @@ class ShoppingCartScreen extends StatelessWidget {
               itemCount: 6,
               itemBuilder: (context, index) => CartItem(
                 product: Product(
-                  image: 'assets/images/temp_sneaker.png',
+                  imageUrl: ['assets/images/temp_sneaker.png'],
                   tag: "LOW IN STOCK",
                   price: 5200000,
                   name: "ULTRABOOST 21 x PAREY SHOES",
                 ),
+                appContext: appContext,
+                isWishList: false,
+                optionItems: optionItems,
               ),
             ),
           ),

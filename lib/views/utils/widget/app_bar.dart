@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/auth_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
+import '../../../configs/style.dart';
+import '../../../view_models/auth_view_model/auth_provider.dart';
+import '../../profile_screen/auth/auth_screen.dart';
+import '../../profile_screen/profile/settings/profile_screen.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSize {
   const MyAppBar({
@@ -27,7 +28,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       centerTitle: false,
       bottomOpacity: 0.0,
       elevation: 1,
@@ -41,7 +42,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
           icon: _isPopularScreen
               ? const FaIcon(
                   FontAwesomeIcons.search,
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   size: AppSizes.appBarIconSize,
                 )
               : Container(),
@@ -54,7 +55,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
                   .pushNamed(AuthScreen.id),
           icon: const FaIcon(
             FontAwesomeIcons.user,
-            color: AppColors.iconBackgroundColor,
+            color: AppColors.blackColor,
             size: AppSizes.appBarIconSize + 2,
           ),
         ),

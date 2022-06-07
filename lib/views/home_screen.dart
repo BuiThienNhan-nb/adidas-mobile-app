@@ -1,16 +1,20 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/routes.dart';
-import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
-import 'package:flutter_adidas_clone/views/popular_screen/popular_product_screen.dart';
-import 'package:flutter_adidas_clone/views/wishlist_screen/wishlist_screen.dart';
+import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../configs/palette.dart';
+import '../configs/routes.dart';
+import '../view_models/bot_nav_bar_view_model.dart';
+import 'cart_screen/cart_screen.dart';
+import 'popular_screen/popular_product_screen.dart';
 import 'search_screen/screens/news_feed_screen.dart';
+import 'wishlist_screen/wishlist_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = "HomeScreen";
@@ -23,8 +27,8 @@ class HomeScreen extends StatelessWidget {
     final List<Widget> _screens = [
       const PopularProductScreen(),
       const NewsFeedScreen(),
-      const WishListScreen(),
-      const ShoppingCartScreen(),
+      WishListScreen(appContext: context),
+      ShoppingCartScreen(appContext: context),
     ];
     final _navBarItems = <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
@@ -68,11 +72,32 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       PersistentBottomNavBarItem(
-        icon: Transform.scale(
-          child: Image.asset('assets/icons/cart_icon.png'),
-          scale: 1.1,
+        icon: Badge(
+          padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
+          badgeContent: Text(
+            context.read<CartProvider>().itemCount.toString(),
+            style: AppStyles.whiteSmallTextStyle,
+          ),
+          animationType: BadgeAnimationType.scale,
+          shape: BadgeShape.square,
+          position: BadgePosition.bottomEnd(),
+          badgeColor: AppColors.blackColor,
+          child: Transform.scale(
+              child: Image.asset('assets/icons/cart_icon.png'), scale: 1.1),
         ),
-        inactiveIcon: Image.asset('assets/icons/cart_icon_light.png'),
+        inactiveIcon: Badge(
+          shape: BadgeShape.square,
+          padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
+          badgeContent: Text(
+            context.read<CartProvider>().itemCount.toString(),
+            style: AppStyles.whiteSmallTextStyle,
+          ),
+          animationType: BadgeAnimationType.scale,
+          // shape: BadgeShape.square,
+          position: BadgePosition.bottomEnd(),
+          badgeColor: AppColors.blackColor,
+          child: Image.asset('assets/icons/cart_icon_light.png'),
+        ),
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: CupertinoColors.systemGrey2,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -90,7 +115,7 @@ class HomeScreen extends StatelessWidget {
       controller: context.read<NavBarProvider>().controller,
       confineInSafeArea: true,
       popActionScreens: PopActionScreensType.all,
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       navBarHeight: _navBarHeight,
       itemAnimationProperties: const ItemAnimationProperties(
         duration: Duration(milliseconds: 400),

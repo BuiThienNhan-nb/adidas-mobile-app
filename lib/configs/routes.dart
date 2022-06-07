@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/home_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/auth_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/profile_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/address_book_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/event_sceen/event_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/help_screen/help_cus_service_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/imprint_screen/imprint_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/personal_screen/forgot_password.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/personal_screen/personal_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/term_privacy_screen/privacy_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/term_privacy_screen/term_screen.dart';
+
+import '../views/home_screen.dart';
+import '../views/profile_screen/auth/auth_screen.dart';
+import '../views/profile_screen/profile/settings/profile_screen.dart';
+import '../views/profile_screen/profile/settings/settings/address_screen/address_book_screen.dart';
+import '../views/profile_screen/profile/settings/settings/event_sceen/event_screen.dart';
+import '../views/profile_screen/profile/settings/settings/help_screen/help_cus_service_screen.dart';
+import '../views/profile_screen/profile/settings/settings/imprint_screen/imprint_screen.dart';
+import '../views/profile_screen/profile/settings/settings/personal_screen/forgot_password.dart';
+import '../views/profile_screen/profile/settings/settings/personal_screen/personal_screen.dart';
+import '../views/profile_screen/profile/settings/settings/term_privacy_screen/privacy_screen.dart';
+import '../views/profile_screen/profile/settings/settings/term_privacy_screen/term_screen.dart';
 
 class AppRoutes {
   static final AppRoutes _singleton = AppRoutes._internal();
@@ -25,7 +26,7 @@ class AppRoutes {
     switch (_settings.name) {
       case HomeScreen.id:
         return CupertinoPageRoute(
-          builder: (_) => HomeScreen(),
+          builder: (_) => const HomeScreen(),
         );
       case AuthScreen.id:
         return CupertinoPageRoute(
@@ -73,7 +74,7 @@ class AppRoutes {
   }
 
   Route _errorRoute() {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => const Scaffold(
         body: Center(
           child: Text('Error'),

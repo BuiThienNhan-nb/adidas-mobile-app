@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../../configs/palette.dart';
+import '../../../../configs/style.dart';
 
 class EmptyOrderScreen extends StatelessWidget {
   const EmptyOrderScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class EmptyOrderScreen extends StatelessWidget {
             SizedBox(height: 10.h),
             const Text(
               "You haven't placed any orders yet.",
-              style: TextStyle(color: AppColors.buttonOnClick),
+              style: TextStyle(color: AppColors.nobelColor),
             ),
             SizedBox(height: 20.h),
             const Text(

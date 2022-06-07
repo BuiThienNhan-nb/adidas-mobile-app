@@ -1,37 +1,32 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/user.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
+import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
-// ignore: implementation_imports
-import 'package:provider/src/provider.dart';
 
-class LoginWithEmail extends StatefulWidget {
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/style.dart';
+import '../../../../../configs/validator.dart';
+import '../../../../../models/user.dart';
+import '../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../../utils/button/my_text_button.dart';
+import '../../../../utils/input/text_field_input.dart';
+import '../../widget/auth_dialog.dart';
+
+class LoginWithEmail extends StatelessWidget {
   const LoginWithEmail({Key? key}) : super(key: key);
 
   @override
-  State<LoginWithEmail> createState() => _LoginWithEmailState();
-}
-
-class _LoginWithEmailState extends State<LoginWithEmail> {
-  final TextEditingController _txtEmailController = TextEditingController();
-  final TextEditingController _txtPasswordController = TextEditingController();
-  final _key = GlobalKey<FormState>();
-
-  @override
   Widget build(BuildContext context) {
+    final TextEditingController _txtEmailController = TextEditingController();
+    final TextEditingController _txtPasswordController =
+        TextEditingController();
+    final _key = GlobalKey<FormState>();
+
     AuthProvider auth = context.read<AuthProvider>();
 
     late User user;
@@ -60,57 +55,57 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         );
 
     login() async {
-      if (!_key.currentState!.validate()) {
-        return;
-      } else {
-        log('1');
-      }
-      context.read<AuthProvider>().isLoading = true;
-      Map<String, dynamic> response = await auth.fetchLogin(
-          _txtEmailController.text, _txtPasswordController.text);
+      if (_key.currentState!.validate()) {
+        log('VALIDATE RETURN TRUE');
+        context.read<AuthProvider>().isLoading = true;
+        Map<String, dynamic> response = await auth.fetchLogin(
+            _txtEmailController.text, _txtPasswordController.text);
 
-      if (response['status']) {
-        if (response['data']['user']['isVerifiedEmail']) {
+        if (response['status']) {
+          if (response['data']['user']['isVerifiedEmail']) {
+            user = User.fromJson(response['data']['user']);
+            context.read<UserProvider>().setUser(user);
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const AlertDialog(
+                      title: Text("Success!!"),
+                      content: Text("Navigate to another screen"));
+                });
+            context.read<AuthProvider>().isLoading = false;
+          } else {
+            showFailDialog(
+                "Your email haven't access please check your mail box to verify your email");
+          }
           user = User.fromJson(response['data']['user']);
           context.read<UserProvider>().setUser(user);
           showDialog(
-              context: context,
-              builder: (context) {
-                return const AlertDialog(
-                    title: Text("Success!!"),
-                    content: Text("Navigate to another screen"));
-              });
+            context: context,
+            builder: (context) {
+              return const AlertDialog(
+                title: Text("Success!!"),
+                content: Text("Navigate to another screen"),
+              );
+            },
+          );
           context.read<AuthProvider>().isLoading = false;
         } else {
           showFailDialog(
-              "Your email haven't access please check your mail box to verify your email");
+              "We didn't recognize the username or password you entered. Please try again.");
         }
-        user = User.fromJson(response['data']['user']);
-        context.read<UserProvider>().setUser(user);
-        showDialog(
-          context: context,
-          builder: (context) {
-            return const AlertDialog(
-              title: Text("Success!!"),
-              content: Text("Navigate to another screen"),
-            );
-          },
-        );
-        context.read<AuthProvider>().isLoading = false;
       } else {
-        showFailDialog(
-            "We didn't recognize the username or password you entered. Please try again.");
+        log('VALIDATE RETURN FALSE');
       }
     }
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         shadowColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
         iconTheme: const IconThemeData(
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
         centerTitle: false,
         title: Text(
@@ -128,7 +123,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               child: Text(
                 "Looks like we already know you",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),
@@ -142,30 +137,17 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                   TextFieldInput(
                     onTextSubmitted: (str) {},
                     textController: _txtEmailController,
-                    textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        EmailValidator(
-                            errorText: "Please enter a valid email!"),
-                        RequiredValidator(errorText: "Email is required"),
-                      ],
-                    ),
-                    lableText: "EMAIL",
+                    textInputType: TextInputType.emailAddress,
+                    validator: AppValidators.emailValidator,
+                    labelText: "EMAIL",
                   ),
-                  TextFieldInput(
+                  PasswordFieldInput(
                     onTextSubmitted: (str) {},
                     textController: _txtPasswordController,
-                    textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        RequiredValidator(errorText: "Password is required"),
-                        MinLengthValidator(8,
-                            errorText:
-                                "Password must be at least 8 digits long"),
-                      ],
-                    ),
-                    lableText: "PASSWORD",
-                    obcureText: true,
+                    textInputType: TextInputType.emailAddress,
+                    validator: AppValidators.passwordValidator,
+                    labelText: "PASSWORD",
+                    obscureText: true,
                   ),
                 ],
               ),
@@ -177,12 +159,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
-                  primary: AppColors.buttonOnClick,
+                  primary: AppColors.nobelColor,
                 ),
                 child: const Text(
                   "Forgot your password?",
                   style: TextStyle(
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

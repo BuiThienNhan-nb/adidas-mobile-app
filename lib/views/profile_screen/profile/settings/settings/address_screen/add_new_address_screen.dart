@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/delete_button.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
+import '../../../../../../configs/style.dart';
+import '../../../../../utils/button/my_text_button.dart';
+import '../../../../../utils/input/text_field_input.dart';
+import 'delete_button.dart';
 
 class AddNewAddressScreen extends StatelessWidget {
   const AddNewAddressScreen({
@@ -23,7 +24,7 @@ class AddNewAddressScreen extends StatelessWidget {
         TextEditingController(text: "0");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
@@ -37,7 +38,7 @@ class AddNewAddressScreen extends StatelessWidget {
             icon: const Icon(
               Icons.close,
               size: AppSizes.navBarIconSize + 8,
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
             ),
           )
         ],
@@ -52,7 +53,7 @@ class AddNewAddressScreen extends StatelessWidget {
               TextFieldInput(
                 onTextSubmitted: (str) {},
                 textController: _txtNameController,
-                textinputType: TextInputType.emailAddress,
+                textInputType: TextInputType.emailAddress,
                 validator: MultiValidator(
                   [
                     RequiredValidator(errorText: "Name is required"),
@@ -60,12 +61,12 @@ class AddNewAddressScreen extends StatelessWidget {
                         errorText: "Name must be at least 4 digits long"),
                   ],
                 ),
-                lableText: "NAME",
+                labelText: "NAME",
               ),
               TextFieldInput(
                 onTextSubmitted: (str) {},
                 textController: _txtPhoneController,
-                textinputType: TextInputType.phone,
+                textInputType: TextInputType.phone,
                 validator: MultiValidator(
                   [
                     RequiredValidator(errorText: "Phone number is required"),
@@ -73,7 +74,7 @@ class AddNewAddressScreen extends StatelessWidget {
                         errorText: "Phone number not correct"),
                   ],
                 ),
-                lableText: "PHONE NUMBER",
+                labelText: "PHONE NUMBER",
               ),
               MyTextButton(
                 function: () {},

@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../../configs/palette.dart';
 
 class ImprintInfoPage extends StatelessWidget {
   const ImprintInfoPage({
@@ -35,7 +36,7 @@ class ImprintInfoPage extends StatelessWidget {
           RichText(
             text: TextSpan(
               style: const TextStyle(
-                color: AppColors.iconBackgroundColor,
+                color: AppColors.blackColor,
               ),
               children: <TextSpan>[
                 const TextSpan(

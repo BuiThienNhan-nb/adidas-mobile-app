@@ -10,37 +10,51 @@ import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/r
 import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
 import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
+import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/style.dart';
+import '../../../../../configs/validator.dart';
+import '../../../../../models/user.dart';
+import '../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../../utils/button/my_text_button.dart';
+import '../../../../utils/input/text_field_input.dart';
+import '../../../../utils/widget/snack_bar.dart';
+import '../../widget/auth_dialog.dart';
+import 'register_with_email_page_2.dart';
 // ignore: implementation_imports
 
-class RegisterWithEmail extends StatefulWidget {
+// class RegisterWithEmail extends StatefulWidget {
+//   const RegisterWithEmail({Key? key}) : super(key: key);
+
+//   @override
+//   State<RegisterWithEmail> createState() => _RegisterWithEmailState();
+// }
+
+class RegisterWithEmail extends StatelessWidget {
   const RegisterWithEmail({Key? key}) : super(key: key);
 
-  @override
-  State<RegisterWithEmail> createState() => _RegisterWithEmailState();
-}
-
-class _RegisterWithEmailState extends State<RegisterWithEmail> {
   @override
   Widget build(BuildContext context) {
     var auth = context.read<AuthProvider>();
     late User user;
-    final TextEditingController _txtEmailController = TextEditingController();
-    final TextEditingController _txtPasswordController =
+    final TextEditingController txtEmailController = TextEditingController();
+    final TextEditingController txtPasswordController = TextEditingController();
+    final TextEditingController txtConfirmPasswordController =
         TextEditingController();
-    final TextEditingController _txtConfirmPasswordController =
-        TextEditingController();
-    final _key = GlobalKey<FormState>();
+    final key = GlobalKey<FormState>();
 
     showVerifiedEmailDialog() => showAnimatedDialog(
           context: context,
           builder: (context) => AuthDialog(
             title: "We've sent email code to:",
-            subTitle: _txtEmailController.text,
+            subTitle: txtEmailController.text,
             btnTitle: "PLEASE VERIFY YOUR EMAIL",
           ),
           barrierDismissible: true,
@@ -48,41 +62,38 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
           duration: const Duration(milliseconds: 300),
         );
 
-    showSnackBar() {
-      SnackBar snackBar = SnackBar(
-        duration: const Duration(milliseconds: 400),
-        content: const Text(
-          "Register successfully",
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-        ),
-        action: SnackBarAction(
-          label: "Dismiss",
-          textColor: AppColors.backgroundColor,
-          onPressed: () {},
-        ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
     register() async {
-      context.read<AuthProvider>().isLoading = true;
-      print(_txtEmailController.text);
-      Map<String, dynamic> response = await auth.register(
-          _txtEmailController.text, _txtPasswordController.text);
-      if (response['status']) {
-        user = User.fromJson(response['data']['user']);
-        context.read<UserProvider>().setUser(user);
-        showVerifiedEmailDialog();
-        context.read<AuthProvider>().isLoading = false;
+      if (key.currentState!.validate()) {
+        context.read<AuthProvider>().isLoading = true;
+        log(txtEmailController.text);
+        Map<String, dynamic> response = await auth.register(
+            txtEmailController.text, txtPasswordController.text);
+        if (response['status']) {
+          user = User.fromMap(response['data']['user']);
+          context.read<UserProvider>().setUser(user);
+          // showVerifiedEmailDialog();
+          context.read<AuthProvider>().isLoading = false;
+          Navigator.of(context)
+            ..pop()
+            ..push(
+              CupertinoPageRoute(
+                builder: (context) => const RegisterWithEmailPage2(),
+              ),
+            );
+          showSnackBar(context, "Register successfully", "Dismiss");
+        } else {
+          log('fail');
+          // context.read<AuthProvider>().isLoading = false;
+        }
       } else {
-        print('fail');
-        context.read<AuthProvider>().isLoading = false;
+        log('VALIDATE RETURN FALSE');
       }
     }
 
-    checkVefifyEmail() async {
+    checkVerifyEmail() async {
       Map<String, dynamic> response =
           await auth.checkEmail(context.read<UserProvider>().user.id);
+
       if (response['data']) {
         Navigator.push(
           context,
@@ -91,16 +102,16 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
           ),
         );
       } else {
-        print('falied');
+        log('failed');
       }
     }
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         shadowColor: Colors.transparent,
         iconTheme: const IconThemeData(
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -121,70 +132,56 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
               child: Text(
                 "No account, so let's get you once",
                 style: GoogleFonts.cantarell(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),
             ),
             SizedBox(height: 20.h),
             Form(
-              key: _key,
+              key: key,
               autovalidateMode: AutovalidateMode.always,
               child: Column(
                 children: [
                   TextFieldInput(
                     onTextSubmitted: (str) {},
-                    textController: _txtEmailController,
-                    textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        EmailValidator(
-                            errorText: "Please enter a valid email!"),
-                        RequiredValidator(errorText: "Email is required"),
-                      ],
-                    ),
-                    lableText: "EMAIL",
+                    textController: txtEmailController,
+                    textInputType: TextInputType.emailAddress,
+                    validator: AppValidators.emailValidator,
+                    labelText: "EMAIL",
                   ),
-                  TextFieldInput(
+                  PasswordFieldInput(
                     onTextSubmitted: (str) {},
-                    textController: _txtPasswordController,
-                    textinputType: TextInputType.emailAddress,
-                    validator: MultiValidator(
-                      [
-                        RequiredValidator(errorText: "Password is required"),
-                        MinLengthValidator(8,
-                            errorText:
-                                "Password must be at least 8 digits long"),
-                      ],
-                    ),
-                    lableText: "PASSWORD",
-                    obcureText: true,
+                    textController: txtPasswordController,
+                    textInputType: TextInputType.emailAddress,
+                    validator: AppValidators.passwordValidator,
+                    labelText: "PASSWORD",
+                    obscureText: true,
                   ),
-                  TextFieldInput(
+                  PasswordFieldInput(
                     onTextSubmitted: (str) {},
-                    textController: _txtConfirmPasswordController,
-                    textinputType: TextInputType.emailAddress,
-                    validator: (str) =>
-                        MatchValidator(errorText: "Password do not match")
-                            .validateMatch(
-                                str!, _txtPasswordController.text.trim()),
-                    lableText: "CONFIRM PASSWORD",
-                    obcureText: true,
+                    textController: txtConfirmPasswordController,
+                    textInputType: TextInputType.emailAddress,
+                    validator: (str) => MatchValidator(
+                            errorText: "Password do not match")
+                        .validateMatch(str!, txtPasswordController.text.trim()),
+                    labelText: "CONFIRM PASSWORD",
+                    obscureText: true,
                   ),
                 ],
               ),
             ),
-            Consumer<AuthProvider>(
-              builder: (_, value, __) {
-                return context.read<UserProvider>().isStepOneRegister
-                    ? MyTextButton(
-                        function: checkVefifyEmail,
-                        content: "NEXT STEP",
-                        isLoading: context.read<AuthProvider>().isLoading,
-                      )
-                    : const SizedBox.shrink();
-              },
-            ),
+            // Consumer<AuthProvider>(
+            //   builder: (_, value, __) {
+            //     return context.read<UserProvider>().isStepOneRegister
+            //         ? MyTextButton(
+            //             function: checkVerifyEmail,
+            //             content: "NEXT STEP",
+            //             isLoading: context.read<AuthProvider>().isLoading,
+            //           )
+            //         : const SizedBox.shrink();
+            //   },
+            // ),
             const Expanded(child: SizedBox()),
             Consumer<AuthProvider>(builder: (_, value, __) {
               return MyTextButton(
@@ -193,33 +190,32 @@ class _RegisterWithEmailState extends State<RegisterWithEmail> {
                 isLoading: context.read<AuthProvider>().isLoading,
               );
             }),
-            MyTextButton(
-              function: () {
-                if (!_key.currentState!.validate()) {
-                  log('VALIDATE RETURN FALSE');
-                  return;
-                }
-
-                /// Fake function create account
-                setState(() => context.read<AuthProvider>().isLoading = true);
-                Future.delayed(
-                  const Duration(seconds: 3),
-                ).then((value) {
-                  setState(
-                      () => context.read<AuthProvider>().isLoading = false);
-                  // Push to screen complete user info
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const RegisterWithEmailPage2(),
-                    ),
-                  );
-                  showSnackBar();
-                });
-              },
-              content: "REGISTER",
-              isLoading: context.read<AuthProvider>().isLoading,
-            ),
+            // MyTextButton(
+            //   function: () {
+            //     if (!key.currentState!.validate()) {
+            //       log('VALIDATE RETURN FALSE');
+            //       return;
+            //     }
+            //     /// Fake function create account
+            //     setState(() => context.read<AuthProvider>().isLoading = true);
+            //     Future.delayed(
+            //       const Duration(seconds: 3),
+            //     ).then((value) {
+            //       setState(
+            //           () => context.read<AuthProvider>().isLoading = false);
+            //       // Push to screen complete user info
+            //       Navigator.push(
+            //         context,
+            //         CupertinoPageRoute(
+            //           builder: (context) => const RegisterWithEmailPage2(),
+            //         ),
+            //       );
+            //       showSnackBar();
+            //     });
+            //   },
+            //   content: "REGISTER",
+            //   isLoading: context.read<AuthProvider>().isLoading,
+            // ),
             SizedBox(height: 30.h),
           ],
         ),

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/add_new_address_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
+import 'add_new_address_screen.dart';
 
 class AddressBookItem extends StatelessWidget {
   const AddressBookItem({
@@ -28,7 +29,7 @@ class AddressBookItem extends StatelessWidget {
         height: 100.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.greyBackground),
+          border: Border.all(color: AppColors.silverColor),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +49,7 @@ class AddressBookItem extends StatelessWidget {
               ),
             ),
             Container(
-              color: AppColors.greyBackground,
+              color: AppColors.silverColor,
               height: 100.h,
               width: 1.w,
             ),
@@ -64,7 +65,7 @@ class AddressBookItem extends StatelessWidget {
                 ),
                 icon: const FaIcon(
                   FontAwesomeIcons.pen,
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   size: AppSizes.appBarIconSize,
                 ),
               ),

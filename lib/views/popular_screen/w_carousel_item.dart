@@ -1,10 +1,14 @@
 import 'dart:developer';
-import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/ad_banner.dart';
-import 'package:flutter_adidas_clone/views/utils/button/outline_empty_button.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../configs/palette.dart';
+import '../../configs/style.dart';
+import '../../models/ad_banner.dart';
+import '../../models/product.dart';
+import '../product_screen/screens/product_detail_screen.dart';
+import '../utils/button/outline_shadow_button.dart';
 
 class AdBannerCarouselItem extends StatelessWidget {
   const AdBannerCarouselItem({
@@ -33,7 +37,7 @@ class AdBannerCarouselItem extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: Container(
-              color: AppColors.iconBackgroundColor,
+              color: AppColors.blackColor,
               child: Padding(
                 padding: EdgeInsets.all(8.w),
                 child: Text(
@@ -54,7 +58,7 @@ class AdBannerCarouselItem extends StatelessWidget {
               children: [
                 Container(
                   width: 320.w,
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
                     child: Text(
@@ -65,7 +69,7 @@ class AdBannerCarouselItem extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Container(
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
                     child: Text(
@@ -77,7 +81,30 @@ class AdBannerCarouselItem extends StatelessWidget {
                 SizedBox(height: 12.h),
                 OutlineShadowButton(
                   content: 'SHOP NOW',
-                  onTap: () => log('SHOP NOW BUTTON CLICKED'),
+                  onTap: () {
+                    log('SHOP NOW BUTTON CLICKED');
+                    Navigator.of(context, rootNavigator: true).push(
+                      CupertinoPageRoute(
+                        builder: (_) => ProductDetailScreen(
+                          heroTag: 'heroTag',
+                          product: Product(
+                            imageUrl: [
+                              'assets/fwdxparley/fwd_parley_1.png',
+                              'assets/fwdxparley/fwd_parley_2.png',
+                              'assets/fwdxparley/fwd_parley_3.png',
+                              'assets/fwdxparley/fwd_parley_4.png',
+                              'assets/fwdxparley/fwd_parley_5.png',
+                              'assets/fwdxparley/fwd_parley_6.png',
+                              'assets/fwdxparley/fwd_parley_7.png',
+                            ],
+                            tag: 'NEW',
+                            price: 1200000,
+                            name: 'Giày Adidas 4D FWD x PARLEY',
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 12.h),
               ],

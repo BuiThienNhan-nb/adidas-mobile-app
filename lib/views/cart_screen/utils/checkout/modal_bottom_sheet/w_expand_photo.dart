@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../configs/palette.dart';
 
 class ExpandImageGrid extends StatelessWidget {
   const ExpandImageGrid({
@@ -68,7 +69,7 @@ List<Widget> buildImagesGrid(List<String> imageUrls, int maxImages) {
                     '+' + remaining.toString(),
                     style: const TextStyle(
                       fontSize: 20,
-                      color: AppColors.sneakerItemBackground,
+                      color: AppColors.aliceBlueColor,
                     ),
                   ),
                 ),

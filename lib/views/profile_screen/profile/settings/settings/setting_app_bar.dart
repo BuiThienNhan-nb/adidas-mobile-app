@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/style.dart';
 
 class SettingAppBar extends StatelessWidget implements PreferredSize {
   const SettingAppBar({Key? key, required String title})
@@ -11,13 +12,13 @@ class SettingAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       centerTitle: false,
       bottomOpacity: 0.0,
       elevation: 0.0,
       shadowColor: Colors.transparent,
       iconTheme: const IconThemeData(
-        color: AppColors.iconBackgroundColor,
+        color: AppColors.blackColor,
       ),
       title: Text(
         _title,

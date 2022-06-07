@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_app_bar.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
+import 'login_screen/login_screen.dart';
+import 'register_screen/register_screen.dart';
+import 'widget/auth_app_bar.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -40,9 +41,9 @@ class AuthScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 10.h),
                   AuthButton(
-                    backgroundColor: AppColors.backgroundColor,
+                    backgroundColor: AppColors.whiteColor,
                     title: "L O G I N",
-                    fontColor: AppColors.iconBackgroundColor,
+                    fontColor: AppColors.blackColor,
                     onPress: () => Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -51,9 +52,9 @@ class AuthScreen extends StatelessWidget {
                     ),
                   ),
                   AuthButton(
-                    backgroundColor: AppColors.iconBackgroundColor,
+                    backgroundColor: AppColors.blackColor,
                     title: "R E G I S T E R",
-                    fontColor: AppColors.backgroundColor,
+                    fontColor: AppColors.whiteColor,
                     onPress: () => Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -97,14 +98,14 @@ class AuthButton extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: _backgroundColor,
         padding: EdgeInsets.zero,
-        primary: AppColors.buttonOnClick,
+        primary: AppColors.nobelColor,
       ),
       child: Container(
         height: 35.h,
         width: 365.w,
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.iconBackgroundColor),
+          border: Border.all(color: AppColors.blackColor),
         ),
         child: Text(
           _title,

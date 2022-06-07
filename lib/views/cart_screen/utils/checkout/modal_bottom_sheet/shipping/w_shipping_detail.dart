@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../profile_screen/profile/settings/settings/setting_app_bar.dart';
 
 class ShippingDetail extends StatelessWidget {
   const ShippingDetail({
@@ -17,7 +18,7 @@ class ShippingDetail extends StatelessWidget {
         children: [
           SizedBox(height: 16.h),
           Row(
-            children: [],
+            children: const [],
           )
         ],
       ),

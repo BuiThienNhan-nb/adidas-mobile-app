@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/product.dart';
+import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/format.dart';
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
+import '../../../configs/style.dart';
+import '../../../models/product.dart';
 
 class ExploreItem extends StatelessWidget {
   const ExploreItem({
@@ -22,8 +25,31 @@ class ExploreItem extends StatelessWidget {
     return Row(
       children: [
         (index == 0) ? SizedBox(width: 40.w) : SizedBox(width: 4.w),
-        Item(
-          product: products[index],
+        GestureDetector(
+          onTap: () => Navigator.of(context).push(
+            CupertinoPageRoute(
+              builder: (_) => ProductDetailScreen(
+                heroTag: 'from_news_feed',
+                product: Product(
+                  imageUrl: [
+                    'assets/fwdxparley/fwd_parley_1.png',
+                    'assets/fwdxparley/fwd_parley_2.png',
+                    'assets/fwdxparley/fwd_parley_3.png',
+                    'assets/fwdxparley/fwd_parley_4.png',
+                    'assets/fwdxparley/fwd_parley_5.png',
+                    'assets/fwdxparley/fwd_parley_6.png',
+                    'assets/fwdxparley/fwd_parley_7.png',
+                  ],
+                  tag: 'NEW',
+                  price: 1200000,
+                  name: 'Giày Adidas 4D FWD x PARLEY',
+                ),
+              ),
+            ),
+          ),
+          child: Item(
+            product: products[index],
+          ),
         ),
         (index == products.length - 1)
             ? SizedBox(width: 40.w)
@@ -45,13 +71,13 @@ class Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.sneakerItemBackground,
+      color: AppColors.aliceBlueColor,
       width: 160.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CachedNetworkImage(
-            imageUrl: _product.image,
+            imageUrl: _product.imageUrl.first,
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             height: 148.h,
@@ -65,7 +91,7 @@ class Item extends StatelessWidget {
               children: [
                 SizedBox(height: 12.h),
                 Container(
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(8.w, 8.h, 8.w, 8.h),
                     child: Text(
@@ -87,7 +113,7 @@ class Item extends StatelessWidget {
                   "Men's Performance",
                   style: TextStyle(
                     fontSize: AppSizes.smallText,
-                    color: AppColors.subTitleText,
+                    color: AppColors.nobelColor,
                   ),
                 ),
               ],

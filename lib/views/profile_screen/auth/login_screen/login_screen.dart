@@ -1,15 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_with_email/login_with_email_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_method_button.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../configs/palette.dart';
+import '../../../../configs/size.dart';
+import '../../../../configs/style.dart';
+import '../../../../models/user.dart';
+import '../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../home_screen.dart';
+import '../../../utils/widget/privacy_term_dialog.dart';
+import '../widget/auth_method_button.dart';
+import 'login_with_email/login_with_email_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,8 +31,8 @@ class LoginScreen extends StatelessWidget {
         // you are logged
         final AccessToken accessToken = result.accessToken!;
       } else {
-        print(result.status);
-        print(result.message);
+        log('${result.status}');
+        log('${result.message}');
       }
     }
 
@@ -37,14 +44,38 @@ class LoginScreen extends StatelessWidget {
     ]);
 
     Future loginGoogle() async {
-      final user = _googleSignIn.signIn();
-      print(user);
+      _googleSignIn.signIn().then(
+        (value) {
+          context.read<AuthProvider>().loginMethod =
+              LoginMethod.google.toString();
+          log(value.toString());
+          log(context.read<AuthProvider>().loginMethod);
+          context.read<UserProvider>().user = User(
+            id: '2',
+            isVerifiedEmail: true,
+            fullName: value?.displayName ?? 'None',
+            dateOfBirth: DateTime.now(),
+            phoneNumber: '0123456789',
+            email: value?.email ?? 'sample_email@gmail.com',
+          );
+        },
+        onError: (_) => log('LOGIN FAILURE'),
+      ).then(
+        (value) {
+          context.read<AuthProvider>().isLogin = true;
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            HomeScreen.id,
+            (route) => false,
+          );
+        },
+      );
+      // log(user.toString());
     }
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -105,13 +136,13 @@ class LoginScreen extends StatelessWidget {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
                     padding: EdgeInsets.zero,
-                    primary: AppColors.buttonOnClick,
+                    primary: AppColors.nobelColor,
                   ),
                   child: const Text(
                     "Terms and Conditions",
                     style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: AppColors.iconBackgroundColor,
+                      color: AppColors.blackColor,
                     ),
                   ),
                 ),

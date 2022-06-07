@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
 
 class MyTextSpan extends StatelessWidget {
   const MyTextSpan({
@@ -31,12 +32,12 @@ class MyTextSpan extends StatelessWidget {
     TextStyle linkStyle = TextStyle(
       decoration: TextDecoration.underline,
       decorationThickness: 1.3,
-      decorationColor: AppColors.iconBackgroundColor,
+      decorationColor: AppColors.blackColor,
       color: Colors.transparent,
       fontWeight: FontWeight.bold,
       shadows: [
         Shadow(
-          color: AppColors.iconBackgroundColor,
+          color: AppColors.blackColor,
           offset: Offset(0, -4.h),
         ),
       ],
@@ -47,7 +48,7 @@ class MyTextSpan extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           style: const TextStyle(
-            color: AppColors.iconBackgroundColor,
+            color: AppColors.blackColor,
           ),
           children: <TextSpan>[
             TextSpan(text: _contentText1),

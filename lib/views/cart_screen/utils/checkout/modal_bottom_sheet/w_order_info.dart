@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/size.dart';
 
 class OrderInformation extends StatelessWidget {
   const OrderInformation({
@@ -21,7 +22,7 @@ class OrderInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        primary: AppColors.iconBackgroundColor,
+        primary: AppColors.blackColor,
       ),
       onPressed: _onTap,
       child: Column(
@@ -36,7 +37,7 @@ class OrderInformation extends StatelessWidget {
               Text(
                 _title,
                 style: TextStyle(
-                  color: AppColors.subTitleText,
+                  color: AppColors.nobelColor,
                   fontSize: AppSizes.mediumText,
                 ),
               ),

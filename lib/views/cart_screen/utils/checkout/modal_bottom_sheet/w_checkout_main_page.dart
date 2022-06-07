@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/view_models/cart_view_model/checkout_cart_config_provider.dart';
-import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_adress_info.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/payment/w_payment_select.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/promotion/w_promotion.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/shipping/w_shipping_content.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_expand_photo.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/w_order_info.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/privacy_term_dialog.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/span_text_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../configs/format.dart';
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/size.dart';
+import '../../../../../configs/style.dart';
+import '../../../../../view_models/cart_view_model/checkout_cart_config_provider.dart';
+import '../../../../../view_models/order_view_model/order_provider.dart';
+import '../../../../utils/button/my_text_button.dart';
+import '../../../../utils/widget/privacy_term_dialog.dart';
+import '../../../../utils/widget/span_text_widget.dart';
+import 'billing_address/w_bill_adress_info.dart';
+import 'payment/w_payment_select.dart';
+import 'promotion/w_promotion.dart';
+import 'shipping/w_shipping_content.dart';
+import 'w_expand_photo.dart';
+import 'w_order_info.dart';
 
 class CheckoutMainPage extends StatefulWidget {
   const CheckoutMainPage({Key? key, required Function updateParent})
@@ -58,7 +59,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               content: const ShippingInformation(),
               onTap: () {},
             ),
-            Container(height: 0.5.h, color: AppColors.subTitleText),
+            Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "PAYMENT",
               content: Text(
@@ -66,8 +67,8 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
                 style: TextStyle(
                   color: context.read<OrderProvider>().order.paymentMethod ==
                           "Select payment method"
-                      ? AppColors.navyFont
-                      : AppColors.iconBackgroundColor,
+                      ? AppColors.toryBlueColor
+                      : AppColors.blackColor,
                 ),
               ),
               onTap: () {
@@ -77,13 +78,13 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
                 widget._updateParent("");
               },
             ),
-            Container(height: 0.5.h, color: AppColors.subTitleText),
+            Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "BILLING ADDRESS",
               content: const BillingAdressInformation(),
               onTap: () {},
             ),
-            Container(height: 0.5.h, color: AppColors.subTitleText),
+            Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "PROMO CODE",
               content: Text(
@@ -93,8 +94,8 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
                   color: context.read<OrderProvider>().order.promotionId ==
                               null ||
                           context.read<OrderProvider>().order.promotionId == ""
-                      ? AppColors.navyFont
-                      : AppColors.iconBackgroundColor,
+                      ? AppColors.toryBlueColor
+                      : AppColors.blackColor,
                 ),
               ),
               onTap: () {
@@ -104,7 +105,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
                 widget._updateParent("");
               },
             ),
-            Container(height: 0.5.h, color: AppColors.subTitleText),
+            Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "TOTAL",
               content: Text(
@@ -112,7 +113,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               ),
               onTap: () {},
             ),
-            Container(height: 0.5.h, color: AppColors.subTitleText),
+            Container(height: 0.5.h, color: AppColors.nobelColor),
             const CheckoutPolicyTerm(),
             Padding(
               padding: EdgeInsets.only(left: 16.w, right: 16.w),
@@ -138,13 +139,13 @@ class CheckoutAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       shadowColor: Colors.transparent,
       bottomOpacity: 0.0,
       elevation: 0.0,
       automaticallyImplyLeading: false,
       iconTheme: const IconThemeData(
-        color: AppColors.iconBackgroundColor,
+        color: AppColors.blackColor,
       ),
       centerTitle: false,
       title: Text(

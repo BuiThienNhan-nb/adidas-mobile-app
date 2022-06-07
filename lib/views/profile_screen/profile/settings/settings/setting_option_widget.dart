@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/style.dart';
 
 class SettingOption extends StatelessWidget {
   const SettingOption({
@@ -33,13 +34,13 @@ class SettingOption extends StatelessWidget {
                   const Spacer(),
                   const Icon(
                     Icons.arrow_forward_ios_outlined,
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                   )
                 ],
               ),
             ),
             Container(
-              color: AppColors.greyBackground,
+              color: AppColors.silverColor,
               height: 1.h,
             ),
           ],

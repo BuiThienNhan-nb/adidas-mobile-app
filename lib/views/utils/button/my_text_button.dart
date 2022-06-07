@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
-import 'package:flutter_adidas_clone/views/utils/widget/loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
+import '../widget/loading_indicator.dart';
 
 // ignore: must_be_immutable
 class MyTextButton extends StatelessWidget {
@@ -15,9 +16,11 @@ class MyTextButton extends StatelessWidget {
     required bool isLoading,
     this.icon = const FaIcon(
       FontAwesomeIcons.arrowRight,
-      color: AppColors.backgroundColor,
+      color: AppColors.whiteColor,
       size: AppSizes.appBarIconSize,
     ),
+    this.buttonStyle,
+    this.contentStyle,
   })  : _function = function,
         _content = content,
         _isLoading = isLoading,
@@ -26,23 +29,27 @@ class MyTextButton extends StatelessWidget {
   final Function() _function;
   final String _content;
   final bool _isLoading;
+  final ButtonStyle? buttonStyle;
+  final TextStyle? contentStyle;
+
   Widget icon;
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: _isLoading ? () {} : _function,
-      style: TextButton.styleFrom(
-        backgroundColor: _isLoading ? AppColors.buttonOnClick : Colors.black,
-        padding: EdgeInsets.zero,
-        primary: AppColors.buttonOnClick,
-      ),
+      style: buttonStyle ??
+          TextButton.styleFrom(
+            backgroundColor: _isLoading ? AppColors.nobelColor : Colors.black,
+            padding: EdgeInsets.zero,
+            primary: AppColors.nobelColor,
+          ),
       child: Container(
         height: 40.h,
         width: double.infinity,
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         decoration: BoxDecoration(
           border: Border.all(
-              color: _isLoading ? AppColors.buttonOnClick : Colors.black),
+              color: _isLoading ? AppColors.nobelColor : Colors.black),
         ),
         child: Row(
           children: [
@@ -50,16 +57,17 @@ class MyTextButton extends StatelessWidget {
             _isLoading
                 ? LoadingIndicator(
                     content: "Loading...",
-                    valueColor: AppColors.backgroundColor,
-                    backgroundColor: AppColors.buttonOnClick,
+                    valueColor: AppColors.whiteColor,
+                    backgroundColor: AppColors.nobelColor,
                   )
                 : Text(
                     _content,
-                    style: GoogleFonts.cantarell(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: AppSizes.titleFontSize - 5,
-                    ),
+                    style: contentStyle ??
+                        GoogleFonts.cantarell(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppSizes.titleFontSize - 5,
+                        ),
                   ),
             const Spacer(),
             icon,

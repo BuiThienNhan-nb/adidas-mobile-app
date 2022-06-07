@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/size.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../configs/palette.dart';
+import '../../../configs/size.dart';
 
 class OutlineShadowButton extends StatelessWidget {
   OutlineShadowButton({
@@ -14,11 +15,11 @@ class OutlineShadowButton extends StatelessWidget {
   final double height = 52.h;
   final double width = 320.w;
   final String content;
-  final Function onTap;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => onTap,
+        onTap: onTap,
         child: SizedBox(
           height: height * 1.4,
           width: width * 1.2,
@@ -32,14 +33,14 @@ class OutlineShadowButton extends StatelessWidget {
                   width: width,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
-                    border: Border.all(color: AppColors.backgroundColor),
+                    border: Border.all(color: AppColors.whiteColor),
                   ),
                 ),
               ),
               Container(
                 height: height,
                 width: width,
-                color: AppColors.backgroundColor,
+                color: AppColors.whiteColor,
                 child: Row(
                   children: [
                     SizedBox(width: 10.w),

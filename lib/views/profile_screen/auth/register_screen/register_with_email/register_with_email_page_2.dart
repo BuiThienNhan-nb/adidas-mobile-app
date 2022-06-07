@@ -1,30 +1,33 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/format.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/models/user.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
-import 'package:flutter_adidas_clone/views/home_screen.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
-import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/snack_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
-// ignore: implementation_imports
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 
-class RegisterWithEmailPage2 extends StatefulWidget {
+import '../../../../../configs/format.dart';
+import '../../../../../configs/palette.dart';
+import '../../../../../configs/style.dart';
+import '../../../../../configs/validator.dart';
+import '../../../../../models/user.dart';
+import '../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../../home_screen.dart';
+import '../../../../utils/button/my_text_button.dart';
+import '../../../../utils/input/text_field_input.dart';
+
+// class RegisterWithEmailPage2 extends StatefulWidget {
+//   const RegisterWithEmailPage2({Key? key}) : super(key: key);
+
+//   @override
+//   State<RegisterWithEmailPage2> createState() => _RegisterWithEmailPage2State();
+// }
+
+class RegisterWithEmailPage2 extends StatelessWidget {
   const RegisterWithEmailPage2({Key? key}) : super(key: key);
 
-  @override
-  State<RegisterWithEmailPage2> createState() => _RegisterWithEmailPage2State();
-}
-
-class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _txtNameController = TextEditingController();
@@ -46,14 +49,13 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
-                primary:
-                    AppColors.iconBackgroundColor, // header background color
-                onPrimary: AppColors.backgroundColor, // header text color
-                onSurface: AppColors.iconBackgroundColor, // body text color
+                primary: AppColors.blackColor, // header background color
+                onPrimary: AppColors.whiteColor, // header text color
+                onSurface: AppColors.blackColor, // body text color
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: AppColors.iconBackgroundColor, // button text color
+                  primary: AppColors.blackColor, // button text color
                 ),
               ),
             ),
@@ -66,21 +68,39 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
     }
 
     register() async {
-      Map<String, dynamic> response = await userProvider.updateUserInfor(
-          context.read<UserProvider>().user.id,
-          _txtNameController.text,
-          _txtBirthdateController.text);
+      context.read<AuthProvider>().isLoading = true;
+      context.read<AuthProvider>().isLogin = true;
+      Map<String, dynamic> response = await userProvider.updateUserInfo(
+        context.read<UserProvider>().user.id,
+        _txtNameController.text,
+        _txtBirthdateController.text,
+      );
       if (response['status']) {
         userProvider.setUser(User.fromJson(response['data']));
-        context.read<AuthProvider>().isLogin = true;
-        Navigator.push(
+
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(HomeScreen.id, (route) => false);
+        context.read<AuthProvider>().isLogin = false;
+        showSnackBar(
           context,
-          CupertinoPageRoute(
-            builder: (context) => const HomeScreen(),
-          ),
+          "Welcome to Adidas ${_txtNameController.text}",
+          "Dismiss",
         );
       } else {
-        print('falied');
+        log('failed');
+
+        /// Fake update user
+        userProvider.user.fullName = _txtNameController.text.trim();
+        userProvider.user.dateOfBirth =
+            AppFormat.formatDay.parse(_txtBirthdateController.text);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(HomeScreen.id, (route) => false);
+        context.read<AuthProvider>().isLoading = false;
+        showSnackBar(
+          context,
+          "Welcome to Adidas ${_txtNameController.text}",
+          "Dismiss",
+        );
       }
 
       // Register success
@@ -108,10 +128,10 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: AppColors.whiteColor,
           shadowColor: Colors.transparent,
           iconTheme: const IconThemeData(
-            color: AppColors.iconBackgroundColor,
+            color: AppColors.blackColor,
           ),
           bottomOpacity: 0.0,
           elevation: 0.0,
@@ -133,7 +153,7 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                 child: Text(
                   "Complete your information to join with us",
                   style: GoogleFonts.cantarell(
-                    color: AppColors.iconBackgroundColor,
+                    color: AppColors.blackColor,
                     fontSize: 14,
                   ),
                 ),
@@ -147,35 +167,31 @@ class _RegisterWithEmailPage2State extends State<RegisterWithEmailPage2> {
                     TextFieldInput(
                       onTextSubmitted: (str) {},
                       textController: _txtNameController,
-                      textinputType: TextInputType.emailAddress,
-                      validator: MultiValidator(
-                        [
-                          RequiredValidator(errorText: "Name is required"),
-                          MinLengthValidator(4,
-                              errorText: "Name must be at least 4 digits long"),
-                        ],
-                      ),
-                      lableText: "NAME",
+                      textInputType: TextInputType.emailAddress,
+                      validator: AppValidators.nameValidator,
+                      labelText: "NAME",
                     ),
                     TextFieldInput(
                       onTextSubmitted: (str) {},
                       textController: _txtBirthdateController,
-                      textinputType: TextInputType.emailAddress,
+                      textInputType: TextInputType.emailAddress,
                       validator:
                           RequiredValidator(errorText: "Birthdate is required"),
                       onTap: () => pickDate(),
-                      lableText: "BIRTHDATE",
+                      labelText: "BIRTHDATE",
                       readOnly: true,
                     ),
                   ],
                 ),
               ),
               const Expanded(child: SizedBox()),
-              MyTextButton(
-                function: register,
-                content: "JOIN US",
-                isLoading: context.read<AuthProvider>().isLoading,
-              ),
+              Consumer<AuthProvider>(builder: (_, value, __) {
+                return MyTextButton(
+                  function: register,
+                  content: "JOIN US",
+                  isLoading: context.read<AuthProvider>().isLoading,
+                );
+              }),
               SizedBox(height: 30.h),
             ],
           ),

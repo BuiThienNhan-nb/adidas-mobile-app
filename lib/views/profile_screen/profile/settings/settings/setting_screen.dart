@@ -1,19 +1,22 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
-import 'package:flutter_adidas_clone/views/home_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/address_book_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/event_sceen/event_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/help_screen/help_cus_service_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/imprint_screen/imprint_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/personal_screen/personal_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_option_widget.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/term_privacy_screen/privacy_screen.dart';
-import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/term_privacy_screen/term_screen.dart';
-import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
+
+import '../../../../../view_models/auth_view_model/auth_provider.dart';
+import '../../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../../home_screen.dart';
+import '../../../../utils/button/my_text_button.dart';
+import 'address_screen/address_book_screen.dart';
+import 'event_sceen/event_screen.dart';
+import 'help_screen/help_cus_service_screen.dart';
+import 'imprint_screen/imprint_screen.dart';
+import 'personal_screen/personal_screen.dart';
+import 'setting_option_widget.dart';
+import 'term_privacy_screen/privacy_screen.dart';
+import 'term_privacy_screen/term_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -24,21 +27,43 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   logout() {
-    // Logout success
     setState(() => context.read<AuthProvider>().isLoading = true);
-    Future.delayed(const Duration(seconds: 2)).then(
-      (val) {
-        setState(() => context.read<AuthProvider>().isLogin = false);
-        setState(() => context.read<AuthProvider>().isLoading = false);
-        Navigator.of(context)
-          ..popUntil(ModalRoute.withName(HomeScreen.id))
-          ..push(
-            CupertinoPageRoute(
-              builder: (context) => HomeScreen(),
-            ),
-          );
-      },
-    );
+    switch (context.read<AuthProvider>().loginMethod) {
+      case 'LoginMethod.google':
+        GoogleSignIn().signOut().then(
+          (value) {
+            context.read<UserProvider>().user = User(
+              id: 'id',
+              fullName: 'fullName',
+              isVerifiedEmail: false,
+              dateOfBirth: DateTime.now(),
+              phoneNumber: 'phoneNumber',
+              email: 'sample_email@gmail.com',
+            );
+            setState(() => context.read<AuthProvider>().isLogin = false);
+            setState(() => context.read<AuthProvider>().isLoading = false);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              HomeScreen.id,
+              (route) => false,
+            );
+          },
+        );
+        break;
+      default:
+        Future.delayed(const Duration(seconds: 2)).then(
+          (val) {
+            setState(() => context.read<AuthProvider>().isLogin = false);
+            setState(() => context.read<AuthProvider>().isLoading = false);
+            Navigator.of(context)
+              ..popUntil(ModalRoute.withName(HomeScreen.id))
+              ..push(
+                CupertinoPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
+          },
+        );
+    }
   }
 
   @override

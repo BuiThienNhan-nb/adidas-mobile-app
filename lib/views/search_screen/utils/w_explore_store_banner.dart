@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
-import 'package:flutter_adidas_clone/configs/style.dart';
-import 'package:flutter_adidas_clone/views/utils/button/outline_empty_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../configs/palette.dart';
+import '../../../configs/style.dart';
+import '../../utils/button/outline_shadow_button.dart';
 
 class ExploreStoreBanner extends StatelessWidget {
   const ExploreStoreBanner({
@@ -27,7 +28,7 @@ class ExploreStoreBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: AppColors.iconBackgroundColor,
+                  color: AppColors.blackColor,
                   child: Padding(
                     padding: EdgeInsets.all(8.w),
                     child: Text(
@@ -72,7 +73,7 @@ class ItalicTextSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.backgroundColor,
+      color: AppColors.whiteColor,
       child: Padding(
         padding: EdgeInsets.all(8.w),
         child: Text(

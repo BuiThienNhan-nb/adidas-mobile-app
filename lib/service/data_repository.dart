@@ -1,11 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_adidas_clone/configs/domain.dart';
 import 'package:flutter_adidas_clone/configs/end_point/auth_end_points.dart';
 import 'package:flutter_adidas_clone/configs/end_point/banner_end_points.dart';
 import 'package:flutter_adidas_clone/configs/end_point/user_end_points.dart';
 import 'package:flutter_adidas_clone/models/ad_banner.dart';
+
+import '../configs/domain.dart';
+import '../configs/end_point/auth_end_points.dart';
+import '../configs/end_point/user_end_points.dart';
 
 class DataRepository {
   static final DataRepository _singelton = DataRepository._internal();
@@ -62,7 +68,7 @@ class DataRepository {
         },
       ),
     );
-    print(response.statusCode);
+    log(response.statusCode.toString());
     return response;
   }
 
@@ -132,18 +138,18 @@ class DataRepository {
       // print(result.map((e) => AdBanner.fromMap(e)).toList());
       return result.map((e) => AdBanner.fromMap(e)).toList();
     } else {
-      throw Exception('eror');
+      throw Exception('error');
     }
 
     // print(response.data);
   }
 
   Future<Response> onValue(Response response) async {
-    var result;
+    dynamic result;
 
     final Map<String, dynamic> responseData = json.decode(response.data);
 
-    print(responseData);
+    log(responseData.toString());
 
     if (response.statusCode == 200) {
       result = {
@@ -162,7 +168,7 @@ class DataRepository {
   }
 
   onError(error) {
-    print('the error is ${error.detail}');
+    log('the error is ${error.detail}');
     return {'status': false, 'message': 'Unsuccessful Request', 'data': error};
   }
 }

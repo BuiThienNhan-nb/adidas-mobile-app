@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../configs/palette.dart';
 
 // ignore: must_be_immutable
 class PasswordFieldInput extends StatefulWidget {
   final TextEditingController textController;
   bool readOnly = false;
   // ignore: prefer_typing_uninitialized_variables
-  var lableText;
+  var labelText;
   Color bgColor = Colors.transparent;
   // ignore: non_constant_identifier_names
-  Color TextColor = AppColors.iconBackgroundColor;
+  Color TextColor = AppColors.blackColor;
   final Function(String) onTextSubmitted;
   Function()? onTap;
-  final TextInputType textinputType;
-  bool obcureText = true;
+  final TextInputType textInputType;
+  bool obscureText = true;
   Function()? onSuffixIconTap;
   String? Function(String?)? validator;
 
   PasswordFieldInput({
     Key? key,
-    this.lableText,
-    this.obcureText = true,
+    this.labelText,
+    this.obscureText = true,
     this.readOnly = false,
     this.bgColor = Colors.transparent,
     // ignore: non_constant_identifier_names
-    this.TextColor = AppColors.iconBackgroundColor,
+    this.TextColor = AppColors.blackColor,
     this.onTap,
     this.onSuffixIconTap,
     required this.onTextSubmitted,
     required this.textController,
-    required this.textinputType,
+    required this.textInputType,
     required this.validator,
   }) : super(key: key);
 
@@ -40,8 +40,8 @@ class PasswordFieldInput extends StatefulWidget {
 }
 
 class _PasswordFieldInputState extends State<PasswordFieldInput> {
-  void togglePasswordVisibity() =>
-      setState(() => widget.obcureText = !widget.obcureText);
+  void togglePasswordVisibility() =>
+      setState(() => widget.obscureText = !widget.obscureText);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,41 +51,42 @@ class _PasswordFieldInputState extends State<PasswordFieldInput> {
       child: Form(
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
-          obscureText: widget.obcureText,
+          obscureText: widget.obscureText,
           onTap: widget.onTap,
-          keyboardType: widget.textinputType,
+          keyboardType: widget.textInputType,
           validator: widget.validator,
           onFieldSubmitted: (value) {
             widget.onTextSubmitted(value);
           },
           controller: widget.textController,
           readOnly: widget.readOnly,
-          cursorColor: AppColors.iconBackgroundColor,
+          cursorColor: AppColors.blackColor,
           decoration: InputDecoration(
             border: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppColors.iconBackgroundColor),
+                borderSide: const BorderSide(color: AppColors.blackColor),
                 borderRadius: BorderRadius.circular(0.r)),
             contentPadding:
                 EdgeInsets.symmetric(vertical: 25.h, horizontal: 20.w),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(0.r),
             ),
-            labelText: widget.lableText,
+            labelText: widget.labelText,
             labelStyle:
                 TextStyle(color: widget.TextColor, fontWeight: FontWeight.bold),
             suffixIcon: Padding(
               padding: const EdgeInsetsDirectional.only(end: 12.0, bottom: 4.0),
               child: IconButton(
-                onPressed: togglePasswordVisibity,
-                icon: widget.obcureText
-                    ? const FaIcon(
-                        FontAwesomeIcons.eye,
-                        color: AppColors.iconBackgroundColor,
+                onPressed: togglePasswordVisibility,
+                icon: widget.obscureText
+                    ? Image.asset(
+                        'assets/icons/eye_icon.png',
+                        height: 28.h,
+                        width: 28.w,
                       )
-                    : const FaIcon(
-                        FontAwesomeIcons.eyeSlash,
-                        color: AppColors.iconBackgroundColor,
+                    : Image.asset(
+                        'assets/icons/eye_crossed_icon.png',
+                        height: 28.h,
+                        width: 28.w,
                       ),
               ),
             ),
