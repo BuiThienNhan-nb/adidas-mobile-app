@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BillingAdressInformation extends StatelessWidget {
-  const BillingAdressInformation({
+class BillingAddressInformation extends StatelessWidget {
+  const BillingAddressInformation({
     Key? key,
   }) : super(key: key);
 

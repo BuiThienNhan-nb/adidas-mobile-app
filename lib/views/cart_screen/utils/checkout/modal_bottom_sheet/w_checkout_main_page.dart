@@ -86,7 +86,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "BILLING ADDRESS",
-              content: const BillingAdressInformation(),
+              content: const BillingAddressInformation(),
               onTap: () {},
             ),
             Container(height: 0.5.h, color: AppColors.nobelColor),
