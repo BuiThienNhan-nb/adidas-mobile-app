@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,10 @@ class _CheckoutCartBottomSheetState extends State<CheckoutCartBottomSheet> {
           );
           return false;
         },
-        child: PromotionWidget(updateParent: refresh),
+        child: PromotionWidget(
+          updateParent: refresh,
+          promotionId: context.read<OrderProvider>().order.promotionId,
+        ),
       ),
     ];
     final List<List<Widget>> _pages = [

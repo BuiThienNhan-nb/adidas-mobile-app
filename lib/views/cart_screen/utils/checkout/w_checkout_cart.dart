@@ -50,7 +50,8 @@ class CheckoutCartContainer extends StatelessWidget {
     }
 
     void onCheckoutClick() {
-      if (context.read<AuthProvider>().isLogin) {
+      // TODO: Change codition to pop up bottom sheet to (isLogin == true)
+      if (!context.read<AuthProvider>().isLogin) {
         context.read<OrderProvider>().order = Order(
           id: "id",
           userId: "",
@@ -64,6 +65,7 @@ class CheckoutCartContainer extends StatelessWidget {
         );
         showModalBottomSheet<dynamic>(
           context: context,
+          useRootNavigator: true,
           // context: context.read<NavBarProvider>().navBarContainerContext,
           isDismissible: false,
           isScrollControlled: true,
