@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/user_address.dart';
+import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ShippingInformation extends StatelessWidget {
   const ShippingInformation({
     Key? key,
+    required this.userAddress,
   }) : super(key: key);
+
+  final UserAddress userAddress;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +26,8 @@ class ShippingInformation extends StatelessWidget {
         ),
         SizedBox(height: 6.h),
         const Text("DELIVERY - FREE"),
-        const Text("Bui Thien Nhan"),
-        const Text("05/66 Phan Dang Luu"),
+        Text(context.read<OrderProvider>().order.userAddress.receptionName),
+        Text(context.read<OrderProvider>().order.userAddress.address),
       ],
     );
   }

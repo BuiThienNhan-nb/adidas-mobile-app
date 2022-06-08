@@ -27,6 +27,7 @@ class AddNewAddressScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
+        elevation: 0,
         automaticallyImplyLeading: false,
         title: Text(
           _isEdit ? "EDIT ADDRESS" : "ADD NEW ADDRESS",

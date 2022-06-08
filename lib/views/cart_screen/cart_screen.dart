@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../configs/palette.dart';
-import '../../models/product.dart';
 import '../utils/widget/app_bar.dart';
 import 'utils/cart_item/w_cart_item.dart';
 import 'utils/checkout/w_checkout_cart.dart';
@@ -22,6 +25,7 @@ class ShoppingCartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //String _content = "Loading...";
+    log('[CART SCREEN] init');
 
     return Scaffold(
       appBar: const MyAppBar(
@@ -48,18 +52,23 @@ class ShoppingCartScreen extends StatelessWidget {
 
           /// Temp cart item
           Expanded(
-            child: ListView.builder(
-              itemCount: 6,
-              itemBuilder: (context, index) => CartItem(
-                product: Product(
-                  imageUrl: ['assets/images/temp_sneaker.png'],
-                  tag: "LOW IN STOCK",
-                  price: 5200000,
-                  name: "ULTRABOOST 21 x PAREY SHOES",
+            child: Consumer<OrderProvider>(
+              builder: (_, value, __) => ListView.builder(
+                itemCount:
+                    context.read<OrderProvider>().order.orderItems.length,
+                itemBuilder: (context, index) => CartItem(
+                  // product: Product(
+                  //   imageUrl: ['assets/images/temp_sneaker.png'],
+                  //   tag: "LOW IN STOCK",
+                  //   price: 5200000,
+                  //   name: "ULTRABOOST 21 x PAREY SHOES",
+                  // ),
+                  orderItem:
+                      context.read<OrderProvider>().order.orderItems[index],
+                  appContext: appContext,
+                  isWishList: false,
+                  optionItems: optionItems,
                 ),
-                appContext: appContext,
-                isWishList: false,
-                optionItems: optionItems,
               ),
             ),
           ),

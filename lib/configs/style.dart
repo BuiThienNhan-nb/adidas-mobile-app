@@ -33,6 +33,11 @@ class AppStyles {
     fontSize: AppSizes.smallText,
   );
 
+  static final TextStyle regularSilverTextStyle = GoogleFonts.cantarell(
+    color: AppColors.nobelColor,
+    fontSize: AppSizes.regularText,
+  );
+
   static final TextStyle extraXSmallTextStyle = GoogleFonts.cantarell(
     color: AppColors.blackColor,
     fontSize: AppSizes.extraSmallText - 4.sp,
@@ -53,6 +58,12 @@ class AppStyles {
   static final TextStyle boldLargeTextStyle = GoogleFonts.cantarell(
     color: AppColors.blackColor,
     fontSize: AppSizes.largeText,
+    fontWeight: FontWeight.bold,
+  );
+
+  static final TextStyle boldXLargeTextStyle = GoogleFonts.cantarell(
+    color: AppColors.blackColor,
+    fontSize: AppSizes.largeText * 1.5,
     fontWeight: FontWeight.bold,
   );
 

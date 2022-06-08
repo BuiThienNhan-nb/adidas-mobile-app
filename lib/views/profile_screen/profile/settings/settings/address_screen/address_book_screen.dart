@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/user_address.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../../configs/palette.dart';
@@ -27,12 +28,16 @@ class AddressBookScreen extends StatelessWidget {
                   child: IntrinsicHeight(
                     child: ListView.builder(
                       itemCount: 20,
-                      itemBuilder: (context, index) => const AddressBookItem(
-                        name: "Bùi Thiện Nhân",
-                        address:
-                            "05/66 Phan Đăng Lưu, Phường 9, Tp Tuy Hòa, tỉnh Phú Yên",
-                        country: "VietNam",
-                        phoneNumber: "0762796747",
+                      itemBuilder: (context, index) => AddressBookItem(
+                        userAddress: UserAddress(
+                          id: 'id',
+                          userId: 'userId',
+                          receptionName: "Bùi Thiện Nhân",
+                          receptionPhoneNumber: "0762796747",
+                          address:
+                              "05/66 Phan Đăng Lưu, Phường 9, Tp Tuy Hòa, tỉnh Phú Yên",
+                          country: "VietNam",
+                        ),
                       ),
                     ),
                   ),

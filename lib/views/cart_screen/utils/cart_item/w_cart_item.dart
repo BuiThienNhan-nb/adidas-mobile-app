@@ -1,27 +1,27 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/order_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../configs/format.dart';
 import '../../../../configs/palette.dart';
 import '../../../../configs/size.dart';
 import '../../../../configs/style.dart';
-import '../../../../models/product.dart';
 import '../../../utils/widget/w_options_mbs.dart';
 import 'w_cart_item_save_btn.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     Key? key,
-    required Product product,
+    required this.orderItem,
     required this.appContext,
     required this.optionItems,
     required this.isWishList,
-  })  : _product = product,
-        super(key: key);
+  }) : super(key: key);
 
-  final Product _product;
+  final OrderItem orderItem;
   final BuildContext appContext;
   final Map<String, Widget> optionItems;
   final bool isWishList;
@@ -54,10 +54,19 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset(
-                _product.imageUrl.first,
+              // Image.asset(
+              //   orderItem.product.imageUrl.first,
+              //   height: 190.h,
+              //   width: 170.w,
+              // ),
+              CachedNetworkImage(
+                imageUrl: orderItem.product.imageUrl.first,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 height: 190.h,
                 width: 170.w,
+                fit: BoxFit.scaleDown,
               ),
               Stack(
                 alignment: Alignment.center,
@@ -71,7 +80,7 @@ class CartItem extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(6.w),
                           child: Text(
-                            _product.tag,
+                            orderItem.product.tag,
                             style: TextStyle(
                               fontStyle: FontStyle.italic,
                               color: AppColors.whiteColor,
@@ -86,7 +95,7 @@ class CartItem extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(6.w),
                           child: Text(
-                            "đ\t\t\t\t${AppFormat.currencyFormat.format(_product.price)}",
+                            "đ\t\t\t\t${AppFormat.currencyFormat.format(orderItem.product.price)}",
                             style: TextStyle(
                               fontSize: AppSizes.smallText,
                               letterSpacing: 2.0,
@@ -98,7 +107,7 @@ class CartItem extends StatelessWidget {
                       SizedBox(
                         width: 230.w,
                         child: Text(
-                          _product.name,
+                          orderItem.product.name,
                           style: AppStyles.boldSmallTextStyle,
                         ),
                       ),
@@ -106,7 +115,7 @@ class CartItem extends StatelessWidget {
                       isWishList
                           ? const SizedBox.shrink()
                           : Text(
-                              "Size: 9 UK - Qty: 1",
+                              "Size: ${orderItem.size} UK - Qty: ${orderItem.quantity}",
                               style: TextStyle(
                                 fontSize: AppSizes.smallText,
                                 color: AppColors.nobelColor,

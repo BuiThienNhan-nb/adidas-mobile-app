@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../configs/palette.dart';
-import '../../models/product.dart';
+import '../../view_models/order_view_model/order_provider.dart';
 import '../cart_screen/utils/cart_item/w_cart_item.dart';
 import '../utils/widget/app_bar.dart';
 import 'w_filter_modal_bottom_sheet.dart';
@@ -94,14 +95,10 @@ class WishListScreen extends StatelessWidget {
           /// Temp cart item
           Expanded(
             child: ListView.builder(
-              itemCount: 6,
+              itemCount: context.read<OrderProvider>().order.orderItems.length,
               itemBuilder: (context, index) => CartItem(
-                product: Product(
-                  imageUrl: ['assets/images/temp_sneaker.png'],
-                  tag: "LOW IN STOCK",
-                  price: 5200000,
-                  name: "ULTRABOOST 21 x PAREY SHOES",
-                ),
+                orderItem:
+                    context.read<OrderProvider>().order.orderItems[index],
                 appContext: appContext,
                 isWishList: true,
                 optionItems: optionItems,

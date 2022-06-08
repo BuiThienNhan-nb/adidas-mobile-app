@@ -1,9 +1,10 @@
 import 'package:flutter_adidas_clone/models/product.dart';
+import 'package:flutter_adidas_clone/models/user_address.dart';
 
-import '../../../models/product_category.dart';
-import '../../../models/product_type.dart';
+import '../../models/product_category.dart';
+import '../../models/product_type.dart';
 
-class SearchScreenMockData {
+class AppMockData {
   final ProductType _shoes = ProductType(
     id: 'shoes',
     name: 'SHOES',
@@ -140,6 +141,34 @@ class SearchScreenMockData {
     ),
   ];
 
+  final List<UserAddress> _userAddresses = [
+    UserAddress(
+      id: 'mock_data_1',
+      userId: '1',
+      receptionName: 'Bùi Thiện Nhân',
+      receptionPhoneNumber: '0762796747',
+      address: '05/66 Phan Đăng Lưu, P9, Tp Tuy Hòa, Phú Yên',
+      country: 'VietNam',
+    ),
+    UserAddress(
+      id: 'mock_data_2',
+      userId: '1',
+      receptionName: 'Phan Duy Luân',
+      receptionPhoneNumber: '0765326865',
+      address: '48 Nguyễn Công Trứ, P4, Tp Tuy Hòa, Phú Yên',
+      country: 'VietNam',
+    ),
+    UserAddress(
+      id: 'mock_data_3',
+      userId: '1',
+      receptionName: 'Dương Hoàng Long',
+      receptionPhoneNumber: '02532411645',
+      address: '151/26 D2, Phan Văn Trí, Bình Thạnh, TP HCM',
+      country: 'VietNam',
+    ),
+  ];
+
   ProductType get shoes => _shoes;
   List<Product> get products => _products;
+  List<UserAddress> get userAddresses => _userAddresses;
 }

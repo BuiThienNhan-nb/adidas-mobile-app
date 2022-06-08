@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_address_select.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/order_detail_screen.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,7 +62,11 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             ExpandImageGrid(imageUrls: _imageUrls),
             OrderInformation(
               title: "SHIPPING",
-              content: const ShippingInformation(),
+              content: Consumer<OrderProvider>(
+                builder: (_, value, ___) => ShippingInformation(
+                  userAddress: context.read<OrderProvider>().order.userAddress,
+                ),
+              ),
               onTap: () {},
             ),
             Container(height: 0.5.h, color: AppColors.nobelColor),
@@ -86,8 +91,17 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "BILLING ADDRESS",
-              content: const BillingAddressInformation(),
-              onTap: () {},
+              content: Consumer<OrderProvider>(
+                builder: (_, value, __) => BillingAddressInformation(
+                  userAddress: context.read<OrderProvider>().order.userAddress,
+                ),
+              ),
+              onTap: () {
+                setState(() => context
+                    .read<CheckoutCartConfigProvider>()
+                    .onPageTransition(true, 3, BillAddressSelect.height));
+                widget._updateParent("");
+              },
             ),
             Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
@@ -106,7 +120,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               onTap: () {
                 setState(() => context
                     .read<CheckoutCartConfigProvider>()
-                    .onPageTransition(true, 3, PromotionWidget.height));
+                    .onPageTransition(true, 4, PromotionWidget.height));
                 widget._updateParent("");
               },
             ),
