@@ -43,10 +43,12 @@ class ProductCarouselSlider extends StatelessWidget {
           ? AdBannerCarouselItem(
               adBanner: _adBanners[index],
               wChild: BannerVideoPlayer(url: _adBanners[index].video!),
+              index: index,
             )
           // ? const VideoPlay()
           : AdBannerCarouselItem(
               adBanner: _adBanners[index],
+              index: index,
               // wChild: Image.asset(
               //   _adBanners[index].image!,
               //   fit: BoxFit.fitHeight,

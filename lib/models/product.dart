@@ -8,12 +8,14 @@ class Product {
   final String tag;
   final int price;
   final String name;
+  late bool isFav;
   Product({
     this.id,
     required this.imageUrl,
     required this.tag,
     required this.price,
     required this.name,
+    required this.isFav,
   });
 
   Product copyWith({
@@ -22,6 +24,7 @@ class Product {
     String? tag,
     int? price,
     String? name,
+    bool? isFav,
   }) {
     return Product(
       id: id ?? this.id,
@@ -29,6 +32,7 @@ class Product {
       tag: tag ?? this.tag,
       price: price ?? this.price,
       name: name ?? this.name,
+      isFav: isFav ?? this.isFav,
     );
   }
 
@@ -42,17 +46,19 @@ class Product {
     result.addAll({'tag': tag});
     result.addAll({'price': price});
     result.addAll({'name': name});
+    result.addAll({'isFav': isFav});
 
     return result;
   }
 
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
-      id: map['id'],
-      imageUrl: List<String>.from(map['imageUrl']),
+      id: map['_id'],
+      imageUrl: List<String>.from(map['images']),
       tag: map['tag'] ?? '',
       price: map['price']?.toInt() ?? 0,
       name: map['name'] ?? '',
+      isFav: map['isFav'] ?? false,
     );
   }
 

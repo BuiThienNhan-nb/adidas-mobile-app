@@ -7,6 +7,7 @@ import 'package:flutter_adidas_clone/view_models/bot_nav_bar_view_model.dart';
 import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
 import 'package:flutter_adidas_clone/view_models/cart_view_model/checkout_cart_config_provider.dart';
 import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
+import 'package:flutter_adidas_clone/view_models/wish_list_view_model/wish_list_provider.dart';
 import 'package:flutter_adidas_clone/views/home_screen.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,6 +51,9 @@ class AdidasApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (BuildContext context) => BannerProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (BuildContext context) => WishListProvider(),
           ),
         ],
         child: MaterialApp(

@@ -60,7 +60,7 @@ class CheckoutCartContainer extends StatelessWidget {
           receptionName: "Bùi Thiện Nhân",
           receptionPhone: "0762796747",
           promotionId: null,
-          total: 17500000,
+          total: _total,
         );
         showModalBottomSheet<dynamic>(
           context: context,

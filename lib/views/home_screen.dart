@@ -5,6 +5,7 @@ import 'package:flutter_adidas_clone/configs/style.dart';
 import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
@@ -74,9 +75,11 @@ class HomeScreen extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: Badge(
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
-          badgeContent: Text(
-            context.read<CartProvider>().itemCount.toString(),
-            style: AppStyles.whiteSmallTextStyle,
+          badgeContent: Consumer<CartProvider>(
+            builder: (_, provider, __) => Text(
+              provider.listProduct.length.toString(),
+              style: AppStyles.whiteSmallTextStyle,
+            ),
           ),
           animationType: BadgeAnimationType.scale,
           shape: BadgeShape.square,
@@ -88,9 +91,11 @@ class HomeScreen extends StatelessWidget {
         inactiveIcon: Badge(
           shape: BadgeShape.square,
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
-          badgeContent: Text(
-            context.read<CartProvider>().itemCount.toString(),
-            style: AppStyles.whiteSmallTextStyle,
+          badgeContent: Consumer<CartProvider>(
+            builder: (_, provider, __) => Text(
+              provider.listProduct.length.toString(),
+              style: AppStyles.whiteSmallTextStyle,
+            ),
           ),
           animationType: BadgeAnimationType.scale,
           // shape: BadgeShape.square,

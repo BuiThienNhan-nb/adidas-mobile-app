@@ -1,13 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/service/data_repository.dart';
+import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../configs/format.dart';
 import '../../../../configs/palette.dart';
 import '../../../../configs/size.dart';
 import '../../../../configs/style.dart';
 import '../../../../models/product.dart';
+import '../../../../view_models/auth_view_model/user_provider.dart';
+import '../../../../view_models/wish_list_view_model/wish_list_provider.dart';
 import '../../../utils/widget/w_options_mbs.dart';
 import 'w_cart_item_save_btn.dart';
 
@@ -39,6 +44,7 @@ class CartItem extends StatelessWidget {
           child: OptionsModalBottomSheet(
             title: 'OPTIONS',
             optionItems: optionItems,
+            product: _product,
           ),
         ),
       );
@@ -54,10 +60,11 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset(
+              Image.network(
                 _product.imageUrl.first,
                 height: 190.h,
                 width: 170.w,
+                fit: BoxFit.fill,
               ),
               Stack(
                 alignment: Alignment.center,
@@ -114,7 +121,29 @@ class CartItem extends StatelessWidget {
                             ),
                       SizedBox(height: 10.h),
                       CartItemSaveButton(
-                          function: () {}, isWishList: isWishList),
+                          function: () async {
+                            if (isWishList) {
+                              await DataRepository().addToBag(
+                                  idProd: _product.id!,
+                                  idUser: context.read<UserProvider>().user.id);
+                              context
+                                  .read<WishListProvider>()
+                                  .disLike(_product);
+                              _product.isFav = false;
+
+                              context.read<CartProvider>().addToCart(_product);
+                            } else {
+                              await DataRepository().removeFromBag(
+                                  idProd: _product.id!,
+                                  idUser: context.read<UserProvider>().user.id);
+                              context
+                                  .read<CartProvider>()
+                                  .removeProductFromCart(_product);
+                              context.read<WishListProvider>().like(_product);
+                              _product.isFav = true;
+                            }
+                          },
+                          isWishList: isWishList),
                       SizedBox(height: 14.h),
                     ],
                   ),

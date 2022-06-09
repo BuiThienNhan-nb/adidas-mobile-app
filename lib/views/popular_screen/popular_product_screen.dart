@@ -11,8 +11,6 @@ class PopularProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<AdBanner> banner;
-    String content = "Loading...";
     // final Product product = Product(
     //   image: 'assets/images/temp_sneaker.png',
     //   tag: "LOW IN STOCK",
@@ -66,21 +64,22 @@ class PopularProductScreen extends StatelessWidget {
       //   ],
       // ),
       body: FutureBuilder<List<AdBanner>>(
-          future: DataRepository().getBanners(),
-          builder: (BuildContext context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              print(snapshot);
-              return ProductCarouselSlider(
-                adBanners: snapshot.data ?? [],
-                // adBanners: snapshot.data!['data'],
-                // as List<AdBanner>,
-                // adBanners: (snapshot.data as Map<String, dynamic>)['data'],
-                callback: (value) {},
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
+        future: DataRepository().getBanners(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            print(snapshot);
+            return ProductCarouselSlider(
+              adBanners: snapshot.data ?? [],
+              // adBanners: snapshot.data!['data'],
+              // as List<AdBanner>,
+              // adBanners: (snapshot.data as Map<String, dynamic>)['data'],
+              callback: (value) {},
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }

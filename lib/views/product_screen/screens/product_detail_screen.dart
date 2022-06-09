@@ -17,9 +17,11 @@ class ProductDetailScreen extends StatefulWidget {
     Key? key,
     required this.heroTag,
     required this.product,
+    required this.index,
   }) : super(key: key);
   final String heroTag;
   final Product product;
+  final int index;
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -49,7 +51,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     final pages = List.generate(
       widget.product.imageUrl.length,
-      (index) => Image.asset(
+      (index) => Image.network(
         widget.product.imageUrl[index],
         fit: BoxFit.fill,
       ),
@@ -103,10 +105,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 // testScrollWidget(),
                 SizedBox(height: 24.h),
                 productName(
-                  widget.product.name,
-                  widget.product.price,
+                  widget.product,
                   iconIndex,
-                  () {},
+                  widget.index,
                 ),
                 SizedBox(height: 24.h),
                 Container(
@@ -120,7 +121,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   height: 1.h,
                 ),
                 SizedBox(height: 24.h),
-                purchaseProduct(),
+                purchaseProduct(context: context, product: widget.product),
                 SizedBox(height: 24.h),
                 Container(
                   color: AppColors.silverColor,
