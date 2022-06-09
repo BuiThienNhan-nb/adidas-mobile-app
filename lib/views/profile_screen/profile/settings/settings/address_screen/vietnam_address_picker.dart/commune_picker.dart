@@ -7,6 +7,8 @@ import 'package:flutter_adidas_clone/service/api/vietnam_administrative_division
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/vietnam_address_picker.dart/picker_item.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
 
+import '../../../../../../utils/widget/loading_indicator.dart';
+
 class CommunePicker extends StatelessWidget {
   const CommunePicker({
     Key? key,
@@ -51,8 +53,8 @@ class CommunePicker extends StatelessWidget {
           }
 
           // Default
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: LoadingIndicator(),
           );
         },
       ),

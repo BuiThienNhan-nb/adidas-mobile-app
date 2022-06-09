@@ -7,6 +7,7 @@ import 'package:flutter_adidas_clone/service/api/vietnam_administrative_division
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/vietnam_address_picker.dart/district_picker.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/address_screen/vietnam_address_picker.dart/picker_item.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/settings/settings/setting_app_bar.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/loading_indicator.dart';
 
 class ProvincePicker extends StatelessWidget {
   const ProvincePicker({
@@ -56,8 +57,8 @@ class ProvincePicker extends StatelessWidget {
           }
 
           // Default
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: LoadingIndicator(),
           );
         },
       ),

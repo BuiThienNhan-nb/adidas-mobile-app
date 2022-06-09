@@ -12,11 +12,10 @@ class LoadingIndicator extends StatelessWidget {
     Key? key,
     this.valueColor = AppColors.blackColor,
     this.backgroundColor = AppColors.whiteColor,
-    required String content,
-  })  : _content = content,
-        super(key: key);
+    this.content = 'Loading...',
+  }) : super(key: key);
 
-  final String _content;
+  String content = 'Loading...';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class LoadingIndicator extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              _content,
+              content,
               style: TextStyle(color: valueColor),
             ),
             LinearProgressIndicator(
