@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:flutter_adidas_clone/models/product.dart';
+
 // User userFromJson(String str) => User.fromJson(json.decode(str));
 
 // String userToJson(User data) => json.encode(data.toJson());
@@ -54,6 +58,7 @@ class User {
   String phoneNumber;
   final String email;
   String? gender;
+  List<Product>? favoriteProducts;
   User({
     required this.id,
     required this.fullName,
@@ -62,6 +67,7 @@ class User {
     required this.phoneNumber,
     required this.email,
     this.gender,
+    this.favoriteProducts,
   });
 
   User copyWith({
@@ -72,6 +78,7 @@ class User {
     String? phoneNumber,
     String? email,
     String? gender,
+    List<Product>? favoriteProducts,
   }) {
     return User(
       id: id ?? this.id,
@@ -81,6 +88,7 @@ class User {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       email: email ?? this.email,
       gender: gender ?? this.gender,
+      favoriteProducts: favoriteProducts ?? this.favoriteProducts,
     );
   }
 
@@ -96,6 +104,11 @@ class User {
     if (gender != null) {
       result.addAll({'gender': gender});
     }
+    if (favoriteProducts != null) {
+      result.addAll({
+        'favoriteProducts': favoriteProducts!.map((x) => x.toMap()).toList()
+      });
+    }
 
     return result;
   }
@@ -105,12 +118,14 @@ class User {
       id: map['id'] ?? '',
       fullName: map['fullName'] ?? '',
       isVerifiedEmail: map['isVerifiedEmail'] ?? false,
-      dateOfBirth: map['dateOfBirth'] == null
-          ? DateTime.now()
-          : DateTime.parse(map['dateOfBirth']),
+      dateOfBirth: DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth']),
       phoneNumber: map['phoneNumber'] ?? '',
       email: map['email'] ?? '',
       gender: map['gender'],
+      favoriteProducts: map['favoriteProducts'] != null
+          ? List<Product>.from(
+              map['favoriteProducts']?.map((x) => Product.fromMap(x)))
+          : null,
     );
   }
 
@@ -120,7 +135,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, fullName: $fullName, isVerifiedEmail: $isVerifiedEmail, dateOfBirth: $dateOfBirth, phoneNumber: $phoneNumber, email: $email, gender: $gender)';
+    return 'User(id: $id, fullName: $fullName, isVerifiedEmail: $isVerifiedEmail, dateOfBirth: $dateOfBirth, phoneNumber: $phoneNumber, email: $email, gender: $gender, favoriteProducts: $favoriteProducts)';
   }
 
   @override
@@ -134,7 +149,8 @@ class User {
         other.dateOfBirth == dateOfBirth &&
         other.phoneNumber == phoneNumber &&
         other.email == email &&
-        other.gender == gender;
+        other.gender == gender &&
+        listEquals(other.favoriteProducts, favoriteProducts);
   }
 
   @override
@@ -145,6 +161,7 @@ class User {
         dateOfBirth.hashCode ^
         phoneNumber.hashCode ^
         email.hashCode ^
-        gender.hashCode;
+        gender.hashCode ^
+        favoriteProducts.hashCode;
   }
 }
