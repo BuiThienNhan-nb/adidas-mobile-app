@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_adidas_clone/models/order_item.dart';
 import 'package:flutter_adidas_clone/views/utils/mock_data.dart';
 
 import '../../configs/order_status.dart';
@@ -46,6 +47,31 @@ class OrderProvider extends ChangeNotifier {
 
   updatePaymentMethod(String paymentMethod) {
     _order.paymentMethod = paymentMethod;
+    notifyListeners();
+  }
+
+  deleteOrderItem(int index) {
+    _order.orderItems.removeAt(index);
+    notifyListeners();
+  }
+
+  addOrderItem(OrderItem orderItem) {
+    _order.orderItems.add(orderItem);
+    notifyListeners();
+  }
+
+  updateOrderItem(int index, OrderItem newValue) {
+    _order.orderItems[index].copyWith(
+      product: newValue.product.copyWith(
+        id: newValue.product.id,
+        imageUrl: newValue.product.imageUrl,
+        name: newValue.product.name,
+        price: newValue.product.price,
+        tag: newValue.product.tag,
+      ),
+      quantity: newValue.quantity,
+      size: newValue.size,
+    );
     notifyListeners();
   }
 }

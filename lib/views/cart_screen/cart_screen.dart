@@ -6,68 +6,92 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../configs/palette.dart';
+import '../../models/order_item.dart';
 import '../utils/widget/app_bar.dart';
+import '../utils/widget/w_options_mbs.dart';
 import 'utils/cart_item/w_cart_item.dart';
 import 'utils/checkout/w_checkout_cart.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
-  ShoppingCartScreen({
+  const ShoppingCartScreen({
     Key? key,
     required this.appContext,
   }) : super(key: key);
 
   final BuildContext appContext;
-  final Map<String, Widget> optionItems = {
-    "Move to wishlist": Image.asset('assets/icons/heart_icon_light.png'),
-    "Remove from cart": Image.asset('assets/icons/trash_icon.png'),
-  };
 
   @override
   Widget build(BuildContext context) {
-    //String _content = "Loading...";
-    log('[CART SCREEN] init');
+    List<OrderItem> orderItems =
+        context.watch<OrderProvider>().order.orderItems;
+
+    onDeleteItem(int index) {
+      log('[ORDER ITEM] delete index: $index - name: ${orderItems[index].product.name}');
+      context.read<OrderProvider>().deleteOrderItem(index);
+    }
+
+    onDotsClick(BuildContext context, int index) {
+      log('dots clicked!');
+      showModalBottomSheet<dynamic>(
+        context: context,
+        useRootNavigator: true,
+        isScrollControlled: true,
+        builder: (context) => SizedBox(
+          height: 180.h,
+          width: double.infinity,
+          child: OptionsModalBottomSheet(
+            title: 'OPTIONS',
+            widgets: [
+              buildDotsWidget(
+                Image.asset('assets/icons/heart_icon_light.png'),
+                "Move to wishlist",
+                () {
+                  log('[DOT OPTION] add to wishlist');
+                  Navigator.of(context).pop();
+                },
+              ),
+              // "Remove from Wishlist": Image.asset('assets/icons/trash_icon.png'),
+              buildDotsWidget(
+                Image.asset('assets/icons/trash_icon.png'),
+                "Remove from cart",
+                () {
+                  onDeleteItem(index);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: const MyAppBar(
         isPopularScreen: false,
         title: "SHOPPING CART",
       ),
-
-      /// Empty cart widget show when cart quantity == 0
-      // body: Container(
-      //   color: Colors.white,
-      //   child: const EmptyCartWidget(),
-      // ),
-
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 15.h),
           Padding(
             padding: EdgeInsets.only(left: 20.w),
-            child: const Text("5   P R O D U C T S"),
+            child: Text("${orderItems.length}   P R O D U C T S"),
           ),
           SizedBox(height: 12.h),
           Divider(height: 3.h, color: AppColors.blackColor),
 
-          /// Temp cart item
+          /// Temp cart list
           Expanded(
             child: Consumer<OrderProvider>(
               builder: (_, value, __) => ListView.builder(
-                itemCount:
-                    context.read<OrderProvider>().order.orderItems.length,
+                itemCount: orderItems.length,
                 itemBuilder: (context, index) => CartItem(
-                  // product: Product(
-                  //   imageUrl: ['assets/images/temp_sneaker.png'],
-                  //   tag: "LOW IN STOCK",
-                  //   price: 5200000,
-                  //   name: "ULTRABOOST 21 x PAREY SHOES",
-                  // ),
-                  orderItem:
-                      context.read<OrderProvider>().order.orderItems[index],
+                  orderItem: orderItems[index],
                   appContext: appContext,
                   isWishList: false,
-                  optionItems: optionItems,
+                  onDotsClick: () => onDotsClick(context, index),
+                  onDelete: () => onDeleteItem(index),
                 ),
               ),
             ),
