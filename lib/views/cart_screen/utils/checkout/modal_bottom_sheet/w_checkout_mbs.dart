@@ -1,5 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_address_select.dart';
+import 'package:flutter_adidas_clone/views/utils/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +26,8 @@ class _CheckoutCartBottomSheetState extends State<CheckoutCartBottomSheet> {
     refresh(String val) => setState(() {});
 
     /// Declare list of pages
-    final List<Widget> _shippingPages = [];
-    final List<Widget> _paymentPages = [
+    final List<Widget> shippingPages = [];
+    final List<Widget> paymentPages = [
       WillPopPage(
         onWillPop: () async {
           setState(
@@ -39,7 +42,7 @@ class _CheckoutCartBottomSheetState extends State<CheckoutCartBottomSheet> {
         child: PaymentSelect(updateParent: refresh),
       ),
     ];
-    final List<Widget> _prommotionPages = [
+    final List<Widget> promotionPages = [
       WillPopPage(
         onWillPop: () async {
           setState(
@@ -51,14 +54,37 @@ class _CheckoutCartBottomSheetState extends State<CheckoutCartBottomSheet> {
           );
           return false;
         },
-        child: PromotionWidget(updateParent: refresh),
+        child: PromotionWidget(
+          updateParent: refresh,
+          promotionId: context.read<OrderProvider>().order.promotionId,
+        ),
       ),
     ];
-    final List<List<Widget>> _pages = [
+    final List<Widget> billingAddressPages = [
+      WillPopPage(
+        onWillPop: () async {
+          setState(
+            () => context.read<CheckoutCartConfigProvider>().onPageTransition(
+                  false,
+                  0,
+                  CheckoutCartBottomSheet.mainCheckoutBottomSheetHeight,
+                ),
+          );
+          return false;
+        },
+        child: BillAddressSelect(
+          updateParent: refresh,
+          userAddresses: AppMockData().userAddresses,
+        ),
+      ),
+    ];
+
+    final List<List<Widget>> pages = [
       [CheckoutMainPage(updateParent: refresh)],
-      _shippingPages,
-      _paymentPages,
-      _prommotionPages,
+      shippingPages,
+      paymentPages,
+      billingAddressPages,
+      promotionPages,
     ];
 
     /// Build UI
@@ -78,7 +104,7 @@ class _CheckoutCartBottomSheetState extends State<CheckoutCartBottomSheet> {
             child: child,
           ),
           child:
-              _pages[context.read<CheckoutCartConfigProvider>().currentSection]
+              pages[context.read<CheckoutCartConfigProvider>().currentSection]
                   [context.read<CheckoutCartConfigProvider>().currentPageIndex],
         ),
       ),

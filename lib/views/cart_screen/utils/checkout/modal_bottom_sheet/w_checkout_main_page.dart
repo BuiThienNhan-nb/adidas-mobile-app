@@ -1,22 +1,28 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_address_select.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/order_detail_screen.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../configs/format.dart';
 import '../../../../../configs/palette.dart';
-import '../../../../../configs/size.dart';
-import '../../../../../configs/style.dart';
+import '../../../../../view_models/auth_view_model/auth_provider.dart';
 import '../../../../../view_models/cart_view_model/checkout_cart_config_provider.dart';
 import '../../../../../view_models/order_view_model/order_provider.dart';
+import '../../../../profile_screen/auth/widget/auth_dialog.dart';
 import '../../../../utils/button/my_text_button.dart';
-import '../../../../utils/widget/privacy_term_dialog.dart';
-import '../../../../utils/widget/span_text_widget.dart';
 import 'billing_address/w_bill_adress_info.dart';
 import 'payment/w_payment_select.dart';
 import 'promotion/w_promotion.dart';
 import 'shipping/w_shipping_content.dart';
-import 'w_expand_photo.dart';
-import 'w_order_info.dart';
+import 'utils/w_checkout_app_bar.dart';
+import 'utils/w_checkout_policy_term.dart';
+import 'utils/w_expand_photo.dart';
+import 'utils/w_order_info.dart';
 
 class CheckoutMainPage extends StatefulWidget {
   const CheckoutMainPage({Key? key, required Function updateParent})
@@ -56,7 +62,11 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             ExpandImageGrid(imageUrls: _imageUrls),
             OrderInformation(
               title: "SHIPPING",
-              content: const ShippingInformation(),
+              content: Consumer<OrderProvider>(
+                builder: (_, value, ___) => ShippingInformation(
+                  userAddress: context.read<OrderProvider>().order.userAddress,
+                ),
+              ),
               onTap: () {},
             ),
             Container(height: 0.5.h, color: AppColors.nobelColor),
@@ -81,8 +91,17 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
               title: "BILLING ADDRESS",
-              content: const BillingAdressInformation(),
-              onTap: () {},
+              content: Consumer<OrderProvider>(
+                builder: (_, value, __) => BillingAddressInformation(
+                  userAddress: context.read<OrderProvider>().order.userAddress,
+                ),
+              ),
+              onTap: () {
+                setState(() => context
+                    .read<CheckoutCartConfigProvider>()
+                    .onPageTransition(true, 3, BillAddressSelect.height));
+                widget._updateParent("");
+              },
             ),
             Container(height: 0.5.h, color: AppColors.nobelColor),
             OrderInformation(
@@ -101,7 +120,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               onTap: () {
                 setState(() => context
                     .read<CheckoutCartConfigProvider>()
-                    .onPageTransition(true, 3, PromotionWidget.height));
+                    .onPageTransition(true, 4, PromotionWidget.height));
                 widget._updateParent("");
               },
             ),
@@ -117,10 +136,12 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             const CheckoutPolicyTerm(),
             Padding(
               padding: EdgeInsets.only(left: 16.w, right: 16.w),
-              child: MyTextButton(
-                function: () {},
-                content: "PLACE ORDER",
-                isLoading: false,
+              child: Consumer<AuthProvider>(
+                builder: (_, value, __) => MyTextButton(
+                  function: () => onOrderButtonClick(context),
+                  content: "PLACE ORDER",
+                  isLoading: context.read<AuthProvider>().isLoading,
+                ),
               ),
             ),
             SizedBox(height: 8.h),
@@ -131,88 +152,47 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
   }
 }
 
-class CheckoutAppBar extends StatelessWidget implements PreferredSize {
-  const CheckoutAppBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.whiteColor,
-      shadowColor: Colors.transparent,
-      bottomOpacity: 0.0,
-      elevation: 0.0,
-      automaticallyImplyLeading: false,
-      iconTheme: const IconThemeData(
-        color: AppColors.blackColor,
-      ),
-      centerTitle: false,
-      title: Text(
-        "CHECKOUT",
-        style: AppStyles.titleTextStyle,
-      ),
-      actions: <Widget>[
-        IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.close,
-            size: AppSizes.navBarIconSize + 8,
-          ),
-        ),
-      ],
-    );
+void onOrderButtonClick(BuildContext context) {
+  /// Validate order
+  if (context.read<OrderProvider>().order.paymentMethod ==
+          'Select payment method' ||
+      context.read<OrderProvider>().order.promotionId == null) {
+    log('[ORDER] validate return false');
+    showFailureDialog(context,
+        'All the necessary information must be completed fill before place an order!');
+    return;
   }
+  log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotionId}');
 
-  @override
-  // TODO: implement child
-  Widget get child => throw UnimplementedError();
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(50.h);
+  /// Order action
+  context.read<AuthProvider>().isLoading = true;
+  Future.delayed(const Duration(seconds: 2)).then(
+    (value) {
+      log('[ORDER] place order button clicked!');
+      Navigator.of(context)
+        ..pop()
+        ..push(
+          CupertinoPageRoute<void>(
+            builder: (context) => OrderDetailScreen(
+              order: context.read<OrderProvider>().order,
+              title: 'BOOM. ORDERED.',
+            ),
+          ),
+        );
+      context.read<AuthProvider>().isLoading = false;
+    },
+  );
 }
 
-class CheckoutPolicyTerm extends StatelessWidget {
-  const CheckoutPolicyTerm({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    void popUpTerm() => showDialog(
-          context: context,
-          builder: (context) => PrivacyTermDialog(mdFileName: "term.md"),
-        );
-    void popUpPrivacy() => showDialog(
-          context: context,
-          builder: (context) => PrivacyTermDialog(mdFileName: "privacy.md"),
-        );
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("By clicking PLACE ORDER, I confirm: "),
-          MyTextSpan(
-            contentText1: "I have read, understood and accepted the ",
-            linkText1: "Privacy Notice",
-            contentText2: " and ",
-            linkText2: "Terms and Conditions",
-            onTap1: popUpPrivacy,
-            onTap2: popUpTerm,
-          ),
-          MyTextSpan(
-            contentText1:
-                "I hereby consent to the use of my personal data for marketing and promotional purposes as well as its transfer, sharing, disclosure to third parties.",
-            linkText1: "",
-            contentText2: "",
-            linkText2: "",
-            onTap1: () {},
-            onTap2: () {},
-          ),
-        ],
+void showFailureDialog(BuildContext context, String subTitle) =>
+    showAnimatedDialog(
+      context: context,
+      builder: (context) => AuthDialog(
+        title: "Failure Request",
+        subTitle: subTitle,
+        btnTitle: "CANCEL",
       ),
+      barrierDismissible: true,
+      animationType: DialogTransitionType.size,
+      duration: const Duration(milliseconds: 300),
     );
-  }
-}

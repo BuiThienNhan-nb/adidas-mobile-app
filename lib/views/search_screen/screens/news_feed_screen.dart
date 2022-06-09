@@ -9,7 +9,7 @@ import '../utils/w_explore_heading.dart';
 import '../utils/w_explore_item.dart';
 import '../utils/w_explore_store_banner.dart';
 import '../utils/w_search_bar.dart';
-import '../utils/category_mock_data.dart';
+import '../../utils/mock_data.dart';
 import 'category/category_screen.dart';
 
 class NewsFeedScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class NewsFeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String _content = "Loading...";
-    SearchScreenMockData searchScreenMockData = SearchScreenMockData();
+    AppMockData searchScreenMockData = AppMockData();
 
     final Product product = Product(
       imageUrl: [
@@ -28,6 +28,7 @@ class NewsFeedScreen extends StatelessWidget {
       tag: "NEW",
       price: 2500000,
       name: "STAN SMITH",
+      isFav: false,
     );
     final List<Product> products = [
       product,

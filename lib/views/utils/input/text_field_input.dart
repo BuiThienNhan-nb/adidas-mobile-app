@@ -43,6 +43,7 @@ class TextFieldInput extends StatelessWidget {
       width: double.infinity,
       height: 70.h,
       child: TextFormField(
+        style: const TextStyle(overflow: TextOverflow.ellipsis),
         obscureText: obscureText,
         onTap: onTap,
         keyboardType: textInputType,

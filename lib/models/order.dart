@@ -1,24 +1,29 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:flutter_adidas_clone/models/order_item.dart';
+import 'package:flutter_adidas_clone/models/user_address.dart';
+
 class Order {
   final String id;
   final String userId;
   final DateTime orderTime;
-  String orderAddress;
+  UserAddress userAddress;
   String paymentMethod;
-  String receptionName;
-  String receptionPhone;
   String? promotionId;
+  String orderStatus;
+  List<OrderItem> orderItems;
   int total;
   Order({
     required this.id,
     required this.userId,
     required this.orderTime,
-    required this.orderAddress,
+    required this.userAddress,
     required this.paymentMethod,
-    required this.receptionName,
-    required this.receptionPhone,
     this.promotionId,
+    required this.orderStatus,
+    required this.orderItems,
     required this.total,
   });
 
@@ -26,22 +31,22 @@ class Order {
     String? id,
     String? userId,
     DateTime? orderTime,
-    String? orderAddress,
+    UserAddress? userAddress,
     String? paymentMethod,
-    String? receptionName,
-    String? receptionPhone,
     String? promotionId,
+    String? orderStatus,
+    List<OrderItem>? orderItems,
     int? total,
   }) {
     return Order(
       id: id ?? this.id,
       userId: userId ?? this.userId,
       orderTime: orderTime ?? this.orderTime,
-      orderAddress: orderAddress ?? this.orderAddress,
+      userAddress: userAddress ?? this.userAddress,
       paymentMethod: paymentMethod ?? this.paymentMethod,
-      receptionName: receptionName ?? this.receptionName,
-      receptionPhone: receptionPhone ?? this.receptionPhone,
       promotionId: promotionId ?? this.promotionId,
+      orderStatus: orderStatus ?? this.orderStatus,
+      orderItems: orderItems ?? this.orderItems,
       total: total ?? this.total,
     );
   }
@@ -52,13 +57,13 @@ class Order {
     result.addAll({'id': id});
     result.addAll({'userId': userId});
     result.addAll({'orderTime': orderTime.millisecondsSinceEpoch});
-    result.addAll({'orderAddress': orderAddress});
+    result.addAll({'userAddress': userAddress.toMap()});
     result.addAll({'paymentMethod': paymentMethod});
-    result.addAll({'receptionName': receptionName});
-    result.addAll({'receptionPhone': receptionPhone});
     if (promotionId != null) {
       result.addAll({'promotionId': promotionId});
     }
+    result.addAll({'orderStatus': orderStatus});
+    result.addAll({'orderItems': orderItems.map((x) => x.toMap()).toList()});
     result.addAll({'total': total});
 
     return result;
@@ -69,11 +74,12 @@ class Order {
       id: map['id'] ?? '',
       userId: map['userId'] ?? '',
       orderTime: DateTime.fromMillisecondsSinceEpoch(map['orderTime']),
-      orderAddress: map['orderAddress'] ?? '',
+      userAddress: UserAddress.fromMap(map['userAddress']),
       paymentMethod: map['paymentMethod'] ?? '',
-      receptionName: map['receptionName'] ?? '',
-      receptionPhone: map['receptionPhone'] ?? '',
       promotionId: map['promotionId'],
+      orderStatus: map['orderStatus'] ?? '',
+      orderItems: List<OrderItem>.from(
+          map['orderItems']?.map((x) => OrderItem.fromMap(x))),
       total: map['total']?.toInt() ?? 0,
     );
   }
@@ -84,7 +90,7 @@ class Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, userId: $userId, orderTime: $orderTime, orderAddress: $orderAddress, paymentMethod: $paymentMethod, receptionName: $receptionName, receptionPhone: $receptionPhone, promotionId: $promotionId, total: $total)';
+    return 'Order(id: $id, userId: $userId, orderTime: $orderTime, userAddress: $userAddress, paymentMethod: $paymentMethod, promotionId: $promotionId, orderStatus: $orderStatus, orderItems: $orderItems, total: $total)';
   }
 
   @override
@@ -95,11 +101,11 @@ class Order {
         other.id == id &&
         other.userId == userId &&
         other.orderTime == orderTime &&
-        other.orderAddress == orderAddress &&
+        other.userAddress == userAddress &&
         other.paymentMethod == paymentMethod &&
-        other.receptionName == receptionName &&
-        other.receptionPhone == receptionPhone &&
         other.promotionId == promotionId &&
+        other.orderStatus == orderStatus &&
+        listEquals(other.orderItems, orderItems) &&
         other.total == total;
   }
 
@@ -108,11 +114,11 @@ class Order {
     return id.hashCode ^
         userId.hashCode ^
         orderTime.hashCode ^
-        orderAddress.hashCode ^
+        userAddress.hashCode ^
         paymentMethod.hashCode ^
-        receptionName.hashCode ^
-        receptionPhone.hashCode ^
         promotionId.hashCode ^
+        orderStatus.hashCode ^
+        orderItems.hashCode ^
         total.hashCode;
   }
 }

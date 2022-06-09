@@ -1,9 +1,11 @@
+import 'package:flutter_adidas_clone/models/order_item.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
+import 'package:flutter_adidas_clone/models/user_address.dart';
 
-import '../../../models/product_category.dart';
-import '../../../models/product_type.dart';
+import '../../models/product_category.dart';
+import '../../models/product_type.dart';
 
-class SearchScreenMockData {
+class AppMockData {
   final ProductType _shoes = ProductType(
     id: 'shoes',
     name: 'SHOES',
@@ -73,6 +75,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 850000,
       name: 'DÉP adilette COMFORT',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -81,6 +84,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 5800000,
       name: 'FORUM 84 LOW 8K',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -89,6 +93,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 3200000,
       name: 'Giày ZX 22 BOOST',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -97,6 +102,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 5200000,
       name: 'Giày Ultraboost 22',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -105,6 +111,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 3100000,
       name: 'Giày ZX 8000',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -113,6 +120,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 950000,
       name: 'DÉP adilette COMFORT X LEGO',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -121,6 +129,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 1900000,
       name: 'Giày Đá Bóng X Speedflow.3',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -129,6 +138,7 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 4300000,
       name: 'Giày Golf AlphaFlex 21 BOA',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -137,9 +147,119 @@ class SearchScreenMockData {
       tag: 'NEW',
       price: 3200000,
       name: 'DAME 8 BIG MOOD',
+      isFav: false,
+    ),
+  ];
+
+  final List<OrderItem> _orderItems = [
+    OrderItem(
+      product: Product(
+        imageUrl: [
+          'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/923bec57082443e39f92ad6e00cbed3d_9366/Dep_adilette_Comfort_DJen_GZ5896_01_standard.jpg',
+        ],
+        tag: 'NEW',
+        price: 850000,
+        name: 'DÉP adilette COMFORT',
+        isFav: true,
+      ),
+      size: 9.5,
+      quantity: 2,
+    ),
+    OrderItem(
+      product: Product(
+        imageUrl: [
+          'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/535610eb253e4bf5a004ae0c01551432_9366/FORUM_84_LOW_8K_Mau_xanh_da_troi_GZ6479_01_standard.jpg',
+        ],
+        tag: 'NEW',
+        price: 5800000,
+        name: 'FORUM 84 LOW 8K',
+        isFav: true,
+      ),
+      size: 9,
+      quantity: 3,
+    ),
+    OrderItem(
+      product: Product(
+        imageUrl: [
+          'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8129befd83a043678710adf5007bf1e7_9366/Giay_ZX_22_BOOST_trang_GY6695_01_standard.jpg',
+        ],
+        tag: 'NEW',
+        price: 3200000,
+        name: 'Giày ZX 22 BOOST',
+        isFav: false,
+      ),
+      size: 8,
+      quantity: 1,
+    ),
+    OrderItem(
+      product: Product(
+        imageUrl: [
+          'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/fbaf991a78bc4896a3e9ad7800abcec6_9366/Giay_Ultraboost_22_DJen_GZ0127_01_standard.jpg',
+        ],
+        tag: 'NEW',
+        price: 5200000,
+        name: 'Giày Ultraboost 22',
+        isFav: true,
+      ),
+      size: 9.5,
+      quantity: 1,
+    ),
+    OrderItem(
+        product: Product(
+          imageUrl: [
+            'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5b1027d7e2ba472895e4ae310057664a_9366/Giay_ZX_22_BOOST_trang_GY6694_01_standard.jpg',
+          ],
+          tag: 'NEW',
+          price: 3100000,
+          name: 'Giày ZX 8000',
+          isFav: false,
+        ),
+        size: 9,
+        quantity: 1),
+    OrderItem(
+      product: Product(
+        imageUrl: [
+          'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/864091d7955f4521a12facc9018519b9_9366/Giay_Golf_Alphaflex_21_BOA_trang_FZ1032_01_standard.jpg',
+        ],
+        tag: 'NEW',
+        price: 4300000,
+        isFav: false,
+        name: 'Giày Golf AlphaFlex 21 BOA',
+      ),
+      size: 9,
+      quantity: 2,
+    ),
+  ];
+
+  final List<UserAddress> _userAddresses = [
+    UserAddress(
+      id: 'mock_data_1',
+      userId: '1',
+      receptionName: 'Bùi Thiện Nhân',
+      receptionPhoneNumber: '0762796747',
+      address: '05/66 Phan Đăng Lưu, P9, Tp Tuy Hòa, Phú Yên',
+      country: 'VietNam',
+    ),
+    UserAddress(
+      id: 'mock_data_2',
+      userId: '1',
+      receptionName: 'Phan Duy Luân',
+      receptionPhoneNumber: '0765326865',
+      address: '48 Nguyễn Công Trứ, P4, Tp Tuy Hòa, Phú Yên',
+      country: 'VietNam',
+    ),
+    UserAddress(
+      id: 'mock_data_3',
+      userId: '1',
+      receptionName: 'Dương Hoàng Long',
+      receptionPhoneNumber: '02532411645',
+      address: '151/26 D2, Phan Văn Trí, Bình Thạnh, TP HCM',
+      country: 'VietNam',
     ),
   ];
 
   ProductType get shoes => _shoes;
   List<Product> get products => _products;
+  List<OrderItem> get orderItems => _orderItems;
+  List<UserAddress> get userAddresses => _userAddresses;
 }

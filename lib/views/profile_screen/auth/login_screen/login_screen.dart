@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _googleSignIn = GoogleSignIn();
     Future loginFaceBook() async {
       final LoginResult result = await FacebookAuth.instance
           .login(); // by default we request the email and the public profile
@@ -36,6 +35,13 @@ class LoginScreen extends StatelessWidget {
         log('${result.message}');
       }
     }
+
+    final _googleSignIn = GoogleSignIn(scopes: [
+      'https://www.googleapis.com/auth/user.birthday.read',
+      'https://www.googleapis.com/auth/user.emails.read',
+      'https://www.googleapis.com/auth/user.gender.read',
+      'https://www.googleapis.com/auth/userinfo.profile',
+    ]);
 
     Future loginGoogle() async {
       _googleSignIn.signIn().then(

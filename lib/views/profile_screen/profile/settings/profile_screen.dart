@@ -39,6 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         backgroundColor: AppColors.whiteColor,
         centerTitle: false,
         shadowColor: Colors.transparent,
+        elevation: 0.8,
         automaticallyImplyLeading: false,
         title: Text(
           context.read<UserProvider>().user.fullName,

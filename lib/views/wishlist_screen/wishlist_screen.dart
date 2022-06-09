@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/order_item.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/w_options_mbs.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../configs/palette.dart';
-import '../../models/product.dart';
+import '../../view_models/order_view_model/order_provider.dart';
 import '../cart_screen/utils/cart_item/w_cart_item.dart';
 import '../utils/widget/app_bar.dart';
 import 'w_filter_modal_bottom_sheet.dart';
@@ -16,14 +19,13 @@ class WishListScreen extends StatelessWidget {
   }) : super(key: key);
 
   final BuildContext appContext;
-  final Map<String, Widget> optionItems = {
-    "Add to cart": Image.asset('assets/icons/heart_icon_light.png'),
-    "Remove from Wishlist": Image.asset('assets/icons/trash_icon.png'),
-  };
   Filter filterOption = Filter.recentlyAdded;
 
   @override
   Widget build(BuildContext context) {
+    List<OrderItem> orderItems =
+        context.watch<OrderProvider>().order.orderItems;
+
     showFilterModalBottomSheet() {
       showModalBottomSheet<dynamic>(
         context: appContext,
@@ -41,13 +43,47 @@ class WishListScreen extends StatelessWidget {
           ),
         ),
       );
-      // .then(
-      //   (value) => Navigator.of(context).push(
-      //     CupertinoPageRoute<void>(
-      //       builder: (BuildContext context) => const TestScreen(),
-      //     ),
-      //   ),
-      // );
+    }
+
+    onDeleteItem(int index) {
+      log('[ORDER ITEM] from wishlist, increase quantity index: $index - name: ${orderItems[index].product.name}');
+      orderItems[index].quantity = 10;
+      context.read<OrderProvider>().updateOrderItem(index, orderItems[index]);
+    }
+
+    onDotsClick(BuildContext context, int index) {
+      log('dots clicked!');
+      showModalBottomSheet<dynamic>(
+        context: context,
+        useRootNavigator: true,
+        isScrollControlled: true,
+        builder: (context) => SizedBox(
+          height: 180.h,
+          width: double.infinity,
+          child: OptionsModalBottomSheet(
+            title: 'OPTIONS',
+            widgets: [
+              buildDotsWidget(
+                Image.asset('assets/icons/cart_add_icon_light.png'),
+                "Add to cart",
+                () {
+                  log('[DOT OPTION] add to cart');
+                  Navigator.of(context).pop();
+                },
+              ),
+              // "Remove from Wishlist": Image.asset('assets/icons/trash_icon.png'),
+              buildDotsWidget(
+                Image.asset('assets/icons/trash_icon.png'),
+                "Remove from Wishlist",
+                () {
+                  onDeleteItem(index);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        ),
+      );
     }
 
     return Scaffold(
@@ -55,12 +91,6 @@ class WishListScreen extends StatelessWidget {
         isPopularScreen: false,
         title: "WISHLIST",
       ),
-
-      // body: Container(
-      //   color: Colors.white,
-      //   child: const EmptyListWidget(),
-      // ),
-
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -69,7 +99,7 @@ class WishListScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(width: 20.w),
-              const Text("5   P R O D U C T S"),
+              Text("${orderItems.length}   P R O D U C T S"),
               const Spacer(),
               InkWell(
                 focusColor: Colors.transparent,
@@ -91,20 +121,16 @@ class WishListScreen extends StatelessWidget {
           SizedBox(height: 12.h),
           Divider(height: 3.h, color: AppColors.blackColor),
 
-          /// Temp cart item
+          /// Temp wishlist list
           Expanded(
             child: ListView.builder(
-              itemCount: 6,
+              itemCount: orderItems.length,
               itemBuilder: (context, index) => CartItem(
-                product: Product(
-                  imageUrl: ['assets/images/temp_sneaker.png'],
-                  tag: "LOW IN STOCK",
-                  price: 5200000,
-                  name: "ULTRABOOST 21 x PAREY SHOES",
-                ),
+                orderItem: orderItems[index],
                 appContext: appContext,
                 isWishList: true,
-                optionItems: optionItems,
+                onDotsClick: () => onDotsClick(context, index),
+                onDelete: () => onDeleteItem(index),
               ),
             ),
           ),

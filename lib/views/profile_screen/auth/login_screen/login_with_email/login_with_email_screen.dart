@@ -1,6 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/service/data_repository.dart';
+import 'package:flutter_adidas_clone/view_models/cart_view_model/cart_provider.dart';
+import 'package:flutter_adidas_clone/view_models/wish_list_view_model/wish_list_provider.dart';
+import 'package:flutter_adidas_clone/views/home_screen.dart';
 import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,6 +46,24 @@ class LoginWithEmail extends StatelessWidget {
           animationType: DialogTransitionType.size,
           duration: const Duration(milliseconds: 300),
         ).then((value) => context.read<AuthProvider>().isLoading = false);
+
+    showSuccessDialog(String subTitle) => showAnimatedDialog(
+          context: context,
+          builder: (context) => AuthDialog(
+            title: "Login success",
+            subTitle: subTitle,
+            btnTitle: "OK",
+          ),
+          barrierDismissible: true,
+          animationType: DialogTransitionType.size,
+          duration: const Duration(milliseconds: 300),
+        ).then((value) {
+          context.read<AuthProvider>().isLoading = false;
+          context.read<AuthProvider>().isLogin = true;
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (c) => const HomeScreen()),
+              (router) => false);
+        });
     showForgotPasswordDialog() => showAnimatedDialog(
           context: context,
           builder: (context) => const AuthDialog(
@@ -53,6 +75,15 @@ class LoginWithEmail extends StatelessWidget {
           animationType: DialogTransitionType.size,
           duration: const Duration(milliseconds: 300),
         );
+    Future<void> getWishList() async {
+      context.read<WishListProvider>().listWish = await DataRepository()
+          .getListBag(id: context.read<UserProvider>().user.id);
+    }
+
+    Future<void> getCartList() async {
+      context.read<CartProvider>().listProduct = await DataRepository()
+          .getListBag(id: context.read<UserProvider>().user.id);
+    }
 
     login() async {
       if (_key.currentState!.validate()) {
@@ -63,32 +94,28 @@ class LoginWithEmail extends StatelessWidget {
 
         if (response['status']) {
           if (response['data']['user']['isVerifiedEmail']) {
-            user = User.fromJson(response['data']['user']);
+            user = User.fromMap(response['data']['user']);
             context.read<UserProvider>().setUser(user);
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return const AlertDialog(
-                      title: Text("Success!!"),
-                      content: Text("Navigate to another screen"));
-                });
-            context.read<AuthProvider>().isLoading = false;
+            await getWishList();
+            await getCartList();
+            showSuccessDialog('welcom to adidas');
+            auth.isLoading = false;
           } else {
             showFailDialog(
                 "Your email haven't access please check your mail box to verify your email");
+            auth.isLoading = false;
           }
-          user = User.fromJson(response['data']['user']);
-          context.read<UserProvider>().setUser(user);
-          showDialog(
-            context: context,
-            builder: (context) {
-              return const AlertDialog(
-                title: Text("Success!!"),
-                content: Text("Navigate to another screen"),
-              );
-            },
-          );
-          context.read<AuthProvider>().isLoading = false;
+          // user = User.fromJson(response['data']['user']);
+          // context.read<UserProvider>().setUser(user);
+          // showDialog(
+          //   context: context,
+          //   builder: (context) {
+          //     return const AlertDialog(
+          //       title: Text("Success!!"),
+          //       content: Text("Navigate to another screen"),
+          //     );
+          //   },
+          // );
         } else {
           showFailDialog(
               "We didn't recognize the username or password you entered. Please try again.");
@@ -97,6 +124,8 @@ class LoginWithEmail extends StatelessWidget {
         log('VALIDATE RETURN FALSE');
       }
     }
+
+    void getUserInfo() {}
 
     return Scaffold(
       appBar: AppBar(

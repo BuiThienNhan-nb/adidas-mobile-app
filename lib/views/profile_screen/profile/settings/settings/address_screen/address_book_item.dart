@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/user_address.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,43 +9,53 @@ import '../../../../../../configs/size.dart';
 import 'add_new_address_screen.dart';
 
 class AddressBookItem extends StatelessWidget {
-  const AddressBookItem({
+  AddressBookItem({
     Key? key,
-    required String name,
-    required String address,
-    required String country,
-    required String phoneNumber,
-  })  : _name = name,
-        _address = address,
-        _country = country,
-        _phoneNumber = phoneNumber,
-        super(key: key);
-  final String _name, _address, _country, _phoneNumber;
+    required this.userAddress,
+    this.isSelect = false,
+  }) : super(key: key);
+  // final String _name, _address, _country, _phoneNumber;
+  final UserAddress userAddress;
+  bool isSelect = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 12, right: 12, top: 6, bottom: 6),
       child: Container(
+        decoration: BoxDecoration(
+          border: isSelect == true
+              ? Border.all(color: AppColors.blackColor)
+              : Border.all(color: AppColors.silverColor),
+        ),
         height: 100.h,
         width: double.infinity,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.silverColor),
-        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(width: 12.w),
+            SizedBox(width: 4.w),
+            isSelect == true
+                ? Container(
+                    // padding: EdgeInsets.all(8.h),
+                    color: AppColors.blackColor,
+                    width: 2.w,
+                    height: 92.h,
+                  )
+                : const SizedBox.shrink(),
+            SizedBox(width: 8.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(_name),
-                  Text(_address),
-                  Text(_country),
-                  Text(_phoneNumber),
+                  Text(
+                    userAddress.receptionName,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(userAddress.address),
+                  Text(userAddress.country),
+                  Text(userAddress.receptionPhoneNumber),
                 ],
               ),
             ),

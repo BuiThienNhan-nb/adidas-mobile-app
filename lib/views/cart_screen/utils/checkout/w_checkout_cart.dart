@@ -7,9 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../../configs/format.dart';
 import '../../../../configs/size.dart';
 import '../../../../configs/style.dart';
-import '../../../../models/order.dart';
 import '../../../../view_models/auth_view_model/auth_provider.dart';
-import '../../../../view_models/order_view_model/order_provider.dart';
 import '../../../profile_screen/auth/login_screen/login_screen.dart';
 import '../../../profile_screen/auth/widget/auth_dialog.dart';
 import '../../../utils/button/my_text_button.dart';
@@ -50,20 +48,39 @@ class CheckoutCartContainer extends StatelessWidget {
     }
 
     void onCheckoutClick() {
-      if (context.read<AuthProvider>().isLogin) {
-        context.read<OrderProvider>().order = Order(
-          id: "id",
-          userId: "",
-          orderTime: DateTime.now(),
-          orderAddress: "05/66 Phan Đăng Lưu",
-          paymentMethod: "Select payment method",
-          receptionName: "Bùi Thiện Nhân",
-          receptionPhone: "0762796747",
-          promotionId: null,
-          total: 17500000,
-        );
+      // TODO: Change codition to pop up bottom sheet to (isLogin == true)
+      // List<OrderItem> orderItems = [];
+      // for (var product in AppMockData().products) {
+      //   orderItems.add(
+      //     OrderItem(
+      //       product: product,
+      //       quantity: 2,
+      //     ),
+      //   );
+      // }
+      if (!context.read<AuthProvider>().isLogin) {
+        /// TODO: uncomment mock order data
+        // context.read<OrderProvider>().order = Order(
+        //   id: 'mock_data',
+        //   userId: '1',
+        //   orderTime: DateTime.now(),
+        //   userAddress: UserAddress(
+        //     id: 'mock_data_1',
+        //     userId: '1',
+        //     receptionName: 'Bui Thien Nhan',
+        //     receptionPhoneNumber: '0762796747',
+        //     address: '05/66 Phan Đăng Lưu, TP Tuy Hòa, Phú Yên,',
+        //     country: 'VietNam',
+        //   ),
+        //   paymentMethod: "Select payment method",
+        //   promotionId: null,
+        //   total: 17500000,
+        //   orderItems: orderItems,
+        //   orderStatus: AppOrderStatus.processing,
+        // );
         showModalBottomSheet<dynamic>(
           context: context,
+          useRootNavigator: true,
           // context: context.read<NavBarProvider>().navBarContainerContext,
           isDismissible: false,
           isScrollControlled: true,

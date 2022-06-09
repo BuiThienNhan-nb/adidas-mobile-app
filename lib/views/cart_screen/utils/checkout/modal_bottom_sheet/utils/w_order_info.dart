@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../configs/palette.dart';
-import '../../../../../configs/size.dart';
+import '../../../../../../configs/palette.dart';
+import '../../../../../../configs/size.dart';
 
 class OrderInformation extends StatelessWidget {
   const OrderInformation({

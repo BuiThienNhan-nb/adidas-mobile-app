@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: implementation_imports
@@ -48,11 +50,24 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
               : Container(),
         ),
         IconButton(
-          onPressed: () => context.read<AuthProvider>().isLogin
-              ? Navigator.of(context, rootNavigator: true)
-                  .pushNamed(ProfileScreen.id)
-              : Navigator.of(context, rootNavigator: true)
-                  .pushNamed(AuthScreen.id),
+          // TODO: Change condition to push User profile (isLogin == true)
+          onPressed: () {
+            /// Mock user data
+            context.read<UserProvider>().user = User(
+              id: 'mock_data',
+              fullName: 'Bùi Thiện Nhân',
+              isVerifiedEmail: false,
+              dateOfBirth: DateTime(2001, 9, 25),
+              phoneNumber: '0762796747',
+              email: 'buithiennhan2016@gmail.com',
+            );
+
+            !context.read<AuthProvider>().isLogin
+                ? Navigator.of(context, rootNavigator: true)
+                    .pushNamed(ProfileScreen.id)
+                : Navigator.of(context, rootNavigator: true)
+                    .pushNamed(AuthScreen.id);
+          },
           icon: const FaIcon(
             FontAwesomeIcons.user,
             color: AppColors.blackColor,

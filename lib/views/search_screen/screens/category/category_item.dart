@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adidas_clone/views/search_screen/utils/category_mock_data.dart';
+import 'package:flutter_adidas_clone/views/utils/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../configs/palette.dart';
@@ -21,7 +21,7 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SearchScreenMockData searchScreenMockData = SearchScreenMockData();
+    final AppMockData searchScreenMockData = AppMockData();
     return Material(
       child: InkWell(
         onTap: () {

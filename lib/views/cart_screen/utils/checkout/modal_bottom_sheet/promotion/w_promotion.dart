@@ -14,15 +14,17 @@ import '../../../../../utils/input/text_field_input.dart';
 import '../w_checkout_mbs.dart';
 
 class PromotionWidget extends StatefulWidget {
-  static double height = 240.h;
+  static double height = 440.h;
 
   const PromotionWidget({
     Key? key,
     required Function updateParent,
+    required this.promotionId,
   })  : _updateParent = updateParent,
         super(key: key);
 
   final Function _updateParent;
+  final String? promotionId;
 
   @override
   State<PromotionWidget> createState() => _PromotionWidgetState();
@@ -30,6 +32,13 @@ class PromotionWidget extends StatefulWidget {
 
 class _PromotionWidgetState extends State<PromotionWidget> {
   final TextEditingController _promotionIdController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _promotionIdController.text = widget.promotionId ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,28 +94,27 @@ class _PromotionWidgetState extends State<PromotionWidget> {
 
     return Scaffold(
       appBar: const SettingAppBar(title: "PROMOTION"),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFieldInput(
-                onTextSubmitted: (val) {},
-                textController: _promotionIdController,
-                textInputType: TextInputType.name,
-                validator:
-                    RequiredValidator(errorText: "Promotion Id is required"),
-                labelText: "PROMOTION ID",
-              ),
-              SizedBox(height: 12.h),
-              MyTextButton(
-                function: checkPromotion,
-                content: "APPLY PROMOTION",
-                isLoading: context.read<AuthProvider>().isLoading,
-              ),
-            ],
-          ),
+      body: Padding(
+        // padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
+        padding: EdgeInsets.fromLTRB(20.w, 10.h, 20.w, 20.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFieldInput(
+              onTextSubmitted: (val) {},
+              textController: _promotionIdController,
+              textInputType: TextInputType.name,
+              validator:
+                  RequiredValidator(errorText: "Promotion Id is required"),
+              labelText: "PROMOTION ID",
+            ),
+            const Expanded(child: SizedBox.shrink()),
+            MyTextButton(
+              function: checkPromotion,
+              content: "APPLY PROMOTION",
+              isLoading: context.read<AuthProvider>().isLoading,
+            ),
+          ],
         ),
       ),
     );

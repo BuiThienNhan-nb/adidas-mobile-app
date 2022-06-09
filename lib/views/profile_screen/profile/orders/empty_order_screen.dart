@@ -22,7 +22,7 @@ class EmptyOrderScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              "NO ORDERS YET",
+              "NO ORDER HISTORY YET",
               style: AppStyles.titleTextStyle,
             ),
             SizedBox(height: 10.h),
@@ -32,7 +32,8 @@ class EmptyOrderScreen extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             const Text(
-              "The Adidas app features news and personally tailored content. Exclusive products, seamless one-touch ordering and live chat, so we are always there to help.",
+              // "The Adidas app features news and personally tailored content. Exclusive products, seamless one-touch ordering and live chat, so we are always there to help.",
+              "Browser the shop to see what's in store. Once you've placed an order, a summary with everything you need will be saved for you here.",
               textAlign: TextAlign.center,
             ),
           ],
