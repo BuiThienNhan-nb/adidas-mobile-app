@@ -22,7 +22,7 @@ class EmptyOrderScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              "NO ORDERS YET",
+              "NO ORDER HISTORY YET",
               style: AppStyles.titleTextStyle,
             ),
             SizedBox(height: 10.h),

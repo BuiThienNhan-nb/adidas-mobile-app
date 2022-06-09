@@ -7,17 +7,6 @@ import '../../models/order.dart';
 import '../../models/user_address.dart';
 
 class OrderProvider extends ChangeNotifier {
-  // Order _oder = Order(
-  //   id: "id",
-  //   userId: "",
-  //   orderTime: DateTime.now(),
-  //   orderAddress: "05/66 Phan Đăng Lưu",
-  //   paymentMethod: "Select payment Method",
-  //   receptionName: "Bùi Thiện Nhân",
-  //   receptionPhone: "0762796747",
-  //   total: 17500000,
-  // );
-
   /// TODO: delete mock order data
   Order _order = Order(
     id: 'mock_data',
@@ -37,6 +26,26 @@ class OrderProvider extends ChangeNotifier {
     orderItems: AppMockData().orderItems,
     orderStatus: AppOrderStatus.processing,
   );
+
+  List<Order> _orders = [];
+
+  List<Order> get orders => _orders;
+
+  set orders(List<Order> orders) {
+    _orders = List.from(orders);
+    notifyListeners();
+  }
+
+  addOrder(Order order) {
+    _orders.add(order);
+    notifyListeners();
+  }
+
+  /// Fake fetch order by user id
+  List<Order> fetchOrdersByUserId(String userId) {
+    /// Call from Repo
+    return _orders.where((order) => order.userId == userId).toList();
+  }
 
   Order get order => _order;
 
