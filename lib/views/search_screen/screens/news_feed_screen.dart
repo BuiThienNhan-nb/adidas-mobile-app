@@ -28,6 +28,7 @@ class NewsFeedScreen extends StatelessWidget {
       tag: "NEW",
       price: 2500000,
       name: "STAN SMITH",
+      isFav: false,
     );
     final List<Product> products = [
       product,

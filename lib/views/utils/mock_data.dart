@@ -75,6 +75,7 @@ class AppMockData {
       tag: 'NEW',
       price: 850000,
       name: 'DÉP adilette COMFORT',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -83,6 +84,7 @@ class AppMockData {
       tag: 'NEW',
       price: 5800000,
       name: 'FORUM 84 LOW 8K',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -91,6 +93,7 @@ class AppMockData {
       tag: 'NEW',
       price: 3200000,
       name: 'Giày ZX 22 BOOST',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -99,6 +102,7 @@ class AppMockData {
       tag: 'NEW',
       price: 5200000,
       name: 'Giày Ultraboost 22',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -107,6 +111,7 @@ class AppMockData {
       tag: 'NEW',
       price: 3100000,
       name: 'Giày ZX 8000',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -115,6 +120,7 @@ class AppMockData {
       tag: 'NEW',
       price: 950000,
       name: 'DÉP adilette COMFORT X LEGO',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -123,6 +129,7 @@ class AppMockData {
       tag: 'NEW',
       price: 1900000,
       name: 'Giày Đá Bóng X Speedflow.3',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -131,6 +138,7 @@ class AppMockData {
       tag: 'NEW',
       price: 4300000,
       name: 'Giày Golf AlphaFlex 21 BOA',
+      isFav: false,
     ),
     Product(
       imageUrl: [
@@ -139,6 +147,7 @@ class AppMockData {
       tag: 'NEW',
       price: 3200000,
       name: 'DAME 8 BIG MOOD',
+      isFav: false,
     ),
   ];
 
@@ -151,6 +160,7 @@ class AppMockData {
         tag: 'NEW',
         price: 850000,
         name: 'DÉP adilette COMFORT',
+        isFav: true,
       ),
       size: 9.5,
       quantity: 2,
@@ -163,6 +173,7 @@ class AppMockData {
         tag: 'NEW',
         price: 5800000,
         name: 'FORUM 84 LOW 8K',
+        isFav: true,
       ),
       size: 9,
       quantity: 3,
@@ -175,6 +186,7 @@ class AppMockData {
         tag: 'NEW',
         price: 3200000,
         name: 'Giày ZX 22 BOOST',
+        isFav: false,
       ),
       size: 8,
       quantity: 1,
@@ -187,6 +199,7 @@ class AppMockData {
         tag: 'NEW',
         price: 5200000,
         name: 'Giày Ultraboost 22',
+        isFav: true,
       ),
       size: 9.5,
       quantity: 1,
@@ -199,6 +212,7 @@ class AppMockData {
           tag: 'NEW',
           price: 3100000,
           name: 'Giày ZX 8000',
+          isFav: false,
         ),
         size: 9,
         quantity: 1),
@@ -209,6 +223,7 @@ class AppMockData {
         ],
         tag: 'NEW',
         price: 4300000,
+        isFav: false,
         name: 'Giày Golf AlphaFlex 21 BOA',
       ),
       size: 9,

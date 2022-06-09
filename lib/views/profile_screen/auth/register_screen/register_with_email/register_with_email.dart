@@ -1,7 +1,15 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/configs/style.dart';
+import 'package:flutter_adidas_clone/models/user.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/register_screen/register_with_email/register_with_email_page_2.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
+import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
+import 'package:flutter_adidas_clone/views/utils/input/text_field_input.dart';
 import 'package:flutter_adidas_clone/views/utils/input/password_field_input.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

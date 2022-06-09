@@ -29,6 +29,7 @@ class ExploreItem extends StatelessWidget {
           onTap: () => Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (_) => ProductDetailScreen(
+                index: index,
                 heroTag: 'from_news_feed',
                 product: Product(
                   imageUrl: [
@@ -43,6 +44,7 @@ class ExploreItem extends StatelessWidget {
                   tag: 'NEW',
                   price: 1200000,
                   name: 'Giày Adidas 4D FWD x PARLEY',
+                  isFav: false,
                 ),
               ),
             ),

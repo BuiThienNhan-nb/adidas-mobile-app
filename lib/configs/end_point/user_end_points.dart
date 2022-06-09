@@ -7,4 +7,7 @@ class UserEndPoint {
   static uploadAvatar(String id) => "user/avatar/$id";
   static getUserAddress(String id) => "user/getUserAddress/$id";
   static getUserById(String id) => "user/getUserById/$id";
+  static getListFav(String id) => "user/getListFavorites/$id";
+
+  static getListBag(String id) => "user/getListBag/$id";
 }

@@ -14,7 +14,6 @@ class OptionsModalBottomSheet extends StatelessWidget {
 
   final List<Widget> widgets;
   final String title;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

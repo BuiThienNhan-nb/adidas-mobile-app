@@ -39,7 +39,7 @@ class AdBanner {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'id': id});
+    result.addAll({'_id': id});
     result.addAll({'tag': tag});
     result.addAll({'title': title});
     if (image != null) {
@@ -55,7 +55,7 @@ class AdBanner {
 
   factory AdBanner.fromMap(Map<String, dynamic> map) {
     return AdBanner(
-      id: map['id'] ?? '',
+      id: map['_id'] ?? '',
       tag: map['tag'] ?? '',
       title: map['title'] ?? '',
       image: map['image'],
@@ -71,7 +71,7 @@ class AdBanner {
 
   @override
   String toString() {
-    return 'AdBanner(id: $id, tag: $tag, title: $title, image: $image, video: $video, product: $product)';
+    return 'AdBanner(_id: $id, tag: $tag, title: $title, image: $image, video: $video, product: $product)';
   }
 
   @override

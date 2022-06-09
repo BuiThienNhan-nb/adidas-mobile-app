@@ -4,17 +4,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
+import 'package:flutter_adidas_clone/service/data_repository.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
+import 'package:flutter_adidas_clone/view_models/wish_list_view_model/wish_list_provider.dart';
+import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/payment/w_payment_select.dart';
 import 'package:flutter_adidas_clone/views/product_screen/screens/size_guide_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_screen.dart';
+import 'package:flutter_adidas_clone/views/profile_screen/auth/widget/auth_dialog.dart';
 import 'package:flutter_adidas_clone/views/utils/button/my_text_button.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../configs/format.dart';
 import '../../../configs/palette.dart';
 import '../../../configs/style.dart';
+import '../../../models/product.dart';
+import '../../../view_models/cart_view_model/cart_provider.dart';
 
-Row productName(
-    String productName, int productPrice, int iconIndex, Function() onTap) {
+Row productName(Product product, int iconIndex, int index) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -25,7 +35,7 @@ Row productName(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              productName,
+              product.name,
               style: AppStyles.boldLargeTextStyle,
             ),
             SizedBox(height: 12.h),
@@ -33,7 +43,7 @@ Row productName(
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '${AppFormat.currencyFormat.format(productPrice)} đ',
+                    text: '${AppFormat.currencyFormat.format(product.price)} đ',
                     style: AppStyles.boldSmallTextStyle,
                   ),
                   TextSpan(
@@ -47,42 +57,109 @@ Row productName(
         ),
       ),
       const Spacer(),
-      const FavoriteIcon(),
+      FavoriteIcon(
+        product: product,
+        index: index,
+      ),
       SizedBox(width: 20.w),
     ],
   );
 }
 
-class FavoriteIcon extends StatefulWidget {
-  const FavoriteIcon({Key? key}) : super(key: key);
+class FavoriteIcon extends StatelessWidget {
+  FavoriteIcon({required this.product, required this.index, Key? key})
+      : super(key: key);
+  Product product;
+  int index;
 
-  @override
-  State<FavoriteIcon> createState() => _FavoriteIconState();
-}
+  void authenticate(BuildContext context) {
+    showAnimatedDialog(
+      context: context,
+      builder: (context) => AuthDialog(
+        title: 'Oops!',
+        subTitle: 'You must be loged in before check out this section.',
+        btnTitle: 'LOGIN',
+        onTap: () {
+          Navigator.of(context).pop();
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => const LoginScreen(),
+            ),
+          );
+        },
+      ),
+      barrierDismissible: true,
+      animationType: DialogTransitionType.size,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
 
-class _FavoriteIconState extends State<FavoriteIcon> {
-  bool isLike = false;
+  Future<void> likeProduct(BuildContext context) async {
+    await DataRepository().likeProduct(
+      idProd: product.id!,
+      idUser: context.read<UserProvider>().user.id,
+    );
+    context.read<WishListProvider>().like(product);
+  }
+
+  Future<void> disLikeProduct(BuildContext context) async {
+    await DataRepository().disLikeProduct(
+      idProd: product.id!,
+      idUser: context.read<UserProvider>().user.id,
+    );
+    context.read<WishListProvider>().disLike(product);
+  }
+
+  // bool isLike = false;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(() {
-        isLike = !isLike;
-        log('Favorite Icon Clicked - isLike: $isLike');
-      }),
-      child: isLike
-          ? Image.asset(
-              'assets/icons/heart_icon.png',
-              height: 24.h,
-              width: 28.w,
-              fit: BoxFit.fill,
-            )
-          : Image.asset(
-              'assets/icons/heart_icon_light.png',
-              height: 24.h,
-              width: 28.w,
-              fit: BoxFit.fill,
-            ),
+    // bool isLike = widget.product.isFav;
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   isLike = widget.product.isFav;
+    // });
+    context.read<WishListProvider>().isFav = product.isFav;
+    return Consumer<WishListProvider>(
+      builder: (_, provider, __) {
+        // WidgetsBinding.instance.addPostFrameCallback((_) {
+        //   provider.isFav = product.isFav;
+        // });
+
+        return GestureDetector(
+          onTap: () async {
+            if (context.read<AuthProvider>().isLogin) {
+              if (!provider.isFav) {
+                await likeProduct(context);
+                provider.isFav = true;
+                product.isFav = true;
+                print('like: ');
+              } else {
+                await disLikeProduct(context);
+                provider.isFav = false;
+                product.isFav = false;
+
+                print('dislike');
+              }
+            } else {
+              authenticate(context);
+            }
+          },
+          child: provider.isFav
+              ? Image.asset(
+                  'assets/icons/heart_icon.png',
+                  height: 24.h,
+                  width: 28.w,
+                  fit: BoxFit.fill,
+                )
+              : Image.asset(
+                  'assets/icons/heart_icon_light.png',
+                  height: 24.h,
+                  width: 28.w,
+                  fit: BoxFit.fill,
+                ),
+        );
+      },
     );
   }
 }
@@ -157,50 +234,108 @@ Column productSizes(BuildContext context) => Column(
       ],
     );
 
-Padding purchaseProduct() => Padding(
-      padding: EdgeInsets.only(left: 12.w, right: 12.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MyTextButton(
-            function: () {},
-            content: 'ADD TO BAG',
-            isLoading: false,
-            buttonStyle: TextButton.styleFrom(
-              backgroundColor: AppColors.whiteColor,
-              padding: EdgeInsets.zero,
-              primary: AppColors.nobelColor,
+Padding purchaseProduct(
+    {required BuildContext context, required Product product}) {
+  void authenticate() {
+    showAnimatedDialog(
+      context: context,
+      builder: (context) => AuthDialog(
+        title: 'Oops!',
+        subTitle: 'You must be loged in before check out this section.',
+        btnTitle: 'LOGIN',
+        onTap: () {
+          Navigator.of(context).pop();
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => const LoginScreen(),
             ),
-            contentStyle: AppStyles.boldRegularTextStyle,
-            icon: Image.asset('assets/icons/cart_add_icon.png'),
-          ),
-          SizedBox(height: 8.h),
-          MyTextButton(
-            function: () {},
-            content: 'BUY IT NOW',
-            isLoading: false,
-            contentStyle: AppStyles.whiteBoldRegularTextStyle,
-          ),
-          SizedBox(height: 16.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CashOnDelivery(
-                height: 24.h,
-                width: 56.w,
-                textStyle: AppStyles.extraXSmallTextStyle,
-              ),
-              SizedBox(width: 12.w),
-              Image.asset(
-                'assets/images/visa.png',
-                height: 24.h,
-                width: 56.w,
-              ),
-            ],
-          ),
-        ],
+          );
+        },
       ),
+      barrierDismissible: true,
+      animationType: DialogTransitionType.size,
+      duration: const Duration(milliseconds: 300),
     );
+  }
+
+  void addToBag() async {
+    await DataRepository().addToBag(
+        idProd: product.id!, idUser: context.read<UserProvider>().user.id);
+    context.read<CartProvider>().addToCart(product);
+
+    showAnimatedDialog(
+      context: context,
+      builder: (context) => AuthDialog(
+        title: 'Success!',
+        subTitle: 'Add to bag success.',
+        btnTitle: 'CONTINUE',
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      barrierDismissible: true,
+      animationType: DialogTransitionType.size,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
+  return Padding(
+    padding: EdgeInsets.only(left: 12.w, right: 12.w),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyTextButton(
+          function: () {
+            if (context.read<AuthProvider>().isLogin) {
+              addToBag();
+            } else {
+              authenticate();
+            }
+          },
+          content: 'ADD TO BAG',
+          isLoading: false,
+          buttonStyle: TextButton.styleFrom(
+            backgroundColor: AppColors.whiteColor,
+            padding: EdgeInsets.zero,
+            primary: AppColors.nobelColor,
+          ),
+          contentStyle: AppStyles.boldRegularTextStyle,
+          icon: Image.asset('assets/icons/cart_add_icon.png'),
+        ),
+        SizedBox(height: 8.h),
+        MyTextButton(
+          function: () {
+            if (context.read<AuthProvider>().isLogin) {
+            } else {
+              authenticate();
+            }
+          },
+          content: 'BUY IT NOW',
+          isLoading: false,
+          contentStyle: AppStyles.whiteBoldRegularTextStyle,
+        ),
+        SizedBox(height: 16.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CashOnDelivery(
+              height: 24.h,
+              width: 56.w,
+              textStyle: AppStyles.extraXSmallTextStyle,
+            ),
+            SizedBox(width: 12.w),
+            Image.asset(
+              'assets/images/visa.png',
+              height: 24.h,
+              width: 56.w,
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
 Padding productInfo() {
   TextStyle spanTextStyle = TextStyle(

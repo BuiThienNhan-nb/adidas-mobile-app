@@ -69,18 +69,19 @@ class RegisterWithEmailPage2 extends StatelessWidget {
 
     register() async {
       context.read<AuthProvider>().isLoading = true;
-      context.read<AuthProvider>().isLogin = true;
       Map<String, dynamic> response = await userProvider.updateUserInfo(
         context.read<UserProvider>().user.id,
         _txtNameController.text,
         _txtBirthdateController.text,
       );
       if (response['status']) {
-        userProvider.setUser(User.fromJson(response['data']));
-
+        // userProvider.setUser(User.fromMap(response['data']));
+        print(response['data']);
         Navigator.of(context)
             .pushNamedAndRemoveUntil(HomeScreen.id, (route) => false);
-        context.read<AuthProvider>().isLogin = false;
+        context.read<AuthProvider>().isLoading = false;
+        context.read<AuthProvider>().isLogin = true;
+
         showSnackBar(
           context,
           "Welcome to Adidas ${_txtNameController.text}",

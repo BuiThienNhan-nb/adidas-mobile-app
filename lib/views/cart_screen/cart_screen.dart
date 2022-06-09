@@ -96,7 +96,11 @@ class ShoppingCartScreen extends StatelessWidget {
               ),
             ),
           ),
-          const CheckoutCartContainer(total: 17500000),
+          Consumer<OrderProvider>(
+            builder: (_, orderProvider, ___) => CheckoutCartContainer(
+              total: orderProvider.order.total,
+            ),
+          ),
         ],
       ),
     );
