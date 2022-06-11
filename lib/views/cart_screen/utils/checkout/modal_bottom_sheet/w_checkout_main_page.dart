@@ -13,6 +13,7 @@ import '../../../../../configs/palette.dart';
 import '../../../../../view_models/auth_view_model/auth_provider.dart';
 import '../../../../../view_models/cart_view_model/checkout_cart_config_provider.dart';
 import '../../../../../view_models/order_view_model/order_provider.dart';
+import '../../../../home_screen.dart';
 import '../../../../profile_screen/auth/widget/auth_dialog.dart';
 import '../../../../utils/button/my_text_button.dart';
 import 'billing_address/w_bill_adress_info.dart';
@@ -176,6 +177,13 @@ void onOrderButtonClick(BuildContext context) {
             builder: (context) => OrderDetailScreen(
               order: context.read<OrderProvider>().order,
               title: 'BOOM. ORDERED.',
+              onButtonTap: () {
+                log('[ORDER DETAIL SCREEN] button clicked');
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  HomeScreen.id,
+                  (route) => false,
+                );
+              },
             ),
           ),
         );

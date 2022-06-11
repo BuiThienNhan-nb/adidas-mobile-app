@@ -11,7 +11,7 @@ class ProductImagesZoom extends StatelessWidget {
     required this.tag,
   }) : super(key: key);
 
-  final List<Image> pages;
+  final List<Widget> pages;
   final String tag;
 
   @override

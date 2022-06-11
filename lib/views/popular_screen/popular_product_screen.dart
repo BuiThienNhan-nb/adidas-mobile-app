@@ -3,6 +3,7 @@ import 'package:flutter_adidas_clone/models/ad_banner.dart';
 import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/views/popular_screen/w_carousel_slider.dart';
 import 'package:flutter_adidas_clone/views/utils/widget/app_bar.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hidable/hidable.dart';
 
@@ -76,7 +77,7 @@ class PopularProductScreen extends StatelessWidget {
               callback: (value) {},
             );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: LoadingIndicator());
           }
         },
       ),
