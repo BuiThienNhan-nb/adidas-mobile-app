@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/w_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../configs/palette.dart';
@@ -51,9 +52,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     final pages = List.generate(
       widget.product.imageUrl.length,
-      (index) => Image.network(
-        widget.product.imageUrl[index],
-        fit: BoxFit.fill,
+      (index) => MyNetworkImage(
+        imageUrl: widget.product.imageUrl[index],
       ),
     );
     int iconIndex = 0;

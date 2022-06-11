@@ -14,7 +14,7 @@ class ProductDetailPageView extends StatelessWidget {
   }) : super(key: key);
 
   final double imageHeight;
-  final List<Image> pages;
+  final List<Widget> pages;
   final String tag;
 
   @override

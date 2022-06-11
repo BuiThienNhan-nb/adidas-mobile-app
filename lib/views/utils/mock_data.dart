@@ -164,6 +164,7 @@ class AppMockData {
       ),
       size: 9.5,
       quantity: 2,
+      total: 1500000,
     ),
     OrderItem(
       product: Product(
@@ -177,6 +178,7 @@ class AppMockData {
       ),
       size: 9,
       quantity: 3,
+      total: 5800000 * 3 - 400,
     ),
     OrderItem(
       product: Product(
@@ -190,6 +192,7 @@ class AppMockData {
       ),
       size: 8,
       quantity: 1,
+      total: 3200000,
     ),
     OrderItem(
       product: Product(
@@ -203,19 +206,22 @@ class AppMockData {
       ),
       size: 9.5,
       quantity: 1,
+      total: 5200000,
     ),
     OrderItem(
-        product: Product(
-          imageUrl: [
-            'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5b1027d7e2ba472895e4ae310057664a_9366/Giay_ZX_22_BOOST_trang_GY6694_01_standard.jpg',
-          ],
-          tag: 'NEW',
-          price: 3100000,
-          name: 'Giày ZX 8000',
-          isFav: false,
-        ),
-        size: 9,
-        quantity: 1),
+      product: Product(
+        imageUrl: [
+          'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5b1027d7e2ba472895e4ae310057664a_9366/Giay_ZX_22_BOOST_trang_GY6694_01_standard.jpg',
+        ],
+        tag: 'NEW',
+        price: 3100000,
+        name: 'Giày ZX 8000',
+        isFav: false,
+      ),
+      size: 9,
+      quantity: 1,
+      total: 3100000,
+    ),
     OrderItem(
       product: Product(
         imageUrl: [
@@ -228,6 +234,7 @@ class AppMockData {
       ),
       size: 9,
       quantity: 2,
+      total: 4300000 * 2 - 200,
     ),
   ];
 

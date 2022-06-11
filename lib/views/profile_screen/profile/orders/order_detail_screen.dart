@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
@@ -12,17 +10,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../configs/style.dart';
 import '../../../../models/order.dart';
-import '../../../home_screen.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   const OrderDetailScreen({
     Key? key,
     required this.title,
     required this.order,
+    required this.onButtonTap,
   }) : super(key: key);
 
   final String title;
   final Order order;
+  final Function() onButtonTap;
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +50,7 @@ class OrderDetailScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 16.w, right: 16.w),
                   child: MyTextButton(
-                    function: () {
-                      log('[ORDER DETAIL SCREEN] button clicked');
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        HomeScreen.id,
-                        (route) => false,
-                      );
-                    },
+                    function: onButtonTap,
                     content: 'CONFIRM',
                     isLoading: false,
                     icon: Image.asset(
@@ -158,7 +151,7 @@ Padding orderTotalPayInformation(Order order) => Padding(
           SizedBox(height: 16.h),
           orderInfoItem(
             'TOTAL',
-            '-${AppFormat.currencyFormat.format(order.total)}\t\tđ',
+            '${AppFormat.currencyFormat.format(order.total)}\t\tđ',
           ),
           SizedBox(height: 16.h),
         ],
