@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_adidas_clone/views/search_screen/utils/store/store_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../configs/palette.dart';
-import '../../../configs/style.dart';
-import '../../utils/button/outline_shadow_button.dart';
+import '../../../../configs/palette.dart';
+import '../../../../configs/style.dart';
+import '../../../utils/button/outline_shadow_button.dart';
 
 class ExploreStoreBanner extends StatelessWidget {
   const ExploreStoreBanner({
@@ -51,7 +52,11 @@ class ExploreStoreBanner extends StatelessWidget {
                 SizedBox(height: 12.h),
                 OutlineShadowButton(
                   content: 'CONTINUE',
-                  onTap: () {},
+                  onTap: () => Navigator.of(context, rootNavigator: true).push(
+                    CupertinoPageRoute(
+                      builder: (context) => const StoreScreen(),
+                    ),
+                  ),
                 ),
               ],
             ),

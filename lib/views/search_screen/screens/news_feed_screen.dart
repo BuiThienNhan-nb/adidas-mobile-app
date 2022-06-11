@@ -7,7 +7,7 @@ import '../../utils/button/option_text_button.dart';
 import '../../utils/widget/app_bar.dart';
 import '../utils/w_explore_heading.dart';
 import '../utils/w_explore_item.dart';
-import '../utils/w_explore_store_banner.dart';
+import '../utils/store/w_explore_store_banner.dart';
 import '../utils/w_search_bar.dart';
 import '../../utils/mock_data.dart';
 import 'category/category_screen.dart';
