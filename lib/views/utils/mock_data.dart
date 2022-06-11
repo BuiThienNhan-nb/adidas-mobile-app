@@ -1,5 +1,6 @@
 import 'package:flutter_adidas_clone/models/order_item.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
+import 'package:flutter_adidas_clone/models/store.dart';
 import 'package:flutter_adidas_clone/models/user_address.dart';
 
 import '../../models/product_category.dart';
@@ -264,9 +265,76 @@ class AppMockData {
       country: 'VietNam',
     ),
   ];
+  final List<Store> _stores = [
+    Store(
+      id: '1',
+      name: 'Adidas Outlet Store, HCM, Vincom Thu Duc Shopping Mall',
+      address:
+          'Vincom, 216, 09/10/11 Đ. Võ Văn Ngân, Thủ Đức, Thành phố Hồ Chí Minh 700000, Việt Nam',
+      openTime: 9,
+      closeTime: 22,
+    ),
+    Store(
+      id: '2',
+      name: 'Adidas Performance, Ha Noi Highway',
+      address:
+          '161 XL Hà Nội, Thảo Điền, Quận 2, Thành phố Hồ Chí Minh 700000, Việt Nam',
+      openTime: 9,
+      closeTime: 22,
+    ),
+    Store(
+      id: '3',
+      name: 'Adidas Land Mark 81',
+      address:
+          'L2 - 08 - 09, Vinhomes Tân Cảng, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam',
+      openTime: 10,
+      closeTime: 23,
+    ),
+    Store(
+      id: '4',
+      name: 'Adidas SPC Aeon Mall Bình Dương',
+      address:
+          'Gian hàng G12-15 TTTM Aeon Mall Cannarry, 01 Đại lộ Bình Dương, An Phú, Thuận An, Bình Dương, Việt Nam',
+      openTime: 9,
+      closeTime: 21,
+    ),
+    Store(
+      id: '5',
+      name: 'Adidas Outlet Store Phan Văn Trị',
+      address:
+          '62 Đ. Phan Văn Trị, Phường 7, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam',
+      openTime: 9,
+      closeTime: 22,
+    ),
+    Store(
+      id: '6',
+      name: 'Adidas Originals Store HCM, Vincom Dong Khoi',
+      address:
+          'Vincom B, 72 Lê Thánh Tôn, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh, Việt Nam',
+      openTime: 8,
+      closeTime: 21,
+    ),
+    Store(
+      id: '7',
+      name: 'Adidas Neo',
+      address:
+          '39 Nguyễn Huệ, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh, Việt Nam',
+      openTime: 9,
+      closeTime: 22,
+    ),
+    Store(
+      id: '8',
+      name: 'Adidas Performance, Nguyen Oanh',
+      address:
+          '10 Nguyễn Oanh, Phường 7, Gò Vấp, Thành phố Hồ Chí Minh 70000, Việt Nam',
+      openTime: 9,
+      closeTime: 22,
+    ),
+  ];
 
   ProductType get shoes => _shoes;
   List<Product> get products => _products;
+  List<Store> get stores => _stores;
   List<OrderItem> get orderItems => _orderItems;
   List<UserAddress> get userAddresses => _userAddresses;
 }
