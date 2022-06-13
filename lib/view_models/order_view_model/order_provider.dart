@@ -73,7 +73,7 @@ class OrderProvider extends ChangeNotifier {
     _order.orderItems[index].copyWith(
       product: newValue.product.copyWith(
         id: newValue.product.id,
-        imageUrl: newValue.product.imageUrl,
+        imageUrls: newValue.product.imageUrls,
         name: newValue.product.name,
         price: newValue.product.price,
         tag: newValue.product.tag,

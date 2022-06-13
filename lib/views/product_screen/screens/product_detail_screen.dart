@@ -51,9 +51,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final pages = List.generate(
-      widget.product.imageUrl.length,
+      widget.product.imageUrls.length,
       (index) => MyNetworkImage(
-        imageUrl: widget.product.imageUrl[index],
+        imageUrl: widget.product.imageUrls[index],
       ),
     );
     int iconIndex = 0;

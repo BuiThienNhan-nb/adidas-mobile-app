@@ -40,7 +40,7 @@ class FilterResultItem extends StatelessWidget {
                   //   // fit: BoxFit.fill,
                   // ),
                   CachedNetworkImage(
-                    imageUrl: product.imageUrl.first,
+                    imageUrl: product.imageUrls.first,
                     placeholder: (context, url) =>
                         const CircularProgressIndicator(),
                     errorWidget: (context, url, error) =>

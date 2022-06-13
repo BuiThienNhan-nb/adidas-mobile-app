@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/product_type.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/product.dart';
@@ -22,13 +23,20 @@ class NewsFeedScreen extends StatelessWidget {
     AppMockData searchScreenMockData = AppMockData();
 
     final Product product = Product(
-      imageUrl: [
+      imageUrls: [
         'https://assets.adidas.com/images/w_276,h_276,f_auto,q_auto,fl_lossy,c_fill,g_auto/329bbd5423a9422b8830ae120157fbf0_9366/GY5969_01_standard.jpg'
       ],
       tag: "NEW",
       price: 2500000,
       name: "STAN SMITH",
-      isFav: false,
+      isFavorite: false,
+      id: 'fake',
+      productCategory: [],
+      productType: ProductType(
+        id: 'id',
+        name: 'SHOES',
+        categories: [],
+      ),
     );
     final List<Product> products = [
       product,

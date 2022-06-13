@@ -18,9 +18,9 @@ class CategoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: cateAppBar(productType.name),
       body: ListView.builder(
-        itemCount: productType.categories.length,
+        itemCount: productType.categories?.length,
         itemBuilder: (context, index) => CategoryItem(
-          productCategory: productType.categories[index],
+          productCategory: productType.categories![index],
         ),
       ),
     );

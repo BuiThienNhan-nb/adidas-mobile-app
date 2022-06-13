@@ -50,7 +50,6 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
               : Container(),
         ),
         IconButton(
-          // TODO: Change condition to push User profile (isLogin == true)
           onPressed: () {
             /// Mock user data
             context.read<UserProvider>().user = User(
@@ -62,7 +61,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
               email: 'buithiennhan2016@gmail.com',
             );
 
-            !context.read<AuthProvider>().isLogin
+            context.read<AuthProvider>().isLogin
                 ? Navigator.of(context, rootNavigator: true)
                     .pushNamed(ProfileScreen.id)
                 : Navigator.of(context, rootNavigator: true)
