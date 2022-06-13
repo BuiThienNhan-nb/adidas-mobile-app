@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +94,7 @@ class FavoriteIcon extends StatelessWidget {
 
   Future<void> likeProduct(BuildContext context) async {
     await DataRepository().likeProduct(
-      idProd: product.id!,
+      idProd: product.id,
       idUser: context.read<UserProvider>().user.id,
     );
     context.read<WishListProvider>().like(product);
@@ -104,7 +102,7 @@ class FavoriteIcon extends StatelessWidget {
 
   Future<void> disLikeProduct(BuildContext context) async {
     await DataRepository().disLikeProduct(
-      idProd: product.id!,
+      idProd: product.id,
       idUser: context.read<UserProvider>().user.id,
     );
     context.read<WishListProvider>().disLike(product);
@@ -118,7 +116,7 @@ class FavoriteIcon extends StatelessWidget {
     // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     //   isLike = widget.product.isFav;
     // });
-    context.read<WishListProvider>().isFav = product.isFav;
+    context.read<WishListProvider>().isFav = product.isFavorite;
     return Consumer<WishListProvider>(
       builder: (_, provider, __) {
         // WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -131,12 +129,12 @@ class FavoriteIcon extends StatelessWidget {
               if (!provider.isFav) {
                 await likeProduct(context);
                 provider.isFav = true;
-                product.isFav = true;
+                product.isFavorite = true;
                 print('like: ');
               } else {
                 await disLikeProduct(context);
                 provider.isFav = false;
-                product.isFav = false;
+                product.isFavorite = false;
 
                 print('dislike');
               }
@@ -260,7 +258,7 @@ Padding purchaseProduct(
 
   void addToBag() async {
     await DataRepository().addToBag(
-        idProd: product.id!, idUser: context.read<UserProvider>().user.id);
+        idProd: product.id, idUser: context.read<UserProvider>().user.id);
     context.read<CartProvider>().addToCart(product);
 
     showAnimatedDialog(

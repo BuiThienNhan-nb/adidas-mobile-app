@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/product_type.dart';
 import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +33,8 @@ class ExploreItem extends StatelessWidget {
                 index: index,
                 heroTag: 'from_news_feed',
                 product: Product(
-                  imageUrl: [
+                  id: 'fake',
+                  imageUrls: [
                     'assets/fwdxparley/fwd_parley_1.png',
                     'assets/fwdxparley/fwd_parley_2.png',
                     'assets/fwdxparley/fwd_parley_3.png',
@@ -44,7 +46,9 @@ class ExploreItem extends StatelessWidget {
                   tag: 'NEW',
                   price: 1200000,
                   name: 'Giày Adidas 4D FWD x PARLEY',
-                  isFav: false,
+                  isFavorite: false,
+                  productType: ProductType(id: 'id', name: 'SHOES'),
+                  productCategory: [],
                 ),
               ),
             ),
@@ -79,7 +83,7 @@ class Item extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CachedNetworkImage(
-            imageUrl: _product.imageUrl.first,
+            imageUrl: _product.imageUrls.first,
             placeholder: (context, url) =>
                 const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) => const Icon(Icons.error),

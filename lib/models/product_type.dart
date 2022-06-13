@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import 'product_category.dart';
@@ -7,11 +8,11 @@ import 'product_category.dart';
 class ProductType {
   final String id;
   final String name;
-  final List<ProductCategory> categories;
+  final List<ProductCategory>? categories;
   ProductType({
     required this.id,
     required this.name,
-    required this.categories,
+    this.categories,
   });
 
   ProductType copyWith({
@@ -31,7 +32,11 @@ class ProductType {
 
     result.addAll({'id': id});
     result.addAll({'name': name});
-    result.addAll({'categories': categories.map((x) => x.toMap()).toList()});
+    result.addAll({
+      'categories': categories == null
+          ? [].map((x) => x.toMap()).toList()
+          : categories!.map((x) => x.toMap()).toList()
+    });
 
     return result;
   }

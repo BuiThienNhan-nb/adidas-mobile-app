@@ -98,7 +98,7 @@ class OrderHistoryItem extends StatelessWidget {
                       children: [
                         MyNetworkImage(
                           imageUrl:
-                              order.orderItems.first.product.imageUrl.first,
+                              order.orderItems.first.product.imageUrls.first,
                           size: Size(120.w, 100.h),
                         ),
                         SizedBox(width: 4.w),

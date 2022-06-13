@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../service/data_repository.dart';
 
 class AuthProvider extends ChangeNotifier {
-  bool _isLogin = false;
+  bool _isLogin = true;
   bool _isLoading = false;
   late String _loginMethod;
 

@@ -21,6 +21,9 @@ class SearchScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 color: AppColors.silverColor,
+                child: const Center(
+                  child: Text('Find your product here...'),
+                ),
               ),
             ),
           ],

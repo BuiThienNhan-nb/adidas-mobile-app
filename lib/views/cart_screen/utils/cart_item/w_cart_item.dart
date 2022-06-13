@@ -56,7 +56,7 @@ class CartItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 CachedNetworkImage(
-                  imageUrl: orderItem.product.imageUrl.first,
+                  imageUrl: orderItem.product.imageUrls.first,
                   placeholder: (context, url) =>
                       const Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => const Icon(Icons.error),

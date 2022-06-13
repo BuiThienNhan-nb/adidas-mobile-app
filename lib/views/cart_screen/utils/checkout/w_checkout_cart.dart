@@ -48,17 +48,7 @@ class CheckoutCartContainer extends StatelessWidget {
     }
 
     void onCheckoutClick() {
-      // TODO: Change codition to pop up bottom sheet to (isLogin == true)
-      // List<OrderItem> orderItems = [];
-      // for (var product in AppMockData().products) {
-      //   orderItems.add(
-      //     OrderItem(
-      //       product: product,
-      //       quantity: 2,
-      //     ),
-      //   );
-      // }
-      if (!context.read<AuthProvider>().isLogin) {
+      if (context.read<AuthProvider>().isLogin) {
         /// TODO: uncomment mock order data
         // context.read<OrderProvider>().order = Order(
         //   id: 'mock_data',
