@@ -8,7 +8,7 @@ import '../../models/user_address.dart';
 
 class OrderProvider extends ChangeNotifier {
   /// TODO: delete mock order data
-  Order _order = Order(
+ Order _order = Order(
     id: 'mock_data',
     userId: '1',
     orderTime: DateTime.now(),
