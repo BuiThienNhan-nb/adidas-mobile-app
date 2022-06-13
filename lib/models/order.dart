@@ -71,8 +71,9 @@ class Order {
     return Order(
       id: (map['id'] ?? '') as String,
       userId: (map['userId'] ?? '') as String,
-      orderTime:
-          DateTime.fromMillisecondsSinceEpoch((map['orderTime'] ?? 0) as int),
+      orderTime: map['orderTime'] == null
+          ? DateTime.now()
+          : DateTime.parse(map['orderTime']),
       userAddress:
           UserAddress.fromMap(map['userAddress'] as Map<String, dynamic>),
       paymentMethod: (map['paymentMethod'] ?? '') as String,
@@ -80,11 +81,13 @@ class Order {
           ? Promotion.fromMap(map['promotion'] as Map<String, dynamic>)
           : null,
       orderStatus: (map['orderStatus'] ?? '') as String,
-      orderItems: List<OrderItem>.from(
-        (map['orderItems'] as List<int>).map<OrderItem>(
-          (x) => OrderItem.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      orderItems: map['orderItems'] == null
+          ? []
+          : List<OrderItem>.from(
+              map['orderItems'].map<OrderItem>(
+                (x) => Order.fromMap(x as Map<String, dynamic>),
+              ),
+            ),
       total: (map['total'] ?? 0) as int,
     );
   }

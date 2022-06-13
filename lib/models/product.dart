@@ -78,7 +78,7 @@ class Product {
       productCategory: map['productCategory'] == null
           ? []
           : List<ProductCategory>.from(
-              (map['productCategory'] as List<int>).map<ProductCategory>(
+              map['productCategory'].map<ProductCategory>(
                 (x) => ProductCategory.fromMap(x as Map<String, dynamic>),
               ),
             ),
