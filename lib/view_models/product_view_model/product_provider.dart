@@ -10,15 +10,8 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // List<Product> get listProductOriginals =>
-  //     _listProduct.where((e) => e.tag == 'ORIGINALS').toList();
-
-  List<Product> get listProductOriginals => _listProduct
-      .where(
-        (product) => product.productCategory
-            .any((category) => category.name == 'ORIGINALS'),
-      )
-      .toList();
+  List<Product> get listProductOriginals =>
+      _listProduct.where((e) => e.tag == 'ORIGINALS').toList();
 
   List<Product> getProductByCategory(ProductCategory productCategory) {
     return _listProduct
