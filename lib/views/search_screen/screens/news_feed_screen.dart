@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/view_models/product_view_model/product_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/product.dart';
+import '../../../service/data_repository.dart';
 import '../../utils/button/option_text_button.dart';
 import '../../utils/widget/app_bar.dart';
 import '../utils/w_explore_heading.dart';
@@ -18,6 +21,8 @@ class NewsFeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    fetchProduct(context);
+
     String _content = "Loading...";
     AppMockData searchScreenMockData = AppMockData();
 
@@ -153,5 +158,10 @@ class NewsFeedScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> fetchProduct(BuildContext context) async {
+    context.read<ProductProvider>().listProduct =
+        await DataRepository().getListProduct();
   }
 }

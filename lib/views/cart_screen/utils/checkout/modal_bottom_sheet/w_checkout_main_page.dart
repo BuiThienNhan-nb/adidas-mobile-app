@@ -156,8 +156,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
 void onOrderButtonClick(BuildContext context) {
   /// Validate order
   if (context.read<OrderProvider>().order.paymentMethod ==
-          'Select payment method' ||
-      context.read<OrderProvider>().order.promotionId == null) {
+      'Select payment method') {
     log('[ORDER] validate return false');
     showFailureDialog(context,
         'All the necessary information must be completed fill before place an order!');

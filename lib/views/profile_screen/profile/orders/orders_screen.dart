@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/palette.dart';
+import 'package:flutter_adidas_clone/service/data_repository.dart';
+import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/order_history/order_history_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,5 +32,10 @@ class OrderScreen extends StatelessWidget {
             ),
           );
     // OrderHistoryItem(order: context.read<OrderProvider>().order);
+  }
+
+  void fetchOrder(BuildContext context) async {
+    context.read<OrderProvider>().orders = await DataRepository()
+        .getOrderByid(id: context.read<UserProvider>().user.id);
   }
 }

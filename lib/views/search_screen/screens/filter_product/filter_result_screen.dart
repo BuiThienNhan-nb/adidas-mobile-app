@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../configs/palette.dart';
@@ -35,6 +37,7 @@ class FilterResultScreen extends StatelessWidget {
         ),
         itemBuilder: (context, index) => FilterResultItem(
           product: products[index],
+          index: index,
         ),
         // Container(
         //   color: AppColors.aliceBlueColor,

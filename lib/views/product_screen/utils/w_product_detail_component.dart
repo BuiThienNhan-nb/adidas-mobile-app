@@ -8,7 +8,6 @@ import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
 import 'package:flutter_adidas_clone/view_models/wish_list_view_model/wish_list_provider.dart';
-import 'package:flutter_adidas_clone/views/cart_screen/cart_screen.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/payment/w_payment_select.dart';
 import 'package:flutter_adidas_clone/views/product_screen/screens/size_guide_screen.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/auth/login_screen/login_screen.dart';

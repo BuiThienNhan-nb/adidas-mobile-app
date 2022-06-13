@@ -32,7 +32,7 @@ class OrderProvider extends ChangeNotifier {
   List<Order> get orders => _orders;
 
   set orders(List<Order> orders) {
-    _orders = List.from(orders);
+    _orders = orders;
     notifyListeners();
   }
 

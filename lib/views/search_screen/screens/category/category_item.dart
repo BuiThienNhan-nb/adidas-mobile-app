@@ -3,11 +3,14 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/view_models/product_view_model/product_provider.dart';
 import 'package:flutter_adidas_clone/views/utils/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../configs/palette.dart';
 import '../../../../configs/style.dart';
+import '../../../../models/product.dart';
 import '../../../../models/product_category.dart';
 import '../filter_product/filter_result_screen.dart';
 
@@ -29,7 +32,8 @@ class CategoryItem extends StatelessWidget {
           Navigator.of(context).push(
             CupertinoPageRoute<void>(
               builder: (BuildContext context) => FilterResultScreen(
-                products: searchScreenMockData.products,
+                products: filterProduct(context),
+                //products: searchScreenMockData.products,
               ),
             ),
           );
@@ -68,5 +72,38 @@ class CategoryItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Product> filterProduct(BuildContext context) {
+    switch (productCategory.name) {
+      case 'ALL SHOES':
+        return context.read<ProductProvider>().listProduct;
+
+      case 'NEW ARRIVALS':
+        return context.read<ProductProvider>().listProduct;
+
+      case 'ORIGINALS':
+        return context.read<ProductProvider>().listProductOriginals;
+
+      case 'RUNNING':
+        return context.read<ProductProvider>().listProductRunning;
+
+      case 'LIFE STYLE':
+        return context.read<ProductProvider>().listProductLifeStyle;
+
+      case 'SLIDES':
+        return context.read<ProductProvider>().listProductSlides;
+
+      case 'FOOTBALL':
+        return context.read<ProductProvider>().listProductFootball;
+
+      case 'GOLF':
+        return context.read<ProductProvider>().listProductGolf;
+
+      case 'BASKETBALL':
+        return context.read<ProductProvider>().listProductBasketball;
+      default:
+        return [];
+    }
   }
 }

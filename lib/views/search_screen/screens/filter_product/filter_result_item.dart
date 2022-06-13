@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,20 +9,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../configs/palette.dart';
 import '../../../../configs/style.dart';
 import '../../../../models/product.dart';
+import '../../../product_screen/screens/product_detail_screen.dart';
 
 class FilterResultItem extends StatelessWidget {
   const FilterResultItem({
     Key? key,
     required this.product,
+    required this.index,
   }) : super(key: key);
 
   final Product product;
-
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        onTap: () => log(product.toJson()),
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).push(
+            CupertinoPageRoute(
+              builder: (_) => ProductDetailScreen(
+                heroTag: 'heroTag',
+                product: product,
+                index: index,
+              ),
+            ),
+          );
+        },
+        // log(product.toJson()),
         child: Container(
           color: AppColors.aliceBlueColor,
           padding: EdgeInsets.only(left: 4.w),
@@ -74,6 +88,7 @@ class FilterResultItem extends StatelessWidget {
               Text(
                 product.name,
                 style: AppStyles.boldRegularTextStyle,
+                maxLines: 2,
               ),
               // SizedBox(height: 4.h),
               Text(
