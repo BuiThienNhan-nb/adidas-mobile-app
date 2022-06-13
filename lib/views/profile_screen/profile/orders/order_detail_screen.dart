@@ -20,12 +20,12 @@ class OrderDetailScreen extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final Order order;
+  final Order? order;
   final Function() onButtonTap;
 
   @override
   Widget build(BuildContext context) {
-    final UserAddress address = order.userAddress;
+    final UserAddress? address = order?.userAddress;
 
     return Container(
       color: AppColors.whiteColor,
@@ -69,7 +69,7 @@ class OrderDetailScreen extends StatelessWidget {
   }
 }
 
-Widget orderProductDetails(Order order, BuildContext context) => Theme(
+Widget orderProductDetails(Order? order, BuildContext context) => Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: Padding(
         padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
@@ -82,21 +82,21 @@ Widget orderProductDetails(Order order, BuildContext context) => Theme(
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: order.orderItems.length,
+              itemCount: order?.orderItems.length ?? 0,
               padding: EdgeInsets.only(bottom: 8.h),
               itemBuilder: (context, index) =>
-                  orderProductDetailItem(order.orderItems[index]),
+                  orderProductDetailItem(order?.orderItems[index]),
             ),
           ],
         ),
       ),
     );
 
-Row orderProductDetailItem(OrderItem orderItem) => Row(
+Row orderProductDetailItem(OrderItem? orderItem) => Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         CachedNetworkImage(
-          imageUrl: orderItem.product.imageUrls.first,
+          imageUrl: orderItem?.product.imageUrls.first ?? '',
           placeholder: (context, url) =>
               const Center(child: CircularProgressIndicator()),
           errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -108,17 +108,18 @@ Row orderProductDetailItem(OrderItem orderItem) => Row(
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(orderItem.product.name, style: AppStyles.boldRegularTextStyle),
+            Text(orderItem?.product.name ?? '',
+                style: AppStyles.boldRegularTextStyle),
             SizedBox(height: 8.h),
             Text(
-              '${AppFormat.currencyFormat.format(orderItem.product.price)}\t\tđ',
+              '${AppFormat.currencyFormat.format(orderItem?.product.price ?? 0)}\t\tđ',
               style: AppStyles.smallTextStyle,
             ),
             SizedBox(height: 8.h),
             Text(
-              '${orderItem.quantity} ' +
-                  (orderItem.quantity == 1 ? 'item' : 'items') +
-                  '- size: ${orderItem.size} UK',
+              '${orderItem?.quantity ?? 0} ' +
+                  ((orderItem?.quantity ?? 0) == 1 ? 'item' : 'items') +
+                  '- size: ${orderItem?.size ?? 0} UK',
               style: AppStyles.subTextStyle,
             ),
           ],
@@ -126,7 +127,7 @@ Row orderProductDetailItem(OrderItem orderItem) => Row(
       ],
     );
 
-Padding orderTotalPayInformation(Order order) => Padding(
+Padding orderTotalPayInformation(Order? order) => Padding(
       padding: EdgeInsets.only(left: 20.w, right: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,19 +140,19 @@ Padding orderTotalPayInformation(Order order) => Padding(
           SizedBox(height: 32.h),
           orderInfoItem(
             'PRODUCT(S) TOTAL',
-            '${AppFormat.currencyFormat.format(order.total / 0.8)}\t\tđ',
+            '${AppFormat.currencyFormat.format(order?.total ?? 0 / 0.8)}\t\tđ',
           ),
           SizedBox(height: 16.h),
           orderInfoItem('SHIPPING', '0\t\tđ'),
           SizedBox(height: 16.h),
           orderInfoItem(
             'PROMOTIONS',
-            '-${AppFormat.currencyFormat.format(order.total * 0.2)}\t\tđ',
+            '-${AppFormat.currencyFormat.format(order?.total ?? 0 * 0.2)}\t\tđ',
           ),
           SizedBox(height: 16.h),
           orderInfoItem(
             'TOTAL',
-            '${AppFormat.currencyFormat.format(order.total)}\t\tđ',
+            '${AppFormat.currencyFormat.format(order?.total ?? 0)}\t\tđ',
           ),
           SizedBox(height: 16.h),
         ],
@@ -159,7 +160,7 @@ Padding orderTotalPayInformation(Order order) => Padding(
     );
 
 Padding orderInformation(
-    String title, Order order, UserAddress address, BuildContext context) {
+    String title, Order? order, UserAddress? address, BuildContext context) {
   return Padding(
     padding: EdgeInsets.fromLTRB(20.w, 0.h, 20.w, 28.h),
     child: Column(
@@ -178,7 +179,7 @@ Padding orderInformation(
             'Home Delivery\nStandard Delivery\nGHN - SPXVNN021007969754'),
         SizedBox(height: 12.h),
         orderDetailItem('assets/icons/location_marker_icon.png',
-            '${address.receptionName}\n${address.receptionPhoneNumber}\n${address.address}'),
+            '${address?.receptionName ?? ''}\n${address?.receptionPhoneNumber ?? ''}\n${address?.address ?? ''}'),
         SizedBox(height: 12.h),
         Divider(color: AppColors.silverColor, thickness: 2.h),
         SizedBox(height: 16.h),
@@ -192,7 +193,8 @@ Padding orderInformation(
         SizedBox(height: 16.h),
         orderInfoItem(
           'ORDER TIME',
-          AppFormat.formatDateMonthTime.format(order.orderTime),
+          AppFormat.formatDateMonthTime
+              .format(order?.orderTime ?? DateTime.now()),
         ),
         SizedBox(height: 16.h),
         Divider(color: AppColors.silverColor, thickness: 2.h),
@@ -201,7 +203,7 @@ Padding orderInformation(
         SizedBox(height: 16.h),
         Divider(color: AppColors.silverColor, thickness: 2.h),
         SizedBox(height: 16.h),
-        orderInfoItem('BILLING ADDRESS', address.address),
+        orderInfoItem('BILLING ADDRESS', address?.address ?? ''),
         // SizedBox(height: 16.h),
       ],
     ),

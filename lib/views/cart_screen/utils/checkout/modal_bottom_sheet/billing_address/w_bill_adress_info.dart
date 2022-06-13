@@ -10,7 +10,7 @@ class BillingAddressInformation extends StatelessWidget {
     required this.userAddress,
   }) : super(key: key);
 
-  final UserAddress userAddress;
+  final UserAddress? userAddress;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,10 @@ class BillingAddressInformation extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(context.read<OrderProvider>().order.userAddress.receptionName),
+          Text(context.read<OrderProvider>().order?.userAddress.receptionName ??
+              ''),
           Text(
-            context.read<OrderProvider>().order.userAddress.address,
+            context.read<OrderProvider>().order?.userAddress.address ?? '',
             textAlign: TextAlign.right,
           ),
         ],

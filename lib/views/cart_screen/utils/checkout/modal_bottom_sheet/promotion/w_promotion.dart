@@ -81,9 +81,9 @@ class _PromotionWidgetState extends State<PromotionWidget> {
         ).then((value) {
           if (_promotionIdController.text == "") {
           } else {
-            context.read<OrderProvider>().order.total =
-                (context.read<OrderProvider>().order.total * 0.8).toInt();
-            context.read<OrderProvider>().order.promotion!.id =
+            context.read<OrderProvider>().order?.total =
+                (context.read<OrderProvider>().order?.total ?? 0 * 0.8).toInt();
+            context.read<OrderProvider>().order?.promotion!.id =
                 _promotionIdController.text.toUpperCase().trim();
             context.read<AuthProvider>().isLoading = false;
             backToCart();

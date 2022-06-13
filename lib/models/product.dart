@@ -64,8 +64,7 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       id: map['id'] ?? '',
-      imageUrls:
-          map['images'] == null ? [] : List<String>.from((map['images'])),
+      imageUrls: List<String>.from((map['images'] ?? [])),
 
       // imageUrls: List<String>.from((map['imageUrls'] as List<String>)) ?? [],
       tag: map['tag'] ?? '',
@@ -78,7 +77,7 @@ class Product {
       productCategory: map['productCategory'] == null
           ? []
           : List<ProductCategory>.from(
-              (map['productCategory'] as List<int>).map<ProductCategory>(
+              (map['productCategory']).map<ProductCategory>(
                 (x) => ProductCategory.fromMap(x as Map<String, dynamic>),
               ),
             ),

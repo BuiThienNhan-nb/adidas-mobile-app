@@ -65,7 +65,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               title: "SHIPPING",
               content: Consumer<OrderProvider>(
                 builder: (_, value, ___) => ShippingInformation(
-                  userAddress: context.read<OrderProvider>().order.userAddress,
+                  userAddress: context.read<OrderProvider>().order?.userAddress,
                 ),
               ),
               onTap: () {},
@@ -74,9 +74,10 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "PAYMENT",
               content: Text(
-                context.read<OrderProvider>().order.paymentMethod,
+                context.read<OrderProvider>().order?.paymentMethod ?? '',
                 style: TextStyle(
-                  color: context.read<OrderProvider>().order.paymentMethod ==
+                  color: (context.read<OrderProvider>().order?.paymentMethod ??
+                              '') ==
                           "Select payment method"
                       ? AppColors.toryBlueColor
                       : AppColors.blackColor,
@@ -94,7 +95,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               title: "BILLING ADDRESS",
               content: Consumer<OrderProvider>(
                 builder: (_, value, __) => BillingAddressInformation(
-                  userAddress: context.read<OrderProvider>().order.userAddress,
+                  userAddress: context.read<OrderProvider>().order?.userAddress,
                 ),
               ),
               onTap: () {
@@ -108,11 +109,11 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "PROMO CODE",
               content: Text(
-                context.read<OrderProvider>().order.promotion == null
+                context.read<OrderProvider>().order?.promotion == null
                     ? "Pick discount"
-                    : context.read<OrderProvider>().order.promotion!.id,
+                    : context.read<OrderProvider>().order?.promotion!.id ?? '',
                 style: TextStyle(
-                  color: context.read<OrderProvider>().order.promotion == null
+                  color: context.read<OrderProvider>().order?.promotion == null
                       ? AppColors.toryBlueColor
                       : AppColors.blackColor,
                 ),
@@ -128,7 +129,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "TOTAL",
               content: Text(
-                "đ\t\t\t\t${AppFormat.currencyFormat.format(context.read<OrderProvider>().order.total)}",
+                "đ\t\t\t\t${AppFormat.currencyFormat.format(context.read<OrderProvider>().order?.total ?? 0)}",
               ),
               onTap: () {},
             ),
@@ -154,14 +155,14 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
 
 void onOrderButtonClick(BuildContext context) {
   /// Validate order
-  if (context.read<OrderProvider>().order.paymentMethod ==
+  if (context.read<OrderProvider>().order?.paymentMethod ==
       'Select payment method') {
     log('[ORDER] validate return false');
     showFailureDialog(context,
         'All the necessary information must be completed fill before place an order!');
     return;
   }
-  log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
+  // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order?.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
 
   /// Order action
   context.read<AuthProvider>().isLoading = true;

@@ -10,7 +10,7 @@ class ShippingInformation extends StatelessWidget {
     required this.userAddress,
   }) : super(key: key);
 
-  final UserAddress userAddress;
+  final UserAddress? userAddress;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,9 @@ class ShippingInformation extends StatelessWidget {
         ),
         SizedBox(height: 6.h),
         const Text("DELIVERY - FREE"),
-        Text(context.read<OrderProvider>().order.userAddress.receptionName),
-        Text(context.read<OrderProvider>().order.userAddress.address),
+        Text(context.read<OrderProvider>().order?.userAddress.receptionName ??
+            ''),
+        Text(context.read<OrderProvider>().order?.userAddress.address ?? ''),
       ],
     );
   }

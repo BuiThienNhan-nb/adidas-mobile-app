@@ -125,8 +125,6 @@ class LoginWithEmail extends StatelessWidget {
       }
     }
 
-    void getUserInfo() {}
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,

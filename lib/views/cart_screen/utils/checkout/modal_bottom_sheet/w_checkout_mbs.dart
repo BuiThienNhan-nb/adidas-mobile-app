@@ -56,9 +56,9 @@ class _CheckoutCartBottomSheetState extends State<CheckoutCartBottomSheet> {
         },
         child: PromotionWidget(
           updateParent: refresh,
-          promotionId: context.read<OrderProvider>().order.promotion == null
+          promotionId: context.read<OrderProvider>().order?.promotion == null
               ? ''
-              : context.read<OrderProvider>().order.promotion!.id,
+              : context.read<OrderProvider>().order?.promotion!.id,
         ),
       ),
     ];
