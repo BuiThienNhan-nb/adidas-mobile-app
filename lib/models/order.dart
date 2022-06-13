@@ -1,9 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:flutter_adidas_clone/models/order_item.dart';
-import 'package:flutter_adidas_clone/models/user_address.dart';
+import 'order_item.dart';
+import 'promotion.dart';
+import 'user_address.dart';
 
 class Order {
   final String id;
@@ -11,7 +13,7 @@ class Order {
   final DateTime orderTime;
   UserAddress userAddress;
   String paymentMethod;
-  String? promotionId;
+  Promotion? promotion;
   String orderStatus;
   List<OrderItem> orderItems;
   int total;
@@ -21,7 +23,7 @@ class Order {
     required this.orderTime,
     required this.userAddress,
     required this.paymentMethod,
-    this.promotionId,
+    this.promotion,
     required this.orderStatus,
     required this.orderItems,
     required this.total,
@@ -33,7 +35,7 @@ class Order {
     DateTime? orderTime,
     UserAddress? userAddress,
     String? paymentMethod,
-    String? promotionId,
+    Promotion? promotion,
     String? orderStatus,
     List<OrderItem>? orderItems,
     int? total,
@@ -44,7 +46,7 @@ class Order {
       orderTime: orderTime ?? this.orderTime,
       userAddress: userAddress ?? this.userAddress,
       paymentMethod: paymentMethod ?? this.paymentMethod,
-      promotionId: promotionId ?? this.promotionId,
+      promotion: promotion ?? this.promotion,
       orderStatus: orderStatus ?? this.orderStatus,
       orderItems: orderItems ?? this.orderItems,
       total: total ?? this.total,
@@ -52,45 +54,49 @@ class Order {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'id': id});
-    result.addAll({'userId': userId});
-    result.addAll({'orderTime': orderTime.millisecondsSinceEpoch});
-    result.addAll({'userAddress': userAddress.toMap()});
-    result.addAll({'paymentMethod': paymentMethod});
-    if (promotionId != null) {
-      result.addAll({'promotionId': promotionId});
-    }
-    result.addAll({'orderStatus': orderStatus});
-    result.addAll({'orderItems': orderItems.map((x) => x.toMap()).toList()});
-    result.addAll({'total': total});
-
-    return result;
+    return <String, dynamic>{
+      'id': id,
+      'userId': userId,
+      'orderTime': orderTime.millisecondsSinceEpoch,
+      'userAddress': userAddress.toMap(),
+      'paymentMethod': paymentMethod,
+      'promotion': promotion?.toMap(),
+      'orderStatus': orderStatus,
+      'orderItems': orderItems.map((x) => x.toMap()).toList(),
+      'total': total,
+    };
   }
 
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
-      id: map['id'] ?? '',
-      userId: map['userId'] ?? '',
-      orderTime: DateTime.fromMillisecondsSinceEpoch(map['orderTime']),
-      userAddress: UserAddress.fromMap(map['userAddress']),
-      paymentMethod: map['paymentMethod'] ?? '',
-      promotionId: map['promotionId'],
-      orderStatus: map['orderStatus'] ?? '',
+      id: (map['id'] ?? '') as String,
+      userId: (map['userId'] ?? '') as String,
+      orderTime:
+          DateTime.fromMillisecondsSinceEpoch((map['orderTime'] ?? 0) as int),
+      userAddress:
+          UserAddress.fromMap(map['userAddress'] as Map<String, dynamic>),
+      paymentMethod: (map['paymentMethod'] ?? '') as String,
+      promotion: map['promotion'] != null
+          ? Promotion.fromMap(map['promotion'] as Map<String, dynamic>)
+          : null,
+      orderStatus: (map['orderStatus'] ?? '') as String,
       orderItems: List<OrderItem>.from(
-          map['orderItems']?.map((x) => OrderItem.fromMap(x))),
-      total: map['total']?.toInt() ?? 0,
+        (map['orderItems'] as List<int>).map<OrderItem>(
+          (x) => OrderItem.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      total: (map['total'] ?? 0) as int,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Order.fromJson(String source) => Order.fromMap(json.decode(source));
+  factory Order.fromJson(String source) =>
+      Order.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Order(id: $id, userId: $userId, orderTime: $orderTime, userAddress: $userAddress, paymentMethod: $paymentMethod, promotionId: $promotionId, orderStatus: $orderStatus, orderItems: $orderItems, total: $total)';
+    return 'Order(id: $id, userId: $userId, orderTime: $orderTime, userAddress: $userAddress, paymentMethod: $paymentMethod, promotion: $promotion, orderStatus: $orderStatus, orderItems: $orderItems, total: $total)';
   }
 
   @override
@@ -103,7 +109,7 @@ class Order {
         other.orderTime == orderTime &&
         other.userAddress == userAddress &&
         other.paymentMethod == paymentMethod &&
-        other.promotionId == promotionId &&
+        other.promotion == promotion &&
         other.orderStatus == orderStatus &&
         listEquals(other.orderItems, orderItems) &&
         other.total == total;
@@ -116,7 +122,7 @@ class Order {
         orderTime.hashCode ^
         userAddress.hashCode ^
         paymentMethod.hashCode ^
-        promotionId.hashCode ^
+        promotion.hashCode ^
         orderStatus.hashCode ^
         orderItems.hashCode ^
         total.hashCode;

@@ -108,12 +108,11 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "PROMO CODE",
               content: Text(
-                context.read<OrderProvider>().order.promotionId ??
-                    "Pick discount",
+                context.read<OrderProvider>().order.promotion == null
+                    ? "Pick discount"
+                    : context.read<OrderProvider>().order.promotion!.id,
                 style: TextStyle(
-                  color: context.read<OrderProvider>().order.promotionId ==
-                              null ||
-                          context.read<OrderProvider>().order.promotionId == ""
+                  color: context.read<OrderProvider>().order.promotion == null
                       ? AppColors.toryBlueColor
                       : AppColors.blackColor,
                 ),
@@ -156,14 +155,13 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
 void onOrderButtonClick(BuildContext context) {
   /// Validate order
   if (context.read<OrderProvider>().order.paymentMethod ==
-          'Select payment method' ||
-      context.read<OrderProvider>().order.promotionId == null) {
+      'Select payment method') {
     log('[ORDER] validate return false');
     showFailureDialog(context,
         'All the necessary information must be completed fill before place an order!');
     return;
   }
-  log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotionId}');
+  log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
 
   /// Order action
   context.read<AuthProvider>().isLoading = true;

@@ -21,7 +21,7 @@ class OrderProvider extends ChangeNotifier {
       country: 'VietNam',
     ),
     paymentMethod: "Select payment method",
-    promotionId: null,
+    promotion: null,
     total: 17500000,
     orderItems: AppMockData().orderItems,
     orderStatus: AppOrderStatus.processing,
