@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/promotion.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_address_select.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/order_detail_screen.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -161,13 +162,21 @@ void onOrderButtonClick(BuildContext context) {
         'All the necessary information must be completed fill before place an order!');
     return;
   }
-  log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
+  // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
 
   /// Order action
   context.read<AuthProvider>().isLoading = true;
   Future.delayed(const Duration(seconds: 2)).then(
     (value) {
       log('[ORDER] place order button clicked!');
+      context.read<OrderProvider>().order.promotion = Promotion(
+        id: 'id',
+        name: 'name',
+        description: 'description',
+        expiredDate: DateTime.now(),
+        discount: 0.2,
+      );
+
       Navigator.of(context)
         ..pop()
         ..push(

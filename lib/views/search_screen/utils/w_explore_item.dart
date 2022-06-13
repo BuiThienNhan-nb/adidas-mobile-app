@@ -30,7 +30,6 @@ class ExploreItem extends StatelessWidget {
           onTap: () => Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (_) => ProductDetailScreen(
-                index: index,
                 heroTag: 'from_news_feed',
                 product: Product(
                   id: 'fake',

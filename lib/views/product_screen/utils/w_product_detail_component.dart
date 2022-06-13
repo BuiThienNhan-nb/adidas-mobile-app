@@ -21,7 +21,7 @@ import '../../../configs/style.dart';
 import '../../../models/product.dart';
 import '../../../view_models/cart_view_model/cart_provider.dart';
 
-Row productName(Product product, int iconIndex, int index) {
+Row productName(Product product, int iconIndex) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -56,7 +56,6 @@ Row productName(Product product, int iconIndex, int index) {
       const Spacer(),
       FavoriteIcon(
         product: product,
-        index: index,
       ),
       SizedBox(width: 20.w),
     ],
@@ -64,10 +63,9 @@ Row productName(Product product, int iconIndex, int index) {
 }
 
 class FavoriteIcon extends StatelessWidget {
-  FavoriteIcon({required this.product, required this.index, Key? key})
-      : super(key: key);
+  FavoriteIcon({required this.product, Key? key}) : super(key: key);
   Product product;
-  int index;
+  // int index;
 
   void authenticate(BuildContext context) {
     showAnimatedDialog(

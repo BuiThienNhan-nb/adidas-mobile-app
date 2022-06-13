@@ -91,7 +91,6 @@ class AdBannerCarouselItem extends StatelessWidget {
                       CupertinoPageRoute(
                         builder: (_) => ProductDetailScreen(
                           heroTag: 'heroTag',
-                          index: _index,
                           product: Product(
                             id: '6',
                             productCategory: [],

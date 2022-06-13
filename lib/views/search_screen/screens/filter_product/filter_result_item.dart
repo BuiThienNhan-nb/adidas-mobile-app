@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
+import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../configs/palette.dart';
@@ -21,7 +21,12 @@ class FilterResultItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        onTap: () => log(product.toJson()),
+        onTap: () => Navigator.of(context).push(CupertinoPageRoute(
+          builder: (context) => ProductDetailScreen(
+            heroTag: 'heroTag',
+            product: product,
+          ),
+        )),
         child: Container(
           color: AppColors.aliceBlueColor,
           padding: EdgeInsets.only(left: 4.w),
