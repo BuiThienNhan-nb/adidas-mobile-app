@@ -8,15 +8,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../configs/palette.dart';
 import '../../../../configs/style.dart';
 import '../../../../models/product.dart';
+import '../../../product_screen/screens/product_detail_screen.dart';
 
 class FilterResultItem extends StatelessWidget {
   const FilterResultItem({
     Key? key,
     required this.product,
+    required this.index,
   }) : super(key: key);
 
   final Product product;
-
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -79,6 +81,7 @@ class FilterResultItem extends StatelessWidget {
               Text(
                 product.name,
                 style: AppStyles.boldRegularTextStyle,
+                maxLines: 2,
               ),
               // SizedBox(height: 4.h),
               Text(

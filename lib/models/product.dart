@@ -51,7 +51,7 @@ class Product {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'imageUrls': imageUrls,
+      'images': imageUrls,
       'tag': tag,
       'price': price,
       'name': name,
@@ -64,9 +64,9 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       id: map['id'] ?? '',
-      imageUrls: map['imageUrls'] == null
-          ? []
-          : List<String>.from((map['imageUrls'] as List<String>)),
+      imageUrls:
+          map['images'] == null ? [] : List<String>.from((map['images'])),
+
       // imageUrls: List<String>.from((map['imageUrls'] as List<String>)) ?? [],
       tag: map['tag'] ?? '',
       price: map['price'] ?? '',
