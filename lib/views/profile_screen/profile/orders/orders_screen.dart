@@ -15,7 +15,7 @@ class OrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return !context.watch<OrderProvider>().orders.isNotEmpty
+    return context.watch<OrderProvider>().orders.isNotEmpty
         ? const EmptyOrderScreen()
         : ListView.builder(
             itemCount: 6,

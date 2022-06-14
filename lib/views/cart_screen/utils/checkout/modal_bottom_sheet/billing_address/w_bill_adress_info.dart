@@ -19,10 +19,9 @@ class BillingAddressInformation extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(context.read<OrderProvider>().order?.userAddress.receptionName ??
-              ''),
+          Text(context.read<OrderProvider>().order.userAddress.receptionName),
           Text(
-            context.read<OrderProvider>().order?.userAddress.address ?? '',
+            context.read<OrderProvider>().order.userAddress.address,
             textAlign: TextAlign.right,
           ),
         ],

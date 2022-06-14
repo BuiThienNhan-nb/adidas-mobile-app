@@ -70,7 +70,7 @@ class ShoppingCartScreen extends StatelessWidget {
         title: "SHOPPING CART",
       ),
       body: Selector<OrderProvider, List<OrderItem>>(
-        selector: (_, provider) => provider.orderItems,
+        selector: (_, provider) => provider.order.orderItems,
         builder: (_, orderItems, __) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

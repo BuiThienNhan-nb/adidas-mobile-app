@@ -50,7 +50,7 @@ class PaymentSelect extends StatelessWidget {
                       0,
                       CheckoutCartBottomSheet.mainCheckoutBottomSheetHeight,
                     );
-                context.read<OrderProvider>().order?.paymentMethod =
+                context.read<OrderProvider>().order.paymentMethod =
                     "Cash on delivery";
                 _updateParent("");
               },

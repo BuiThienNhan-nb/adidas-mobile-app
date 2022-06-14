@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
+import 'package:flutter_adidas_clone/models/product_category.dart';
 
 class ProductProvider extends ChangeNotifier {
   List<Product> _listProduct = [];
@@ -11,6 +12,17 @@ class ProductProvider extends ChangeNotifier {
 
   List<Product> get listProductOriginals =>
       _listProduct.where((e) => e.tag == 'ORIGINALS').toList();
+
+  List<Product> getProductByCategory(ProductCategory productCategory) {
+    return _listProduct
+        .where(
+          (product) => product.productCategory.any(
+            (category) => category.name.compareTo(productCategory.name) == 0,
+          ),
+        )
+        .toList();
+  }
+
   List<Product> get listProductRunning =>
       _listProduct.where((e) => e.tag == 'RUNNING').toList();
 

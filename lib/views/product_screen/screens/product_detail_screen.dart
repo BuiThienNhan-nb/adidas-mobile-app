@@ -18,11 +18,9 @@ class ProductDetailScreen extends StatefulWidget {
     Key? key,
     required this.heroTag,
     required this.product,
-    required this.index,
   }) : super(key: key);
   final String heroTag;
   final Product product;
-  final int index;
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -107,7 +105,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 productName(
                   widget.product,
                   iconIndex,
-                  widget.index,
                 ),
                 SizedBox(height: 24.h),
                 Container(

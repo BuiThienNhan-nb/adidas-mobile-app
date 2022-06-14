@@ -31,7 +31,7 @@ class BillAddressSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     log('[BILL ADDRESS] current user address id: ${context.read<OrderProvider>().order?.userAddress.id}');
     backToCart(int index) {
-      context.read<OrderProvider>().order?.userAddress = userAddresses[index];
+      context.read<OrderProvider>().order.userAddress = userAddresses[index];
       log('[BILL ADDRESS] back to cart');
       context.read<CheckoutCartConfigProvider>().onPageTransition(
             false,
@@ -60,7 +60,7 @@ class BillAddressSelect extends StatelessWidget {
                   child: AddressBookItem(
                     userAddress: userAddresses[index],
                     isSelect:
-                        context.read<OrderProvider>().order?.userAddress.id ==
+                        context.read<OrderProvider>().order.userAddress.id ==
                             userAddresses[index].id,
                   ),
                 ),

@@ -7,45 +7,28 @@ import '../../models/order.dart';
 import '../../models/user_address.dart';
 
 class OrderProvider extends ChangeNotifier {
-  /// TODO: delete mock order data
-  // Order _order = Order(
-  //   id: 'fake',
-  //   userId: '1',
-  //   orderTime: DateTime.now(),
-  //   userAddress: UserAddress(
-  //     id: 'mock_data_1',
-  //     userId: '1',
-  //     receptionName: 'Bui Thien Nhan',
-  //     receptionPhoneNumber: '0762796747',
-  //     address: '05/66 Phan Đăng Lưu, TP Tuy Hòa, Phú Yên,',
-  //     country: 'VietNam',
-  //   ),
-  //   paymentMethod: "Select payment method",
-  //   promotion: null,
-  //   total: 0,
-  //   orderItems: [],
-  //   orderStatus: AppOrderStatus.processing,
-  // );
-  Order? _order;
-  Order? get order => _order;
+  // : delete mock order data
+  final Order _order = Order(
+    id: 'mock_data',
+    userId: '1',
+    orderTime: DateTime.now(),
+    userAddress: UserAddress(
+      id: 'mock_data_1',
+      userId: '1',
+      receptionName: '',
+      receptionPhoneNumber: '',
+      address: '',
+      country: '',
+    ),
+    paymentMethod: "",
+    promotion: null,
+    total: 0,
+    // orderItems: AppMockData().orderItems,
+    orderItems: [],
+    orderStatus: AppOrderStatus.processing,
+  );
 
-  set order(Order? val) {
-    _order = val;
-    notifyListeners();
-  }
-
-  List<OrderItem> _orderItems = [];
-  List<OrderItem> get orderItems => _orderItems;
-
-  set orderItem(List<OrderItem> val) {
-    _orderItems = val;
-    notifyListeners();
-  }
-
-  void addOrderItem(OrderItem val) {
-    _orderItems.add(val);
-    notifyListeners();
-  }
+  Order get order => _order;
 
   List<Order> _orders = [];
 
@@ -68,22 +51,22 @@ class OrderProvider extends ChangeNotifier {
   }
 
   updatePaymentMethod(String paymentMethod) {
-    _order?.paymentMethod = paymentMethod;
+    _order.paymentMethod = paymentMethod;
     notifyListeners();
   }
 
   deleteOrderItem(int index) {
-    _order?.orderItems.removeAt(index);
+    _order.orderItems.removeAt(index);
     notifyListeners();
   }
 
-  // addOrderItem(OrderItem orderItem) {
-  //   _order?.orderItems.add(orderItem);
-  //   notifyListeners();
-  // }
+  addOrderItem(OrderItem orderItem) {
+    _order.orderItems.add(orderItem);
+    notifyListeners();
+  }
 
   updateOrderItem(int index, OrderItem newValue) {
-    _order?.orderItems[index].copyWith(
+    _order.orderItems[index].copyWith(
       product: newValue.product.copyWith(
         id: newValue.product.id,
         imageUrls: newValue.product.imageUrls,

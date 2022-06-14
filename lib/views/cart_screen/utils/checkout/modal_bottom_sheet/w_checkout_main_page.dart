@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/models/promotion.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/billing_address/w_bill_address_select.dart';
 import 'package:flutter_adidas_clone/views/profile_screen/profile/orders/order_detail_screen.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -65,7 +66,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               title: "SHIPPING",
               content: Consumer<OrderProvider>(
                 builder: (_, value, ___) => ShippingInformation(
-                  userAddress: context.read<OrderProvider>().order?.userAddress,
+                  userAddress: context.read<OrderProvider>().order.userAddress,
                 ),
               ),
               onTap: () {},
@@ -74,10 +75,9 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "PAYMENT",
               content: Text(
-                context.read<OrderProvider>().order?.paymentMethod ?? '',
+                context.read<OrderProvider>().order.paymentMethod,
                 style: TextStyle(
-                  color: (context.read<OrderProvider>().order?.paymentMethod ??
-                              '') ==
+                  color: (context.read<OrderProvider>().order.paymentMethod) ==
                           "Select payment method"
                       ? AppColors.toryBlueColor
                       : AppColors.blackColor,
@@ -95,7 +95,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               title: "BILLING ADDRESS",
               content: Consumer<OrderProvider>(
                 builder: (_, value, __) => BillingAddressInformation(
-                  userAddress: context.read<OrderProvider>().order?.userAddress,
+                  userAddress: context.read<OrderProvider>().order.userAddress,
                 ),
               ),
               onTap: () {
@@ -109,11 +109,11 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "PROMO CODE",
               content: Text(
-                context.read<OrderProvider>().order?.promotion == null
+                context.read<OrderProvider>().order.promotion == null
                     ? "Pick discount"
-                    : context.read<OrderProvider>().order?.promotion!.id ?? '',
+                    : context.read<OrderProvider>().order.promotion!.id,
                 style: TextStyle(
-                  color: context.read<OrderProvider>().order?.promotion == null
+                  color: context.read<OrderProvider>().order.promotion == null
                       ? AppColors.toryBlueColor
                       : AppColors.blackColor,
                 ),
@@ -129,7 +129,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
             OrderInformation(
               title: "TOTAL",
               content: Text(
-                "đ\t\t\t\t${AppFormat.currencyFormat.format(context.read<OrderProvider>().order?.total ?? 0)}",
+                "đ\t\t\t\t${AppFormat.currencyFormat.format(context.read<OrderProvider>().order.total)}",
               ),
               onTap: () {},
             ),
@@ -155,20 +155,29 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
 
 void onOrderButtonClick(BuildContext context) {
   /// Validate order
-  if (context.read<OrderProvider>().order?.paymentMethod ==
+  if (context.read<OrderProvider>().order.paymentMethod ==
       'Select payment method') {
     log('[ORDER] validate return false');
     showFailureDialog(context,
         'All the necessary information must be completed fill before place an order!');
     return;
   }
-  // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order?.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
+  // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
+  // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
 
   /// Order action
   context.read<AuthProvider>().isLoading = true;
   Future.delayed(const Duration(seconds: 2)).then(
     (value) {
       log('[ORDER] place order button clicked!');
+      context.read<OrderProvider>().order.promotion = Promotion(
+        id: 'id',
+        name: 'name',
+        description: 'description',
+        expiredDate: DateTime.now(),
+        discount: 0.2,
+      );
+
       Navigator.of(context)
         ..pop()
         ..push(

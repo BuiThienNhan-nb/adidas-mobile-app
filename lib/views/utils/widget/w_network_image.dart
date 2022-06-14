@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/configs/palette.dart';
 
 // ignore: must_be_immutable
 class MyNetworkImage extends StatelessWidget {
@@ -18,8 +19,12 @@ class MyNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
-      placeholder: (context, url) =>
-          const Center(child: CircularProgressIndicator()),
+      placeholder: (context, url) => Container(
+        color: AppColors.whiteColor,
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
       fit: fit,
       height: size == null ? null : size!.height,

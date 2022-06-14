@@ -1,5 +1,6 @@
 import 'package:flutter_adidas_clone/models/order_item.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
+import 'package:flutter_adidas_clone/models/promotion.dart';
 import 'package:flutter_adidas_clone/models/store.dart';
 import 'package:flutter_adidas_clone/models/user_address.dart';
 
@@ -376,9 +377,47 @@ class AppMockData {
       closeTime: 22,
     ),
   ];
+  final List<Promotion> _promotion = [
+    Promotion(
+      id: 'ID12MS3NV5',
+      name: 'test',
+      description: 'test',
+      expiredDate: DateTime.now().add(const Duration(days: 3)),
+      discount: 0.2,
+    ),
+    Promotion(
+      id: '12345678',
+      name: 'test',
+      description: 'test',
+      expiredDate: DateTime.now().add(const Duration(days: -1)),
+      discount: 200000,
+    ),
+    Promotion(
+      id: 'ABC1234BCA',
+      name: 'test',
+      description: 'test',
+      expiredDate: DateTime.now().add(const Duration(days: 5)),
+      discount: 0.15,
+    ),
+    Promotion(
+      id: 'Z9VNASD5AG3',
+      name: 'test',
+      description: 'test',
+      expiredDate: DateTime.now().add(const Duration(days: 2)),
+      discount: 0.1,
+    ),
+    Promotion(
+      id: 'G326682FAW4',
+      name: 'test',
+      description: 'test',
+      expiredDate: DateTime.now().add(const Duration(days: -6)),
+      discount: 150000,
+    ),
+  ];
 
   ProductType get shoes => _shoes;
   List<Product> get products => _products;
+  List<Promotion> get promotions => _promotion;
   List<Store> get stores => _stores;
   List<OrderItem> get orderItems => _orderItems;
   List<UserAddress> get userAddresses => _userAddresses;

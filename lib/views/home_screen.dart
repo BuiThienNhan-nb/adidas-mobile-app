@@ -77,13 +77,7 @@ class HomeScreen extends StatelessWidget {
           shape: BadgeShape.square,
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
           badgeContent: Text(
-            context
-                    .watch<OrderProvider>()
-                    .order
-                    ?.orderItems
-                    .length
-                    .toString() ??
-                '0',
+            context.watch<OrderProvider>().order.orderItems.length.toString(),
             style: AppStyles.whiteSmallTextStyle,
           ),
           animationType: BadgeAnimationType.scale,
@@ -103,7 +97,7 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
           badgeContent: Text(
             // context.watch<OrderProvider>().order.orderItems.length.toString(),
-            context.watch<OrderProvider>().orderItems.length.toString(),
+            context.watch<OrderProvider>().order.orderItems.length.toString(),
             style: AppStyles.whiteSmallTextStyle,
           ),
           animationType: BadgeAnimationType.scale,
@@ -119,7 +113,7 @@ class HomeScreen extends StatelessWidget {
           shape: BadgeShape.square,
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
           badgeContent: Text(
-            context.watch<OrderProvider>().orderItems.length.toString(),
+            context.watch<OrderProvider>().order.orderItems.length.toString(),
             style: AppStyles.whiteSmallTextStyle,
           ),
           animationType: BadgeAnimationType.scale,
