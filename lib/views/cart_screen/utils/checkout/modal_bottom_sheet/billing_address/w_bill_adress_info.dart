@@ -10,7 +10,7 @@ class BillingAddressInformation extends StatelessWidget {
     required this.userAddress,
   }) : super(key: key);
 
-  final UserAddress userAddress;
+  final UserAddress? userAddress;
 
   @override
   Widget build(BuildContext context) {

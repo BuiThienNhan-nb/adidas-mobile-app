@@ -7,25 +7,28 @@ import '../../models/order.dart';
 import '../../models/user_address.dart';
 
 class OrderProvider extends ChangeNotifier {
-  /// TODO: delete mock order data
- Order _order = Order(
+  // : delete mock order data
+  final Order _order = Order(
     id: 'mock_data',
     userId: '1',
     orderTime: DateTime.now(),
     userAddress: UserAddress(
       id: 'mock_data_1',
       userId: '1',
-      receptionName: 'Bui Thien Nhan',
-      receptionPhoneNumber: '0762796747',
-      address: '05/66 Phan Đăng Lưu, TP Tuy Hòa, Phú Yên,',
-      country: 'VietNam',
+      receptionName: '',
+      receptionPhoneNumber: '',
+      address: '',
+      country: '',
     ),
-    paymentMethod: "Select payment method",
+    paymentMethod: "",
     promotion: null,
-    total: 17500000,
-    orderItems: AppMockData().orderItems,
+    total: 0,
+    // orderItems: AppMockData().orderItems,
+    orderItems: [],
     orderStatus: AppOrderStatus.processing,
   );
+
+  Order get order => _order;
 
   List<Order> _orders = [];
 
@@ -45,13 +48,6 @@ class OrderProvider extends ChangeNotifier {
   List<Order> fetchOrdersByUserId(String userId) {
     /// Call from Repo
     return _orders.where((order) => order.userId == userId).toList();
-  }
-
-  Order get order => _order;
-
-  set order(Order val) {
-    _order = val;
-    notifyListeners();
   }
 
   updatePaymentMethod(String paymentMethod) {

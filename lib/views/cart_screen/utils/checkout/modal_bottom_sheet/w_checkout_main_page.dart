@@ -77,7 +77,7 @@ class _CheckoutMainPageState extends State<CheckoutMainPage> {
               content: Text(
                 context.read<OrderProvider>().order.paymentMethod,
                 style: TextStyle(
-                  color: context.read<OrderProvider>().order.paymentMethod ==
+                  color: (context.read<OrderProvider>().order.paymentMethod) ==
                           "Select payment method"
                       ? AppColors.toryBlueColor
                       : AppColors.blackColor,
@@ -162,6 +162,7 @@ void onOrderButtonClick(BuildContext context) {
         'All the necessary information must be completed fill before place an order!');
     return;
   }
+  // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
   // log('[ORDER] paymentMethod: ${context.read<OrderProvider>().order.paymentMethod} - promotionId: ${context.read<OrderProvider>().order.promotion!.id}');
 
   /// Order action

@@ -22,11 +22,10 @@ class ShoppingCartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<OrderItem> orderItems =
-        context.watch<OrderProvider>().order.orderItems;
+    // List<OrderItem> orderItems = context.watch<OrderProvider>().orderItems;
 
     onDeleteItem(int index) {
-      log('[ORDER ITEM] delete index: $index - name: ${orderItems[index].product.name}');
+      // log('[ORDER ITEM] delete index: $index - name: ${orderItems[index].product.name}');
       context.read<OrderProvider>().deleteOrderItem(index);
     }
 
@@ -70,38 +69,50 @@ class ShoppingCartScreen extends StatelessWidget {
         isPopularScreen: false,
         title: "SHOPPING CART",
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 15.h),
-          Padding(
-            padding: EdgeInsets.only(left: 20.w),
-            child: Text("${orderItems.length}   P R O D U C T S"),
-          ),
-          SizedBox(height: 12.h),
-          Divider(height: 3.h, color: AppColors.blackColor),
+      body: Selector<OrderProvider, List<OrderItem>>(
+        selector: (_, provider) => provider.order.orderItems,
+        builder: (_, orderItems, __) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 15.h),
+              Padding(
+                padding: EdgeInsets.only(left: 20.w),
+                child: Text("${orderItems.length}   P R O D U C T S"),
+              ),
+              SizedBox(height: 12.h),
+              Divider(height: 3.h, color: AppColors.blackColor),
 
-          /// Temp cart list
-          Expanded(
-            child: Consumer<OrderProvider>(
-              builder: (_, value, __) => ListView.builder(
-                itemCount: orderItems.length,
-                itemBuilder: (context, index) => CartItem(
-                  orderItem: orderItems[index],
-                  appContext: appContext,
-                  isWishList: false,
-                  onDotsClick: () => onDotsClick(context, index),
-                  onDelete: () => onDeleteItem(index),
+              /// Temp cart list
+              Expanded(
+                child: Consumer<OrderProvider>(
+                  builder: (_, value, __) => ListView.builder(
+                    itemCount: orderItems.length,
+                    itemBuilder: (context, index) => CartItem(
+                      orderItem: orderItems[index],
+                      appContext: appContext,
+                      isWishList: false,
+                      onDotsClick: () => onDotsClick(context, index),
+                      onDelete: () => onDeleteItem(index),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Consumer<OrderProvider>(
-            builder: (_, orderProvider, ___) => CheckoutCartContainer(
-              total: orderProvider.order.total,
-            ),
-          ),
-        ],
+              CheckoutCartContainer(
+                // total: orderProvider.order?.total ?? 0,
+                total: orderItems.fold(
+                    0, (pre, element) => pre + element.product.price),
+              ),
+              // Consumer<OrderProvider>(
+              //   builder: (_, orderProvider, ___) => CheckoutCartContainer(
+              //     // total: orderProvider.order?.total ?? 0,
+              //     total: orderItems.fold(
+              //         0, (pre, element) => pre + element.product.price),
+              //   ),
+              // ),
+            ],
+          );
+        },
       ),
     );
   }

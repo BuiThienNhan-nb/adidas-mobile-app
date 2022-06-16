@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/view_models/wish_list_view_model/wish_list_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
         icon: Badge(
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
           badgeContent: Text(
-            context.watch<OrderProvider>().order.orderItems.length.toString(),
+            context.watch<WishListProvider>().listWish.length.toString(),
             style: AppStyles.whiteSmallTextStyle,
           ),
           animationType: BadgeAnimationType.scale,
@@ -95,6 +96,7 @@ class HomeScreen extends StatelessWidget {
         icon: Badge(
           padding: EdgeInsets.fromLTRB(4.w, 0.h, 4.w, 0.h),
           badgeContent: Text(
+            // context.watch<OrderProvider>().order.orderItems.length.toString(),
             context.watch<OrderProvider>().order.orderItems.length.toString(),
             style: AppStyles.whiteSmallTextStyle,
           ),

@@ -29,7 +29,7 @@ class BillAddressSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('[BILL ADDRESS] current user address id: ${context.read<OrderProvider>().order.userAddress.id}');
+    log('[BILL ADDRESS] current user address id: ${context.read<OrderProvider>().order?.userAddress.id}');
     backToCart(int index) {
       context.read<OrderProvider>().order.userAddress = userAddresses[index];
       log('[BILL ADDRESS] back to cart');

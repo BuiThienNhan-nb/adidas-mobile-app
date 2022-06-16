@@ -68,7 +68,7 @@ class PopularProductScreen extends StatelessWidget {
         future: DataRepository().getBanners(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            print(snapshot);
+            print((snapshot.data as List<AdBanner>)[0].product.imageUrls);
             return ProductCarouselSlider(
               adBanners: snapshot.data ?? [],
               // adBanners: snapshot.data!['data'],

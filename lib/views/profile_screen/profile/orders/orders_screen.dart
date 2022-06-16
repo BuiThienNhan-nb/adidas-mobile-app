@@ -26,7 +26,7 @@ class OrderScreen extends StatelessWidget {
                 child: Container(
                   color: AppColors.whiteColor,
                   child: OrderHistoryItem(
-                      order: context.watch<OrderProvider>().order),
+                      order: context.watch<OrderProvider>().orders[index]),
                 ),
               ),
             ),

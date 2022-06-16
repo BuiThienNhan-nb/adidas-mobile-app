@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/size.dart';
+import 'package:flutter_adidas_clone/models/order_item.dart';
 import 'package:flutter_adidas_clone/service/data_repository.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/auth_provider.dart';
 import 'package:flutter_adidas_clone/view_models/auth_view_model/user_provider.dart';
+import 'package:flutter_adidas_clone/view_models/order_view_model/order_provider.dart';
 import 'package:flutter_adidas_clone/view_models/wish_list_view_model/wish_list_provider.dart';
 import 'package:flutter_adidas_clone/views/cart_screen/utils/checkout/modal_bottom_sheet/payment/w_payment_select.dart';
 import 'package:flutter_adidas_clone/views/product_screen/screens/size_guide_screen.dart';
@@ -254,11 +256,20 @@ Padding purchaseProduct(
     );
   }
 
-  void addToBag() async {
-    await DataRepository().addToBag(
-        idProd: product.id, idUser: context.read<UserProvider>().user.id);
-    context.read<CartProvider>().addToCart(product);
+  void addToBag() {
+    // await DataRepository().addToBag(
+    //     idProd: product.id, idUser: context.read<UserProvider>().user.id);
+    // context.read<CartProvider>().addToCart(product);
 
+    // context.read<OrderProvider>().order.orderItems.add(OrderItem(
+    //     product: product, size: 10, quantity: 1, total: product.price * 1));
+    context.read<OrderProvider>().addOrderItem(
+          OrderItem(
+              product: product,
+              size: 10,
+              quantity: 1,
+              total: product.price * 1),
+        );
     showAnimatedDialog(
       context: context,
       builder: (context) => AuthDialog(
