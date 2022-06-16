@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/configs/format.dart';
 import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/w_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../configs/palette.dart';
@@ -41,20 +41,9 @@ class FilterResultItem extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  // Image.asset(
-                  //   product.imageUrl.first,
-                  //   // height: 180.h,
-                  //   // fit: BoxFit.fill,
-                  // ),
-                  CachedNetworkImage(
+                  MyNetworkImage(
                     imageUrl: product.imageUrls.first,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    // height: 68.h,
-                    // width: 80.w,
-                    // fit: BoxFit.cover,
+                    fit: BoxFit.cover,
                   ),
                   Positioned(
                     top: 16.h,
@@ -82,6 +71,7 @@ class FilterResultItem extends StatelessWidget {
                 product.name,
                 style: AppStyles.boldRegularTextStyle,
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
               // SizedBox(height: 4.h),
               Text(

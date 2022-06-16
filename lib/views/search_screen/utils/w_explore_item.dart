@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/models/product_type.dart';
 import 'package:flutter_adidas_clone/views/product_screen/screens/product_detail_screen.dart';
+import 'package:flutter_adidas_clone/views/utils/widget/w_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../configs/format.dart';
@@ -81,14 +80,18 @@ class Item extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CachedNetworkImage(
+          // CachedNetworkImage(
+          //   imageUrl: _product.imageUrls.first,
+          //   placeholder: (context, url) =>
+          //       const Center(child: CircularProgressIndicator()),
+          //   errorWidget: (context, url, error) => const Icon(Icons.error),
+          //   height: 148.h,
+          //   width: 160.w,
+          //   fit: BoxFit.fill,
+          // ),
+          MyNetworkImage(
             imageUrl: _product.imageUrls.first,
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            height: 148.h,
-            width: 160.w,
-            fit: BoxFit.fill,
+            size: Size(160.w, 148.h),
           ),
           Padding(
             padding: EdgeInsets.only(left: 8.w),
@@ -113,6 +116,8 @@ class Item extends StatelessWidget {
                 Text(
                   _product.name,
                   style: AppStyles.boldRegularTextStyle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 4.h),
                 Text(

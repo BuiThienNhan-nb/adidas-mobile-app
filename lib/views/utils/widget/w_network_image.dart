@@ -21,8 +21,11 @@ class MyNetworkImage extends StatelessWidget {
       imageUrl: imageUrl,
       placeholder: (context, url) => Container(
         color: AppColors.whiteColor,
-        child: const Center(
-          child: CircularProgressIndicator(),
+        child: const FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
       ),
       errorWidget: (context, url, error) => const Icon(Icons.error),

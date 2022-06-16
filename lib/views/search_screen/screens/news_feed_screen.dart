@@ -50,6 +50,7 @@ class NewsFeedScreen extends StatelessWidget {
       product,
       product,
     ];
+    final double listHeight = 260.h;
 
     return Scaffold(
       appBar: const MyAppBar(
@@ -64,9 +65,12 @@ class NewsFeedScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Hero(
+            Hero(
               tag: heroWidgetTag,
-              child: SearchBar(isNext: true),
+              child: SearchBar(
+                isNext: true,
+                onSearchTap: () {},
+              ),
             ),
             OptionTextButton(
               content: searchScreenMockData.shoes.name,
@@ -101,7 +105,7 @@ class NewsFeedScreen extends StatelessWidget {
               onTap: () {},
             ),
             SizedBox(
-              height: 244.h,
+              height: listHeight,
               child: ListView.builder(
                 itemCount: products.length,
                 scrollDirection: Axis.horizontal,
@@ -117,8 +121,9 @@ class NewsFeedScreen extends StatelessWidget {
               onTap: () {},
             ),
             SizedBox(
-              height: 244.h,
+              height: listHeight,
               child: ListView.builder(
+                shrinkWrap: true,
                 itemCount: products.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => ExploreItem(
@@ -133,7 +138,7 @@ class NewsFeedScreen extends StatelessWidget {
               onTap: () {},
             ),
             SizedBox(
-              height: 244.h,
+              height: listHeight,
               child: ListView.builder(
                 itemCount: products.length,
                 scrollDirection: Axis.horizontal,
@@ -149,7 +154,7 @@ class NewsFeedScreen extends StatelessWidget {
               onTap: () {},
             ),
             SizedBox(
-              height: 244.h,
+              height: listHeight,
               child: ListView.builder(
                 itemCount: products.length,
                 scrollDirection: Axis.horizontal,

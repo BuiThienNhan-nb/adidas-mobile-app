@@ -414,8 +414,150 @@ class AppMockData {
       discount: 150000,
     ),
   ];
+  final List<Product> _ultraBoost = [
+    Product(
+      id: 'UB1',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/21532453e4b54e0496cbae1400b4948e_9366/Giay_Ultraboost_22_trang_GX8072_01_standard.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/cfcd40cba12e4aac8d0eae1400b4a3f7_9366/Giay_Ultraboost_22_trang_GX8072_02_standard.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/201df4de73634080b2c6ae1400b4ac99_9366/Giay_Ultraboost_22_trang_GX8072_03_standard.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/bb4840e773884337922dae1400b4b65b_9366/Giay_Ultraboost_22_trang_GX8072_04_standard.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/cf51022a2276454c8059ae1400b4c21a_9366/Giay_Ultraboost_22_trang_GX8072_05_standard.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d361641387840ff854eae1400b4ccb1_9366/Giay_Ultraboost_22_trang_GX8072_41_detail.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ddc9905534c648908f38ae1400b4d67c_9366/Giay_Ultraboost_22_trang_GX8072_42_detail.jpg',
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f5e95ebc7ea04b5182b5ae1400bab1b8_9366/Giay_Ultraboost_22_trang_GX8072_09_standard.jpg',
+      ],
+      tag: 'tag',
+      price: 5200000,
+      name: 'Giày ULTRABOOST 22',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB2',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b56f062b132c400ab494ac67011578a5_9366/Giay_Ultraboost_4.0_DNA_trang_FY9120_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 4500000,
+      name: 'Giày ULTRABOOST 4.0 DNA',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB3',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c9e460a304de4481b91eae04012ee9f3_9366/Giay_Ultraboost_22_x_Marimekko_trang_GZ5738_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 5200000,
+      name: 'Giày ULTRABOOST 22 x MARIMEKKO',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB4',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f5f40482d51740068474ad7400c2c3fd_9366/Giay_Ultraboost_21_x_Parley_Xam_GX1245_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 5500000,
+      name: 'Giày ULTRABOOST 22 x PARLEY',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB5',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/da3118b772564493b2a3adfb001c419c_9366/Giay_Ultraboost_DNA_5_trang_GX3028_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 5000000,
+      name: 'Giày ULTRABOOST DNA 5',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB6',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/717f067d2ac749599d7dae1400316ed0_9366/Giay_Ultraboost_22_HEAT.RDY_trang_GZ0129_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 5200000,
+      name: 'Giày ULTRABOOST 22 HEAT.RDY',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB7',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/80fd9d512d7845d290c8ac2100e51f27_9366/Giay_Ultra4D_trang_FX4089_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 6000000,
+      name: 'Giày ULTRABOOST 4D',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB8',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a90ecb998a84478bbb15ab4900b894e9_9366/ULTRABOOST_DNA_X_JAMES_BOND_trang_FY0648_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 5250000,
+      name: 'Giày ULTRABOOST x JAMESBOND',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB9',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ca7f0c4580cd4390bb69add70170e619_9366/Quan_Bo_7-8_Chay_Bo_FastImpact_DJen_HB9243_21_model.jpg'
+      ],
+      tag: 'tag',
+      price: 1800000,
+      name: 'Quần bó 7/8 - ULTRA',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB10',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b26e69a0aa9a4161960cad990088f956_9366/Ao_Gile_Adizero_DJen_H59942_21_model.jpg'
+      ],
+      tag: 'tag',
+      price: 1120000,
+      name: 'Áo Gile ULTRABOOST',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+    Product(
+      id: 'UB11',
+      imageUrls: [
+        'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4f3ad187b10341d289c6ad1000e46b82_9366/ULTRABOOST_20_LAB_trang_GY8108_01_standard.jpg'
+      ],
+      tag: 'tag',
+      price: 5100000,
+      name: 'Giày ULTRABOOST 20-LAB',
+      isFavorite: false,
+      productType: ProductType(id: 'id', name: 'SHOES'),
+      productCategory: [],
+    ),
+  ];
 
   ProductType get shoes => _shoes;
+  List<Product> get ultraBoost => _ultraBoost;
   List<Product> get products => _products;
   List<Promotion> get promotions => _promotion;
   List<Store> get stores => _stores;

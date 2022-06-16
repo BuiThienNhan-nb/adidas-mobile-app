@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adidas_clone/models/product.dart';
 import 'package:flutter_adidas_clone/models/product_category.dart';
+import 'package:flutter_adidas_clone/views/utils/mock_data.dart';
 
 class ProductProvider extends ChangeNotifier {
   List<Product> _listProduct = [];
@@ -20,6 +21,23 @@ class ProductProvider extends ChangeNotifier {
             (category) => category.name.compareTo(productCategory.name) == 0,
           ),
         )
+        .toList();
+  }
+
+  // List<Product> getProductByName(String productName) =>
+  // _listProduct
+  //     .where((product) =>
+  //         product.name.toLowerCase().contains(productName.toLowerCase().trim()))
+  //     .toList();
+
+  Future<List<Product>> getProductByName(String productName) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return AppMockData()
+        .ultraBoost
+        .where((product) => product.name
+            .toLowerCase()
+            .trim()
+            .contains(productName.toLowerCase().trim()))
         .toList();
   }
 

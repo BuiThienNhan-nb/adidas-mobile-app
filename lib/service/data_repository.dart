@@ -29,8 +29,8 @@ class DataRepository {
   final baseUrl = Domain.apiUrl;
   BaseOptions options = BaseOptions(
     receiveDataWhenStatusError: true,
-    connectTimeout: 10 * 1000, // 60 seconds
-    receiveTimeout: 10 * 1000, // 60 seconds
+    connectTimeout: 60 * 1000, // 60 seconds
+    receiveTimeout: 60 * 1000, // 60 seconds
   );
   // register
   Future<Response> register(String email, String passWord) async {
@@ -126,7 +126,8 @@ class DataRepository {
     print('getBanners');
 
     Dio dio = Dio(options);
-    Response response = await dio.get(
+    Response response = await dio
+        .get(
       "$baseUrl${BannerEndPoint.getAllBanners}",
       options: Options(
         followRedirects: false,

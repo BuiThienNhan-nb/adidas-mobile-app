@@ -1,25 +1,28 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_adidas_clone/views/search_screen/screens/search_screen.dart';
+import 'package:flutter_adidas_clone/views/search_screen/search_screen_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../configs/palette.dart';
-import '../screens/search_screen.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({
     Key? key,
     required this.isNext,
+    required this.onSearchTap,
   }) : super(key: key);
 
   final bool isNext;
+  final Function() onSearchTap;
 
   @override
   State<SearchBar> createState() => _SearchBarState();
 }
 
 class _SearchBarState extends State<SearchBar> {
-  final TextEditingController controller = TextEditingController();
   Widget? suffixIcon;
   final UnderlineInputBorder border = UnderlineInputBorder(
     borderSide: const BorderSide(color: AppColors.silverColor),
@@ -39,12 +42,11 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     return Material(
       child: TextFormField(
-        controller: controller,
+        controller: context.read<SearchScreenProvider>().txtController,
         readOnly: widget.isNext,
         onTap: () {
           if (widget.isNext) {
-            Navigator.push(
-              context,
+            Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (BuildContext context) => const SearchScreen(),
               ),
@@ -52,18 +54,28 @@ class _SearchBarState extends State<SearchBar> {
           } else {}
         },
         onChanged: (value) {
-          log(controller.text);
+          log(context.read<SearchScreenProvider>().txtController.text);
           log(value);
           // if (!(value == '')) {
           //   setState(() => suffixIcon = suffixIconTemplate);
           if ((value != '')) {
-            controller.text = value;
-            controller.selection = TextSelection.fromPosition(
-                TextPosition(offset: controller.text.length));
+            context.read<SearchScreenProvider>().txtController.text = value;
+            context.read<SearchScreenProvider>().txtController.selection =
+                TextSelection.fromPosition(TextPosition(
+                    offset: context
+                        .read<SearchScreenProvider>()
+                        .txtController
+                        .text
+                        .length));
             setState(() => suffixIcon = suffixIconTemplate);
           } else {
             setState(() => suffixIcon = null);
           }
+        },
+        onFieldSubmitted: (String? value) {
+          context.read<SearchScreenProvider>().updateText(value ?? '');
+          // context.read<SearchScreenProvider>().onSubmitSearch();
+          widget.onSearchTap();
         },
         cursorColor: AppColors.blackColor,
         decoration: InputDecoration(
@@ -75,7 +87,12 @@ class _SearchBarState extends State<SearchBar> {
             padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 16.h),
             child: !widget.isNext
                 ? GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap: () {
+                      context.read<SearchScreenProvider>().updateText('');
+                      context.read<SearchScreenProvider>().isSearching = true;
+                      context.read<SearchScreenProvider>().currentPage = 0;
+                      Navigator.of(context).pop();
+                    },
                     child: Icon(
                       Icons.arrow_back_outlined,
                       color: AppColors.blackColor,
@@ -92,7 +109,8 @@ class _SearchBarState extends State<SearchBar> {
           suffixIcon: suffixIcon != null
               ? GestureDetector(
                   onTap: () => setState(() {
-                    controller.text = '';
+                    context.read<SearchScreenProvider>().txtController.text =
+                        '';
                     suffixIcon = null;
                   }),
                   child: suffixIcon,
