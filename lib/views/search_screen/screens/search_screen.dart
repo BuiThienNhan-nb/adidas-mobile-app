@@ -101,26 +101,28 @@ class _SearchScreenState extends State<SearchScreen> {
                   SearchBar(isNext: false, onSearchTap: () => setState(() {})),
             ),
             Expanded(
-              child: FutureBuilder<List<Product>>(
-                future: context.read<ProductProvider>().getProductByName(
-                    context.read<SearchScreenProvider>().txtController.text),
-                builder: (context, snapshot) {
-                  if (context.read<SearchScreenProvider>().txtController.text ==
-                      '') {
-                    return const FirstLandingSearchScreen();
-                  }
-                  if (snapshot.hasData) {
-                    if (snapshot.data!.isEmpty) {
-                      log('search result - fail');
-                      return const SearchFailureScreen();
-                    }
-                    log('search result - success');
-                    return SearchSuccessScreen(products: snapshot.data!);
-                  }
-                  log('search result - load');
-                  return LoadingIndicator();
-                },
-              ),
+              child: context.read<SearchScreenProvider>().txtController.text ==
+                      ''
+                  ? const FirstLandingSearchScreen()
+                  : FutureBuilder<List<Product>>(
+                      future: context.read<ProductProvider>().getProductByName(
+                          context
+                              .read<SearchScreenProvider>()
+                              .txtController
+                              .text),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          if (snapshot.data!.isEmpty) {
+                            log('search result - fail');
+                            return const SearchFailureScreen();
+                          }
+                          log('search result - success');
+                          return SearchSuccessScreen(products: snapshot.data!);
+                        }
+                        log('search result - load');
+                        return LoadingIndicator();
+                      },
+                    ),
             ),
           ],
         ),

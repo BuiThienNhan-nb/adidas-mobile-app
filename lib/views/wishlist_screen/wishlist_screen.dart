@@ -24,7 +24,7 @@ class WishListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<OrderItem> orderItems =
-        context.watch<OrderProvider>().order?.orderItems ?? [];
+        context.watch<OrderProvider>().order.orderItems ?? [];
 
     showFilterModalBottomSheet() {
       showModalBottomSheet<dynamic>(

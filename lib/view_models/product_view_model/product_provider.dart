@@ -31,14 +31,16 @@ class ProductProvider extends ChangeNotifier {
   //     .toList();
 
   Future<List<Product>> getProductByName(String productName) async {
-    await Future.delayed(const Duration(seconds: 2));
-    return AppMockData()
-        .ultraBoost
-        .where((product) => product.name
-            .toLowerCase()
-            .trim()
-            .contains(productName.toLowerCase().trim()))
-        .toList();
+    return Future<List<Product>>.delayed(
+      const Duration(seconds: 2),
+      () => AppMockData()
+          .ultraBoost
+          .where((product) => product.name
+              .toLowerCase()
+              .trim()
+              .contains(productName.toLowerCase().trim()))
+          .toList(),
+    );
   }
 
   List<Product> get listProductRunning =>
